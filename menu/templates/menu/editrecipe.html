@@ -1,0 +1,66 @@
+{% load staticfiles %}
+{% load menu_extras %}
+{% include "menu/stylesheets.html" %}
+
+<div id="title">
+    Edit: {{ recipe.name }}
+</div>
+<div id="content">
+    <div>
+        <a class="button" id="nav" href="{% url 'menu:index' %}">Back to Recipe List</a>
+        <a class="button" id="nav" href="{% url 'menu:recipedetails' recipe.id %}">View Recipe Details</a>
+        <a class="button" id="delete" href="{% url 'menu:disablerecipe' recipe.id %}">Remove Recipe</a>
+    </div><div style="clear:both"></div>
+    <hr noshade><hr noshade>
+
+    <h2>Edit Recipe Details</h2>
+
+    <form action="{% url 'menu:updaterecipe' recipe.id %}" method="post">
+    <input type=submit value="Update Recipe Details" id="submit"/>
+    <a class="button" href="{% url 'menu:recipedetails' recipe.id %}">Cancel</a>
+    <hr noshade>
+{% csrf_token %}
+        Name<br><input type=text name="name" value="{{ recipe.name }}" id="text"><br><br>
+        Prep Method<br><input type=text name="method" value="{{ recipe.prepMethod }}" id="text"><br><br>
+        Temperature<br><input type=text name="temp" value="{{ recipe.temperature }}" id="text"><br><br>
+        Prep Time (minutes)<br><input type=text name="prep" value="{{ recipe.prepTime }}" id="text"><br><br>
+        Cook Time (minutes)<br><input type=text name="cook" value="{{ recipe.cookTime }}" id="text"><br><br>
+        Servings<br><input type=text name="serves" value="{{ recipe.servings }}" id="text"><br><br>
+        Directions (Use <a target="blank" href="https://en.wikipedia.org/wiki/Markdown#Example">Markdown</a> like all the cool kids)<br><textarea name="directions" ROWS=15 COLS=35>{{ recipe.directions }}</textarea><br><br>
+        URL<br><input type=text name="source" value="{{ recipe.source }}" id="text"><br><br>
+        <input type=submit value="Update Recipe Details" id="submit"/>
+        <a class="button" href="{% url 'menu:recipedetails' recipe.id %}">Cancel</a>
+    </form>
+    <hr noshade><hr noshade>
+
+    <h2>Edit Ingredients</h2>
+    <input type=submit value="Update Ingredients" id="submit">
+    <a class="button" href="{% url 'menu:recipedetails' recipe.id %}">Cancel</a>
+    <hr noshade>
+
+    <form action="{% url 'menu:updateingredient' recipe.id %}" method="post">
+    {% csrf_token %}
+        <h4>Current Ingredients</h4>
+            {% for i in recipe.ingredient_set.all %}
+                <ul>
+                    <li id="nospace">{{ i.name }}, {{ i.amount }}, {{ i.unit }}</li>
+                </ul>
+            {% endfor %}
+        <div id="ingredients"></div>
+        <p><a class="button" href="{% url 'menu:addingredient' recipe.id %}" method="post">Add new ingredient</a></p>
+        {% for i in recipe.ingredient_set.all %}
+            <fieldset name = "{{i.id}},ingredients">
+                <legend><a class="button" id="delete" href="{% url 'menu:deleteingredient' i.id %}" method="post">Delete this ingredient</a></legend>
+                <input type=text value="{{ i.name }}" name="{{i.id}},name">
+                <input type=text value="{{ i.amount }}" name="{{i.id}},amount">
+                <input type=text value="{{ i.unit}}" name="{{i.id}},unit">
+                <input type=text value="{{ i.comment }}" name="{{i.id}},comment">
+            </fieldset>
+        {% endfor %}
+        <br>
+        <input type=submit value="Update Ingredients" id="submit">
+        <a class="button" href="{% url 'menu:recipedetails' recipe.id %}">Cancel</a>
+        <hr noshade><hr noshade>
+        <a class="button" id="deleteforever" href="{% url 'menu:deleterecipeforever' recipe.id %}">DELETE RECIPE FOREVER</a>
+    </form>
+</div>

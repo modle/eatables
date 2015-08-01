@@ -1,0 +1,82 @@
+{% load staticfiles %}
+{% load menu_extras %}
+{% include "menu/stylesheets.html" %}
+<!--<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"/>-->
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Upload Recipe</title>
+	</head>
+	<div id="title">
+		Recipe Upload
+	</div>
+    <body>
+		<div id="aside"><!-- Upload form. Note enctype attribute! -->
+			<h2>Upload Recipes Here</h2>
+            <div>
+				<a class="button" id="nav" href="{% url 'menu:index' %}">Back to Recipe List</a>
+			</div><div style="clear:both"></div>
+			<hr noshade><hr noshade>
+      		<form action="{% url 'menu:uploadrecipe' %}" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+
+				<p>csv file only</p>
+				<p>Format:  name,prepMethod,temperature,directions,url,servings(integer),prepTime(integer),cookTime(integer)</p>
+
+				<p>{{ form.non_field_errors }}</p>
+				<p>{{ form.docfile.label_tag }}
+				{{ form.docfile.help_text }}
+				{{ form.docfile.errors }}</p>
+
+                <!--<div class="fileUpload btn btn-primary">-->
+                    <!--<span>Choose File</span>-->
+                    <!--<input type="file" class="upload" />-->
+                <!--</div>-->
+
+				<p>{{ form.docfile }}</p>
+				<input type="submit" value="Upload Recipe" id="submit"/>
+			</form>
+		</div>
+
+		<div id="content"><!-- Upload form. Note enctype attribute! -->
+		    <h2>Upload Ingredients Here</h2>
+			<hr noshade><hr noshade>
+      		<form action="{% url 'menu:uploadingredients' %}" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+
+				<p>csv file only</p>
+				<p>Format:  recipe name,ingredient name,amount,units,comment</p>
+
+				<p>{{ form.non_field_errors }}</p>
+				<p>{{ form.docfile.label_tag }}
+				{{ form.docfile.help_text }}
+				{{ form.docfile.errors }}</p>
+
+                <!--<div class="fileUpload btn btn-primary">-->
+                    <!--<span>Choose File</span>-->
+                    <!--<input type="file" class="upload" />-->
+                <!--</div>-->
+
+				<p>{{ form.docfile }}</p>
+				<input type="submit" value="Upload Ingredients" id="submit"/>
+			</form>
+		</div>
+
+		<!--List of uploaded documents-->
+		<div id="aside">
+			{% if documents %}
+				<ul>
+				{% for document in documents %}
+					<li>
+					<a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a>
+					<a href="{% url 'menu:deletedocument' document.id %}">Delete</a>
+					</li>
+				{% endfor %}
+				</ul>
+			{% else %}
+				<p>No documents.</p>
+			{% endif %}
+		</div>
+	</body>
+</html>

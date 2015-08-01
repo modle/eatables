@@ -1,0 +1,5 @@
+Django==1.8.2
+argparse==1.2.1
+django-static-jquery==2.1.4
+wsgiref==0.1.2
+django-markdown-deux==1.0.5

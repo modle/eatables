@@ -1,0 +1,23 @@
+$ cat .gitignore
+# ignore idea files
+*.idea
+
+# ignore nohup.out
+nohup.out
+
+# ignore .commands
+.commands
+
+#ignore .howto files
+.howto*
+
+#ignore .backup files
+.backup*
+
+media/*
+
+.notes*
+
+venv/
+
+staticfiles

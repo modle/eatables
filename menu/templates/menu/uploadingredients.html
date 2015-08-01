@@ -1,0 +1,61 @@
+{% load staticfiles %}
+{% load menu_extras %}
+{% include "menu/stylesheets.html" %}
+<!--<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"/>-->
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Upload Ingredients</title>
+	</head>
+	<div id="title">
+		Ingredient Upload
+	</div>
+    <body>
+		<div id="aside"><!-- Upload form. Note enctype attribute! -->
+			<div>
+                {% if recipeId == "0" %}
+                    <a class="button" id="nav" href="{% url 'menu:index' %}">Back to Recipe List</a>
+                {% else %}
+                    <a class="button" id="nav" href="{% url 'menu:editrecipe' recipeId %}">Back to Recipe Edit</a>
+                {% endif %}
+			</div><div style="clear:both"></div>
+			<hr noshade><hr noshade>
+      		<form action="{% url 'menu:uploadingredients' %}" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+
+				<p>csv file only</p>
+				<p>Format:  recipe name,ingredient name,amount,units,comment</p>
+
+				<p>{{ form.non_field_errors }}</p>
+				<p>{{ form.docfile.label_tag }}
+				{{ form.docfile.help_text }}
+				{{ form.docfile.errors }}</p>
+
+                <!--<div class="fileUpload btn btn-primary">-->
+                    <!--<span>Choose File</span>-->
+                    <!--<input type="file" class="upload" />-->
+                <!--</div>-->
+
+				<p>{{ form.docfile }}</p>
+				<input type="submit" value="Upload" id="submit"/>
+			</form>
+		</div>
+
+		<!--List of uploaded documents-->
+		<div id="content">
+			{% if documents %}
+				<ul>
+				{% for document in documents %}
+					<li>
+					<a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a>
+					<a href="{% url 'menu:deletedocument' document.id %}">Delete</a>
+					</li>
+				{% endfor %}
+				</ul>
+			{% else %}
+				<p>No documents.</p>
+			{% endif %}
+		</div>
+	</body>
+</html>
