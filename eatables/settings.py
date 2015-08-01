@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'eatables.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dopqba3iou4b6',
+        'USER': 'upwxccehnvlwbt',
+        'PASSWORD': '4U0T3sali6Hvl0P2CCiJJ2Y2Vw',
+        'HOST': 'ec2-54-83-51-0.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
