@@ -21,6 +21,7 @@ from django.conf import settings
 urlpatterns = [
     url(r'^menu/', include('menu.urls', namespace="menu")),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
