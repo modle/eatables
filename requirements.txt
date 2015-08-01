@@ -8,3 +8,4 @@ markdown2==2.3.0
 wsgiref==0.1.2
 psycopg2==2.6
 whitenoise==1.0.6
+gunicorn==19.2.1

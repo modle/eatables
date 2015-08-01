@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'django_static_jquery',
     'markdown_deux',
     'menu',
+    'gunicorn',
 )
 
 MIDDLEWARE_CLASSES = (
