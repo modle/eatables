@@ -34,3 +34,24 @@
  {}
 [01/Aug/2015 17:14:24] DEBUG [menu.views:65] LOCALS:
  {'logger': <logging.Logger object at 0x7ffd76939850>, 'request': <WSGIRequest: GET '/menu/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7ffd769aa410>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
+[01/Aug/2015 17:14:51] DEBUG [menu.views:57] Formset saved
+[01/Aug/2015 17:14:51] DEBUG [menu.views:64] POST DATA:
+ {
+    "csrfmiddlewaretoken": "ef6eCEQfILQ7qVlXtnNo8KwV7yyCDwfi", 
+    "form-0-amount": "3", 
+    "form-0-id": "1", 
+    "form-0-ingredient": "1", 
+    "form-1-amount": "9", 
+    "form-1-id": "2", 
+    "form-1-ingredient": "2", 
+    "form-2-amount": "8", 
+    "form-2-id": "3", 
+    "form-2-ingredient": "3", 
+    "form-2-status": "on", 
+    "form-INITIAL_FORMS": "3", 
+    "form-MAX_NUM_FORMS": "1000", 
+    "form-MIN_NUM_FORMS": "0", 
+    "form-TOTAL_FORMS": "3"
+}
+[01/Aug/2015 17:14:51] DEBUG [menu.views:65] LOCALS:
+ {'logger': <logging.Logger object at 0x7ffd76939850>, 'request': <WSGIRequest: POST '/menu/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7ffd769aa7d0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
