@@ -19,7 +19,6 @@ urlpatterns = [
     url(r'^archivelist/$', views.ArchiveList.as_view(), name='archivelist'),
     url(r'^(?P<recipeId>[0-9]+)/addcomment/$', views.addcomment, name='addcomment'),
     url(r'^uploadrecipe/$', views.uploadrecipe, name='uploadrecipe'),
-    url(r'^(?P<documentId>[0-9]+)/deletedocument/$', views.deletedocument, name='deletedocument'),
     url(r'^uploadingredients/$', views.uploadingredients, name='uploadingredients'),
     url(r'^test/', views.TestListView.as_view(), name='test'),
 ]
