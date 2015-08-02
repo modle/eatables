@@ -13,9 +13,5 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "eatables.settings")
 from django.core.wsgi import get_wsgi_application
 from whitenoise.django import DjangoWhiteNoise
 
-#Rely upon env var 'DYNO` to determine if we are
-#running within Heroku
-
-
 application = get_wsgi_application()
 application = DjangoWhiteNoise(application)
