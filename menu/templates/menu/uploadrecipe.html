@@ -53,20 +53,5 @@
 			</form>
 		</div>
 
-		<!--List of uploaded documents-->
-		<div id="aside">
-			{% if documents %}
-				<ul>
-				{% for document in documents %}
-					<li>
-					<a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a>
-					<a href="{% url 'menu:deletedocument' document.id %}">Delete</a>
-					</li>
-				{% endfor %}
-				</ul>
-			{% else %}
-				<p>No documents.</p>
-			{% endif %}
-		</div>
 	</body>
 </html>
