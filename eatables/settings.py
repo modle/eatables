@@ -75,17 +75,26 @@ WSGI_APPLICATION = 'eatables.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'dopqba3iou4b6',
+#         'USER': 'upwxccehnvlwbt',
+#         'PASSWORD': '4U0T3sali6Hvl0P2CCiJJ2Y2Vw',
+#         'HOST': 'ec2-54-83-51-0.compute-1.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
 DATABASES = {
-    'default': {
+    'prd': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dopqba3iou4b6',
-        'USER': 'upwxccehnvlwbt',
-        'PASSWORD': '4U0T3sali6Hvl0P2CCiJJ2Y2Vw',
-        'HOST': 'ec2-54-83-51-0.compute-1.amazonaws.com',
+        'NAME': 'd13ng6896mcf6t',
+        'USER': 'sehrttnlioufpr',
+        'PASSWORD': 'i7y7WMQlEY6kbb7djE0DCQMmNB',
+        'HOST': 'ec2-54-83-36-176.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
