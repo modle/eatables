@@ -17,7 +17,7 @@ class Recipe(models.Model):
     cookTime = models.IntegerField(default=0)
     enabled = models.BooleanField(default=True)
     def __str__(self):
-        return self.name + "; " + self.prepMethod + "; " + str(self.id)
+        return self.name
 
     class Meta:
         ordering = ('name', )
