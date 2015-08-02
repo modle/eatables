@@ -15,7 +15,7 @@ import math
 
 
 from menu.forms import *
-from .models import Recipe, Ingredient, ShoppingList, Document
+from .models import Recipe, Ingredient, ShoppingList
 
 
 class Index(generic.ListView):
@@ -196,23 +196,11 @@ def addcomment(request, recipeId):
 
 
 def uploadrecipe(request):
-    # Handle file upload
-
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
-            newdoc = Document(docfile=request.FILES['docfile'])
-            newdoc.save()
-
-            dir_path = os.path.realpath(__file__)
-            file_path = Document.objects.all().values()[0]['docfile'].split(' ')[0].encode('utf8')
-            full_path = "{0}/{1}".format(os.path.dirname(dir_path), file_path)
-
-            with open(full_path) as f:
-                reader = csv.reader(f)
-
-                # try:
-                for row in reader:
+            reader = csv.reader(form.cleaned_data['docfile'])
+            for row in reader:
                     _, created = Recipe.objects.get_or_create(
                         name=row[0],
                     )
@@ -227,19 +215,15 @@ def uploadrecipe(request):
                         entry.cookTime = row[7]
                         entry.save()
 
-                newdoc.delete()
-                return HttpResponseRedirect(reverse('menu:index'))
+        return HttpResponseRedirect(reverse('menu:index'))
 
     else:
         form = DocumentForm()  # An empty, unbound form
         # Load documents for the list page
 
-    documents = Document.objects.all()
-    # Render list page with the documents and the form
-
     return render_to_response(
         'menu/uploadrecipe.html',
-        {'documents': documents, 'form': form},
+        {'form': form},
         context_instance=RequestContext(request)
     )
     # return HttpResponseRedirect(reverse('menu:showdocuments'))
@@ -251,48 +235,28 @@ def uploadingredients(request):
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
-            newdoc = Document(docfile=request.FILES['docfile'])
-            newdoc.save()
-
-            dir_path = os.path.realpath(__file__)
-            file_path = Document.objects.all().values()[0]['docfile'].split(' ')[0].encode('utf8')
-            full_path = "{0}/{1}".format(os.path.dirname(dir_path), file_path)
-            with open(full_path) as f:
-                reader = csv.reader(f)
-
-                # try:
-                for row in reader:
-                    recipe = get_object_or_404(Recipe, name=row[0])
-                    _, created = Ingredient.objects.get_or_create(
-                        name=row[1],
-                        recipe_id=recipe.id,
-                        amount=row[2],
-                        unit=row[3],
-                        comment=row[4],
-                    )
-
-                newdoc.delete()
-                return HttpResponseRedirect(reverse('menu:index'))
+            reader = csv.reader(form.cleaned_data['docfile'])
+            for row in reader:
+                recipe = get_object_or_404(Recipe, name=row[0])
+                _, created = Ingredient.objects.get_or_create(
+                    name=row[1],
+                    recipe_id=recipe.id,
+                    amount=row[2],
+                    unit=row[3],
+                    comment=row[4],
+                )
+        return HttpResponseRedirect(reverse('menu:index'))
 
     else:
         form = DocumentForm()  # An empty, unbound form
         # Load documents for the list page
 
-    documents = Document.objects.all()
-    # Render list page with the documents and the form
-
     return render_to_response(
         'menu/uploadrecipe.html',
-        {'documents': documents, 'form': form},
+        {'form': form},
         context_instance=RequestContext(request)
     )
     # return HttpResponseRedirect(reverse('menu:showdocuments'))
-
-
-def deletedocument(request, documentId):
-    doc = Document.objects.get(pk=documentId)
-    doc.delete()
-    return HttpResponseRedirect(reverse('menu:uploadrecipe'))
 
 
 class TestListView(generic.ListView):

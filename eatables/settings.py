@@ -88,28 +88,28 @@ WSGI_APPLICATION = 'eatables.wsgi.application'
 # }
 
 # # prd DB
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'd13ng6896mcf6t',
-#         'USER': 'sehrttnlioufpr',
-#         'PASSWORD': 'i7y7WMQlEY6kbb7djE0DCQMmNB',
-#         'HOST': 'ec2-54-83-36-176.compute-1.amazonaws.com',
-#         'PORT': '5432',
-#     }
-# }
-
-# test DB
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd3v7n1vj1iqv8b',
-        'USER': 'rmlofvmtxiylqh',
-        'PASSWORD': '1C3HwtuX_Kl8P34z_kWf6YmVsT',
-        'HOST': 'ec2-54-83-51-0.compute-1.amazonaws.com',
+        'NAME': 'd13ng6896mcf6t',
+        'USER': 'sehrttnlioufpr',
+        'PASSWORD': 'i7y7WMQlEY6kbb7djE0DCQMmNB',
+        'HOST': 'ec2-54-83-36-176.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
+
+# test DB
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'da0er6kkfaiiaj',
+#         'USER': 'roreabkwnivalw',
+#         'PASSWORD': 'gX3Fqe6b2BKRZct227EHsvV7u5',
+#         'HOST': 'ec2-54-83-10-210.compute-1.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
 
 
 
