@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'eatables.wsgi.application'
 #     }
 # }
 DATABASES = {
-    'prd': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'd13ng6896mcf6t',
         'USER': 'sehrttnlioufpr',
