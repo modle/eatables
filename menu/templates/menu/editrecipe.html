@@ -54,7 +54,8 @@
                 <input type=text value="{{ i.name }}" name="{{i.id}},name">
                 <input type=text value="{{ i.amount }}" name="{{i.id}},amount">
                 <input type=text value="{{ i.unit}}" name="{{i.id}},unit">
-                <input type=text value="{{ i.comment }}" name="{{i.id}},comment">
+                <input type=text value="{{ i.comment|default_if_none:'' }}" name="{{i.id}},comment">
+                <input type=text value="{{ i.sorting|default_if_none:i.id }}" name="{{i.id}},sorting">
             </fieldset>
         {% endfor %}
         <br>

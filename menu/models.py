@@ -15,6 +15,7 @@ class Recipe(models.Model):
     prepTime = models.IntegerField(default=0)
     cookTime = models.IntegerField(default=0)
     enabled = models.BooleanField(default=True)
+    # pinned = models.BooleanField(default=False)
     def __str__(self):
         return self.name
 
@@ -28,11 +29,12 @@ class Ingredient(models.Model):
     comment = models.CharField(max_length=80, null=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
     unit = models.CharField(max_length=30, null=True)
+    sorting = models.IntegerField("Ordering", blank=True, null=True, help_text="A number.")
     def __str__(self):
         return str(self.unit) + " " + str(self.name)
 
     class Meta:
-        ordering = ('id', )
+        ordering = ('sorting', 'id', )
         unique_together = ('name', 'recipe', 'amount', 'unit',)
 
 class ShoppingList(models.Model):

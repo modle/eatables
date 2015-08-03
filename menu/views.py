@@ -209,9 +209,18 @@ def uploadrecipe(request):
                         entry.temperature = row[2]
                         entry.directions = row[3]
                         entry.source = row[4]
-                        entry.servings = row[5]
-                        entry.prepTime = row[6]
-                        entry.cookTime = row[7]
+                        if row[5] == '':
+                            entry.servings = 0
+                        else:
+                            entry.servings = row[5]
+                        if row[6] == '':
+                            entry.prepTime = 0
+                        else:
+                            entry.prepTime = row[6]
+                        if row[7] == '':
+                            entry.cookTime = 0
+                        else:
+                            entry.cookTime = row[7]
                         entry.save()
 
         return HttpResponseRedirect(reverse('menu:index'))
