@@ -97,3 +97,31 @@
  {}
 [02/Aug/2015 16:49:31] DEBUG [menu.views:104] LOCALS:
  {'logger': <logging.Logger object at 0x7f2fa2e8b750>, 'request': <WSGIRequest: GET '/menu/retiredrecipes/'>, 'formset': <django.forms.formsets.RecipeFormFormSet object at 0x7f2fa311af90>, 'RetiredRecipesFormSet': <class 'django.forms.formsets.RecipeFormFormSet'>}
+[02/Aug/2015 20:45:35] DEBUG [menu.views:63] POST DATA:
+ {}
+[02/Aug/2015 20:45:35] DEBUG [menu.views:64] LOCALS:
+ {'logger': <logging.Logger object at 0x7f757bcc0f50>, 'request': <WSGIRequest: GET '/menu/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f757bc59190>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
+[02/Aug/2015 20:45:44] DEBUG [menu.views:63] POST DATA:
+ {}
+[02/Aug/2015 20:45:44] DEBUG [menu.views:64] LOCALS:
+ {'logger': <logging.Logger object at 0x7f757bcc0f50>, 'request': <WSGIRequest: GET '/menu/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f757bc104d0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
+[02/Aug/2015 20:45:47] DEBUG [menu.views:102] POST DATA:
+ {}
+[02/Aug/2015 20:45:47] DEBUG [menu.views:103] LOCALS:
+ {'logger': <logging.Logger object at 0x7f757bcc0f50>, 'request': <WSGIRequest: GET '/menu/retiredrecipes/'>, 'formset': <django.forms.formsets.RecipeFormFormSet object at 0x7f757bc10a90>, 'RetiredRecipesFormSet': <class 'django.forms.formsets.RecipeFormFormSet'>}
+[02/Aug/2015 20:45:51] DEBUG [menu.views:102] POST DATA:
+ {}
+[02/Aug/2015 20:45:51] DEBUG [menu.views:103] LOCALS:
+ {'logger': <logging.Logger object at 0x7f757bcc0f50>, 'request': <WSGIRequest: GET '/menu/retiredrecipes/'>, 'formset': <django.forms.formsets.RecipeFormFormSet object at 0x7f757bce1cd0>, 'RetiredRecipesFormSet': <class 'django.forms.formsets.RecipeFormFormSet'>}
+[02/Aug/2015 20:45:53] DEBUG [menu.views:63] POST DATA:
+ {}
+[02/Aug/2015 20:45:53] DEBUG [menu.views:64] LOCALS:
+ {'logger': <logging.Logger object at 0x7f757bcc0f50>, 'request': <WSGIRequest: GET '/menu/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f757bccc550>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
+[02/Aug/2015 20:46:10] DEBUG [menu.views:63] POST DATA:
+ {}
+[02/Aug/2015 20:46:10] DEBUG [menu.views:64] LOCALS:
+ {'logger': <logging.Logger object at 0x7f757bcc0f50>, 'request': <WSGIRequest: GET '/menu/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f757bc08350>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
+[02/Aug/2015 20:46:14] DEBUG [menu.views:63] POST DATA:
+ {}
+[02/Aug/2015 20:46:14] DEBUG [menu.views:64] LOCALS:
+ {'logger': <logging.Logger object at 0x7f757bcc0f50>, 'request': <WSGIRequest: GET '/menu/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f757bbc8d90>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}

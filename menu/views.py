@@ -5,7 +5,6 @@ from django.views import generic
 from fractions import Fraction
 from django.template import RequestContext
 import csv
-import os
 from datetime import datetime
 from django.forms.models import modelformset_factory
 import logging
@@ -110,7 +109,7 @@ def retiredrecipes(request):
 
 
 def addrecipe(request):
-    r = Recipe(name="Update Me_" + str(datetime.now()))
+    r = Recipe(name="_Update Me_" + str(datetime.now()))
     r.save()
     return HttpResponseRedirect(reverse('menu:editrecipe', args=(r.id,)))
 
@@ -185,7 +184,7 @@ def addingredient(request, recipeId):
     r = Recipe.objects.get(pk=recipeId)
 
     now = str(datetime.now().strftime('%Y-%m-%d %H:%M:%S:%f'))
-    r.ingredient_set.create(name="Update Me_" + now, amount="0.0", unit="unit")
+    r.ingredient_set.create(name="_Update Me_" + now, amount="0.0", unit="unit")
     return HttpResponseRedirect(reverse('menu:editrecipe', args=(recipeId,)) + '#ingredients')
 
 

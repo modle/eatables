@@ -1,7 +1,6 @@
 {% load staticfiles %}
 {% load menu_extras %}
 {% include "menu/stylesheets.html" %}
-<!--<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"/>-->
 
 <html>
 	<head>
@@ -22,7 +21,7 @@
 				{% csrf_token %}
 
 				<p>csv file only</p>
-				<p>Format:  name,prepMethod,temperature,directions,url,servings(integer),prepTime(integer),cookTime(integer)</p>
+				<p>Format:<br><b>(no header row)</b><br>name, prepMethod, temperature, directions, url, servings(integer), prepTime(minutes, integer), cookTime(minutes, integer)</p>
 
 				<p>{{ form.non_field_errors }}</p>
 				<p>{{ form.docfile.label_tag }}
@@ -41,7 +40,7 @@
 				{% csrf_token %}
 
 				<p>csv file only</p>
-				<p>Format:  recipe name,ingredient name,amount,units,comment</p>
+				<p>Format:<br><b>(no header row)</b><br>recipe name, ingredient name, amount, units, comment</p>
 
 				<p>{{ form.non_field_errors }}</p>
 				<p>{{ form.docfile.label_tag }}
