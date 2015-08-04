@@ -16,6 +16,8 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+# need to setup overrides if using this method
+# LOGIN_REDIRECT_URL = '/eatables/'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '6+yr4-!9omg%x=6hls60b!(%&(5*w)xb=t-=q_n(l+l49m&web'
@@ -88,29 +90,28 @@ WSGI_APPLICATION = 'eatables.wsgi.application'
 # }
 
 # # prd DB
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd13ng6896mcf6t',
-        'USER': 'sehrttnlioufpr',
-        'PASSWORD': 'i7y7WMQlEY6kbb7djE0DCQMmNB',
-        'HOST': 'ec2-54-83-36-176.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
-}
-
-# test DB
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'da0er6kkfaiiaj',
-#         'USER': 'roreabkwnivalw',
-#         'PASSWORD': 'gX3Fqe6b2BKRZct227EHsvV7u5',
-#         'HOST': 'ec2-54-83-10-210.compute-1.amazonaws.com',
+#         'NAME': 'd13ng6896mcf6t',
+#         'USER': 'sehrttnlioufpr',
+#         'PASSWORD': 'i7y7WMQlEY6kbb7djE0DCQMmNB',
+#         'HOST': 'ec2-54-83-36-176.compute-1.amazonaws.com',
 #         'PORT': '5432',
 #     }
 # }
 
+# test DB
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'da0er6kkfaiiaj',
+        'USER': 'roreabkwnivalw',
+        'PASSWORD': 'gX3Fqe6b2BKRZct227EHsvV7u5',
+        'HOST': 'ec2-54-83-10-210.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
+}
 
 
 # Internationalization
@@ -134,9 +135,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'menu')
 
 MEDIA_URL = '/media/'
 
-
-STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/eatables/staticfiles/'
+STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )

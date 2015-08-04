@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render_to_response, render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views import generic
@@ -11,10 +11,15 @@ import logging
 import json
 import sys
 import math
+from django.contrib.auth.decorators import login_required
 
 
 from menu.forms import *
 from .models import Recipe, Ingredient, ShoppingList
+
+
+def basetemplate(request):
+    return render(request, 'base.html',)
 
 
 class Index(generic.ListView):
@@ -193,7 +198,7 @@ def addcomment(request, recipeId):
     r.comment_set.create(comment=request.POST['comment'])
     return HttpResponseRedirect(reverse('menu:recipedetails', args=(recipeId,)) + '#comments')
 
-
+# @login_required
 def uploadrecipe(request):
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
@@ -235,7 +240,6 @@ def uploadrecipe(request):
         context_instance=RequestContext(request)
     )
     # return HttpResponseRedirect(reverse('menu:showdocuments'))
-
 
 def uploadingredients(request):
     # Handle file upload #update for ingredient additions

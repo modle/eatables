@@ -4,7 +4,8 @@ from . import views
 
 urlpatterns = [
     url(r'^(?P<pk>[0-9]+)/$', views.RecipeDetail.as_view(), name='recipedetails'),
-    url(r'^$', views.Index.as_view(), name='index'),
+    url(r'^$', views.basetemplate, name='basetemplate'),
+    url(r'^menu/$', views.Index.as_view(), name='index'),
     url(r'^retiredrecipes/$', views.retiredrecipes, name='retiredrecipes'),
     url(r'^(?P<pk>[0-9]+)/editrecipe$', views.EditRecipe.as_view(), name='editrecipe'),
     url(r'^addrecipe/$', views.addrecipe, name='addrecipe'),
@@ -20,5 +21,4 @@ urlpatterns = [
     url(r'^(?P<recipeId>[0-9]+)/addcomment/$', views.addcomment, name='addcomment'),
     url(r'^uploadrecipe/$', views.uploadrecipe, name='uploadrecipe'),
     url(r'^uploadingredients/$', views.uploadingredients, name='uploadingredients'),
-    url(r'^test/', views.TestListView.as_view(), name='test'),
 ]
