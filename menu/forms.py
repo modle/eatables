@@ -1,5 +1,5 @@
 from django import forms
-from .models import ShoppingList, Ingredient, Recipe
+from .models import ShoppingList, Ingredient, Recipe, Fridge
 
 
 class DocumentForm(forms.Form):
@@ -41,4 +41,21 @@ class RetiredRecipesForm(forms.ModelForm):
         labels = {
             'enabled': '',
             'name': '',
+        }
+
+
+class FridgeForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(FridgeForm, self).__init__(*args, **kwargs)
+        self.queryset = Fridge.objects.all()
+        # self.fields['expires'].widget.attrs.update({'id': 'listform'})
+
+    class Meta:
+        model = Fridge
+        # fields = '__all__'
+        fields = ('item', 'fridgedate', 'expires',)
+        labels = {
+            'item': '',
+            'fridgedate': 'fridged on',
+            'expires': 'expires',
         }

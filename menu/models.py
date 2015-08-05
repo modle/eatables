@@ -1,8 +1,5 @@
 from django.db import models
-from datetime import datetime
-from django import forms
-import os
-from eatables import settings
+from datetime import datetime, timedelta
 
 class Recipe(models.Model):
     id = models.AutoField(primary_key=True)
@@ -76,7 +73,6 @@ class PurchaseHistory(models.Model):
     purchaseAmount = models.DecimalField(max_digits=10, decimal_places=2, default=0.0, null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.0, null=True, blank=True)
     purchaseUnit = models.CharField(max_length=30, null=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.0, null=True, blank=True)
     store = models.CharField(max_length=30)
     lastPurchaseDate = models.DateTimeField(null=True, blank=True)
 
@@ -85,3 +81,15 @@ class PurchaseHistory(models.Model):
 
     class Meta:
         ordering = ('ingredient__name', 'id')
+
+class Fridge(models.Model):
+    id = models.AutoField(primary_key=True)
+    item = models.CharField(max_length=80, unique=True, null=False)
+    fridgedate = models.DateField(default=datetime.now)
+    expires = models.DateField(default=datetime.now()+timedelta(days=14))
+
+    def __str__(self):
+        return str(self.recipe) + " " + str(self.fridgedate)
+
+    class Meta:
+        ordering = ('fridgedate', 'id')

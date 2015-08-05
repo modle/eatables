@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^(?P<recipeId>[0-9]+)/addcomment/$', views.addcomment, name='addcomment'),
     url(r'^uploadrecipe/$', views.uploadrecipe, name='uploadrecipe'),
     url(r'^uploadingredients/$', views.uploadingredients, name='uploadingredients'),
+    url(r'^fridge/$', views.fridge, name='fridge'),
 ]

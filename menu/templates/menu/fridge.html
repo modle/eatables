@@ -1,0 +1,27 @@
+{% load staticfiles %}
+{% load menu_extras %}
+{% include "menu/stylesheets.html" %}
+
+<div id="title">
+    Shopping List
+</div>
+<div id="content">
+    <div>
+        <a class="button" id="nav" href="{% url 'menu:index' %}">Back to Recipe List</a>
+    </div><div style="clear:both"></div>
+    <hr noshade><hr noshade>
+
+
+    <form method="POST" action="">
+    {% csrf_token %}
+    {{ formset.management_form }}
+        {% for form in formset %}
+            {{ form }}
+            <hr noshade>
+        {% endfor %}
+        <hr noshade>
+        <input type="submit" value="Update" id="submit"/>
+    </form>
+
+
+</div>
