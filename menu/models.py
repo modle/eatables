@@ -35,15 +35,16 @@ class Ingredient(models.Model):
         unique_together = ('name', 'recipe', 'amount', 'unit',)
 
 class ShoppingList(models.Model):
-    id = models.AutoField(primary_key=True)
+    shoppingListId = models.AutoField(primary_key=True)
     ingredient = models.ForeignKey(Ingredient, blank=False)
+    name = models.CharField(max_length=80, null=False)
     amount = models.IntegerField(default=0, null=True, blank=True)
     status = models.BooleanField(default=False,)
     def __str__(self):
         return str(self.id) + " " + str(self.ingredient_id) + " " + str(self.status) + " " + str(self.amount)
 
     class Meta:
-        ordering = ('status', 'ingredient__name', 'id')
+        ordering = ('-status', 'name', 'shoppingListId')
 
 class IngredientMaster(models.Model):
     id = models.AutoField(primary_key=True)

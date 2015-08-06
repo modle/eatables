@@ -11,16 +11,23 @@
     </div><div style="clear:both"></div>
     <hr noshade><hr noshade>
 
-
     <form method="POST" action="">
     {% csrf_token %}
     {{ formset.management_form }}
         {% for form in formset %}
-            {{ form.id }}
+            {{ form.shoppingListId }}
             {{ form.status }}
             {{ form.amount }}
-            {{ form.ingredient }}
+        <!--get id of form; if it matches, print name-->
+            {% for s in itemList %}
+                {% if s.shoppingListId = key %}
+                    {{ s.shoppingListId }}
+                {% endif %}
+            {% endfor %}
+
+
             <hr noshade>
+
         {% endfor %}
         <hr noshade>
         <input type="submit" value="Update" id="submit"/>

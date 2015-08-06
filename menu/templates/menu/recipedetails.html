@@ -2,12 +2,13 @@
 {% load menu_extras %}
 {% include "menu/stylesheets.html" %}
 {% load markdown_deux_tags %}
+<!--<script type="text/javascript" src="{% static 'menu/js/jquery-1.11.3.js' %}"></script>-->
+<!--<script type="text/javascript" src="{% static 'menu/js/menu.js' %}"></script>-->
 
 
 <div id="title">
     {{ recipe.name }}
 </div>
-
 <div id="aside">
     <div>
         <a class="button" id="nav" href="{% url 'menu:index' %}">Back to Recipe List</a>
@@ -73,6 +74,7 @@
         <ul>
             <li>{{ c.comment }}</li>
             <li>{{ c.publishDate }}</li>
+            <a class="button" id="delete" href="{% url 'menu:commentdelete' c.id %}" onclick="return confirm('Are you sure?')">Delete</a>
         </ul>
         <hr noshade>
     {% endfor %}

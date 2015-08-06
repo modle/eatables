@@ -81,18 +81,6 @@ input#submit:hover {
     background-color: #efefef;
 }
 
-select {
-    font-size: 1.2em;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    border: none;
-    /* needed for Firefox: */
-    overflow:hidden;
-    background:lightblue;
-    color: #5a5854;
-}
-
 th {
     font-size: 1.2em;
 }

@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render_to_response, render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 from django.views import generic
 from fractions import Fraction
@@ -11,11 +11,12 @@ import logging
 import json
 import sys
 import math
+from django.views.generic.edit import DeleteView
 from django.contrib.auth.decorators import login_required
 
 
 from menu.forms import *
-from .models import Recipe, Ingredient, ShoppingList, Fridge
+from .models import Recipe, Ingredient, ShoppingList, Fridge, Comment
 
 
 def basetemplate(request):
@@ -36,6 +37,7 @@ def addtoshoppinglist(request, recipeId):
             value = (request.POST[key])
 
             listItem, created = ShoppingList.objects.get_or_create(ingredient_id=key)
+            i = Ingredient.objects.get(id=key)
             entry = get_object_or_404(ShoppingList, ingredient_id=key)
             #this math needs work; alternate is to store as decimal, then math.ceil when model is read
             if created:
@@ -43,7 +45,7 @@ def addtoshoppinglist(request, recipeId):
             else:
                 entry.amount = math.ceil(float(entry.amount) + float(value))
                 # entry.amount = entry.amount + Decimal(float(value))
-
+            entry.name = i.name
             entry.save()
 
     return HttpResponseRedirect(reverse('menu:recipedetails', args=(recipeId,)))
@@ -68,9 +70,11 @@ def manageshoppinglist(request):
     logger.debug('POST DATA:\n %s', json.dumps(request.POST, indent=4, sort_keys=True))
     logger.debug('LOCALS:\n %s', locals())
 
+    itemList = ShoppingList.objects.all()
+
     return render_to_response(
         'menu/manageshoppinglist.html',
-        {'formset': formset},
+        {'formset': formset, 'itemList': itemList, },
         context_instance=RequestContext(request))
 
 def fridge(request):
@@ -221,6 +225,11 @@ def addcomment(request, recipeId):
     r = Recipe.objects.get(pk=recipeId)
     r.comment_set.create(comment=request.POST['comment'])
     return HttpResponseRedirect(reverse('menu:recipedetails', args=(recipeId,)) + '#comments')
+
+def commentdelete(request, commentId):
+    c = Comment.objects.get(pk=commentId)
+    Comment.objects.filter(pk=commentId).delete()
+    return HttpResponseRedirect(reverse('menu:recipedetails', args=(c.recipe_id,)) + '#comments')
 
 # @login_required
 def uploadrecipe(request):

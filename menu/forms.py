@@ -10,21 +10,15 @@ class ShoppingListForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ShoppingListForm, self).__init__(*args, **kwargs)
         self.queryset = ShoppingList.objects.all()
-        self.fields['ingredient'].queryset = Ingredient.objects.filter(
-            id__exact=self.instance.ingredient_id)
-        self.fields['ingredient'].empty_label = None
-        self.fields['ingredient'].widget.choices = self.fields['ingredient'].choices
-        self.fields['ingredient'].widget.attrs['readonly'] = True
         self.fields['amount'].widget.attrs.update({'id': 'listform'})
 
     class Meta:
         model = ShoppingList
         # fields = '__all__'
-        fields = ('status', 'amount', 'ingredient',)
+        fields = ('status', 'amount', )
         labels = {
             'status': '',
             'amount': '',
-            'ingredient': '',
         }
 
 
