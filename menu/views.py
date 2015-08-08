@@ -284,12 +284,13 @@ def uploadingredients(request):
             for row in reader:
                 recipe = get_object_or_404(Recipe, name=row[0])
                 _, created = Ingredient.objects.get_or_create(
-                    name=row[1],
-                    recipe_id=recipe.id,
-                    amount=row[2],
-                    unit=row[3],
-                    comment=row[4],
-                )
+                    name=row[1],)
+                entry = get_object_or_404(Ingredient, id=created.id)
+                if created:
+                    entry.recipe_id = recipe.id
+                    entry.amount = row[2]
+                    entry.unit = row[3]
+                    entry.comment = row[4]
         return HttpResponseRedirect(reverse('menu:index'))
 
     else:

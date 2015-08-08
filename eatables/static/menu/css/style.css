@@ -8,9 +8,6 @@
 /**************************** HTML elements *****************************/
 
 
-h1 {font-size:10px;}
-h2, h3, p, a, th {font-size:11px;}
-
 textarea,
 pre {
   margin: 0;
