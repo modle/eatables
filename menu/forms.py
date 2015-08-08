@@ -48,8 +48,8 @@ class FridgeForm(forms.ModelForm):
         self.fields['item'].widget.attrs.update({'id': 'formfieldastextshort'})
         self.fields['expires'].widget.attrs.update({'class': 'datepicker'})
         self.fields['fridgedate'].widget.attrs.update({'class': 'datepicker'})
-        self.fields['expires'].widget.attrs.update({'id': 'formfieldastextshort'})
-        self.fields['fridgedate'].widget.attrs.update({'id': 'formfieldastextshort'})
+        # self.fields['expires'].widget.attrs.update({'id': 'formfieldastextshort'})
+        # self.fields['fridgedate'].widget.attrs.update({'id': 'formfieldastextshort'})
 
 
     class Meta:

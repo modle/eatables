@@ -324,3 +324,467 @@
  {}
 [07/Aug/2015 22:06:40] DEBUG [menu.views:97] LOCALS:
  {'logger': <logging.Logger object at 0x7f10afcdd8d0>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f10afcdda10>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:21:38] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:21:38] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fcac16998d0>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fcac1699a10>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:22:02] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:22:02] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fcac16998d0>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fcac16b2790>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:22:06] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:22:06] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fc6af0988d0>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fc6af098a10>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:23:33] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:23:33] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fd9e5e7d8d0>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fd9e5e7da10>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:23:35] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:23:35] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fd9e5e7d8d0>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fd9e5e96790>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:24:37] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:24:37] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f74982278d0>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f7498227a10>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:24:42] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:24:42] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f74982278d0>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f7498240790>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:24:48] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:24:48] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f74982278d0>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f74981cc490>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:25:52] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:25:52] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7ff091ebd8d0>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7ff091ebda10>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:26:27] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:26:27] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f95035648d0>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f9503564a10>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:33:46] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:33:46] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7feb4df10910>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7feb4df10a50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:35:18] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:35:18] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f70a5fc2910>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f70a5fc2a50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:35:34] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:35:34] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f975a255910>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f975a255a50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:36:48] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:36:48] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f8cf082e910>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f8cf082ea50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:36:57] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:36:57] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f18a108a910>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f18a108aa50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:37:12] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:37:12] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f0e46549910>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f0e46549a50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:38:43] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:38:43] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f32099e1910>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f32099e1a50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:39:25] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:39:25] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fc1a4421750>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fc1a4477e90>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:39:46] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:39:46] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fb65e3cd910>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fb65e3cda50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:40:44] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:40:44] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fbb4158a910>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fbb4158aa50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:41:26] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:41:26] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f7ac47cd910>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f7ac47cda50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:42:47] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:42:47] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f764e980910>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f764e980a50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:43:54] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:43:54] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f764e980910>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f764e924610>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:44:45] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:44:45] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f9761e1c910>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f9761e1ca50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:44:51] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:44:51] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f9761e1c910>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f9761dc1610>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:45:32] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:45:32] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f9761e1c910>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f9761166210>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:45:52] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:45:52] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fc907a2f910>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fc907a2fa50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:47:31] DEBUG [menu.views:91] Formset invalid
+[07/Aug/2015 22:47:31] DEBUG [menu.views:96] POST DATA:
+ {
+    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "20 Aug 15", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2015-08-04", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-INITIAL_FORMS": "2", 
+    "form-MAX_NUM_FORMS": "1000", 
+    "form-MIN_NUM_FORMS": "0", 
+    "form-TOTAL_FORMS": "2", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04"
+}
+[07/Aug/2015 22:47:31] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fc907a2f910>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fc907a47a90>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:48:52] DEBUG [menu.views:91] Formset invalid
+[07/Aug/2015 22:48:52] DEBUG [menu.views:96] POST DATA:
+ {
+    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "20 Aug 15", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2015-08-04", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-INITIAL_FORMS": "2", 
+    "form-MAX_NUM_FORMS": "1000", 
+    "form-MIN_NUM_FORMS": "0", 
+    "form-TOTAL_FORMS": "2", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04"
+}
+[07/Aug/2015 22:48:52] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f1db0699990>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f1db0699a50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:48:58] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:48:58] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f1db0699990>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f1daf9c9450>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:49:25] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:49:25] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f22fc67c910>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f22fc67ca50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:49:40] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:49:40] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f353f492910>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f353f492a50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:50:01] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:50:01] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f8a45257910>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f8a45257a50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:51:45] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 22:51:45] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f7349268910>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f7349268a50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:52:23] DEBUG [menu.views:89] Formset saved
+[07/Aug/2015 22:52:23] DEBUG [menu.views:96] POST DATA:
+ {
+    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "2015-08-02", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2006-03-09", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-INITIAL_FORMS": "2", 
+    "form-MAX_NUM_FORMS": "1000", 
+    "form-MIN_NUM_FORMS": "0", 
+    "form-TOTAL_FORMS": "2", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04"
+}
+[07/Aug/2015 22:52:23] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f7349268910>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f7349280a90>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 23:03:50] DEBUG [menu.views:89] Formset saved
+[07/Aug/2015 23:03:50] DEBUG [menu.views:96] POST DATA:
+ {
+    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "2015-08-02", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2006-03-09", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-INITIAL_FORMS": "2", 
+    "form-MAX_NUM_FORMS": "1000", 
+    "form-MIN_NUM_FORMS": "0", 
+    "form-TOTAL_FORMS": "2", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04"
+}
+[07/Aug/2015 23:03:50] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fc0b789fa90>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fc0b789fb50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 23:04:15] DEBUG [menu.views:89] Formset saved
+[07/Aug/2015 23:04:15] DEBUG [menu.views:96] POST DATA:
+ {
+    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "2015-08-02", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2006-03-09", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-INITIAL_FORMS": "2", 
+    "form-MAX_NUM_FORMS": "1000", 
+    "form-MIN_NUM_FORMS": "0", 
+    "form-TOTAL_FORMS": "2", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04"
+}
+[07/Aug/2015 23:04:15] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f482096d9d0>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f482096da90>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 23:04:56] DEBUG [menu.views:89] Formset saved
+[07/Aug/2015 23:04:56] DEBUG [menu.views:96] POST DATA:
+ {
+    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "2015-08-02", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2006-03-09", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-INITIAL_FORMS": "2", 
+    "form-MAX_NUM_FORMS": "1000", 
+    "form-MIN_NUM_FORMS": "0", 
+    "form-TOTAL_FORMS": "2", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04"
+}
+[07/Aug/2015 23:04:56] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f5b7ae85a90>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f5b7ae85b50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 23:05:52] DEBUG [menu.views:89] Formset saved
+[07/Aug/2015 23:05:52] DEBUG [menu.views:96] POST DATA:
+ {
+    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "2015-08-02", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2006-03-09", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-INITIAL_FORMS": "2", 
+    "form-MAX_NUM_FORMS": "1000", 
+    "form-MIN_NUM_FORMS": "0", 
+    "form-TOTAL_FORMS": "2", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04"
+}
+[07/Aug/2015 23:05:52] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7ffb8d165950>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7ffb8d165a10>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 23:06:09] DEBUG [menu.views:89] Formset saved
+[07/Aug/2015 23:06:09] DEBUG [menu.views:96] POST DATA:
+ {
+    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "2015-08-02", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2006-03-09", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-INITIAL_FORMS": "2", 
+    "form-MAX_NUM_FORMS": "1000", 
+    "form-MIN_NUM_FORMS": "0", 
+    "form-TOTAL_FORMS": "2", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04"
+}
+[07/Aug/2015 23:06:09] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7febecb19990>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7febecb19a50>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 23:06:30] DEBUG [menu.views:89] Formset saved
+[07/Aug/2015 23:06:30] DEBUG [menu.views:96] POST DATA:
+ {
+    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "2015-08-02", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2006-03-09", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-INITIAL_FORMS": "2", 
+    "form-MAX_NUM_FORMS": "1000", 
+    "form-MIN_NUM_FORMS": "0", 
+    "form-TOTAL_FORMS": "2", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04"
+}
+[07/Aug/2015 23:06:30] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fb4dd2a6a10>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fb4dd2a6ad0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 23:07:46] DEBUG [menu.views:89] Formset saved
+[07/Aug/2015 23:07:46] DEBUG [menu.views:96] POST DATA:
+ {
+    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "2015-08-02", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2006-03-09", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-INITIAL_FORMS": "2", 
+    "form-MAX_NUM_FORMS": "1000", 
+    "form-MIN_NUM_FORMS": "0", 
+    "form-TOTAL_FORMS": "2", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04"
+}
+[07/Aug/2015 23:07:46] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f0eb549ca10>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f0eb549cad0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 23:08:18] DEBUG [menu.views:89] Formset saved
+[07/Aug/2015 23:08:18] DEBUG [menu.views:96] POST DATA:
+ {
+    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "2015-08-02", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2006-03-09", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-INITIAL_FORMS": "2", 
+    "form-MAX_NUM_FORMS": "1000", 
+    "form-MIN_NUM_FORMS": "0", 
+    "form-TOTAL_FORMS": "2", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04"
+}
+[07/Aug/2015 23:08:18] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f6bfb3e4a10>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f6bfb3e4ad0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 23:08:36] DEBUG [menu.views:89] Formset saved
+[07/Aug/2015 23:08:36] DEBUG [menu.views:96] POST DATA:
+ {
+    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "2015-08-02", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2006-03-09", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-INITIAL_FORMS": "2", 
+    "form-MAX_NUM_FORMS": "1000", 
+    "form-MIN_NUM_FORMS": "0", 
+    "form-TOTAL_FORMS": "2", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04"
+}
+[07/Aug/2015 23:08:36] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f6bfb3e4a10>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f6bfa70b8d0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 23:08:42] DEBUG [menu.views:89] Formset saved
+[07/Aug/2015 23:08:42] DEBUG [menu.views:96] POST DATA:
+ {
+    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "2015-08-02", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2006-03-09", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-INITIAL_FORMS": "2", 
+    "form-MAX_NUM_FORMS": "1000", 
+    "form-MIN_NUM_FORMS": "0", 
+    "form-TOTAL_FORMS": "2", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04"
+}
+[07/Aug/2015 23:08:42] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f63cd9c7a10>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f63cd9c7ad0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 23:08:55] DEBUG [menu.views:89] Formset saved
+[07/Aug/2015 23:08:55] DEBUG [menu.views:96] POST DATA:
+ {
+    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "2015-08-02", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2006-03-09", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-INITIAL_FORMS": "2", 
+    "form-MAX_NUM_FORMS": "1000", 
+    "form-MIN_NUM_FORMS": "0", 
+    "form-TOTAL_FORMS": "2", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04"
+}
+[07/Aug/2015 23:08:55] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f3f38815a10>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f3f38815ad0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 23:16:00] DEBUG [menu.views:89] Formset saved
+[07/Aug/2015 23:16:00] DEBUG [menu.views:96] POST DATA:
+ {
+    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "2015-08-02", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2006-03-09", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-INITIAL_FORMS": "2", 
+    "form-MAX_NUM_FORMS": "1000", 
+    "form-MIN_NUM_FORMS": "0", 
+    "form-TOTAL_FORMS": "2", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04"
+}
+[07/Aug/2015 23:16:00] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fdfbe540f10>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fdfbe55a090>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 23:16:54] DEBUG [menu.views:89] Formset saved
+[07/Aug/2015 23:16:54] DEBUG [menu.views:96] POST DATA:
+ {
+    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "2015-08-02", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2006-03-09", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-INITIAL_FORMS": "2", 
+    "form-MAX_NUM_FORMS": "1000", 
+    "form-MIN_NUM_FORMS": "0", 
+    "form-TOTAL_FORMS": "2", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04"
+}
+[07/Aug/2015 23:16:54] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f72a6c83f10>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f72a6c9d090>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
