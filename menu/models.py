@@ -33,6 +33,7 @@ class Ingredient(models.Model):
     class Meta:
         ordering = ('sorting', 'id', )
         unique_together = ('name', 'recipe', 'amount', 'unit',)
+        select_on_save = True
 
 class ShoppingList(models.Model):
     shoppingListId = models.AutoField(primary_key=True)

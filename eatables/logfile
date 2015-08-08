@@ -218,3 +218,7 @@
 }
 [07/Aug/2015 23:34:34] DEBUG [menu.views:97] LOCALS:
  {'logger': <logging.Logger object at 0x7f1263a12f10>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f1263a2d090>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[08/Aug/2015 13:31:11] DEBUG [menu.views:135] POST DATA:
+ {}
+[08/Aug/2015 13:31:11] DEBUG [menu.views:136] LOCALS:
+ {'logger': <logging.Logger object at 0x7f9106720350>, 'request': <WSGIRequest: GET '/retiredrecipes/'>, 'formset': <django.forms.formsets.RecipeFormFormSet object at 0x7f91069d4a50>, 'RetiredRecipesFormSet': <class 'django.forms.formsets.RecipeFormFormSet'>}

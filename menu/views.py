@@ -284,11 +284,18 @@ def uploadingredients(request):
             for row in reader:
                 recipe = get_object_or_404(Recipe, name=row[0])
                 _, created = Ingredient.objects.get_or_create(
-                    name=row[1],
-                    recipe_id=recipe.id,
-                    amount=row[2],
-                    unit=row[3],
-                    comment=row[4])
+                    # name=row[1], defaults={"recipe_id": recipe.id, "amount": row[2], "unit": row[3], })
+                    name=row[1], recipe_id=recipe.id, amount=row[2], unit=row[3])
+                # entry = get_object_or_404(Ingredient, name=row[1], recipe_id=recipe.id, amount=row[2], unit=row[3],)
+
+                entry = get_object_or_404(Ingredient.objects.filter(), name=row[1],
+                                          recipe_id=recipe.id,
+                                          amount=row[2],
+                                          unit=row[3],)
+                if created:
+                    entry.comment = row[4]
+                    entry.save()
+
         return HttpResponseRedirect(reverse('menu:index'))
 
     else:
