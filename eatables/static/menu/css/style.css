@@ -8,6 +8,14 @@
 /**************************** HTML elements *****************************/
 
 
+textarea,
+pre {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+}
+
 html{
     background:#A8A8A8;
 }
@@ -16,16 +24,6 @@ table {
     border-collapse: collapse;
     /*causes centering*/
     /*margin: 0 auto; */
-}
-
-textarea {
-    font-size: 120%;
-    color: #5a5854;
-    background-color: #f2f2f2;
-    /*border: 1px solid #bdbdbd;*/
-    /*border-radius: 5px;*/
-    padding: 5px 5px 5px 10px;
-    width:100%;
 }
 
 input {
@@ -38,6 +36,7 @@ input {
     display: inline-block;
 }
 
+
 input[type="text"] {
     font-size: 1.2em;
     width: auto;
@@ -45,17 +44,33 @@ input[type="text"] {
 }
 
 input#listform {
-    font-size: 1.2em;
-    width: 3em;
+    font-size: 1em;
+    display: inline-block;
+    width: 5em;
     background: lightblue;
     border:none;
 }
 
-input#retiredrecipesform {
+input#formfieldastext {
     display: inline-block;
     font-size: 1.2em;
     width: 80%;
     background: lightblue;
+    border:none;
+}
+
+
+input#formfieldastextshort {
+    display: inline-block;
+    font-size: 1.2em;
+    background: lightblue;
+    border:none;
+}
+
+input#formfieldastextshort:focus {
+    display: inline-block;
+    font-size: 1.2em;
+    background: #f2f2f2;
     border:none;
 }
 
@@ -104,6 +119,17 @@ li {
 
 li#nospace {
     line-height: 1em;
+}
+
+
+textarea {
+    font-size: 120%;
+    color: #5a5854;
+    background-color: #f2f2f2;
+    /*border: 1px solid #bdbdbd;*/
+    /*border-radius: 5px;*/
+    padding: 5px 5px 5px 10px;
+    width:100%;
 }
 
 .button {
@@ -174,6 +200,12 @@ li#nospace {
     background-color: #efefef;
 }
 
+.ui-datepicker {
+   background: lightgrey;
+   border: 1px solid #555;
+   color: #000;
+ }
+
 #title {
     background:grey;
     text-align:center;
@@ -228,8 +260,6 @@ li#nospace {
 }
 
 
-
-
 /********************************************* File Upload *****************************/
 
 
@@ -250,5 +280,3 @@ li#nospace {
 	opacity: 0;
 	filter: alpha(opacity=0);
 }
-
-
