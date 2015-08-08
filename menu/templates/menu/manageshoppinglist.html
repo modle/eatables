@@ -15,23 +15,10 @@
     {% csrf_token %}
     {{ formset.management_form }}
         {% for form in formset %}
-            {{ form.shoppingListId }}
-            {{ form.status }}
-            {{ form.amount }}
-        <!--get id of form; if it matches, print name-->
-            {% for s in itemList %}
-                {% if s.shoppingListId = key %}
-                    {{ s.shoppingListId }}
-                {% endif %}
-            {% endfor %}
-
-
+            {{ form }}
             <hr noshade>
-
         {% endfor %}
         <hr noshade>
         <input type="submit" value="Update" id="submit"/>
     </form>
-
-
 </div>

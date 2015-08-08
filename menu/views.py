@@ -80,7 +80,7 @@ def manageshoppinglist(request):
 def fridge(request):
     logger = logging.getLogger(__name__)
 
-    FridgeFormSet = modelformset_factory(Fridge, form=FridgeForm, extra=2)
+    FridgeFormSet = modelformset_factory(Fridge, form=FridgeForm, extra=0)
 
     if request.method == 'POST':
         formset = FridgeFormSet(request.POST)

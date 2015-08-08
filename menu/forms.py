@@ -11,14 +11,17 @@ class ShoppingListForm(forms.ModelForm):
         super(ShoppingListForm, self).__init__(*args, **kwargs)
         self.queryset = ShoppingList.objects.all()
         self.fields['amount'].widget.attrs.update({'id': 'listform'})
+        self.fields['name'].widget.attrs['readonly'] = True
+        self.fields['name'].widget.attrs.update({'id': 'formfieldastext'})
 
     class Meta:
         model = ShoppingList
         # fields = '__all__'
-        fields = ('status', 'amount', )
+        fields = ('status', 'amount', 'name', )
         labels = {
             'status': '',
             'amount': '',
+            'name': '',
         }
 
 
@@ -27,7 +30,7 @@ class RetiredRecipesForm(forms.ModelForm):
         super(RetiredRecipesForm, self).__init__(*args, **kwargs)
         self.queryset = Recipe.objects.filter(enabled=False)
         self.fields['name'].widget.attrs['readonly'] = True
-        self.fields['name'].widget.attrs.update({'id': 'retiredrecipesform'})
+        self.fields['name'].widget.attrs.update({'id': 'formfieldastext'})
 
     class Meta:
         model = Recipe
@@ -42,7 +45,12 @@ class FridgeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(FridgeForm, self).__init__(*args, **kwargs)
         self.queryset = Fridge.objects.all()
-        # self.fields['expires'].widget.attrs.update({'id': 'listform'})
+        self.fields['item'].widget.attrs.update({'id': 'formfieldastextshort'})
+        self.fields['expires'].widget.attrs.update({'class': 'datepicker'})
+        self.fields['fridgedate'].widget.attrs.update({'class': 'datepicker'})
+        self.fields['expires'].widget.attrs.update({'id': 'formfieldastextshort'})
+        self.fields['fridgedate'].widget.attrs.update({'id': 'formfieldastextshort'})
+
 
     class Meta:
         model = Fridge

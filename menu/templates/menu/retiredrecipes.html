@@ -10,17 +10,14 @@
     </div><div style="clear:both"></div>
     <hr noshade><hr noshade>
 
-
     <form method="POST" action="">
     {% csrf_token %}
     {{ formset.management_form }}
         {% for form in formset %}
-            {{ form.id }} {{ form }}
+            {{ form }}
             <hr noshade>
         {% endfor %}
         <hr noshade>
         <input type="submit" value="Retire Unchecked/Untire Checked" id="submit"/>
     </form>
-
-
 </div>

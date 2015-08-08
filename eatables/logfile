@@ -1,738 +1,326 @@
-[05/Aug/2015 22:19:02] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 21:42:12] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f1c72665890>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f1c719a3d90>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:42:51] DEBUG [menu.views:91] Formset invalid
+[07/Aug/2015 21:42:51] DEBUG [menu.views:96] POST DATA:
  {
     "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-1-amount": "1", 
-    "form-1-shoppingListId": "4", 
-    "form-1-status": "on", 
-    "form-2-amount": "2", 
-    "form-2-shoppingListId": "2", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-INITIAL_FORMS": "6", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "08/02/2015", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2015-08-04", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-2-expires": "2015-08-21", 
+    "form-2-fridgedate": "2015-08-07", 
+    "form-2-id": "", 
+    "form-2-item": "", 
+    "form-INITIAL_FORMS": "2", 
     "form-MAX_NUM_FORMS": "1000", 
     "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
+    "form-TOTAL_FORMS": "3", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04", 
+    "initial-form-2-fridgedate": "2015-08-07 21:34:37"
 }
-[05/Aug/2015 22:19:02] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f04fbc439d0>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f04fbc598d0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:19:06] DEBUG [menu.views:65] Formset invalid
-[05/Aug/2015 22:19:06] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 21:42:51] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f1c72665890>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f1c71972ed0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:42:56] DEBUG [menu.views:91] Formset invalid
+[07/Aug/2015 21:42:56] DEBUG [menu.views:96] POST DATA:
  {
     "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-1-amount": "1", 
-    "form-1-shoppingListId": "4", 
-    "form-1-status": "on", 
-    "form-2-amount": "2", 
-    "form-2-shoppingListId": "2", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-5-status": "on", 
-    "form-INITIAL_FORMS": "6", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "08/02/2015", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2015-08-04", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-2-expires": "2015-08-21", 
+    "form-2-fridgedate": "2015-08-07", 
+    "form-2-id": "", 
+    "form-2-item": "", 
+    "form-INITIAL_FORMS": "2", 
     "form-MAX_NUM_FORMS": "1000", 
     "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
+    "form-TOTAL_FORMS": "3", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04", 
+    "initial-form-2-fridgedate": "2015-08-07 21:34:37"
 }
-[05/Aug/2015 22:19:06] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f04fbc439d0>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f04faf4b450>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:19:08] DEBUG [menu.views:65] Formset invalid
-[05/Aug/2015 22:19:08] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 21:42:56] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f1c72665890>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f1c7190ebd0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:43:05] DEBUG [menu.views:91] Formset invalid
+[07/Aug/2015 21:43:05] DEBUG [menu.views:96] POST DATA:
  {
     "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-1-amount": "1", 
-    "form-1-shoppingListId": "4", 
-    "form-1-status": "on", 
-    "form-2-amount": "2", 
-    "form-2-shoppingListId": "2", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-3-status": "on", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-5-status": "on", 
-    "form-INITIAL_FORMS": "6", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "08/02/2015", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2015-08-04", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-2-expires": "2015-08-21", 
+    "form-2-fridgedate": "2015-08-07", 
+    "form-2-id": "", 
+    "form-2-item": "", 
+    "form-INITIAL_FORMS": "2", 
     "form-MAX_NUM_FORMS": "1000", 
     "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
+    "form-TOTAL_FORMS": "3", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04", 
+    "initial-form-2-fridgedate": "2015-08-07 21:34:37"
 }
-[05/Aug/2015 22:19:08] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f04fbc439d0>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f04faef2fd0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:19:11] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 21:43:05] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7faf64931850>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7faf64931b10>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:43:11] DEBUG [menu.views:96] POST DATA:
  {}
-[05/Aug/2015 22:19:11] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f04fbc439d0>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f04faea4b10>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:20:07] DEBUG [menu.views:65] Formset invalid
-[05/Aug/2015 22:20:07] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 21:43:11] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7faf64931850>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7faf6490d890>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:43:14] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 21:43:14] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7faf64931850>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7faf639d1cd0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:43:28] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 21:43:28] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7faf64931850>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7faf639d1ad0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:43:33] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 21:43:33] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7faf64931850>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7faf639d1810>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:49:44] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 21:49:44] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f91d4781790>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f91d47817d0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:49:54] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 21:49:54] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f91d4781790>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f91d4710410>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:49:57] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 21:49:57] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f91d4781790>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f91d46effd0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:50:03] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 21:50:03] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f5c51829650>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f5c518294d0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:50:41] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 21:50:41] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f1eaadd2890>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f1eaadd29d0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:51:10] DEBUG [menu.views:96] POST DATA:
+ {}
+[07/Aug/2015 21:51:10] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f0615483890>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f06154839d0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:51:12] DEBUG [menu.views:91] Formset invalid
+[07/Aug/2015 21:51:12] DEBUG [menu.views:96] POST DATA:
  {
     "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-1-amount": "1", 
-    "form-1-shoppingListId": "4", 
-    "form-2-amount": "2", 
-    "form-2-shoppingListId": "2", 
-    "form-2-status": "on", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-3-status": "on", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-INITIAL_FORMS": "6", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "2015-08-02", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2015-08-04", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-2-expires": "2015-08-21", 
+    "form-2-fridgedate": "2015-08-07", 
+    "form-2-id": "", 
+    "form-2-item": "", 
+    "form-INITIAL_FORMS": "2", 
     "form-MAX_NUM_FORMS": "1000", 
     "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
+    "form-TOTAL_FORMS": "3", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04", 
+    "initial-form-2-fridgedate": "2015-08-07 21:51:10"
 }
-[05/Aug/2015 22:20:07] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f04fbc439d0>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f04faebf810>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:20:33] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 21:51:12] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f0615483890>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f061549c950>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:56:34] DEBUG [menu.views:96] POST DATA:
  {}
-[05/Aug/2015 22:20:33] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f04fbc439d0>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f04faec7410>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:20:36] DEBUG [menu.views:65] Formset invalid
-[05/Aug/2015 22:20:36] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 21:56:34] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f3263abc7d0>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f3263abc910>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:56:37] DEBUG [menu.views:91] Formset invalid
+[07/Aug/2015 21:56:37] DEBUG [menu.views:96] POST DATA:
  {
     "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-1-amount": "1", 
-    "form-1-shoppingListId": "4", 
-    "form-2-amount": "2", 
-    "form-2-shoppingListId": "2", 
-    "form-2-status": "on", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-INITIAL_FORMS": "6", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "2015-08-02", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2015-08-04", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-2-expires": "2015-08-21", 
+    "form-2-fridgedate": "2015-08-07", 
+    "form-2-id": "", 
+    "form-2-item": "", 
+    "form-INITIAL_FORMS": "2", 
     "form-MAX_NUM_FORMS": "1000", 
     "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
+    "form-TOTAL_FORMS": "3", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04", 
+    "initial-form-2-fridgedate": "2015-08-07 21:56:34"
 }
-[05/Aug/2015 22:20:36] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f04fbc439d0>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f04faf0af90>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:20:41] DEBUG [menu.views:65] Formset invalid
-[05/Aug/2015 22:20:41] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 21:56:37] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f3263abc7d0>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f3263ad3890>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:58:13] DEBUG [menu.views:91] Formset invalid
+[07/Aug/2015 21:58:13] DEBUG [menu.views:96] POST DATA:
  {
     "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-1-amount": "1", 
-    "form-1-shoppingListId": "4", 
-    "form-2-amount": "2", 
-    "form-2-shoppingListId": "2", 
-    "form-2-status": "on", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-INITIAL_FORMS": "6", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "2015-08-02", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2015-08-04", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-2-expires": "2015-08-21", 
+    "form-2-fridgedate": "2015-08-07", 
+    "form-2-id": "", 
+    "form-2-item": "", 
+    "form-INITIAL_FORMS": "2", 
     "form-MAX_NUM_FORMS": "1000", 
     "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
+    "form-TOTAL_FORMS": "3", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04", 
+    "initial-form-2-fridgedate": "2015-08-07 21:56:34"
 }
-[05/Aug/2015 22:20:41] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f04fbc439d0>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f04faf4b1d0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:20:42] DEBUG [menu.views:65] Formset invalid
-[05/Aug/2015 22:20:42] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 21:58:13] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f3263abc7d0>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f3262bc9cd0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:58:19] DEBUG [menu.views:91] Formset invalid
+[07/Aug/2015 21:58:19] DEBUG [menu.views:96] POST DATA:
  {
     "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-1-amount": "1", 
-    "form-1-shoppingListId": "4", 
-    "form-2-amount": "2", 
-    "form-2-shoppingListId": "2", 
-    "form-2-status": "on", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-INITIAL_FORMS": "6", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "2015-08-02", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2015-08-04", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-2-expires": "2015-08-21", 
+    "form-2-fridgedate": "2015-08-07", 
+    "form-2-id": "", 
+    "form-2-item": "", 
+    "form-INITIAL_FORMS": "2", 
     "form-MAX_NUM_FORMS": "1000", 
     "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
+    "form-TOTAL_FORMS": "3", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04", 
+    "initial-form-2-fridgedate": "2015-08-07 21:56:34"
 }
-[05/Aug/2015 22:20:42] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f04fbc439d0>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f04fae63590>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:20:42] DEBUG [menu.views:65] Formset invalid
-[05/Aug/2015 22:20:42] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 21:58:19] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fc47a79c850>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fc47a79cb10>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:58:21] DEBUG [menu.views:91] Formset invalid
+[07/Aug/2015 21:58:21] DEBUG [menu.views:96] POST DATA:
  {
     "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-1-amount": "1", 
-    "form-1-shoppingListId": "4", 
-    "form-2-amount": "2", 
-    "form-2-shoppingListId": "2", 
-    "form-2-status": "on", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-INITIAL_FORMS": "6", 
+    "form-0-expires": "2015-08-16", 
+    "form-0-fridgedate": "2015-08-02", 
+    "form-0-id": "2", 
+    "form-0-item": "Taco Soup", 
+    "form-1-expires": "2015-08-18", 
+    "form-1-fridgedate": "2015-08-04", 
+    "form-1-id": "1", 
+    "form-1-item": "Baked Beans", 
+    "form-2-expires": "2015-08-21", 
+    "form-2-fridgedate": "2015-08-07", 
+    "form-2-id": "", 
+    "form-2-item": "", 
+    "form-INITIAL_FORMS": "2", 
     "form-MAX_NUM_FORMS": "1000", 
     "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
+    "form-TOTAL_FORMS": "3", 
+    "initial-form-0-fridgedate": "2015-08-02", 
+    "initial-form-1-fridgedate": "2015-08-04", 
+    "initial-form-2-fridgedate": "2015-08-07"
 }
-[05/Aug/2015 22:20:42] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f04fbc439d0>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f04faefe490>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:20:43] DEBUG [menu.views:65] Formset invalid
-[05/Aug/2015 22:20:43] DEBUG [menu.views:70] POST DATA:
- {
-    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-1-amount": "1", 
-    "form-1-shoppingListId": "4", 
-    "form-2-amount": "2", 
-    "form-2-shoppingListId": "2", 
-    "form-2-status": "on", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-INITIAL_FORMS": "6", 
-    "form-MAX_NUM_FORMS": "1000", 
-    "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
-}
-[05/Aug/2015 22:20:43] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f04fbc439d0>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f04fae7eed0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:21:22] DEBUG [menu.views:65] Formset invalid
-[05/Aug/2015 22:21:22] DEBUG [menu.views:70] POST DATA:
- {
-    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-1-amount": "1", 
-    "form-1-shoppingListId": "4", 
-    "form-2-amount": "2", 
-    "form-2-shoppingListId": "2", 
-    "form-2-status": "on", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-INITIAL_FORMS": "6", 
-    "form-MAX_NUM_FORMS": "1000", 
-    "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
-}
-[05/Aug/2015 22:21:22] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f04fbc439d0>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f04fae32d10>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:24:33] DEBUG [menu.views:63] Formset saved
-[05/Aug/2015 22:24:33] DEBUG [menu.views:70] POST DATA:
- {
-    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-1-amount": "1", 
-    "form-1-shoppingListId": "4", 
-    "form-2-amount": "2", 
-    "form-2-shoppingListId": "2", 
-    "form-2-status": "on", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-INITIAL_FORMS": "6", 
-    "form-MAX_NUM_FORMS": "1000", 
-    "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
-}
-[05/Aug/2015 22:24:33] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7fb717511890>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7fb7175118d0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:24:38] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 21:58:21] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fc47a79c850>, 'request': <WSGIRequest: POST '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fc479881550>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:58:25] DEBUG [menu.views:96] POST DATA:
  {}
-[05/Aug/2015 22:24:38] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7fb717511890>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7fb7174e7590>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:24:42] DEBUG [menu.views:63] Formset saved
-[05/Aug/2015 22:24:42] DEBUG [menu.views:70] POST DATA:
- {
-    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "2", 
-    "form-0-status": "on", 
-    "form-1-amount": "2", 
-    "form-1-shoppingListId": "3", 
-    "form-1-status": "on", 
-    "form-2-amount": "1", 
-    "form-2-shoppingListId": "4", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-INITIAL_FORMS": "6", 
-    "form-MAX_NUM_FORMS": "1000", 
-    "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
-}
-[05/Aug/2015 22:24:42] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7fb717511890>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7fb7167fe1d0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:24:45] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 21:58:25] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fc47a79c850>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fc4798432d0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:58:27] DEBUG [menu.views:96] POST DATA:
  {}
-[05/Aug/2015 22:24:45] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7fb717511890>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7fb7167b5250>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:26:05] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 21:58:27] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fc47a79c850>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fc4798435d0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 21:59:31] DEBUG [menu.views:96] POST DATA:
  {}
-[05/Aug/2015 22:26:05] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7fa323a46810>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7fa323a46a50>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:26:07] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 21:59:31] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fac7b227890>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fac7b2279d0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:00:23] DEBUG [menu.views:96] POST DATA:
  {}
-[05/Aug/2015 22:26:07] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7fa323a46810>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7fa323a5ecd0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:26:08] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 22:00:23] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7ffe637bd790>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7ffe637bd7d0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:00:40] DEBUG [menu.views:96] POST DATA:
  {}
-[05/Aug/2015 22:26:08] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7fa323a46810>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7fa323a5ec10>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:26:08] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 22:00:40] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fecc4b6f890>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fecc4b6f9d0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:00:45] DEBUG [menu.views:96] POST DATA:
  {}
-[05/Aug/2015 22:26:08] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7fa323a46810>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7fa322d31b10>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:26:32] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 22:00:45] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fecc4b6f890>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fecc4b14e10>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:01:01] DEBUG [menu.views:96] POST DATA:
  {}
-[05/Aug/2015 22:26:32] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7fa323a46810>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7fa323a5e810>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:26:36] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 22:01:01] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fecc4b6f890>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fecc3eb80d0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:01:05] DEBUG [menu.views:96] POST DATA:
  {}
-[05/Aug/2015 22:26:36] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f8b8bd77810>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f8b8bd77a50>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:26:37] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 22:01:05] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7ff012e7c890>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7ff012e7c9d0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:01:39] DEBUG [menu.views:96] POST DATA:
  {}
-[05/Aug/2015 22:26:37] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f8b8bd77810>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f8b8bd8fcd0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:26:42] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 22:01:39] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7ff012e7c890>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7ff012e96750>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:01:45] DEBUG [menu.views:96] POST DATA:
  {}
-[05/Aug/2015 22:26:42] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f4f35bcd810>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f4f35bcda50>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:26:43] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 22:01:45] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f8b4de3c890>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f8b4de3c9d0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:02:08] DEBUG [menu.views:96] POST DATA:
  {}
-[05/Aug/2015 22:26:43] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f4f35bcd810>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f4f35be4cd0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:26:45] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 22:02:08] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fcbae01a890>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fcbae01a9d0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:02:21] DEBUG [menu.views:96] POST DATA:
  {}
-[05/Aug/2015 22:26:45] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f4f35bcd810>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f4f35b813d0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:26:49] DEBUG [menu.views:63] Formset saved
-[05/Aug/2015 22:26:49] DEBUG [menu.views:70] POST DATA:
- {
-    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-0-status": "on", 
-    "form-1-amount": "2", 
-    "form-1-shoppingListId": "2", 
-    "form-1-status": "on", 
-    "form-2-amount": "1", 
-    "form-2-shoppingListId": "4", 
-    "form-2-status": "on", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-INITIAL_FORMS": "6", 
-    "form-MAX_NUM_FORMS": "1000", 
-    "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
-}
-[05/Aug/2015 22:26:49] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f4f35bcd810>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f4f35be4cd0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:26:51] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 22:02:21] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fd9f7a66890>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fd9f7a669d0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:02:32] DEBUG [menu.views:96] POST DATA:
  {}
-[05/Aug/2015 22:26:51] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f4f35bcd810>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f4f34e88550>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:28:52] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 22:02:32] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f94cd7ff890>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f94cd7ff9d0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:04:27] DEBUG [menu.views:96] POST DATA:
  {}
-[05/Aug/2015 22:28:52] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f4f35bcd810>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f4f34e94750>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:29:28] DEBUG [menu.views:63] Formset saved
-[05/Aug/2015 22:29:28] DEBUG [menu.views:70] POST DATA:
- {
-    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-0-status": "on", 
-    "form-1-amount": "1", 
-    "form-1-shoppingListId": "4", 
-    "form-1-status": "on", 
-    "form-2-amount": "2", 
-    "form-2-shoppingListId": "2", 
-    "form-2-status": "on", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-INITIAL_FORMS": "6", 
-    "form-MAX_NUM_FORMS": "1000", 
-    "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
-}
-[05/Aug/2015 22:29:28] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f4f35bcd810>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f4f34e94e10>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:29:35] DEBUG [menu.views:63] Formset saved
-[05/Aug/2015 22:29:35] DEBUG [menu.views:70] POST DATA:
- {
-    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-0-status": "on", 
-    "form-1-amount": "1", 
-    "form-1-shoppingListId": "4", 
-    "form-1-status": "on", 
-    "form-2-amount": "2", 
-    "form-2-shoppingListId": "2", 
-    "form-2-status": "on", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-INITIAL_FORMS": "6", 
-    "form-MAX_NUM_FORMS": "1000", 
-    "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
-}
-[05/Aug/2015 22:29:35] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f4f35bcd810>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f4f34e74e90>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:29:48] DEBUG [menu.views:63] Formset saved
-[05/Aug/2015 22:29:48] DEBUG [menu.views:70] POST DATA:
- {
-    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-0-status": "on", 
-    "form-1-amount": "1", 
-    "form-1-shoppingListId": "4", 
-    "form-1-status": "on", 
-    "form-2-amount": "2", 
-    "form-2-shoppingListId": "2", 
-    "form-2-status": "on", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-INITIAL_FORMS": "6", 
-    "form-MAX_NUM_FORMS": "1000", 
-    "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
-}
-[05/Aug/2015 22:29:48] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f4f35bcd810>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f4f34ea45d0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:29:54] DEBUG [menu.views:63] Formset saved
-[05/Aug/2015 22:29:54] DEBUG [menu.views:70] POST DATA:
- {
-    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-0-status": "on", 
-    "form-1-amount": "1", 
-    "form-1-shoppingListId": "4", 
-    "form-1-status": "on", 
-    "form-2-amount": "2", 
-    "form-2-shoppingListId": "2", 
-    "form-2-status": "on", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-INITIAL_FORMS": "6", 
-    "form-MAX_NUM_FORMS": "1000", 
-    "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
-}
-[05/Aug/2015 22:29:54] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f78fdb39890>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f78fdb398d0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:29:57] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 22:04:27] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f6c96d64890>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f6c96d649d0>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:05:27] DEBUG [menu.views:96] POST DATA:
  {}
-[05/Aug/2015 22:29:57] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f78fdb39890>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f78fce661d0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:31:31] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 22:05:27] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7fcd720108d0>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7fcd72010a10>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:06:16] DEBUG [menu.views:96] POST DATA:
  {}
-[05/Aug/2015 22:31:31] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7fa55f3e5750>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7fa55f3e5990>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:31:32] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 22:06:16] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f7e99c128d0>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f7e99c12a10>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:06:21] DEBUG [menu.views:96] POST DATA:
  {}
-[05/Aug/2015 22:31:32] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7fa55f3e5750>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7fa55f3fbc50>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:31:32] DEBUG [menu.views:70] POST DATA:
+[07/Aug/2015 22:06:21] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f7e99c128d0>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f7e99c2b790>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}
+[07/Aug/2015 22:06:40] DEBUG [menu.views:96] POST DATA:
  {}
-[05/Aug/2015 22:31:32] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7fa55f3e5750>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7fa55f3fbb90>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:31:33] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:31:33] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7fa55f3e5750>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7fa55e486a90>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:31:33] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:31:33] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7fa55f3e5750>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7fa55e4a1d50>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:31:34] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:31:34] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7fa55f3e5750>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7fa55e43a0d0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:31:59] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:31:59] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7fa55f3e5750>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7fa55e4abe10>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:32:05] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:32:05] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7fa80e8ed810>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7fa80e8eda50>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:32:06] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:32:06] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7fa80e8ed810>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7fa80e905cd0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:32:09] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:32:09] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7fa80e8ed810>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7fa80e905cd0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:32:37] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:32:37] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7fa80e8ed810>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7fa80dbd7690>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:33:05] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:33:05] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cd2db210>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:33:22] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:33:22] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cd27e310>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:33:34] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:33:34] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cd27ea90>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:33:50] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:33:50] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cd27efd0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:33:52] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:33:52] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cd27eb10>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:34:02] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:34:02] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cc6025d0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:34:03] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:34:03] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cc5c6bd0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:34:18] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:34:18] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cc602f50>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:34:19] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:34:19] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cc595890>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:34:20] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:34:20] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cc595990>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:39:04] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:39:04] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cc563c10>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:39:05] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:39:05] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cc5b6190>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:39:11] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:39:11] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cc5a7310>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:39:12] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:39:12] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cc5b6890>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:39:12] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:39:12] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cc53ba50>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:39:32] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:39:32] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cc4e2b50>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:39:33] DEBUG [menu.views:70] POST DATA:
- {}
-[05/Aug/2015 22:39:33] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: GET '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cc4fced0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:39:53] DEBUG [menu.views:63] Formset saved
-[05/Aug/2015 22:39:53] DEBUG [menu.views:70] POST DATA:
- {
-    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-0-status": "on", 
-    "form-1-amount": "1", 
-    "form-1-shoppingListId": "4", 
-    "form-1-status": "on", 
-    "form-2-amount": "2", 
-    "form-2-shoppingListId": "2", 
-    "form-2-status": "on", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-3-status": "on", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-INITIAL_FORMS": "6", 
-    "form-MAX_NUM_FORMS": "1000", 
-    "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
-}
-[05/Aug/2015 22:39:53] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cc4a4a90>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:44:08] DEBUG [menu.views:63] Formset saved
-[05/Aug/2015 22:44:08] DEBUG [menu.views:70] POST DATA:
- {
-    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-0-status": "on", 
-    "form-1-amount": "1", 
-    "form-1-shoppingListId": "4", 
-    "form-1-status": "on", 
-    "form-2-amount": "2", 
-    "form-2-shoppingListId": "2", 
-    "form-2-status": "on", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-3-status": "on", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-INITIAL_FORMS": "6", 
-    "form-MAX_NUM_FORMS": "1000", 
-    "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
-}
-[05/Aug/2015 22:44:08] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cc462d10>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:44:12] DEBUG [menu.views:63] Formset saved
-[05/Aug/2015 22:44:12] DEBUG [menu.views:70] POST DATA:
- {
-    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-0-status": "on", 
-    "form-1-amount": "1", 
-    "form-1-shoppingListId": "4", 
-    "form-1-status": "on", 
-    "form-2-amount": "2", 
-    "form-2-shoppingListId": "2", 
-    "form-2-status": "on", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-3-status": "on", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-INITIAL_FORMS": "6", 
-    "form-MAX_NUM_FORMS": "1000", 
-    "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
-}
-[05/Aug/2015 22:44:12] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cc47e890>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:46:38] DEBUG [menu.views:63] Formset saved
-[05/Aug/2015 22:46:38] DEBUG [menu.views:70] POST DATA:
- {
-    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-0-status": "on", 
-    "form-1-amount": "1", 
-    "form-1-shoppingListId": "4", 
-    "form-1-status": "on", 
-    "form-2-amount": "2", 
-    "form-2-shoppingListId": "2", 
-    "form-2-status": "on", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-3-status": "on", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-INITIAL_FORMS": "6", 
-    "form-MAX_NUM_FORMS": "1000", 
-    "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
-}
-[05/Aug/2015 22:46:38] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cc4a44d0>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
-[05/Aug/2015 22:46:41] DEBUG [menu.views:63] Formset saved
-[05/Aug/2015 22:46:41] DEBUG [menu.views:70] POST DATA:
- {
-    "csrfmiddlewaretoken": "QXqIlrGT8nXrjhys1bkdX9uQlqyESVTO", 
-    "form-0-amount": "2", 
-    "form-0-shoppingListId": "3", 
-    "form-0-status": "on", 
-    "form-1-amount": "1", 
-    "form-1-shoppingListId": "4", 
-    "form-1-status": "on", 
-    "form-2-amount": "2", 
-    "form-2-shoppingListId": "2", 
-    "form-2-status": "on", 
-    "form-3-amount": "7", 
-    "form-3-shoppingListId": "6", 
-    "form-3-status": "on", 
-    "form-4-amount": "3", 
-    "form-4-shoppingListId": "7", 
-    "form-4-status": "on", 
-    "form-5-amount": "15", 
-    "form-5-shoppingListId": "5", 
-    "form-INITIAL_FORMS": "6", 
-    "form-MAX_NUM_FORMS": "1000", 
-    "form-MIN_NUM_FORMS": "0", 
-    "form-TOTAL_FORMS": "6"
-}
-[05/Aug/2015 22:46:41] DEBUG [menu.views:71] LOCALS:
- {'logger': <logging.Logger object at 0x7f13cd2dbf90>, 'request': <WSGIRequest: POST '/manageshoppinglist/'>, 'formset': <django.forms.formsets.ShoppingListFormFormSet object at 0x7f13cc4e2190>, 'ShoppingListFormSet': <class 'django.forms.formsets.ShoppingListFormFormSet'>}
+[07/Aug/2015 22:06:40] DEBUG [menu.views:97] LOCALS:
+ {'logger': <logging.Logger object at 0x7f10afcdd8d0>, 'request': <WSGIRequest: GET '/fridge/'>, 'formset': <django.forms.formsets.FridgeFormFormSet object at 0x7f10afcdda10>, 'FridgeFormSet': <class 'django.forms.formsets.FridgeFormFormSet'>}

@@ -1,6 +1,9 @@
 {% load staticfiles %}
 {% load menu_extras %}
 {% include "menu/stylesheets.html" %}
+<script type="text/javascript" src="{% static 'menu/js/jquery-1.11.3.js' %}"></script>
+<script type="text/javascript" src="{% static 'menu/js/menu.js' %}"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 <div id="title">
     In the Fridge
@@ -22,6 +25,4 @@
         <hr noshade>
         <input type="submit" value="Update" id="submit"/>
     </form>
-
-
 </div>
