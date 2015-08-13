@@ -10,12 +10,12 @@
 	<div id="title">
 		Recipe Upload
 	</div>
+	<div>
+		<a class="button" id="nav" href="{% url 'menu:index' %}">Back to Recipe List</a>
+	</div><div style="clear:both"></div>
     <body>
 		<div id="aside"><!-- Upload form. Note enctype attribute! -->
 			<h2>Upload Recipes Here</h2>
-            <div>
-				<a class="button" id="nav" href="{% url 'menu:index' %}">Back to Recipe List</a>
-			</div><div style="clear:both"></div>
 			<hr noshade><hr noshade>
       		<form action="{% url 'menu:uploadrecipe' %}" method="post" enctype="multipart/form-data">
 				{% csrf_token %}

@@ -51,6 +51,27 @@ def addtoshoppinglist(request, recipeId):
     return HttpResponseRedirect(reverse('menu:recipedetails', args=(recipeId,)))
 
 
+def manageshoppinglisttestingformset(request):
+
+    ShoppingListFormSet = modelformset_factory(ShoppingList,
+                                               fields=('status', 'name'),
+                                               formset=BaseShoppingListFormSet,
+                                               extra=0)
+
+    if request.method == 'POST':
+        formset = ShoppingListFormSet(request.POST)
+        if formset.is_valid():
+            formset.save()
+
+    else:
+        formset = ShoppingListFormSet()
+
+    return render_to_response(
+        'menu/manageshoppinglist.html',
+        {'formset': formset, },
+        context_instance=RequestContext(request))
+
+
 def manageshoppinglist(request):
     logger = logging.getLogger(__name__)
 
@@ -70,11 +91,9 @@ def manageshoppinglist(request):
     logger.debug('POST DATA:\n %s', json.dumps(request.POST, indent=4, sort_keys=True))
     logger.debug('LOCALS:\n %s', locals())
 
-    itemList = ShoppingList.objects.all()
-
     return render_to_response(
         'menu/manageshoppinglist.html',
-        {'formset': formset, 'itemList': itemList, },
+        {'formset': formset, },
         context_instance=RequestContext(request))
 
 def fridge(request):
@@ -115,6 +134,7 @@ class RecipeDetail(generic.DetailView):
 
     def get_queryset(self):
         return Recipe.objects.all()
+
 
 def retiredrecipes(request):
     logger = logging.getLogger(__name__)
@@ -165,6 +185,15 @@ class EditRecipe(generic.DetailView):
 
     def get_queryset(self):
         return Recipe.objects.all()
+
+
+class EditIngredients(generic.DetailView):
+    model = Recipe
+    template_name = 'menu/editingredients.html'
+
+    def get_queryset(self):
+        return Recipe.objects.all()
+
 
 
 def updaterecipe(request, recipeId):

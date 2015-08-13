@@ -5,18 +5,16 @@
 <script type="text/javascript" src="{% static 'menu/js/menu.js' %}"></script>
 
 <div id="title">
-    Edit: {{ recipe.name }}
+    Edit Recipe Details: {{ recipe.name }}
 </div>
+<div>
+    <a class="button" id="nav" href="{% url 'menu:index' %}">Back to Recipe List</a>
+    <a class="button" id="nav" href="{% url 'menu:recipedetails' recipe.id %}">View Recipe Details</a>
+    <a class="button" id="delete" href="{% url 'menu:disablerecipe' recipe.id %}">Remove Recipe</a>
+</div><div style="clear:both"></div>
+{% include "menu/recipedetailsingredients.html" %}
 <div id="content">
-    <div>
-        <a class="button" id="nav" href="{% url 'menu:index' %}">Back to Recipe List</a>
-        <a class="button" id="nav" href="{% url 'menu:recipedetails' recipe.id %}">View Recipe Details</a>
-        <a class="button" id="delete" href="{% url 'menu:disablerecipe' recipe.id %}">Remove Recipe</a>
-    </div><div style="clear:both"></div>
-    <hr noshade><hr noshade>
-
     <h2>Edit Recipe Details</h2>
-
     <form action="{% url 'menu:updaterecipe' recipe.id %}" method="post">
     <input type=submit value="Save" id="submit"/>
     <a class="button" href="{% url 'menu:recipedetails' recipe.id %}">Cancel</a>
@@ -35,36 +33,5 @@
         <a class="button" href="{% url 'menu:recipedetails' recipe.id %}">Cancel</a>
     </form>
     <hr noshade><hr noshade>
-
-    <h2>Edit Ingredients</h2>
-    <input type=submit value="Update Ingredients" id="submit">
-    <a class="button" href="{% url 'menu:recipedetails' recipe.id %}">Cancel</a>
-    <hr noshade>
-
-    <form action="{% url 'menu:updateingredient' recipe.id %}" method="post">
-    {% csrf_token %}
-        <h4>Current Ingredients</h4>
-            {% for i in recipe.ingredient_set.all %}
-                <ul>
-                    <li id="nospace">{{ i.name }}, {{ i.amount }}, {{ i.unit }}</li>
-                </ul>
-            {% endfor %}
-        {% for i in recipe.ingredient_set.all %}
-            <fieldset name = "{{i.id}},ingredients">
-                <legend><a class="button" id="delete" href="{% url 'menu:deleteingredient' i.id %}" onclick="return confirm('Are you sure?')">Delete this ingredient</a></legend>
-                <input type=text value="{{ i.name }}" name="{{i.id}},name">
-                <input type=text value="{{ i.amount }}" name="{{i.id}},amount">
-                <input type=text value="{{ i.unit}}" name="{{i.id}},unit">
-                <input type=text value="{{ i.comment|default_if_none:'' }}" name="{{i.id}},comment">
-                <input type=text value="{{ i.sorting|default_if_none:i.id }}" name="{{i.id}},sorting">
-            </fieldset>
-        {% endfor %}
-        <div id="ingredients"></div>
-        <p><a class="button" href="{% url 'menu:addingredient' recipe.id %}" method="post">Add new ingredient</a></p>
-        <br>
-        <input type=submit value="Update Ingredients" id="submit">
-        <a class="button" href="{% url 'menu:recipedetails' recipe.id %}">Cancel</a>
-        <hr noshade><hr noshade>
-        <!--<a class="button" id="deleteforever" href="{% url 'menu:deleterecipeforever' recipe.id %}">DELETE RECIPE FOREVER</a>-->
-    </form>
 </div>
+

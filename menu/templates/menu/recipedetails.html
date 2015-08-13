@@ -9,55 +9,14 @@
 <div id="title">
     {{ recipe.name }}
 </div>
-<div id="aside">
-    <div>
+<div>
         <a class="button" id="nav" href="{% url 'menu:index' %}">Back to Recipe List</a>
         <a class="button" id="nav" href="{% url 'menu:editrecipe' recipe.id %}">Edit Recipe</a>
         <a class="button" id="nav" href="{% url 'menu:manageshoppinglist' %}">View Shopping List</a>
-    </div><div style="clear:both"></div>
-    <hr noshade><hr noshade>
-    <h3>Ingredients</h3>
+</div><div style="clear:both"></div>
 
-    <form action="{% url 'menu:addtoshoppinglist' recipe.id %}" method="post">
-    {% csrf_token %}
-        {% for i in recipe.ingredient_set.all %}
-            <div class="ingredientList">
-                <input type="checkbox" value={{i.amount}} id={{i.id}} name={{i.id}}>
-                {{i.amount|showinteger}}{{ i.amount|showfraction }} {{ i.unit }}
-                {{ i.name }}{% if i.comment %}, {{ i.comment }}{% endif %}
-            </div>
-            <hr noshade>
-        {% endfor %}
-        <br><br>
-        <input type=submit value="Update Shopping List" id="submit">
-    </form>
-</div>
-<div id="content">
-    <h3>Directions</h3>
-    <a class="button" href="{% url 'menu:editrecipe' recipe.id %}">Edit</a><br>
-    {% markdown %}
-        {{ recipe.directions | safe }}
-    {% endmarkdown %}
-</div>
-<div id="aside">
-    <a class="button" href="{% url 'menu:editrecipe' recipe.id %}">Edit</a><br>
-    <ul>
-        <li><b>Method</b>: {{ recipe.prepMethod }}</li>
-        <li><b>Temp</b>: {{ recipe.temperature }}</li>
-        {% if not recipe.prepTime %}
-            <li><b>Prep Time</b>: {{ recipe.prepTime }} </li>
-            {% else %}
-                <li><b>Prep Time</b>: {{ recipe.prepTime|minutestohours|floatformat:"2" }} hours</li>
-        {% endif %}
-        {% if not recipe.cookTime %}
-            <li><b>Cook Time</b>: {{ recipe.cookTime }}</li>
-            {% else %}
-                <li><b>Cook Time</b>: {{ recipe.cookTime|minutestohours }} hours</li>
-        {% endif %}
-        <li><b>Servings</b>: {{ recipe.servings }}</li>
-        <br><li><a class="button" href="{{ recipe.url }}">GoTo Recipe Source</a></li>
-    </ul>
-</div>
+{% include "menu/recipedetailsingredients.html" %}
+{% include "menu/recipedetailsrecipe.html" %}
 
 <div id="content">
     <div id="comments"></div>

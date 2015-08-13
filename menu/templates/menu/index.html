@@ -14,15 +14,14 @@
         <div id="title">
             Recipe Home
         </div>
+        <div>
+            <a class="button" id="nav" href="{% url 'menu:addrecipe' %}">Add Recipe</a>
+            <a class="button" id="nav" href="{% url 'menu:uploadrecipe' %}">Upload Recipe</a>
+            <a class="button" id="nav" href="{% url 'menu:manageshoppinglist' %}">View Shopping List</a>
+            <a class="button" id="nav" href="{% url 'menu:retiredrecipes' %}">Retired Recipes</a>
+            <a class="button" id="nav" href="{% url 'menu:fridge' %}">In the Fridge</a>
+        </div><div style="clear:both"></div>
         <div id="content">
-            <div>
-                <a class="button" id="nav" href="{% url 'menu:addrecipe' %}">Add Recipe</a>
-                <a class="button" id="nav" href="{% url 'menu:uploadrecipe' %}">Upload Recipe</a>
-                <a class="button" id="nav" href="{% url 'menu:manageshoppinglist' %}">View Shopping List</a>
-                <a class="button" id="nav" href="{% url 'menu:retiredrecipes' %}">Retired Recipes</a>
-                <a class="button" id="nav" href="{% url 'menu:fridge' %}">In the Fridge</a>
-            </div><div style="clear:both"></div>
-            <hr noshade><hr noshade>
             {% for recipe in recipe_list %}
                 <a class="button" id="recipe" href = "{% url 'menu:recipedetails' recipe.id %}">{{ recipe.name }}</a>
                 <hr noshade>

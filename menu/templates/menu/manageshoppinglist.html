@@ -5,17 +5,19 @@
 <div id="title">
     Shopping List
 </div>
+<div>
+    <a class="button" id="nav" href="{% url 'menu:index' %}">Back to Recipe List</a>
+</div><div style="clear:both"></div>
 <div id="content">
-    <div>
-        <a class="button" id="nav" href="{% url 'menu:index' %}">Back to Recipe List</a>
-    </div><div style="clear:both"></div>
-    <hr noshade><hr noshade>
-
     <form method="POST" action="">
     {% csrf_token %}
     {{ formset.management_form }}
         {% for form in formset %}
-            {{ form }}
+            {{ form.id }}
+            {{ form.status }}
+            {% if form.status == true %} <del> {% endif %}
+                {{ form.name }}
+            {% if form.status == true %} </del> {% endif %}
             <hr noshade>
         {% endfor %}
         <hr noshade>

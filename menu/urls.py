@@ -4,12 +4,13 @@ from . import views
 
 urlpatterns = [
     # index and base
-    url(r'^(?P<pk>[0-9]+)/$', views.RecipeDetail.as_view(), name='recipedetails'),
     url(r'^$', views.basetemplate, name='basetemplate'),
 
     # generic views
+    url(r'^(?P<pk>[0-9]+)/$', views.RecipeDetail.as_view(), name='recipedetails'),
     url(r'^menu/$', views.Index.as_view(), name='index'),
     url(r'^(?P<pk>[0-9]+)/editrecipe$', views.EditRecipe.as_view(), name='editrecipe'),
+    url(r'^(?P<pk>[0-9]+)/editingredients$', views.EditIngredients.as_view(), name='editingredients'),
     url(r'^archivelist/$', views.ArchiveList.as_view(), name='archivelist'),
 
     # non-generic recipe views

@@ -4,12 +4,10 @@
 <div id="title">
     Retired Recipes
 </div>
+<div>
+    <a class="button" id="nav" href="{% url 'menu:index' %}">Back to Recipe List</a>
+</div><div style="clear:both"></div>
 <div id="content">
-    <div>
-        <a class="button" id="nav" href="{% url 'menu:index' %}">Back to Recipe List</a>
-    </div><div style="clear:both"></div>
-    <hr noshade><hr noshade>
-
     <form method="POST" action="">
     {% csrf_token %}
     {{ formset.management_form }}

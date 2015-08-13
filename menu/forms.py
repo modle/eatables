@@ -1,15 +1,33 @@
 from django import forms
 from .models import ShoppingList, Ingredient, Recipe, Fridge
+from django.forms.models import BaseModelFormSet
 
 
 class DocumentForm(forms.Form):
     docfile = forms.FileField(label='Select file')
 
 
+
+class BaseShoppingListFormSet(BaseModelFormSet):
+    def __init__(self, *args, **kwargs):
+        super(BaseShoppingListFormSet, self).__init__(*args, **kwargs)
+        self.queryset = ShoppingList.objects.filter(status__exact=False)
+
+    class Meta:
+        model = ShoppingList
+        # fields = '__all__'
+        fields = ('status', 'amount', 'name', )
+        labels = {
+            'status': '',
+            'amount': '',
+            'name': '',
+        }
+
+
 class ShoppingListForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ShoppingListForm, self).__init__(*args, **kwargs)
-        self.queryset = ShoppingList.objects.all()
+        self.queryset = ShoppingList.objects.filter(status__exact=False)
         self.fields['amount'].widget.attrs.update({'id': 'listform'})
         self.fields['name'].widget.attrs['readonly'] = True
         self.fields['name'].widget.attrs.update({'id': 'formfieldastext'})

@@ -1,0 +1,20 @@
+{% load menu_extras %}
+<div id="aside">
+    <h3>Ingredients</h3>
+
+    <form action="{% url 'menu:addtoshoppinglist' recipe.id %}" method="post">
+    {% csrf_token %}
+        {% for i in recipe.ingredient_set.all %}
+            <div class="ingredientList">
+                <input type="checkbox" value={{i.amount}} id={{i.id}} name={{i.id}}>
+                {{i.amount|showinteger}}{{ i.amount|showfraction }} {{ i.unit }}
+                {{ i.name }}{% if i.comment %}, {{ i.comment }}{% endif %}
+            </div>
+            <hr noshade>
+        {% endfor %}
+        <br><br>
+        <input type=submit value="Update Shopping List" id="submit">
+        <a class="button" href="{% url 'menu:editingredients' recipe.id %}">Edit Ingredients</a><br>
+
+    </form>
+</div>

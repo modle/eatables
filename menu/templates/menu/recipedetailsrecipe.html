@@ -1,0 +1,28 @@
+{% load menu_extras %}
+{% load markdown_deux_tags %}
+<div id="content">
+    <h3>Directions</h3>
+    <a class="button" href="{% url 'menu:editrecipe' recipe.id %}">Edit</a><br>
+    {% markdown %}
+        {{ recipe.directions | safe }}
+    {% endmarkdown %}
+</div>
+<div id="aside">
+    <a class="button" href="{% url 'menu:editrecipe' recipe.id %}">Edit</a><br>
+    <ul>
+        <li><b>Method</b>: {{ recipe.prepMethod }}</li>
+        <li><b>Temp</b>: {{ recipe.temperature }}</li>
+        {% if not recipe.prepTime %}
+            <li><b>Prep Time</b>: {{ recipe.prepTime }} </li>
+            {% else %}
+                <li><b>Prep Time</b>: {{ recipe.prepTime|minutestohours|floatformat:"2" }} hours</li>
+        {% endif %}
+        {% if not recipe.cookTime %}
+            <li><b>Cook Time</b>: {{ recipe.cookTime }}</li>
+            {% else %}
+                <li><b>Cook Time</b>: {{ recipe.cookTime|minutestohours }} hours</li>
+        {% endif %}
+        <li><b>Servings</b>: {{ recipe.servings }}</li>
+        <br><li><a class="button" href="{{ recipe.url }}">GoTo Recipe Source</a></li>
+    </ul>
+</div>

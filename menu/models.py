@@ -42,7 +42,7 @@ class ShoppingList(models.Model):
     amount = models.IntegerField(default=0, null=True, blank=True)
     status = models.BooleanField(default=False,)
     def __str__(self):
-        return str(self.id) + " " + str(self.ingredient_id) + " " + str(self.status) + " " + str(self.amount)
+        return str(self.ingredient_id) + " " + str(self.status) + " " + str(self.amount)
 
     class Meta:
         ordering = ('-status', 'name', 'shoppingListId')
