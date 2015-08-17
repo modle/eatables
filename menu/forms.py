@@ -7,27 +7,10 @@ class DocumentForm(forms.Form):
     docfile = forms.FileField(label='Select file')
 
 
-
-class BaseShoppingListFormSet(BaseModelFormSet):
-    def __init__(self, *args, **kwargs):
-        super(BaseShoppingListFormSet, self).__init__(*args, **kwargs)
-        self.queryset = ShoppingList.objects.filter(status__exact=False)
-
-    class Meta:
-        model = ShoppingList
-        # fields = '__all__'
-        fields = ('status', 'amount', 'name', )
-        labels = {
-            'status': '',
-            'amount': '',
-            'name': '',
-        }
-
-
 class ShoppingListForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ShoppingListForm, self).__init__(*args, **kwargs)
-        self.queryset = ShoppingList.objects.filter(status=0)
+        self.queryset = ShoppingList.objects.filter(status__exact=0)
         self.fields['amount'].widget.attrs.update({'id': 'listform'})
         self.fields['name'].widget.attrs['readonly'] = True
         self.fields['name'].widget.attrs.update({'id': 'formfieldastext'})
@@ -43,10 +26,10 @@ class ShoppingListForm(forms.ModelForm):
         }
 
 
-class RetiredRecipesForm(forms.ModelForm):
+class ArchivedRecipesForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(RetiredRecipesForm, self).__init__(*args, **kwargs)
-        self.queryset = Recipe.objects.filter(enabled=False)
+        super(ArchivedRecipesForm, self).__init__(*args, **kwargs)
+        self.queryset = Recipe.objects.filter(enabled='false')
         self.fields['name'].widget.attrs['readonly'] = True
         self.fields['name'].widget.attrs.update({'id': 'formfieldastext'})
 

@@ -14,9 +14,9 @@ urlpatterns = [
     url(r'^archivelist/$', views.ArchiveList.as_view(), name='archivelist'),
 
     # non-generic recipe views
-    url(r'^retiredrecipes/$', views.retiredrecipes, name='retiredrecipes'),
+    url(r'^archivedrecipes/$', views.archivedrecipes, name='archivedrecipes'),
     url(r'^addrecipe/$', views.addrecipe, name='addrecipe'),
-    url(r'^(?P<recipeId>[0-9]+)/disablerecipe/$', views.disablerecipe, name='disablerecipe'),
+    url(r'^(?P<recipeId>[0-9]+)/archiverecipe/$', views.archiverecipe, name='archiverecipe'),
     url(r'^(?P<recipeId>[0-9]+)/deleterecipeforever/$', views.deleterecipeforever, name='deleterecipeforever'),
     url(r'^(?P<recipeId>[0-9]+)/updaterecipe/$', views.updaterecipe, name='updaterecipe'),
     url(r'^uploadrecipe/$', views.uploadrecipe, name='uploadrecipe'),
@@ -29,7 +29,7 @@ urlpatterns = [
 
     # shopping list
     url(r'^(?P<recipeId>[0-9]+)/addtoshoppinglist/$', views.addtoshoppinglist, name='addtoshoppinglist'),
-    url(r'^manageshoppinglist/$', views.manageshoppinglist, name='manageshoppinglist'),
+    url(r'^shoppinglist/$', views.shoppinglist, name='shoppinglist'),
 
 
     # comments

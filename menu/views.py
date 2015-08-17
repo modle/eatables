@@ -51,28 +51,7 @@ def addtoshoppinglist(request, recipeId):
     return HttpResponseRedirect(reverse('menu:recipedetails', args=(recipeId,)))
 
 
-def manageshoppinglisttestingformset(request):
-
-    ShoppingListFormSet = modelformset_factory(ShoppingList,
-                                               fields=('status', 'name'),
-                                               formset=BaseShoppingListFormSet,
-                                               extra=0)
-
-    if request.method == 'POST':
-        formset = ShoppingListFormSet(request.POST)
-        if formset.is_valid():
-            formset.save()
-
-    else:
-        formset = ShoppingListFormSet()
-
-    return render_to_response(
-        'menu/manageshoppinglist.html',
-        {'formset': formset, },
-        context_instance=RequestContext(request))
-
-
-def manageshoppinglist(request):
+def shoppinglist(request):
     logger = logging.getLogger(__name__)
 
     ShoppingListFormSet = modelformset_factory(ShoppingList, form=ShoppingListForm, extra=0)
@@ -86,13 +65,13 @@ def manageshoppinglist(request):
             logger.debug('Formset invalid')
 
     else:
-        formset = ShoppingListFormSet()
+        formset = ShoppingListFormSet(queryset=ShoppingList.objects.filter(status=False))
 
     logger.debug('POST DATA:\n %s', json.dumps(request.POST, indent=4, sort_keys=True))
     logger.debug('LOCALS:\n %s', locals())
 
     return render_to_response(
-        'menu/manageshoppinglist.html',
+        'menu/shoppinglist.html',
         {'formset': formset, },
         context_instance=RequestContext(request))
 
@@ -122,7 +101,7 @@ def fridge(request):
 
 class ArchiveList(generic.ListView):
     model = ShoppingList
-    template_name = 'menu/archivelist.html'
+    template_name = 'menu/shoppinglisthistory.html'
 
     def get_queryset(self):
         return ShoppingList.objects.all()
@@ -136,13 +115,13 @@ class RecipeDetail(generic.DetailView):
         return Recipe.objects.all()
 
 
-def retiredrecipes(request):
+def archivedrecipes(request):
     logger = logging.getLogger(__name__)
 
-    RetiredRecipesFormSet = modelformset_factory(Recipe, form=RetiredRecipesForm, extra=0)
+    ArchivedRecipesFormSet = modelformset_factory(Recipe, form=ArchivedRecipesForm, extra=0)
 
     if request.method == 'POST':
-        formset = RetiredRecipesFormSet(request.POST)
+        formset = ArchivedRecipesFormSet(request.POST)
         if formset.is_valid():
             formset.save()
             logger.debug('Formset saved')
@@ -150,13 +129,13 @@ def retiredrecipes(request):
             logger.debug('Formset invalid')
         return HttpResponseRedirect(reverse('menu:index'))
     else:
-        formset = RetiredRecipesFormSet()
+        formset = ArchivedRecipesFormSet(queryset=Recipe.objects.filter(enabled=False))
 
     logger.debug('POST DATA:\n %s', json.dumps(request.POST, indent=4, sort_keys=True))
     logger.debug('LOCALS:\n %s', locals())
 
     return render_to_response(
-        'menu/retiredrecipes.html',
+        'menu/archivedrecipes.html',
         {'formset': formset},
         context_instance=RequestContext(request))
 
@@ -167,7 +146,7 @@ def addrecipe(request):
     return HttpResponseRedirect(reverse('menu:editrecipe', args=(r.id,)))
 
 
-def disablerecipe(request, recipeId):
+def archiverecipe(request, recipeId):
     r = get_object_or_404(Recipe, pk=recipeId)
     r.enabled = 0
     r.save()
@@ -193,7 +172,6 @@ class EditIngredients(generic.DetailView):
 
     def get_queryset(self):
         return Recipe.objects.all()
-
 
 
 def updaterecipe(request, recipeId):

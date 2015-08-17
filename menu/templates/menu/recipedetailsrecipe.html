@@ -23,6 +23,6 @@
                 <li><b>Cook Time</b>: {{ recipe.cookTime|minutestohours }} hours</li>
         {% endif %}
         <li><b>Servings</b>: {{ recipe.servings }}</li>
-        <br><li><a class="button" href="{{ recipe.url }}">GoTo Recipe Source</a></li>
+        <br><li><a class="button" target="_blank" href="{{ recipe.source }}">GoTo Recipe Source</a></li>
     </ul>
 </div>
