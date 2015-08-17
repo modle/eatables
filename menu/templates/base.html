@@ -1,12 +1,24 @@
 {% include "stylesheets.html" %}
+{% load staticfiles %}
+{% load menu_extras %}
+
 <html>
     <head>
-        <title>{% block head_title %}Welcome to my blog{% endblock %}</title>
+        <title>{% block head_title %}Page Title Here{% endblock %}</title>
     </head>
     <body>
-        <h1>{% block title %}Welcome to my block{% endblock %}</h1>
-        {% block content %}
+        {% block title %}This is the block title{% endblock %}
+        <div>
+            <a class="button" id="nav" href="{% url 'menu:index' %}">Home</a>
+            <a class="button" id="nav" href="{% url 'menu:addrecipe' %}">Add Recipe</a>
+            <a class="button" id="nav" href="{% url 'menu:uploadrecipe' %}">Upload Recipe</a>
+            <a class="button" id="nav" href="{% url 'menu:manageshoppinglist' %}">View Shopping List</a>
+            <a class="button" id="nav" href="{% url 'menu:retiredrecipes' %}">Retired Recipes</a>
+            <a class="button" id="nav" href="{% url 'menu:fridge' %}">In the Fridge</a>
+        </div><div style="clear:both"></div>
 
+        {% block content %}
+            There's no content here
         {% endblock %}
     </body>
 </html>

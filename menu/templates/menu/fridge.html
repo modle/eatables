@@ -1,25 +1,31 @@
+{% extends "base.html" %}
 {% load staticfiles %}
 {% load menu_extras %}
-{% include "menu/stylesheets.html" %}
+
 <script type="text/javascript" src="{% static 'menu/js/jquery-1.11.3.js' %}"></script>
 <script type="text/javascript" src="{% static 'menu/js/menu.js' %}"></script>
 <script type="text/javascript" src="{% static 'menu/js/jquery-ui.js' %}"></script>
 
-<div id="title">
-    In the Fridge
-</div>
-<div>
-    <a class="button" id="nav" href="{% url 'menu:index' %}">Back to Recipe List</a>
-</div><div style="clear:both"></div>
-<div id="content">
-    <form method="POST" action="">
-    {% csrf_token %}
-    {{ formset.management_form }}
-        {% for form in formset %}
-            {{ form }}
-            <hr noshade>
-        {% endfor %}
-        <hr noshade>
-        <input type="submit" value="Update" id="submit"/>
-    </form>
-</div>
+<html>
+    <body>
+        {% block title %}
+            <div id="title">
+                In the Fridge
+            </div>
+        {% endblock %}
+        {% block content %
+            <div id="content">
+                <form method="POST" action="">
+                {% csrf_token %}
+                {{ formset.management_form }}
+                    {% for form in formset %}
+                        {{ form }}
+                        <hr noshade>
+                    {% endfor %}
+                    <hr noshade>
+                    <input type="submit" value="Update" id="submit"/>
+                </form>
+            </div>
+        {% endblock %}
+    </body>
+</html>

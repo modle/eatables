@@ -1,30 +1,22 @@
+{% extends "base.html" %}
 {% load staticfiles %}
 {% load menu_extras %}
-{% include "menu/stylesheets.html" %}
+
 <script type="text/javascript" src="{% static 'menu/js/jquery-1.11.3.js' %}"></script>
 
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Recipe List</title>
-	</head>
+    <body>
+        {% block title %}
+            <div id="title">Recipe Home</div>
+        {% endblock %}
+        {% block content %}
 
-	<body>
-
-        <div id="title">
-            Recipe Home
-        </div>
-        <div>
-            <a class="button" id="nav" href="{% url 'menu:addrecipe' %}">Add Recipe</a>
-            <a class="button" id="nav" href="{% url 'menu:uploadrecipe' %}">Upload Recipe</a>
-            <a class="button" id="nav" href="{% url 'menu:manageshoppinglist' %}">View Shopping List</a>
-            <a class="button" id="nav" href="{% url 'menu:retiredrecipes' %}">Retired Recipes</a>
-            <a class="button" id="nav" href="{% url 'menu:fridge' %}">In the Fridge</a>
-        </div><div style="clear:both"></div>
-        <div id="content">
-            {% for recipe in recipe_list %}
-                <a class="button" id="recipe" href = "{% url 'menu:recipedetails' recipe.id %}">{{ recipe.name }}</a>
-                <hr noshade>
-            {% endfor %}
-        </div>
+            <div id="content">
+                {% for recipe in recipe_list %}
+                    <a class="button" id="recipe" href = "{% url 'menu:recipedetails' recipe.id %}">{{ recipe.name }}</a>
+                    <hr noshade>
+                {% endfor %}
+            </div>
+        {% endblock %}
     </body>
+</html>

@@ -1,42 +1,45 @@
+{% extends "base.html" %}
 {% load staticfiles %}
 {% load menu_extras %}
-{% include "menu/stylesheets.html" %}
+
 {% load markdown_deux_tags %}
 <script type="text/javascript" src="{% static 'menu/js/jquery-1.11.3.js' %}"></script>
 <script type="text/javascript" src="{% static 'menu/js/menu.js' %}"></script>
 
+<html>
+    <body>
+        {% block title %}
+            <div id="title">
+                {{ recipe.name }}
+            </div>
+        {% endblock %}
+        {% block content %}
 
-<div id="title">
-    {{ recipe.name }}
-</div>
-<div>
-        <a class="button" id="nav" href="{% url 'menu:index' %}">Back to Recipe List</a>
-        <a class="button" id="nav" href="{% url 'menu:manageshoppinglist' %}">View Shopping List</a>
-</div><div style="clear:both"></div>
+            {% include "menu/recipedetailsingredients.html" %}
+            {% include "menu/recipedetailsrecipe.html" %}
 
-{% include "menu/recipedetailsingredients.html" %}
-{% include "menu/recipedetailsrecipe.html" %}
+            <div id="content">
+                <div id="comments"></div>
+                <h3>Comments</h3>
 
-<div id="content">
-    <div id="comments"></div>
-    <h3>Comments</h3>
+                <form action="{% url 'menu:addcomment' recipe.id %}" method="post">
+                {% csrf_token %}
 
-    <form action="{% url 'menu:addcomment' recipe.id %}" method="post">
-    {% csrf_token %}
+                    <textarea name="comment" ROWS=6 COLS=15></textarea><br><br>
+                    <input type=submit value="Publish Comment" id="submit"/>
+                </form>
+                <hr noshade>
+                {% for c in recipe.comment_set.all %}
+                    <ul>
+                        <li>{{ c.comment }}</li>
+                        <li>{{ c.publishDate }}</li>
+                        <a class="button" id="delete" href="{% url 'menu:commentdelete' c.id %}" onclick="return confirm('Are you sure?')">Delete</a>
+                    </ul>
+                    <hr noshade>
+                {% endfor %}
 
-        <textarea name="comment" ROWS=6 COLS=15></textarea><br><br>
-        <input type=submit value="Publish Comment" id="submit"/>
-    </form>
-    <hr noshade>
-    {% for c in recipe.comment_set.all %}
-        <ul>
-            <li>{{ c.comment }}</li>
-            <li>{{ c.publishDate }}</li>
-            <a class="button" id="delete" href="{% url 'menu:commentdelete' c.id %}" onclick="return confirm('Are you sure?')">Delete</a>
-        </ul>
-        <hr noshade>
-    {% endfor %}
-
-</div>
-
-<div style="clear:both"></div>
+            </div>
+            <div style="clear:both"></div>
+        {% endblock %}
+    </body>
+</html>

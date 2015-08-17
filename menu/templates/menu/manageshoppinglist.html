@@ -1,26 +1,32 @@
+{% extends "base.html" %}
 {% load staticfiles %}
-{% load menu_extras %}
-{% include "menu/stylesheets.html" %}
+{% load menu_extras %}}
 
-<div id="title">
-    Shopping List
-</div>
-<div>
-    <a class="button" id="nav" href="{% url 'menu:index' %}">Back to Recipe List</a>
-</div><div style="clear:both"></div>
-<div id="content">
-    <form method="POST" action="">
-    {% csrf_token %}
-    {{ formset.management_form }}
-        {% for form in formset %}
-            {{ form.shoppingListId }}
-            {{ form.status }}
-            {% if form.status == true %} <del> {% endif %}
-                {{form.amount}} {{ form.name }}
-            {% if form.status == true %} </del> {% endif %}
-            <hr noshade>
-        {% endfor %}
-        <hr noshade>
-        <input type="submit" value="Update" id="submit"/>
-    </form>
-</div>
+
+<html>
+    <body>
+        {% block title %}
+            <div id="title">
+                Shopping List
+            </div>
+        {% endblock %}
+        {% block content %}
+            <div id="content">
+                <form method="POST" action="">
+                {% csrf_token %}
+                {{ formset.management_form }}
+                    {% for form in formset %}
+                        {{ form.shoppingListId }}
+                        {{ form.status }}
+                        {% if form.status == true %} <del> {% endif %}
+                            {{form.amount}} {{ form.name }}
+                        {% if form.status == true %} </del> {% endif %}
+                        <hr noshade>
+                    {% endfor %}
+                    <hr noshade>
+                    <input type="submit" value="Update" id="submit"/>
+                </form>
+            </div>
+        {% endblock %}
+    </body>
+</html>

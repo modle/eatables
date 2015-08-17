@@ -1,21 +1,27 @@
+{% extends "base.html" %}
 {% load staticfiles %}
-{% include "menu/stylesheets.html" %}
+{% load menu_extras %}%}
 
-<div id="title">
-    Retired Recipes
-</div>
-<div>
-    <a class="button" id="nav" href="{% url 'menu:index' %}">Back to Recipe List</a>
-</div><div style="clear:both"></div>
-<div id="content">
-    <form method="POST" action="">
-    {% csrf_token %}
-    {{ formset.management_form }}
-        {% for form in formset %}
-            {{ form }}
-            <hr noshade>
-        {% endfor %}
-        <hr noshade>
-        <input type="submit" value="Retire Unchecked/Untire Checked" id="submit"/>
-    </form>
-</div>
+<html>
+    <body>
+        {% block title %}
+            <div id="title">
+                Retired Recipes
+            </div>
+        {% endblock %}
+        {% block content %}
+            <div id="content">
+                <form method="POST" action="">
+                {% csrf_token %}
+                {{ formset.management_form }}
+                    {% for form in formset %}
+                        {{ form }}
+                        <hr noshade>
+                    {% endfor %}
+                    <hr noshade>
+                    <input type="submit" value="Retire Unchecked/Untire Checked" id="submit"/>
+                </form>
+            </div>
+        {% endblock %}
+    </body>
+</html>

@@ -1,37 +1,43 @@
+{% extends "base.html" %}
 {% load staticfiles %}
 {% load menu_extras %}
-{% include "menu/stylesheets.html" %}
 <script type="text/javascript" src="{% static 'menu/js/jquery-1.11.3.js' %}"></script>
 <script type="text/javascript" src="{% static 'menu/js/menu.js' %}"></script>
 
-<div id="title">
-    Edit Recipe Details: {{ recipe.name }}
-</div>
-<div>
-    <a class="button" id="nav" href="{% url 'menu:index' %}">Back to Recipe List</a>
-    <a class="button" id="nav" href="{% url 'menu:recipedetails' recipe.id %}">View Recipe Details</a>
-    <a class="button" id="delete" href="{% url 'menu:disablerecipe' recipe.id %}">Remove Recipe</a>
-</div><div style="clear:both"></div>
-{% include "menu/recipedetailsingredients.html" %}
-<div id="content">
-    <h2>Edit Recipe Details</h2>
-    <form action="{% url 'menu:updaterecipe' recipe.id %}" method="post">
-    <input type=submit value="Save" id="submit"/>
-    <a class="button" href="{% url 'menu:recipedetails' recipe.id %}">Cancel</a>
-    <hr noshade>
-{% csrf_token %}
-        Name<br><input type=text name="name" value="{{ recipe.name }}" id="text"><br><br>
-        Prep Method<br><input type=text name="method" value="{{ recipe.prepMethod }}" id="text"><br><br>
-        Temperature<br><input type=text name="temp" value="{{ recipe.temperature }}" id="text"><br><br>
-        Prep Time (minutes)<br><input type=text name="prep" value="{{ recipe.prepTime }}" id="text"><br><br>
-        Cook Time (minutes)<br><input type=text name="cook" value="{{ recipe.cookTime }}" id="text"><br><br>
-        Servings<br><input type=text name="serves" value="{{ recipe.servings }}" id="text"><br><br>
-        Directions (Use <a target="blank" href="https://en.wikipedia.org/wiki/Markdown#Example">Markdown</a> like all the cool kids)<br>
-        <textarea name="directions" ROWS=15 COLS=35>&#10;&#13;{{ recipe.directions }}</textarea><br><br>
-        URL<br><input type=text name="source" value="{{ recipe.source }}" id="text"><br><br>
-        <input type=submit value="Save" id="submit"/>
-        <a class="button" href="{% url 'menu:recipedetails' recipe.id %}">Cancel</a>
-    </form>
-    <hr noshade><hr noshade>
-</div>
+<html>
+    <body>
+        {% block title %}
+            <div id="title">
+                Edit Recipe Details: {{ recipe.name }}
+            </div>
+        {% endblock %}
+        {% block content %}
+            {% include "menu/recipedetailsingredients.html" %}
+            <div id="content">
+                <h2>Edit Recipe Details</h2>
+                <form action="{% url 'menu:updaterecipe' recipe.id %}" method="post">
+                <input type=submit value="Save" id="submit"/>
+                <a class="button" href="{% url 'menu:recipedetails' recipe.id %}">Cancel</a>
+                <hr noshade>
+            {% csrf_token %}
+                    Name<br><input type=text name="name" value="{{ recipe.name }}" id="text"><br><br>
+                    Prep Method<br><input type=text name="method" value="{{ recipe.prepMethod }}" id="text"><br><br>
+                    Temperature<br><input type=text name="temp" value="{{ recipe.temperature }}" id="text"><br><br>
+                    Prep Time (minutes)<br><input type=text name="prep" value="{{ recipe.prepTime }}" id="text"><br><br>
+                    Cook Time (minutes)<br><input type=text name="cook" value="{{ recipe.cookTime }}" id="text"><br><br>
+                    Servings<br><input type=text name="serves" value="{{ recipe.servings }}" id="text"><br><br>
+                    Directions (Use <a target="blank" href="https://en.wikipedia.org/wiki/Markdown#Example">Markdown</a> like all the cool kids)<br>
+                    <textarea name="directions" ROWS=15 COLS=35>&#10;&#13;{{ recipe.directions }}</textarea><br><br>
+                    URL<br><input type=text name="source" value="{{ recipe.source }}" id="text"><br><br>
+                    <input type=submit value="Save" id="submit"/>
+                    <a class="button" href="{% url 'menu:recipedetails' recipe.id %}">Cancel</a>
+                </form>
+                <hr noshade><hr noshade>
+            </div>
+            <div>
+                <a class="button" id="delete" href="{% url 'menu:disablerecipe' recipe.id %}">Remove Recipe</a>
+            </div><div style="clear:both"></div>
 
+        {% endblock %}
+    </body>
+</html>
