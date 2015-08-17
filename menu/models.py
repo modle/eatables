@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime, timedelta
 
+
 class Recipe(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=80, unique=True)
@@ -13,11 +14,13 @@ class Recipe(models.Model):
     cookTime = models.IntegerField(default=0)
     enabled = models.BooleanField(default=True)
     # pinned = models.BooleanField(default=False)
+
     def __str__(self):
         return self.name
 
     class Meta:
         ordering = ('name', )
+
 
 class Ingredient(models.Model):
     id = models.AutoField(primary_key=True)
@@ -27,6 +30,7 @@ class Ingredient(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
     unit = models.CharField(max_length=30, null=True)
     sorting = models.IntegerField("Ordering", blank=True, null=True, help_text="A number.")
+
     def __str__(self):
         return str(self.unit) + " " + str(self.name)
 
@@ -35,21 +39,25 @@ class Ingredient(models.Model):
         unique_together = ('name', 'recipe', 'amount', 'unit',)
         select_on_save = True
 
+
 class ShoppingList(models.Model):
     shoppingListId = models.AutoField(primary_key=True)
     ingredient = models.ForeignKey(Ingredient, blank=False)
     name = models.CharField(max_length=80, null=False)
     amount = models.IntegerField(default=0, null=True, blank=True)
-    status = models.BooleanField(default=False,)
+    status = models.BooleanField(default=False)
+
     def __str__(self):
         return str(self.ingredient_id) + " " + str(self.status) + " " + str(self.amount)
 
     class Meta:
-        ordering = ('-status', 'name', 'shoppingListId')
+        ordering = ('status', 'name', 'shoppingListId')
+
 
 class IngredientMaster(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=80)
+
     def __str__(self):
         return str(self.id) + str(self.name)
 
@@ -63,11 +71,13 @@ class Comment(models.Model):
     rating = models.IntegerField(null=True)
     user = models.IntegerField(default=1)
     publishDate = models.DateTimeField(default=datetime.now)
+
     def __str__(self):
         return str(self.id) + str(self.comment)
 
     class Meta:
         ordering = ('-publishDate', '-id')
+
 
 class PurchaseHistory(models.Model):
     id = models.AutoField(primary_key=True)
@@ -83,6 +93,7 @@ class PurchaseHistory(models.Model):
 
     class Meta:
         ordering = ('ingredient__name', 'id')
+
 
 class Fridge(models.Model):
     id = models.AutoField(primary_key=True)

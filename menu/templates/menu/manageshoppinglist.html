@@ -13,10 +13,10 @@
     {% csrf_token %}
     {{ formset.management_form }}
         {% for form in formset %}
-            {{ form.id }}
+            {{ form.shoppingListId }}
             {{ form.status }}
             {% if form.status == true %} <del> {% endif %}
-                {{ form.name }}
+                {{form.amount}} {{ form.name }}
             {% if form.status == true %} </del> {% endif %}
             <hr noshade>
         {% endfor %}

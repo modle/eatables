@@ -27,7 +27,7 @@ class BaseShoppingListFormSet(BaseModelFormSet):
 class ShoppingListForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ShoppingListForm, self).__init__(*args, **kwargs)
-        self.queryset = ShoppingList.objects.filter(status__exact=False)
+        self.queryset = ShoppingList.objects.filter(status=0)
         self.fields['amount'].widget.attrs.update({'id': 'listform'})
         self.fields['name'].widget.attrs['readonly'] = True
         self.fields['name'].widget.attrs.update({'id': 'formfieldastext'})

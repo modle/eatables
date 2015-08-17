@@ -46,7 +46,7 @@ input[type="text"] {
 input#listform {
     font-size: 1em;
     display: inline-block;
-    width: 5em;
+    width: 4em;
     background: lightblue;
     border:none;
 }

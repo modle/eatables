@@ -239,7 +239,7 @@ def updateingredient(request, recipeId):
 def deleteingredient(request, ingredientId):
     i = Ingredient.objects.get(pk=ingredientId)
     Ingredient.objects.filter(pk=ingredientId).delete()
-    return HttpResponseRedirect(reverse('menu:editrecipe', args=(i.recipe_id,)) + '#ingredients')
+    return HttpResponseRedirect(reverse('menu:editingredients', args=(i.recipe_id,)) + '#ingredients')
 
 
 def addingredient(request, recipeId):
@@ -247,7 +247,7 @@ def addingredient(request, recipeId):
 
     now = str(datetime.now().strftime('%Y-%m-%d %H:%M:%S:%f'))
     r.ingredient_set.create(name="_Update Me_" + now, amount="0.0", unit="unit")
-    return HttpResponseRedirect(reverse('menu:editrecipe', args=(recipeId,)) + '#ingredients')
+    return HttpResponseRedirect(reverse('menu:editingredients', args=(recipeId,)) + '#ingredients')
 
 
 def addcomment(request, recipeId):
