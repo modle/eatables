@@ -60,6 +60,14 @@ input#formfieldastext {
 }
 
 
+input#formfieldastextmax {
+    display: inline-block;
+    font-size: 1.2em;
+    overflow: none;
+    width: 100%;
+}
+
+
 input#formfieldastextshort {
     display: inline-block;
     font-size: 1.2em;

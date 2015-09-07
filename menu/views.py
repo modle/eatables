@@ -39,7 +39,7 @@ def addtoshoppinglist(request, recipeId):
             listItem, created = ShoppingList.objects.get_or_create(ingredient_id=key)
             i = Ingredient.objects.get(id=key)
             entry = get_object_or_404(ShoppingList, ingredient_id=key)
-            #this math needs work; alternate is to store as decimal, then math.ceil when model is read
+            # this math needs work; alternate is to store as decimal, then math.ceil when model is read
             if created:
                 entry.amount = math.ceil(float(value))
             else:
@@ -141,16 +141,24 @@ def archivedrecipes(request):
 
 
 def addrecipe(request):
-    r = Recipe(name="_Update Me_" + str(datetime.now()))
-    r.save()
-    return HttpResponseRedirect(reverse('menu:editrecipe', args=(r.id,)))
 
+    if request.method == 'POST':
+        form = RecipeForm(request.POST)
 
-def archiverecipe(request, recipeId):
-    r = get_object_or_404(Recipe, pk=recipeId)
-    r.enabled = 0
-    r.save()
-    return HttpResponseRedirect(reverse('menu:index'))
+        if form.is_valid():
+            formpost = form.save(commit=False)
+            formpost.user = request.user
+            formpost.edited = datetime.now()
+            formpost.save()
+            recipeId = formpost.id
+            return HttpResponseRedirect(reverse('menu:recipedetails', args=(recipeId,)))
+
+    else:
+        form = RecipeForm()
+
+    return render_to_response('menu/editrecipe_form.html', {
+        'form': form},
+        context_instance=RequestContext(request))
 
 
 def deleterecipeforever(request, recipeId):
@@ -158,12 +166,27 @@ def deleterecipeforever(request, recipeId):
     return HttpResponseRedirect(reverse('menu:index'))
 
 
-class EditRecipe(generic.DetailView):
-    model = Recipe
-    template_name = 'menu/editrecipe.html'
+def editrecipe(request, recipeId):
 
-    def get_queryset(self):
-        return Recipe.objects.all()
+    if request.method == 'POST':
+
+        form = RecipeForm(request.POST, instance=Recipe.objects.get(id=recipeId))
+
+        if form.is_valid():
+            formpost = form.save(commit=False)
+            formpost.user = request.user
+            formpost.edited = datetime.now()
+            formpost.save()
+            recipeId = formpost.id
+        return HttpResponseRedirect(reverse('menu:recipedetails', args=(recipeId,)))
+
+    else:
+        recipe = Recipe.objects.get(id=recipeId)
+        form = RecipeForm(instance=recipe)
+
+    return render_to_response('menu/editrecipe_form.html', {
+        'form': form},
+        context_instance=RequestContext(request))
 
 
 class EditIngredients(generic.DetailView):
@@ -172,20 +195,6 @@ class EditIngredients(generic.DetailView):
 
     def get_queryset(self):
         return Recipe.objects.all()
-
-
-def updaterecipe(request, recipeId):
-    r = get_object_or_404(Recipe, id=recipeId)
-    r.name = request.POST['name']
-    r.prepMethod = request.POST['method']
-    r.temperature = request.POST['temp']
-    r.prepTime = request.POST['prep']
-    r.cookTime = request.POST['cook']
-    r.servings = request.POST['serves']
-    r.directions = request.POST['directions']
-    r.source = request.POST['source']
-    r.save()
-    return HttpResponseRedirect(reverse('menu:recipedetails', args=(r.id,)))
 
 
 def updateingredient(request, recipeId):
@@ -332,7 +341,8 @@ class FauxTb(object):
         self.tb_next = tb_next
 
 def current_stack(skip=0):
-    try: 1/0
+    try:
+        1/0
     except ZeroDivisionError:
         f = sys.exc_info()[2].tb_frame
     for i in xrange(skip + 2):

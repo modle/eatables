@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load menu_extras %}
+<script type="text/javascript" src="{% static 'menu/js/jquery-1.11.3.js' %}"></script>
+<script type="text/javascript" src="{% static 'menu/js/menu.js' %}"></script>
+
+<html>
+    <body>
+        {% block title %}
+            <div id="title">
+                Edit Recipe Details: {{ recipe.name }}
+            </div>
+        {% endblock %}
+        {% block content %}
+            <div id="content">
+                <h2>Edit Recipe Details</h2>
+
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    Name<br>{{ form.name }}<br><br>
+                    Prep Method<br>{{ form.prepMethod }}<br><br>
+                    Temperature<br>{{ form.temperature }}<br><br>
+                    Prep Time (minutes)<br>{{ form.prepTime }}<br><br>
+                    Cook Time (minutes)<br>{{ form.cookTime }}<br><br>
+                    Servings<br>{{ form.servings }}<br><br>
+                    Directions (Use <a target="blank" href="https://en.wikipedia.org/wiki/Markdown#Example">Markdown</a> like all the cool kids)<br>
+                    {{ form.directions }}<br><br>
+                    URL<br>{{ form.source }}<br><br>
+                    Published if checked: {{ form.enabled }}
+                    <p>
+                        <input class="btn" type="submit" value="Update &raquo;" id="submit"/>
+                    </p>
+                </form>
+        {% endblock %}
+    </body>
+</html>

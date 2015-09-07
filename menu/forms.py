@@ -1,7 +1,27 @@
 from django import forms
+from django.forms import ModelForm, Textarea
 from .models import ShoppingList, Ingredient, Recipe, Fridge
-from django.forms.models import BaseModelFormSet
 
+
+class RecipeForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(RecipeForm, self).__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs.update({'placeholder': 'Name'})
+        self.fields['name'].widget.attrs.update({'id': 'formfieldastextmax'})
+        self.fields['prepMethod'].widget.attrs.update({'placeholder': 'Prep Method'})
+        self.fields['temperature'].widget.attrs.update({'placeholder': 'temperature'})
+        self.fields['directions'].widget.attrs.update({'placeholder': 'directions'})
+        self.fields['source'].widget.attrs.update({'placeholder': 'recipe url source'})
+        self.fields['servings'].widget.attrs.update({'placeholder': '0'})
+        self.fields['prepTime'].widget.attrs.update({'placeholder': '0'})
+        self.fields['cookTime'].widget.attrs.update({'placeholder': '0'})
+
+    class Meta:
+        model = Recipe
+        fields = '__all__'
+        widgets = {
+            'directions': Textarea(attrs={'cols': 80, 'rows': 20}),
+        }
 
 class DocumentForm(forms.Form):
     docfile = forms.FileField(label='Select file')
@@ -10,10 +30,10 @@ class DocumentForm(forms.Form):
 class ShoppingListForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ShoppingListForm, self).__init__(*args, **kwargs)
-        self.queryset = ShoppingList.objects.filter(status__exact=0)
         self.fields['amount'].widget.attrs.update({'id': 'listform'})
         self.fields['name'].widget.attrs['readonly'] = True
         self.fields['name'].widget.attrs.update({'id': 'formfieldastext'})
+
 
     class Meta:
         model = ShoppingList
@@ -29,7 +49,6 @@ class ShoppingListForm(forms.ModelForm):
 class ArchivedRecipesForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ArchivedRecipesForm, self).__init__(*args, **kwargs)
-        self.queryset = Recipe.objects.filter(enabled='false')
         self.fields['name'].widget.attrs['readonly'] = True
         self.fields['name'].widget.attrs.update({'id': 'formfieldastext'})
 
