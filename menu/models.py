@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime, timedelta
+from django.contrib.auth.models import User
 
 
 class Recipe(models.Model):
@@ -69,8 +70,9 @@ class Comment(models.Model):
     recipe = models.ForeignKey(Recipe)
     comment = models.TextField(null=True)
     rating = models.IntegerField(null=True)
-    user = models.IntegerField(default=1)
+    user = models.ForeignKey(User, null=True, blank=True)
     publishDate = models.DateTimeField(default=datetime.now)
+    editDate = models.DateTimeField(default=datetime.now)
 
     def __str__(self):
         return str(self.id) + str(self.comment)

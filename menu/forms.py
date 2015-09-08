@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm, Textarea
-from .models import ShoppingList, Ingredient, Recipe, Fridge
+from .models import ShoppingList, Ingredient, Recipe, Fridge, Comment
 
 
 class RecipeForm(ModelForm):
@@ -79,4 +79,19 @@ class FridgeForm(forms.ModelForm):
             'item': '',
             'fridgedate': 'fridged on',
             'expires': 'expires',
+        }
+
+class CommentForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(CommentForm, self).__init__(*args, **kwargs)
+        self.fields['comment'].widget.attrs.update({'placeholder': 'Comment'})
+
+    class Meta:
+        model = Comment
+        fields = ('comment',)
+        labels = {
+            'comment': '',
+        }
+        widgets = {
+            'comment': Textarea(attrs={'cols': 80, 'rows': 6}),
         }

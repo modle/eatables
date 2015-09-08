@@ -117,6 +117,27 @@ class RecipeDetail(generic.DetailView):
         return Recipe.objects.all()
 
 
+def recipedetails(request, recipeId):
+
+    recipe = Recipe.objects.get(pk=recipeId)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+
+        if form.is_valid():
+            formpost = form.save(commit=False)
+            formpost.user = request.user
+            formpost.editDate = datetime.now()
+            formpost.save()
+
+    else:
+        form = CommentForm()
+
+    return render_to_response('menu/recipedetails.html', {'form': form, 'recipe': recipe, },
+                              context_instance=RequestContext(request))
+
+
+
 @user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def archivedrecipes(request):
     logger = logging.getLogger(__name__)
@@ -142,6 +163,7 @@ def archivedrecipes(request):
         {'formset': formset},
         context_instance=RequestContext(request))
 
+
 @user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def addrecipe(request):
     if request.method == 'POST':
@@ -158,15 +180,14 @@ def addrecipe(request):
     else:
         form = RecipeForm()
 
-    return render_to_response('menu/editrecipe_form.html', {
-        'form': form},
+    return render_to_response('menu/editrecipe_form.html', {'form': form},
                               context_instance=RequestContext(request))
+
 
 @user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def deleterecipeforever(request, recipeId):
     Recipe.objects.filter(pk=recipeId).delete()
     return HttpResponseRedirect(reverse('menu:index'))
-
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
@@ -187,8 +208,7 @@ def editrecipe(request, recipeId):
         recipe = Recipe.objects.get(id=recipeId)
         form = RecipeForm(instance=recipe)
 
-    return render_to_response('menu/editrecipe_form.html', {
-        'form': form},
+    return render_to_response('menu/editrecipe_form.html', {'form': form},
                               context_instance=RequestContext(request))
 
 
@@ -202,7 +222,6 @@ class EditIngredients(generic.DetailView):
 
     def get_queryset(self):
         return Recipe.objects.all()
-
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
