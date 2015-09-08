@@ -197,6 +197,7 @@ class EditIngredients(generic.DetailView):
         return Recipe.objects.all()
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def updateingredient(request, recipeId):
     # loop through post form
     for key in request.POST:
@@ -223,12 +224,14 @@ def updateingredient(request, recipeId):
     return HttpResponseRedirect(reverse('menu:recipedetails', args=(recipeId,)))
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def deleteingredient(request, ingredientId):
     i = Ingredient.objects.get(pk=ingredientId)
     Ingredient.objects.filter(pk=ingredientId).delete()
     return HttpResponseRedirect(reverse('menu:editingredients', args=(i.recipe_id,)) + '#ingredients')
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def addingredient(request, recipeId):
     r = Recipe.objects.get(pk=recipeId)
 
@@ -237,19 +240,21 @@ def addingredient(request, recipeId):
     return HttpResponseRedirect(reverse('menu:editingredients', args=(recipeId,)) + '#ingredients')
 
 
+@login_required()
 def addcomment(request, recipeId):
     r = Recipe.objects.get(pk=recipeId)
     r.comment_set.create(comment=request.POST['comment'])
     return HttpResponseRedirect(reverse('menu:recipedetails', args=(recipeId,)) + '#comments')
 
 
+@login_required()
 def commentdelete(request, commentId):
     c = Comment.objects.get(pk=commentId)
     Comment.objects.filter(pk=commentId).delete()
     return HttpResponseRedirect(reverse('menu:recipedetails', args=(c.recipe_id,)) + '#comments')
 
 
-# @login_required
+@user_passes_test(lambda u: u.is_superuser)
 def uploadrecipe(request):
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
@@ -293,6 +298,7 @@ def uploadrecipe(request):
     # return HttpResponseRedirect(reverse('menu:showdocuments'))
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def uploadingredients(request):
     # Handle file upload #update for ingredient additions
 
@@ -327,14 +333,6 @@ def uploadingredients(request):
         context_instance=RequestContext(request)
     )
     # return HttpResponseRedirect(reverse('menu:showdocuments'))
-
-
-class TestListView(generic.ListView):
-    model = Recipe
-    template_name = 'menu/test.html'
-
-    def get_queryset(self):
-        return Recipe.objects.all()
 
 
 class FauxTb(object):
