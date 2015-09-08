@@ -14,6 +14,7 @@ import math
 from django.contrib.auth.forms import UserCreationForm
 from django.core.context_processors import csrf
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.utils.decorators import method_decorator
 
 from menu.forms import *
 from .models import Recipe, Ingredient, ShoppingList, Fridge, Comment
@@ -29,7 +30,7 @@ class Index(generic.ListView):
     def get_queryset(self):
         return Recipe.objects.filter(enabled=1)
 
-@user_passes_test(lambda u: u.is_superuser)
+@user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def addtoshoppinglist(request, recipeId):
     for key in request.POST:
         if key != 'csrfmiddlewaretoken':
@@ -49,7 +50,7 @@ def addtoshoppinglist(request, recipeId):
 
     return HttpResponseRedirect(reverse('menu:recipedetails', args=(recipeId,)))
 
-@user_passes_test(lambda u: u.is_superuser)
+@user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def shoppinglist(request):
     logger = logging.getLogger(__name__)
 
@@ -74,7 +75,7 @@ def shoppinglist(request):
         {'formset': formset, },
         context_instance=RequestContext(request))
 
-@user_passes_test(lambda u: u.is_superuser)
+@user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def fridge(request):
     logger = logging.getLogger(__name__)
 
@@ -115,7 +116,8 @@ class RecipeDetail(generic.DetailView):
     def get_queryset(self):
         return Recipe.objects.all()
 
-@user_passes_test(lambda u: u.is_superuser)
+
+@user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def archivedrecipes(request):
     logger = logging.getLogger(__name__)
 
@@ -140,7 +142,7 @@ def archivedrecipes(request):
         {'formset': formset},
         context_instance=RequestContext(request))
 
-@user_passes_test(lambda u: u.is_superuser)
+@user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def addrecipe(request):
     if request.method == 'POST':
         form = RecipeForm(request.POST)
@@ -160,13 +162,14 @@ def addrecipe(request):
         'form': form},
                               context_instance=RequestContext(request))
 
-@user_passes_test(lambda u: u.is_superuser)
+@user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def deleterecipeforever(request, recipeId):
     Recipe.objects.filter(pk=recipeId).delete()
     return HttpResponseRedirect(reverse('menu:index'))
 
 
-@user_passes_test(lambda u: u.is_superuser)
+
+@user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def editrecipe(request, recipeId):
     if request.method == 'POST':
 
@@ -193,11 +196,16 @@ class EditIngredients(generic.DetailView):
     model = Recipe
     template_name = 'menu/editingredients.html'
 
+    @method_decorator(user_passes_test(lambda u: u.is_superuser, login_url='notauthorized'))
+    def dispatch(self, *args, **kwargs):
+        return super(EditIngredients, self).dispatch(*args, **kwargs)
+
     def get_queryset(self):
         return Recipe.objects.all()
 
 
-@user_passes_test(lambda u: u.is_superuser)
+
+@user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def updateingredient(request, recipeId):
     # loop through post form
     for key in request.POST:
@@ -224,14 +232,14 @@ def updateingredient(request, recipeId):
     return HttpResponseRedirect(reverse('menu:recipedetails', args=(recipeId,)))
 
 
-@user_passes_test(lambda u: u.is_superuser)
+@user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def deleteingredient(request, ingredientId):
     i = Ingredient.objects.get(pk=ingredientId)
     Ingredient.objects.filter(pk=ingredientId).delete()
     return HttpResponseRedirect(reverse('menu:editingredients', args=(i.recipe_id,)) + '#ingredients')
 
 
-@user_passes_test(lambda u: u.is_superuser)
+@user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def addingredient(request, recipeId):
     r = Recipe.objects.get(pk=recipeId)
 
@@ -254,7 +262,7 @@ def commentdelete(request, commentId):
     return HttpResponseRedirect(reverse('menu:recipedetails', args=(c.recipe_id,)) + '#comments')
 
 
-@user_passes_test(lambda u: u.is_superuser)
+@user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def uploadrecipe(request):
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
@@ -298,7 +306,7 @@ def uploadrecipe(request):
     # return HttpResponseRedirect(reverse('menu:showdocuments'))
 
 
-@user_passes_test(lambda u: u.is_superuser)
+@user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def uploadingredients(request):
     # Handle file upload #update for ingredient additions
 
@@ -406,9 +414,15 @@ def loggedin(request):
     )
 
 
+def notauthorized(request):
+    return render_to_response(
+        'registration/not_authorized.html',
+        context_instance=RequestContext(request)
+    )
+
+
 def loggedout(request):
     return render_to_response(
         'registration/loggedout.html',
         context_instance=RequestContext(request)
     )
-
