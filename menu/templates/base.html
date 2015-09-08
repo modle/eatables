@@ -7,14 +7,28 @@
         <title>{% block head_title %}Eatables{% endblock %}</title>
     </head>
     <body>
-        {% block title %}This is the block title{% endblock %}
+        {% block title %}
+            <div id="title">
+                Welcome to Eatables
+            </div>
+        {% endblock %}
         <div>
             <a class="button" id="nav" href="{% url 'menu:index' %}">Home</a>
-            <a class="button" id="nav" href="{% url 'menu:addrecipe' %}">Add Recipe</a>
-            <a class="button" id="nav" href="{% url 'menu:uploadrecipe' %}">Upload Recipe</a>
-            <a class="button" id="nav" href="{% url 'menu:shoppinglist' %}">View Shopping List</a>
-            <a class="button" id="nav" href="{% url 'menu:archivedrecipes' %}">Archived Recipes</a>
-            <a class="button" id="nav" href="{% url 'menu:fridge' %}">In the Fridge</a>
+            {% if user.is_superuser %}
+                <a class="button" id="nav" href="{% url 'menu:addrecipe' %}">Add Recipe</a>
+                <a class="button" id="nav" href="{% url 'menu:uploadrecipe' %}">Upload Recipe</a>
+                <a class="button" id="nav" href="{% url 'menu:shoppinglist' %}">View Shopping List</a>
+                <a class="button" id="nav" href="{% url 'menu:archivedrecipes' %}">Archived Recipes</a>
+                <a class="button" id="nav" href="{% url 'menu:fridge' %}">In the Fridge</a>
+            {% endif %}
+            {% if user.is_authenticated %}
+                Logged in as <a href="#" class="navbar-link">{{ user.username }}</a>
+                <a href="{% url 'logout' %}?next={% url 'loggedout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}">Sign Up</a>
+            {% endif %}
+
         </div><div style="clear:both"></div>
 
         {% block content %}

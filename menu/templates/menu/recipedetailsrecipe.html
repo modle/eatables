@@ -2,13 +2,17 @@
 {% load markdown_deux_tags %}
 <div id="content">
     <h3>Directions</h3>
-    <a class="button" href="{% url 'menu:editrecipe' recipe.id %}">Edit</a><br>
+    {% if user.is_superuser %}
+        <a class="button" href="{% url 'menu:editrecipe' recipe.id %}">Edit</a><br>
+    {% endif %}
     {% markdown %}
         {{ recipe.directions | safe }}
     {% endmarkdown %}
 </div>
 <div id="aside">
-    <a class="button" href="{% url 'menu:editrecipe' recipe.id %}">Edit</a><br>
+    {% if user.is_superuser %}
+        <a class="button" href="{% url 'menu:editrecipe' recipe.id %}">Edit</a><br>
+    {% endif %}
     <ul>
         <li><b>Method</b>: {{ recipe.prepMethod }}</li>
         <li><b>Temp</b>: {{ recipe.temperature }}</li>
@@ -23,6 +27,9 @@
                 <li><b>Cook Time</b>: {{ recipe.cookTime|minutestohours }} hours</li>
         {% endif %}
         <li><b>Servings</b>: {{ recipe.servings }}</li>
-        <br><li><a class="button" target="_blank" href="{{ recipe.source }}">GoTo Recipe Source</a></li>
+        {% if user.is_superuser %}
+            <br><li><a class="button" target="_blank" href="{{ recipe.source }}">GoTo Recipe Source</a></li>
+        {% endif %}
+
     </ul>
 </div>

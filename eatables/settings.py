@@ -119,16 +119,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'menu')
 
-MEDIA_URL = '/media/'
 
-STATIC_URL = '/eatables/static/'
+
 STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/eatables/staticfiles/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'eatables')
+
+MEDIA_URL = '/media/'
+
+LOGIN_REDIRECT_URL = '/accounts/loggedin/'
+
 
 LOGGING = {
     'version': 1,

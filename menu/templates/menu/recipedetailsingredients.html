@@ -3,18 +3,24 @@
     <h3>Ingredients</h3>
 
     <form action="{% url 'menu:addtoshoppinglist' recipe.id %}" method="post">
+
     {% csrf_token %}
         {% for i in recipe.ingredient_set.all %}
             <div class="ingredientList">
-                <input type="checkbox" value={{i.amount}} id={{i.id}} name={{i.id}}>
+                {% if user.is_superuser %}
+                    <input type="checkbox" value={{i.amount}} id={{i.id}} name={{i.id}}>
+                {% endif %}
                 {{i.amount|showinteger}}{{ i.amount|showfraction }} {{ i.unit }}
                 {{ i.name }}{% if i.comment %}, {{ i.comment }}{% endif %}
             </div>
             <hr noshade>
         {% endfor %}
         <br><br>
-        <input type=submit value="Update Shopping List" id="submit">
-        <a class="button" href="{% url 'menu:editingredients' recipe.id %}">Edit Ingredients</a><br>
+        {% if user.is_superuser %}
+            <input type=submit value="Update Shopping List" id="submit">
+            <a class="button" href="{% url 'menu:editingredients' recipe.id %}">Edit Ingredients</a><br>
+        {% endif %}
+
 
     </form>
 </div>

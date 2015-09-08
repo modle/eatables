@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render_to_response, render
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views import generic
 from fractions import Fraction
@@ -11,17 +11,16 @@ import logging
 import json
 import sys
 import math
-from django.views.generic.edit import DeleteView
-from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.forms import UserCreationForm
+from django.core.context_processors import csrf
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 from menu.forms import *
 from .models import Recipe, Ingredient, ShoppingList, Fridge, Comment
 
 
 def basetemplate(request):
-    return render(request, 'base.html',)
-
+    return render(request, 'base.html', )
 
 class Index(generic.ListView):
     model = Recipe
@@ -30,7 +29,7 @@ class Index(generic.ListView):
     def get_queryset(self):
         return Recipe.objects.filter(enabled=1)
 
-
+@user_passes_test(lambda u: u.is_superuser)
 def addtoshoppinglist(request, recipeId):
     for key in request.POST:
         if key != 'csrfmiddlewaretoken':
@@ -50,7 +49,7 @@ def addtoshoppinglist(request, recipeId):
 
     return HttpResponseRedirect(reverse('menu:recipedetails', args=(recipeId,)))
 
-
+@user_passes_test(lambda u: u.is_superuser)
 def shoppinglist(request):
     logger = logging.getLogger(__name__)
 
@@ -75,6 +74,7 @@ def shoppinglist(request):
         {'formset': formset, },
         context_instance=RequestContext(request))
 
+@user_passes_test(lambda u: u.is_superuser)
 def fridge(request):
     logger = logging.getLogger(__name__)
 
@@ -99,6 +99,7 @@ def fridge(request):
         {'formset': formset},
         context_instance=RequestContext(request))
 
+
 class ArchiveList(generic.ListView):
     model = ShoppingList
     template_name = 'menu/shoppinglisthistory.html'
@@ -114,7 +115,7 @@ class RecipeDetail(generic.DetailView):
     def get_queryset(self):
         return Recipe.objects.all()
 
-
+@user_passes_test(lambda u: u.is_superuser)
 def archivedrecipes(request):
     logger = logging.getLogger(__name__)
 
@@ -139,9 +140,8 @@ def archivedrecipes(request):
         {'formset': formset},
         context_instance=RequestContext(request))
 
-
+@user_passes_test(lambda u: u.is_superuser)
 def addrecipe(request):
-
     if request.method == 'POST':
         form = RecipeForm(request.POST)
 
@@ -158,16 +158,16 @@ def addrecipe(request):
 
     return render_to_response('menu/editrecipe_form.html', {
         'form': form},
-        context_instance=RequestContext(request))
+                              context_instance=RequestContext(request))
 
-
+@user_passes_test(lambda u: u.is_superuser)
 def deleterecipeforever(request, recipeId):
     Recipe.objects.filter(pk=recipeId).delete()
     return HttpResponseRedirect(reverse('menu:index'))
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def editrecipe(request, recipeId):
-
     if request.method == 'POST':
 
         form = RecipeForm(request.POST, instance=Recipe.objects.get(id=recipeId))
@@ -186,7 +186,7 @@ def editrecipe(request, recipeId):
 
     return render_to_response('menu/editrecipe_form.html', {
         'form': form},
-        context_instance=RequestContext(request))
+                              context_instance=RequestContext(request))
 
 
 class EditIngredients(generic.DetailView):
@@ -242,10 +242,12 @@ def addcomment(request, recipeId):
     r.comment_set.create(comment=request.POST['comment'])
     return HttpResponseRedirect(reverse('menu:recipedetails', args=(recipeId,)) + '#comments')
 
+
 def commentdelete(request, commentId):
     c = Comment.objects.get(pk=commentId)
     Comment.objects.filter(pk=commentId).delete()
     return HttpResponseRedirect(reverse('menu:recipedetails', args=(c.recipe_id,)) + '#comments')
+
 
 # @login_required
 def uploadrecipe(request):
@@ -254,28 +256,28 @@ def uploadrecipe(request):
         if form.is_valid():
             reader = csv.reader(form.cleaned_data['docfile'])
             for row in reader:
-                    _, created = Recipe.objects.get_or_create(
-                        name=row[0],
-                    )
-                    entry = get_object_or_404(Recipe, name=row[0])
-                    if created:
-                        entry.prepMethod = row[1]
-                        entry.temperature = row[2]
-                        entry.directions = row[3]
-                        entry.source = row[4]
-                        if row[5] == '':
-                            entry.servings = 0
-                        else:
-                            entry.servings = row[5]
-                        if row[6] == '':
-                            entry.prepTime = 0
-                        else:
-                            entry.prepTime = row[6]
-                        if row[7] == '':
-                            entry.cookTime = 0
-                        else:
-                            entry.cookTime = row[7]
-                        entry.save()
+                _, created = Recipe.objects.get_or_create(
+                    name=row[0],
+                )
+                entry = get_object_or_404(Recipe, name=row[0])
+                if created:
+                    entry.prepMethod = row[1]
+                    entry.temperature = row[2]
+                    entry.directions = row[3]
+                    entry.source = row[4]
+                    if row[5] == '':
+                        entry.servings = 0
+                    else:
+                        entry.servings = row[5]
+                    if row[6] == '':
+                        entry.prepTime = 0
+                    else:
+                        entry.prepTime = row[6]
+                    if row[7] == '':
+                        entry.cookTime = 0
+                    else:
+                        entry.cookTime = row[7]
+                    entry.save()
 
         return HttpResponseRedirect(reverse('menu:index'))
 
@@ -289,6 +291,7 @@ def uploadrecipe(request):
         context_instance=RequestContext(request)
     )
     # return HttpResponseRedirect(reverse('menu:showdocuments'))
+
 
 def uploadingredients(request):
     # Handle file upload #update for ingredient additions
@@ -307,7 +310,7 @@ def uploadingredients(request):
                 entry = get_object_or_404(Ingredient.objects.filter(), name=row[1],
                                           recipe_id=recipe.id,
                                           amount=row[2],
-                                          unit=row[3],)
+                                          unit=row[3], )
                 if created:
                     entry.comment = row[4]
                     entry.save()
@@ -340,9 +343,10 @@ class FauxTb(object):
         self.tb_lineno = tb_lineno
         self.tb_next = tb_next
 
+
 def current_stack(skip=0):
     try:
-        1/0
+        1 / 0
     except ZeroDivisionError:
         f = sys.exc_info()[2].tb_frame
     for i in xrange(skip + 2):
@@ -353,6 +357,7 @@ def current_stack(skip=0):
         f = f.f_back
     return lst
 
+
 def extend_traceback(tb, stack):
     """Extend traceback with stack info."""
     head = tb
@@ -360,8 +365,52 @@ def extend_traceback(tb, stack):
         head = FauxTb(tb_frame, tb_lineno, head)
     return head
 
+
 def full_exc_info():
     """Like sys.exc_info, but includes the full traceback."""
     t, v, tb = sys.exc_info()
     full_tb = extend_traceback(tb, current_stack(1))
     return t, v, full_tb
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return HttpResponseRedirect('/accounts/register/complete')
+
+    else:
+        form = UserCreationForm()
+
+    token = {}
+    token.update(csrf(request))
+    token['form'] = form
+
+    return render_to_response(
+        'registration/registration_form.html',
+        token,
+        context_instance=RequestContext(request)
+    )
+
+
+def registration_complete(request):
+    return render_to_response(
+        'registration/registration_complete.html',
+        context_instance=RequestContext(request)
+    )
+
+
+def loggedin(request):
+    return render_to_response(
+        'registration/loggedin.html',
+        context_instance=RequestContext(request)
+    )
+
+
+def loggedout(request):
+    return render_to_response(
+        'registration/loggedout.html',
+        context_instance=RequestContext(request)
+    )
+
