@@ -101,7 +101,7 @@ class Fridge(models.Model):
     id = models.AutoField(primary_key=True)
     item = models.CharField(max_length=80, unique=True, null=False)
     fridgedate = models.DateField(default=datetime.now)
-    expires = models.DateField(default=datetime.now()+timedelta(days=14))
+    expires = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return str(self.recipe) + " " + str(self.fridgedate)

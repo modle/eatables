@@ -3,11 +3,13 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 import datetime
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
@@ -17,31 +19,38 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(serialize=False, primary_key=True)),
                 ('comment', models.TextField(null=True)),
                 ('rating', models.IntegerField(null=True)),
-                ('user', models.IntegerField(default=1)),
                 ('publishDate', models.DateTimeField(default=datetime.datetime.now)),
+                ('editDate', models.DateTimeField(default=datetime.datetime.now)),
             ],
             options={
                 'ordering': ('-publishDate', '-id'),
             },
         ),
         migrations.CreateModel(
-            name='Document',
+            name='Fridge',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('docfile', models.FileField(upload_to=b'media')),
+                ('id', models.AutoField(serialize=False, primary_key=True)),
+                ('item', models.CharField(unique=True, max_length=80)),
+                ('fridgedate', models.DateField(default=datetime.datetime.now)),
+                ('expires', models.DateField(null=True, blank=True)),
             ],
+            options={
+                'ordering': ('fridgedate', 'id'),
+            },
         ),
         migrations.CreateModel(
             name='Ingredient',
             fields=[
                 ('id', models.AutoField(serialize=False, primary_key=True)),
                 ('name', models.CharField(max_length=80)),
-                ('comment', models.CharField(max_length=80, null=True, blank=True)),
+                ('comment', models.CharField(max_length=80, null=True)),
                 ('amount', models.DecimalField(default=0.0, max_digits=10, decimal_places=2)),
-                ('unit', models.CharField(max_length=30, null=True, blank=True)),
+                ('unit', models.CharField(max_length=30, null=True)),
+                ('sorting', models.IntegerField(help_text=b'A number.', null=True, verbose_name=b'Ordering', blank=True)),
             ],
             options={
-                'ordering': ('id',),
+                'ordering': ('sorting', 'id'),
+                'select_on_save': True,
             },
         ),
         migrations.CreateModel(
@@ -59,8 +68,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(serialize=False, primary_key=True)),
                 ('purchaseAmount', models.DecimalField(default=0.0, null=True, max_digits=10, decimal_places=2, blank=True)),
-                ('purchaseUnit', models.CharField(max_length=30, null=True)),
                 ('price', models.DecimalField(default=0.0, null=True, max_digits=10, decimal_places=2, blank=True)),
+                ('purchaseUnit', models.CharField(max_length=30, null=True)),
                 ('store', models.CharField(max_length=30)),
                 ('lastPurchaseDate', models.DateTimeField(null=True, blank=True)),
                 ('ingredient', models.ForeignKey(to='menu.Ingredient')),
@@ -90,13 +99,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ShoppingList',
             fields=[
-                ('id', models.AutoField(serialize=False, primary_key=True)),
+                ('shoppingListId', models.AutoField(serialize=False, primary_key=True)),
+                ('name', models.CharField(max_length=80)),
                 ('amount', models.IntegerField(default=0, null=True, blank=True)),
                 ('status', models.BooleanField(default=False)),
                 ('ingredient', models.ForeignKey(to='menu.Ingredient')),
             ],
             options={
-                'ordering': ('status', 'ingredient__name', 'id'),
+                'ordering': ('status', 'name', 'shoppingListId'),
             },
         ),
         migrations.AddField(
@@ -108,6 +118,11 @@ class Migration(migrations.Migration):
             model_name='comment',
             name='recipe',
             field=models.ForeignKey(to='menu.Recipe'),
+        ),
+        migrations.AddField(
+            model_name='comment',
+            name='user',
+            field=models.ForeignKey(blank=True, to=settings.AUTH_USER_MODEL, null=True),
         ),
         migrations.AlterUniqueTogether(
             name='ingredient',
