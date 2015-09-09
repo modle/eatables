@@ -1,6 +1,5 @@
 from django.db import models
-from datetime import datetime
-from django.contrib.auth.models import User
+from datetime import datetime, timedelta
 
 
 class Recipe(models.Model):
@@ -70,9 +69,8 @@ class Comment(models.Model):
     recipe = models.ForeignKey(Recipe)
     comment = models.TextField(null=True)
     rating = models.IntegerField(null=True)
-    user = models.ForeignKey(User, null=True, blank=True)
+    user = models.IntegerField(default=1)
     publishDate = models.DateTimeField(default=datetime.now)
-    editDate = models.DateTimeField(default=datetime.now)
 
     def __str__(self):
         return str(self.id) + str(self.comment)
@@ -101,7 +99,7 @@ class Fridge(models.Model):
     id = models.AutoField(primary_key=True)
     item = models.CharField(max_length=80, unique=True, null=False)
     fridgedate = models.DateField(default=datetime.now)
-    expires = models.DateField(null=True, blank=True)
+    expires = models.DateField(default=datetime.now()+timedelta(days=14))
 
     def __str__(self):
         return str(self.recipe) + " " + str(self.fridgedate)
