@@ -126,7 +126,7 @@ def recipedetails(request, recipeId):
 
         if form.is_valid():
             formpost = form.save(commit=False)
-            formpost.user = request.user
+            formpost.user_id = request.user_id
             formpost.editDate = datetime.now()
             formpost.save()
 
