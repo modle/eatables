@@ -3,13 +3,11 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 import datetime
-from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
@@ -19,8 +17,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(serialize=False, primary_key=True)),
                 ('comment', models.TextField(null=True)),
                 ('rating', models.IntegerField(null=True)),
+                ('user', models.IntegerField(default=1)),
                 ('publishDate', models.DateTimeField(default=datetime.datetime.now)),
-                ('editDate', models.DateTimeField(default=datetime.datetime.now)),
             ],
             options={
                 'ordering': ('-publishDate', '-id'),
@@ -32,7 +30,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(serialize=False, primary_key=True)),
                 ('item', models.CharField(unique=True, max_length=80)),
                 ('fridgedate', models.DateField(default=datetime.datetime.now)),
-                ('expires', models.DateField(null=True, blank=True)),
+                ('expires', models.DateField(default=datetime.datetime(2015, 9, 22, 20, 13, 54, 752469))),
             ],
             options={
                 'ordering': ('fridgedate', 'id'),
@@ -118,11 +116,6 @@ class Migration(migrations.Migration):
             model_name='comment',
             name='recipe',
             field=models.ForeignKey(to='menu.Recipe'),
-        ),
-        migrations.AddField(
-            model_name='comment',
-            name='user',
-            field=models.ForeignKey(blank=True, to=settings.AUTH_USER_MODEL, null=True),
         ),
         migrations.AlterUniqueTogether(
             name='ingredient',

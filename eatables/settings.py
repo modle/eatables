@@ -93,10 +93,10 @@ WSGI_APPLICATION = 'eatables.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'da0er6kkfaiiaj',
-        'USER': 'roreabkwnivalw',
-        'PASSWORD': 'gX3Fqe6b2BKRZct227EHsvV7u5',
-        'HOST': 'ec2-54-83-10-210.compute-1.amazonaws.com',
+        'NAME': 'd7473re0vc2uc3',
+        'USER': 'kwsdtkvbgopisj',
+        'PASSWORD': '24FcRKHogp1VRzO68oXOuO7seG',
+        'HOST': 'ec2-54-235-162-144.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
