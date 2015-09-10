@@ -4,10 +4,27 @@ from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
 
+class Category(models.Model):
+    title = models.CharField(max_length=100, db_index=True)
+    slug = models.SlugField(max_length=100, db_index=True, unique=True)
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = slugify(self.title)
+
+        super(Category, self).save()
+
+    def __unicode__(self):
+        return '{}'.format(self.title)
+
+    class Meta:
+        ordering = ('title', )
+
+
 class Recipe(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=80, unique=True)
-    # category = models.ForeignKey(Category)
+    category = models.ForeignKey(Category)
     temperature = models.CharField(max_length=10, null=True, blank=True)
     directions = models.TextField(null=True)
     source = models.CharField(max_length=1000, null=True, blank=True)
@@ -113,19 +130,3 @@ class Fridge(models.Model):
 
     class Meta:
         ordering = ('fridgedate', 'id')
-
-class Category(models.Model):
-    title = models.CharField(max_length=100, db_index=True)
-    slug = models.SlugField(max_length=100, db_index=True, unique=True)
-
-    def save(self, *args, **kwargs):
-        if not self.id:
-            self.slug = slugify(self.title)
-
-        super(Category, self).save()
-
-    def __unicode__(self):
-        return '{}'.format(self.title)
-
-    class Meta:
-        ordering = ('title', )
