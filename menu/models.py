@@ -31,7 +31,7 @@ class Recipe(models.Model):
     servings = models.IntegerField(default=0)
     prepTime = models.IntegerField(default=0)
     cookTime = models.IntegerField(default=0)
-    ublished = models.BooleanField(default=False, null=False)
+    published = models.BooleanField(default=False, null=False)
     rating = models.IntegerField(null=True)
     user = models.ForeignKey(User, null=True, blank=True)
     publishDate = models.DateTimeField(default=datetime.now)

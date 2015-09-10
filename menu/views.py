@@ -135,7 +135,6 @@ def recipedetails(request, recipeId):
             formpost = form.save(commit=False)
             formpost.user_id = request.user_id
             formpost.editDate = datetime.now()
-            formpost.published = datetime.now()
             formpost.save()
 
     else:
