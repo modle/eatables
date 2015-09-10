@@ -21,7 +21,7 @@
                 <hr noshade>
             {% csrf_token %}
                     Name<br><input type=text name="name" value="{{ recipe.name }}" id="text"><br><br>
-                    Prep Method<br><input type=text name="method" value="{{ recipe.prepMethod }}" id="text"><br><br>
+                    Category<br><input type=text name="method" value="{{ recipe.category}}" id="text"><br><br>
                     Temperature<br><input type=text name="temp" value="{{ recipe.temperature }}" id="text"><br><br>
                     Prep Time (minutes)<br><input type=text name="prep" value="{{ recipe.prepTime }}" id="text"><br><br>
                     Cook Time (minutes)<br><input type=text name="cook" value="{{ recipe.cookTime }}" id="text"><br><br>
@@ -38,6 +38,8 @@
                 <a class="button" id="delete" href="{% url 'menu:archiverecipe' recipe.id %}">Archive Recipe</a>
             </div><div style="clear:both"></div>
 
+        {% endblock %}
+        {% block navsidebar %}
         {% endblock %}
     </body>
 </html>

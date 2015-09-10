@@ -18,7 +18,7 @@
                 <form method="POST" action="">
                     {% csrf_token %}
                     Name<br>{{ form.name }}<br><br>
-                    Prep Method<br>{{ form.prepMethod }}<br><br>
+                    Category<br>{{ form.category}}<br><br>
                     Temperature<br>{{ form.temperature }}<br><br>
                     Prep Time (minutes)<br>{{ form.prepTime }}<br><br>
                     Cook Time (minutes)<br>{{ form.cookTime }}<br><br>
@@ -31,6 +31,8 @@
                         <input class="btn" type="submit" value="Update &raquo;" id="submit"/>
                     </p>
                 </form>
+        {% endblock %}
+        {% block navsidebar %}
         {% endblock %}
     </body>
 </html>

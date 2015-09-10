@@ -2,17 +2,17 @@
 {% load staticfiles %}
 {% load menu_extras %}
 
-<script type="text/javascript" src="{% static 'menu/js/jquery-1.11.3.js' %}"></script>
-
 <html>
     <body>
         {% block title %}
-            <div id="title">Recipe Home</div>
+            <div id="title"></div>
         {% endblock %}
         {% block content %}
-
+            <div class="hero-unit">
+                <h1>Recipe List!</h1>
+            </div>
             <div id="content">
-                {% for recipe in recipe_list %}
+                {% for recipe in recipes %}
                     <a class="button" id="recipe" href = "{% url 'menu:recipedetails' recipe.id %}">{{ recipe.name }}</a>
                     <hr noshade>
                 {% endfor %}

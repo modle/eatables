@@ -21,7 +21,7 @@
                     {% csrf_token %}
 
                     <p>csv file only</p>
-                    <p>Format:<br><b>(no header row)</b><br>name, prepMethod, temperature, directions, url, servings(integer), prepTime(minutes, integer), cookTime(minutes, integer)</p>
+                    <p>Format:<br><b>(no header row)</b><br>name, category, temperature, directions, url, servings(integer), prepTime(minutes, integer), cookTime(minutes, integer)</p>
 
                     <p>{{ form.non_field_errors }}</p>
                     <p>{{ form.docfile.label_tag }}
@@ -51,6 +51,8 @@
                     <input type="submit" value="Upload Ingredients" id="submit"/>
                 </form>
             </div>
+        {% endblock %}
+        {% block navsidebar %}
         {% endblock %}
 	</body>
 </html>

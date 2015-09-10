@@ -1,20 +1,25 @@
 from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
 
 
 class Recipe(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=80, unique=True)
-    prepMethod = models.CharField(max_length=30, null=True, blank=True)
+    # category = models.ForeignKey(Category)
     temperature = models.CharField(max_length=10, null=True, blank=True)
     directions = models.TextField(null=True)
     source = models.CharField(max_length=1000, null=True, blank=True)
     servings = models.IntegerField(default=0)
     prepTime = models.IntegerField(default=0)
     cookTime = models.IntegerField(default=0)
-    enabled = models.BooleanField(default=True)
-    # pinned = models.BooleanField(default=False)
+    published = models.BooleanField(default=True)
+    rating = models.IntegerField(null=True)
+    user = models.ForeignKey(User, null=True, blank=True)
+    publishDate = models.DateTimeField(default=datetime.now)
+    editDate = models.DateTimeField(default=datetime.now)
+    pinned = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -108,3 +113,19 @@ class Fridge(models.Model):
 
     class Meta:
         ordering = ('fridgedate', 'id')
+
+class Category(models.Model):
+    title = models.CharField(max_length=100, db_index=True)
+    slug = models.SlugField(max_length=100, db_index=True, unique=True)
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = slugify(self.title)
+
+        super(Category, self).save()
+
+    def __unicode__(self):
+        return '{}'.format(self.title)
+
+    class Meta:
+        ordering = ('title', )

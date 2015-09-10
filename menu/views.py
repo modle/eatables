@@ -17,11 +17,25 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.decorators import method_decorator
 
 from menu.forms import *
-from .models import Recipe, Ingredient, ShoppingList, Fridge, Comment
+from .models import Recipe, Ingredient, ShoppingList, Fridge, Comment, Category
 
 
 def basetemplate(request):
     return render(request, 'base.html', )
+
+
+def index(request):
+
+    categories = category_count()
+    recipes = Recipe.objects.filter(published='True')
+
+    return render_to_response('index.html', {
+        'categories': categories,
+        'recipes': recipes,
+        },
+        context_instance=RequestContext(request)
+    )
+
 
 class Index(generic.ListView):
     model = Recipe
@@ -445,3 +459,12 @@ def loggedout(request):
         'registration/loggedout.html',
         context_instance=RequestContext(request)
     )
+
+
+def category_count():
+    categories = Category.objects.extra(select={'total': 'select count(r.category_id) ' +
+                                                         'from menu_recipe r ' +
+                                                         'where r.category_id = menu_category.id ' +
+                                                         'and r.published = True '
+                                                })
+    return categories

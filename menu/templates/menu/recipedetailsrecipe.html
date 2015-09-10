@@ -14,7 +14,7 @@
         <a class="button" href="{% url 'menu:editrecipe' recipe.id %}">Edit</a><br>
     {% endif %}
     <ul>
-        <li><b>Method</b>: {{ recipe.prepMethod }}</li>
+        <li><b>Category</b>: {{ recipe.category }}</li>
         <li><b>Temp</b>: {{ recipe.temperature }}</li>
         {% if not recipe.prepTime %}
             <li><b>Prep Time</b>: {{ recipe.prepTime }} </li>

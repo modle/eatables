@@ -9,7 +9,8 @@ urlpatterns = [
 
     # generic views
     # url(r'^(?P<pk>[0-9]+)/$', views.RecipeDetail.as_view(), name='recipedetails'),
-    url(r'^menu/$', views.Index.as_view(), name='index'),
+    url(r'^menu/$', views.index, name='index'),
+    # url(r'^menu/$', views.Index.as_view(), name='index'),
     url(r'^(?P<pk>[0-9]+)/editingredients$', views.EditIngredients.as_view(), name='editingredients'),
     url(r'^archivelist/$', views.ArchiveList.as_view(), name='archivelist'),
 
