@@ -7,8 +7,7 @@ class RecipeForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(RecipeForm, self).__init__(*args, **kwargs)
         self.fields['name'].widget.attrs.update({'placeholder': 'Name'})
-        self.fields['name'].widget.attrs.update({'id': 'formfieldastextmax'})
-        self.fields['prepMethod'].widget.attrs.update({'placeholder': 'Prep Method'})
+        self.fields['category'].widget.attrs.update({'placeholder': 'Prep Method'})
         self.fields['temperature'].widget.attrs.update({'placeholder': 'temperature'})
         self.fields['directions'].widget.attrs.update({'placeholder': 'directions'})
         self.fields['source'].widget.attrs.update({'placeholder': 'recipe url source'})
@@ -32,7 +31,6 @@ class ShoppingListForm(forms.ModelForm):
         super(ShoppingListForm, self).__init__(*args, **kwargs)
         self.fields['amount'].widget.attrs.update({'id': 'listform'})
         self.fields['name'].widget.attrs['readonly'] = True
-        self.fields['name'].widget.attrs.update({'id': 'formfieldastext'})
 
 
     class Meta:
@@ -54,9 +52,9 @@ class ArchivedRecipesForm(forms.ModelForm):
 
     class Meta:
         model = Recipe
-        fields = ('enabled', 'name',)
+        fields = ('published', 'name',)
         labels = {
-            'enabled': '',
+            'published': '',
             'name': '',
         }
 

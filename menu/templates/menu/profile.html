@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load markdown_deux_tags %}
+
+{% block content %}
+{% if user.is_superuser %}
+
+<div class="container-fluid">
+    <button type="button" class="btn" data-toggle="collapse" data-target=".newpost-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <div class="newpost-collapse collapse">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{ form.id }}
+            {{ form.title }}<br>
+            {{ form.category.label }}: {{ form.category }}<br>
+            Check to publish: {{ form.published }}<br><br>
+            <hr noshade>
+            {{ form.body }}
+            {{ form.edited.as_hidden }}
+            <hr noshade>
+            <p>
+                <input class="btn" type="submit" value="Post &raquo;" id="submit"/>
+                <a class="btn" href="{% url 'menu:profile' user.username %}">Cancel &raquo;</a>
+            </p>
+        </form>
+    </div>
+</div>
+
+<hr noshade>
+<hr noshade>
+
+<h3>Your Posts</h3>
+<div class="row-fluid">
+    <div class="span12">
+        {% for post in posts %}
+            <p><b>{{ post.title }} |</b>
+            {% if post.published %}
+                <span style="color:lightgreen; font-weight:bold">Published</span> |
+            {% else %}
+                <span style="color:lightgray; font-weight:bold">Draft</span> |
+            {% endif %}
+            {{ post.category }} |
+            {{ post.posted }} |
+                <a class="btn" href="{% url 'edit_post' post.slug %}">Edit Post &raquo;</a>
+            {% if post.published %}
+                <a class="btn" href="{% url 'view_blog_post' post.slug %}">View Post &raquo;</a>
+            {% endif %}
+                <hr noshade>
+        {% endfor %}
+
+    </div><!--/span-->
+</div><!--/row-->
+
+<hr noshade>
+<hr noshade>
+{% endif %}
+
+<h3>Your Comments</h3>
+<div class="row-fluid">
+    <div class="span12">
+        {% for comment in comments %}
+            <p><b>{{ comment.blog.title }} |</b>
+            {{ comment.publishDate }}<br>
+            {{ comment.comment }}
+        {% endfor %}
+    </div><!--/span-->
+</div><!--/row-->
+
+{% endblock %}
+
+{% block navsidebar %}
+{% endblock %}

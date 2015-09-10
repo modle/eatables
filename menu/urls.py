@@ -39,4 +39,7 @@ urlpatterns = [
 
     # fridge
     url(r'^fridge/$', views.fridge, name='fridge'),
+
+    # profile
+    url(r'^profile/(?P<slug>[^\.]+)/$', views.profile, name='profile'),
 ]

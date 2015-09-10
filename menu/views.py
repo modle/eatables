@@ -29,20 +29,13 @@ def index(request):
     categories = category_count()
     recipes = Recipe.objects.filter(published='True')
 
-    return render_to_response('index.html', {
+    return render_to_response('menu/index.html', {
         'categories': categories,
         'recipes': recipes,
         },
         context_instance=RequestContext(request)
     )
 
-
-class Index(generic.ListView):
-    model = Recipe
-    template_name = 'menu/index.html'
-
-    def get_queryset(self):
-        return Recipe.objects.filter(enabled=1)
 
 @user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def addtoshoppinglist(request, recipeId):
@@ -167,7 +160,7 @@ def archivedrecipes(request):
             logger.debug('Formset invalid')
         return HttpResponseRedirect(reverse('menu:index'))
     else:
-        formset = ArchivedRecipesFormSet(queryset=Recipe.objects.filter(enabled=False))
+        formset = ArchivedRecipesFormSet(queryset=Recipe.objects.filter(published=False))
 
     logger.debug('POST DATA:\n %s', json.dumps(request.POST, indent=4, sort_keys=True))
     logger.debug('LOCALS:\n %s', locals())
@@ -307,7 +300,7 @@ def uploadrecipe(request):
                 )
                 entry = get_object_or_404(Recipe, name=row[0])
                 if created:
-                    entry.prepMethod = row[1]
+                    entry.category = row[1]
                     entry.temperature = row[2]
                     entry.directions = row[3]
                     entry.source = row[4]
@@ -468,3 +461,18 @@ def category_count():
                                                          'and r.published = True '
                                                 })
     return categories
+
+@login_required()
+def profile(request, slug):
+
+    user = request.user
+
+    recipes = Recipe.objects.filter(user_id=user.id)
+    comments = Comment.objects.filter(user_id=user.id)
+
+    return render_to_response('menu/profile.html', {
+        'recipes': recipes,
+        'comments': comments,
+        },
+        context_instance=RequestContext(request)
+    )

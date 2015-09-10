@@ -1,7 +1,9 @@
 {% load menu_extras %}
 <div id="aside">
     <h3>Ingredients</h3>
-
+    {% if user.is_superuser %}
+        <a class="button" href="{% url 'menu:editingredients' recipe.id %}">Edit</a>
+    {% endif %}
     <form action="{% url 'menu:addtoshoppinglist' recipe.id %}" method="post">
 
     {% csrf_token %}
@@ -17,10 +19,8 @@
         {% endfor %}
         <br><br>
         {% if user.is_superuser %}
-            <input type=submit value="Update Shopping List" id="submit">
-            <a class="button" href="{% url 'menu:editingredients' recipe.id %}">Edit Ingredients</a><br>
+            <input type=submit value="Update Shopping List" id="submit"><br>
         {% endif %}
-
 
     </form>
 </div>

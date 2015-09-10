@@ -17,7 +17,8 @@
 
                 <form method="POST" action="">
                     {% csrf_token %}
-                    Name<br>{{ form.name }}<br><br>
+                    Name<br>{{ form.name }}<br>
+                    Check to publish: {{ form.published }}<br><br>
                     Category<br>{{ form.category}}<br><br>
                     Temperature<br>{{ form.temperature }}<br><br>
                     Prep Time (minutes)<br>{{ form.prepTime }}<br><br>
@@ -26,7 +27,6 @@
                     Directions (Use <a target="blank" href="https://en.wikipedia.org/wiki/Markdown#Example">Markdown</a> like all the cool kids)<br>
                     {{ form.directions }}<br><br>
                     URL<br>{{ form.source }}<br><br>
-                    Published if checked: {{ form.enabled }}
                     <p>
                         <input class="btn" type="submit" value="Update &raquo;" id="submit"/>
                     </p>

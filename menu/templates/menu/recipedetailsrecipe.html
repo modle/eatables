@@ -5,14 +5,12 @@
     {% if user.is_superuser %}
         <a class="button" href="{% url 'menu:editrecipe' recipe.id %}">Edit</a><br>
     {% endif %}
+    <br>
     {% markdown %}
         {{ recipe.directions | safe }}
     {% endmarkdown %}
 </div>
 <div id="aside">
-    {% if user.is_superuser %}
-        <a class="button" href="{% url 'menu:editrecipe' recipe.id %}">Edit</a><br>
-    {% endif %}
     <ul>
         <li><b>Category</b>: {{ recipe.category }}</li>
         <li><b>Temp</b>: {{ recipe.temperature }}</li>
