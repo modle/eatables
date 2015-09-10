@@ -9,12 +9,11 @@
 <html>
     <body>
         {% block title %}
-            <div id="title">
-                {{ recipe.name }}
-            </div>
-        {% endblock %}
-        {% block content %}
 
+        {% endblock %}
+
+        {% block content %}
+        <h2>{{ recipe.name }}</h2>
             {% include "menu/recipedetailsingredients.html" %}
             <hr noshade>
             {% include "menu/recipedetailsrecipe.html" %}
