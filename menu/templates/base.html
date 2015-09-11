@@ -93,7 +93,7 @@
                         <li class="nav-header">Recipes</li>
                         {% if recipes %}
                             {% for recipe in recipes %}
-                                <li><a href="{{ post.get_absolute_url }}">{{ recipe.name }}</a></li>
+                                <li><a href="{% url 'menu:recipedetails' recipe.id %}">{{ recipe.name }}</a></li>
                             {% endfor %}
                         {% else %}
                             <li>There are no recipes.</li>

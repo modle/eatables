@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load menu_extras %}
+{% load markdown_deux_tags %}
 
 <html>
 <body>
@@ -15,7 +16,10 @@
     {% for recipe in recipes %}
         <div class="span4">
             <h3>{{ recipe.name }}</h3>
-            <p>{{ recipe.directions }}</p>
+            <p>
+                I'll put a description here later
+
+            </p>
             <p><a class="btn" href="{% url 'menu:recipedetails' recipe.id %}">View recipe details &raquo;</a></p>
             <hr>
         </div>
