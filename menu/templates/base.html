@@ -17,98 +17,98 @@
 <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-typeahead.js' %}"></script>
 
 <html>
-    <head>
-        <title>
-            {% block head_title %}
-                Eatables
-            {% endblock %}
-        </title>
-    </head>
-    <body>
+<head>
+<title>
+    {% block head_title %}
+        Eatables
+    {% endblock %}
+</title>
+</head>
+<body>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="brand" href="#">Eatables, for Eating</a>
-                    <div class="nav-collapse collapse">
-                        <p class="navbar-text pull-right">
-                            {% if user.is_authenticated %}
-                                Logged in as <a href="#" class="navbar-link">{{ user.username }}</a>
-                                <a href="{% url 'logout' %}?next={% url 'loggedout' %}">Logout</a>
-                            {% else %}
-                                <a href="{% url 'login' %}">Login</a>
-                                <a href="{% url 'register' %}">Sign Up</a>
-                            {% endif %}
-                        </p>
-                        <ul class="nav">
-                            <li class="active"><a href="{% url 'menu:index' %}">Home</a></li>
-                            <li><a href="#projects">Projects</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li><a href="#newsletter">Newsletter</a></li>
-                            {% if user.is_superuser %}
-                                <li><a href="{% url 'menu:profile' user.username %}">Your Profile</a></li>
-                                <li><a href="{% url 'menu:addrecipe' %}">Add Recipe</a></li>
-                                <li><a href="{% url 'menu:uploadrecipe' %}">Upload Recipe</a></li>
-                                <li><a href="{% url 'menu:shoppinglist' %}">View Shopping List</a></li>
-                                <li><a href="{% url 'menu:archivedrecipes' %}">Drafts</a></li>
-                                <li><a href="{% url 'menu:fridge' %}">In the Fridge</a></li>
-                            {% endif %}
-                        </ul>
-                    </div><!--/.nav-collapse -->
-                </div>
-            </div>
-        </div>
-
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
         <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span9">
-                    {% block content %}
-                        There's no content here
-                    {% endblock %}
-                </div><!--/row-->
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="{% url 'menu:index' %}">Eatables, for Eating</a>
+            <div class="nav-collapse collapse">
+                <p class="navbar-text pull-right">
+                    {% if user.is_authenticated %}
+                        Logged in as <a href="#" class="navbar-link">{{ user.username }}</a>
+                        <a href="{% url 'logout' %}?next={% url 'loggedout' %}">Logout</a>
+                    {% else %}
+                        <a href="{% url 'login' %}">Login</a>
+                        <a href="{% url 'register' %}">Sign Up</a>
+                    {% endif %}
+                </p>
+                <ul class="nav">
+                    <li class="active"><a href="{% url 'menu:index' %}">Home</a></li>
+                    <!--<li><a href="#projects">Projects</a></li>-->
+                    <!--<li><a href="#about">About</a></li>-->
+                    <!--<li><a href="#contact">Contact</a></li>-->
+                    <!--<li><a href="#newsletter">Newsletter</a></li>-->
+                    {% if user.is_superuser %}
+                        <li><a href="{% url 'menu:profile' user.username %}">Your Profile</a></li>
+                        <li><a href="{% url 'menu:addrecipe' %}">Add Recipe</a></li>
+                        <li><a href="{% url 'menu:uploadrecipe' %}">Upload Recipe</a></li>
+                        <li><a href="{% url 'menu:shoppinglist' %}">View Shopping List</a></li>
+                        <li><a href="{% url 'menu:archivedrecipes' %}">Drafts</a></li>
+                        <li><a href="{% url 'menu:fridge' %}">In the Fridge</a></li>
+                    {% endif %}
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
 
-                {% block navsidebar %}
-                    <div class="span3">
-                        <div class="well sidebar-nav">
-                            <ul class="nav nav-list">
-                                <li class="nav-header">Categories</li>
-                                {% if categories %}
-                                    {% for category in categories %}
-                                        {% if category.total > 0 %}
-                                            <li>
-                                                {{ category.title }} ({{ category.total }})
-                                            </li>
-                                        {% endif %}
-                                    {% endfor %}
-                                {% else %}
-                                    <p>There are no categories.</p>
-                                {% endif %}
-                                <hr noshade>
-                                <li class="nav-header">Recipes</li>
-                                {% if recipes %}
-                                    {% for recipe in recipes %}
-                                        <li><a href="{{ post.get_absolute_url }}">{{ recipe.name }}</a></li>
-                                    {% endfor %}
-                                {% else %}
-                                    <li>There are no recipes.</li>
-                                {% endif %}
-                                <hr noshade>
-                            </ul>
-                        </div><!--/.well -->
-                    </div><!--/span3-->
-                {% endblock %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span9">
+            {% block content %}
+                There's no content here
+            {% endblock %}
+        </div><!--/row-->
 
-            </div><!--/row-->
-            <hr noshade>
-            <footer>
-                <p>&copy; Modle 2015</p>
-            </footer>
-        </div><!--/.fluid-container-->
-    </body>
+        {% block navsidebar %}
+            <div class="span3">
+                <div class="well sidebar-nav">
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Categories</li>
+                        {% if categories %}
+                            {% for category in categories %}
+                                {% if category.total > 0 %}
+                                    <li>
+                                        {{ category.title }} ({{ category.total }})
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <p>There are no categories.</p>
+                        {% endif %}
+                        <hr noshade>
+                        <li class="nav-header">Recipes</li>
+                        {% if recipes %}
+                            {% for recipe in recipes %}
+                                <li><a href="{{ post.get_absolute_url }}">{{ recipe.name }}</a></li>
+                            {% endfor %}
+                        {% else %}
+                            <li>There are no recipes.</li>
+                        {% endif %}
+                        <hr noshade>
+                    </ul>
+                </div><!--/.well -->
+            </div><!--/span3-->
+        {% endblock %}
+
+    </div><!--/row-->
+    <hr noshade>
+    <footer>
+        <p>&copy; Modle 2015</p>
+    </footer>
+</div><!--/.fluid-container-->
+</body>
 </html>

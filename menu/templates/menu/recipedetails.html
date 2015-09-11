@@ -7,41 +7,82 @@
 <script type="text/javascript" src="{% static 'menu/js/menu.js' %}"></script>
 
 <html>
-    <body>
-        {% block title %}
+<body>
+{% block title %}
+{% endblock %}
 
-        {% endblock %}
+{% block content %}
 
-        {% block content %}
-        <h2>{{ recipe.name }}</h2>
+    <div class="hero-unit">
+        <h1>{{ recipe.name }}</h1>
+    </div>
+    <div class="row-fluid">
+        <div class="span4">
             {% include "menu/recipedetailsingredients.html" %}
-            <hr noshade>
+        </div>
+    </div>
+    <br><br><hr>
+    <div class="row-fluid">
+        <div class="span9">
             {% include "menu/recipedetailsrecipe.html" %}
-            <hr noshade>
-            <div id="content">
-                <div id="comments"></div>
+        </div>
+    </div>
+    <br><br><hr>
+    <div class="row-fluid">
+        <div class="span9">
+            <div id="comments"></div>
+            <h3 class="nav-header">Add Comment</h3>
+            <form action="{% url 'menu:addcomment' recipe.id %}" method="post">
+            {% csrf_token %}
+
+                <textarea name="comment" ROWS=6 COLS=15></textarea><br><br>
+                <input type=submit class="btn" value="Publish Comment"/>
+            </form>
+            <br><br><hr>
+            {% if recipe.comment_set.all %}
                 <h3>Comments</h3>
-
-                <form action="{% url 'menu:addcomment' recipe.id %}" method="post">
-                {% csrf_token %}
-
-                    <textarea name="comment" ROWS=6 COLS=15></textarea><br><br>
-                    <input type=submit value="Publish Comment" id="submit"/>
-                </form>
-                <hr noshade>
                 {% for c in recipe.comment_set.all %}
-                    <ul>
+                    <ul class="unstyled">
                         <li>{{ c.comment }}</li>
                         <li>{{ c.publishDate }}</li>
-                        <a class="button" id="delete" href="{% url 'menu:commentdelete' c.id %}" onclick="return confirm('Are you sure?')">Delete</a>
+                        {% if user.is_superuser %}
+                            <a class="btn" href="{% url 'menu:commentdelete' c.id %}" onclick="return confirm('Are you sure?')">Delete</a>
+                        {% endif %}
                     </ul>
-                    <hr noshade>
                 {% endfor %}
+            {% endif %}
+        </div>
+    </div>
 
-            </div>
-            <div style="clear:both"></div>
-        {% endblock %}
-        {% block navsidebar %}
-        {% endblock %}
-    </body>
+{% endblock %}
+{% block navsidebar %}
+<div class="span3">
+    <div class="well sidebar-nav">
+        <ul>
+            <li><b>Category</b>: {{ recipe.category }}</li>
+            <li><b>Temp</b>: {{ recipe.temperature }}</li>
+            <li><b>Prep Time</b>:
+                {% if recipe.prepTime < 60 %}
+                    {{ recipe.prepTime }} minute(s)</li>
+                {% else %}
+                    {{ recipe.prepTime|minutestohours|floatformat:"1" }} hour(s)
+                {% endif %}
+            <li><b>Cook Time</b>:
+                {% if recipe.cookTime < 60 %}
+                    {{ recipe.cookTime }} minute(s)
+                {% else %}
+                    {{ recipe.cookTime|minutestohours|floatformat:"1" }} hour(s)
+                {% endif %}
+            </li>
+            <li><b>Servings</b>: {{ recipe.servings }}</li>
+            {% if user.is_superuser %}
+                <br><li><a class="btn" target="_blank" href="{{ recipe.source }}">GoTo Recipe Source</a></li>
+            {% endif %}
+        </ul>
+
+    </div>
+</div>
+
+{% endblock %}
+</body>
 </html>

@@ -37,6 +37,7 @@ class Recipe(models.Model):
     publishDate = models.DateTimeField(default=datetime.now)
     editDate = models.DateTimeField(default=datetime.now)
     pinned = models.BooleanField(default=False)
+    # description = models.TextField(null=True)
 
     def __str__(self):
         return self.name

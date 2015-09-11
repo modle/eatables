@@ -91,5 +91,5 @@ class CommentForm(ModelForm):
             'comment': '',
         }
         widgets = {
-            'comment': Textarea(attrs={'cols': 80, 'rows': 6}),
+            'comment': Textarea(attrs={'cols': 10, 'rows': 6}),
         }

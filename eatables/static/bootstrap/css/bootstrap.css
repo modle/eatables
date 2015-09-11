@@ -824,6 +824,8 @@ ol ul {
   margin-bottom: 0;
 }
 
+
+
 li {
   line-height: 20px;
 }
@@ -1108,7 +1110,7 @@ input[type="color"],
 input,
 textarea,
 .uneditable-input {
-  width: 206px;
+width: 100% ;
 }
 
 textarea {
@@ -6181,7 +6183,7 @@ a.badge:focus {
 }
 
 .hero-unit {
-  padding: 5px;
+  padding: .5em;
   margin-bottom: 30px;
   font-size: 18px;
   font-weight: 200;
@@ -6191,6 +6193,7 @@ a.badge:focus {
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
           border-radius: 6px;
+  width: auto;
 }
 
 .hero-unit h1 {

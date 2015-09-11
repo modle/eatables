@@ -1,33 +1,10 @@
 {% load menu_extras %}
 {% load markdown_deux_tags %}
-<div id="content">
-    <h3>Directions</h3>
-    {% if user.is_superuser %}
-        <a class="button" href="{% url 'menu:editrecipe' recipe.id %}">Edit</a><br>
-    {% endif %}
-    <br>
-    {% markdown %}
-        {{ recipe.directions | safe }}
-    {% endmarkdown %}
-</div>
-<div id="aside">
-    <ul>
-        <li><b>Category</b>: {{ recipe.category }}</li>
-        <li><b>Temp</b>: {{ recipe.temperature }}</li>
-        {% if not recipe.prepTime %}
-            <li><b>Prep Time</b>: {{ recipe.prepTime }} </li>
-            {% else %}
-                <li><b>Prep Time</b>: {{ recipe.prepTime|minutestohours|floatformat:"2" }} hours</li>
-        {% endif %}
-        {% if not recipe.cookTime %}
-            <li><b>Cook Time</b>: {{ recipe.cookTime }}</li>
-            {% else %}
-                <li><b>Cook Time</b>: {{ recipe.cookTime|minutestohours }} hours</li>
-        {% endif %}
-        <li><b>Servings</b>: {{ recipe.servings }}</li>
-        {% if user.is_superuser %}
-            <br><li><a class="button" target="_blank" href="{{ recipe.source }}">GoTo Recipe Source</a></li>
-        {% endif %}
-
-    </ul>
-</div>
+<h3>Directions</h3>
+{% if user.is_superuser %}
+    <a class="btn" href="{% url 'menu:editrecipe' recipe.id %}">Edit</a><br>
+{% endif %}
+<br>
+{% markdown %}
+    {{ recipe.directions | safe }}
+{% endmarkdown %}

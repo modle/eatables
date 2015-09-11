@@ -3,20 +3,24 @@
 {% load menu_extras %}
 
 <html>
-    <body>
-        {% block title %}
-            <div id="title"></div>
-        {% endblock %}
-        {% block content %}
-            <div class="hero-unit">
-                <h1>Recipe List!</h1>
-            </div>
-            <div id="content">
-                {% for recipe in recipes %}
-                    <a class="button" id="recipe" href = "{% url 'menu:recipedetails' recipe.id %}">{{ recipe.name }}</a>
-                    <hr noshade>
-                {% endfor %}
-            </div>
-        {% endblock %}
-    </body>
+<body>
+{% block title %}
+    <div id="title"></div>
+{% endblock %}
+{% block content %}
+<div class="hero-unit">
+    <h1>Recipe List!</h1>
+</div>
+<div class="row-fluid">
+    {% for recipe in recipes %}
+        <div class="span4">
+            <h3>{{ recipe.name }}</h3>
+            <p>{{ recipe.directions }}</p>
+            <p><a class="btn" href="{% url 'menu:recipedetails' recipe.id %}">View recipe details &raquo;</a></p>
+            <hr>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+</body>
 </html>
