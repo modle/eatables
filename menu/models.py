@@ -21,6 +21,23 @@ class Category(models.Model):
         ordering = ('title', )
 
 
+class DishType(models.Model):
+    title = models.CharField(max_length=100, db_index=True)
+    slug = models.SlugField(max_length=100, db_index=True, unique=True)
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = slugify(self.title)
+
+        super(DishType, self).save()
+
+    def __unicode__(self):
+        return '{}'.format(self.title)
+
+    class Meta:
+        ordering = ('title', )
+
+
 class Recipe(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=80, unique=True)
@@ -37,6 +54,8 @@ class Recipe(models.Model):
     publishDate = models.DateTimeField(default=datetime.now)
     editDate = models.DateTimeField(default=datetime.now)
     pinned = models.BooleanField(default=False)
+    bannerImage = models.TextField(null=True)
+    dishType = models.ForeignKey(DishType)
     # description = models.TextField(null=True)
 
     def __str__(self):
@@ -131,3 +150,4 @@ class Fridge(models.Model):
 
     class Meta:
         ordering = ('fridgedate', 'id')
+
