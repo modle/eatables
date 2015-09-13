@@ -7,7 +7,6 @@ class RecipeForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(RecipeForm, self).__init__(*args, **kwargs)
         self.fields['name'].widget.attrs.update({'placeholder': 'Name'})
-        self.fields['category'].widget.attrs.update({'placeholder': 'Category'})
         self.fields['temperature'].widget.attrs.update({'placeholder': 'temperature'})
         self.fields['directions'].widget.attrs.update({'placeholder': 'directions'})
         self.fields['source'].widget.attrs.update({'placeholder': 'recipe URL'})
