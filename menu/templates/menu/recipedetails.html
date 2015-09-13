@@ -36,14 +36,19 @@
     <div class="row-fluid">
         <div class="span9">
             <div id="comments"></div>
-            <h3 class="nav-header">Add Comment</h3>
-            <form action="{% url 'menu:addcomment' recipe.id %}" method="post">
-            {% csrf_token %}
+            {% if user.is_authenticated %}
+                <h3 class="nav-header">Add Comment</h3>
+                <form action="{% url 'menu:addcomment' recipe.id %}" method="post">
+                {% csrf_token %}
 
-                <textarea name="comment" ROWS=6 COLS=15></textarea><br><br>
-                <input type=submit class="btn" value="Publish Comment"/>
-            </form>
-            <br><br><hr>
+                    <textarea name="comment" ROWS=6 COLS=15></textarea><br><br>
+                    <input type=submit class="btn" value="Publish Comment"/>
+                </form>
+                <br><br><hr>
+            {% else %}
+                You must be logged in to comment.
+            {% endif %}
+
             {% if recipe.comment_set.all %}
                 <h3>Comments</h3>
                 {% for c in recipe.comment_set.all %}
