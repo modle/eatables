@@ -14,6 +14,7 @@ class RecipeForm(ModelForm):
         self.fields['servings'].widget.attrs.update({'placeholder': '0'})
         self.fields['prepTime'].widget.attrs.update({'placeholder': '0'})
         self.fields['cookTime'].widget.attrs.update({'placeholder': '0'})
+        self.fields['description'].widget.attrs.update({'placeholder': 'description'})
 
     class Meta:
         model = Recipe
