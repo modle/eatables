@@ -27,10 +27,4 @@ class Migration(migrations.Migration):
             name='bannerImage',
             field=models.TextField(null=True),
         ),
-        migrations.AddField(
-            model_name='recipe',
-            name='dishType',
-            field=models.ForeignKey(default=1, to='menu.DishType'),
-            preserve_default=False,
-        ),
     ]
