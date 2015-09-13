@@ -16,9 +16,11 @@
     <div class="hero-unit">
         <h1>{{ recipe.name }}</h1>
     </div>
-    {% markdown %}
-        {{ recipe.description | safe }}
-    {% endmarkdown %}
+    {% if recipe.description|length > 0 %}
+        {% markdown %}
+            {{ recipe.description }}
+        {% endmarkdown %}
+    {% endif %}
     <div class="row-fluid">
         <div class="span4">
             {% include "menu/recipedetailsingredients.html" %}
