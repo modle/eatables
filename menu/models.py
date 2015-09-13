@@ -54,9 +54,9 @@ class Recipe(models.Model):
     publishDate = models.DateTimeField(default=datetime.now)
     editDate = models.DateTimeField(default=datetime.now)
     pinned = models.BooleanField(default=False)
-    bannerImage = models.TextField(null=True)
+    bannerImage = models.CharField(max_length=1000, null=True, blank=True)
     dishType = models.ForeignKey(DishType)
-    description = models.TextField(null=True)
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name

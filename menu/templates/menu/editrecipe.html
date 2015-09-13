@@ -21,13 +21,16 @@
                 <hr noshade>
             {% csrf_token %}
                     Name<br><input type=text name="name" value="{{ recipe.name }}" id="text"><br><br>
+                    Description{{ recipe.description }}<br><br>
                     Category<br><input type=text name="method" value="{{ recipe.category}}" id="text"><br><br>
+                    Dish Type<br><input type=text name="method" value="{{ recipe.dishType}}" id="text"><br><br>
                     Temperature<br><input type=text name="temp" value="{{ recipe.temperature }}" id="text"><br><br>
                     Prep Time (minutes)<br><input type=text name="prep" value="{{ recipe.prepTime }}" id="text"><br><br>
                     Cook Time (minutes)<br><input type=text name="cook" value="{{ recipe.cookTime }}" id="text"><br><br>
                     Servings<br><input type=text name="serves" value="{{ recipe.servings }}" id="text"><br><br>
                     Directions (Use <a target="blank" href="https://en.wikipedia.org/wiki/Markdown#Example">Markdown</a> like all the cool kids)<br>
-                    <textarea name="directions" ROWS=15 COLS=35>&#10;&#13;{{ recipe.directions }}</textarea><br><br>
+                    {{ recipe.directions }}<br><br>
+                    Image URL<br><input type=text name="source" value="{{ recipe.bannerImage }}" id="text"><br><br>
                     URL<br><input type=text name="source" value="{{ recipe.source }}" id="text"><br><br>
                     <input type=submit value="Save" id="submit"/>
                     <a class="button" href="{% url 'menu:recipedetails' recipe.id %}">Cancel</a>
