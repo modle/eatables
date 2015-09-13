@@ -10,11 +10,12 @@ class RecipeForm(ModelForm):
         self.fields['category'].widget.attrs.update({'placeholder': 'Category'})
         self.fields['temperature'].widget.attrs.update({'placeholder': 'temperature'})
         self.fields['directions'].widget.attrs.update({'placeholder': 'directions'})
-        self.fields['source'].widget.attrs.update({'placeholder': 'recipe url source'})
+        self.fields['source'].widget.attrs.update({'placeholder': 'recipe URL'})
         self.fields['servings'].widget.attrs.update({'placeholder': '0'})
         self.fields['prepTime'].widget.attrs.update({'placeholder': '0'})
         self.fields['cookTime'].widget.attrs.update({'placeholder': '0'})
         self.fields['description'].widget.attrs.update({'placeholder': 'description'})
+        self.fields['bannerImage'].widget.attrs.update({'placeholder': 'image URL'})
 
     class Meta:
         model = Recipe

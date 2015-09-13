@@ -17,13 +17,14 @@
         <div class="span12">
             <h3 class="centered">{{ recipe.name }}</h3>
             <img src="{{ recipe.bannerImage }}">
-            {% if recipe.description|length > 0 %}
-                <p>
+            <p>
+                {% if recipe.description|length > 0 %}
                     {% markdown %}
                         {{ recipe.description }}
-                    {% endmarkdown %}
-                </p>
+                {% endmarkdown %}
+            </p>
             {% endif %}
+            Published: {{ recipe.publishDate }}<br><br>
             <p><a class="btn" href="{% url 'menu:recipedetails' recipe.id %}">View recipe details &raquo;</a></p>
             <hr>
         </div>
