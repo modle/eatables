@@ -90,6 +90,15 @@
                             <p>There are no categories.</p>
                         {% endif %}
                         <hr noshade>
+                        <li class="nav-header">Dish Types</li>
+                            {% for type in dish_types %}
+                                {% if type.total > 0 %}
+                                    <li>
+                                        {{ type.title }} ({{ type.total }})
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        <hr noshade>
                         <li class="nav-header">Recipes</li>
                         {% if recipes %}
                             {% for recipe in recipes %}

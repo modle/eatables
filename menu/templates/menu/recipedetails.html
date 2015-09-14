@@ -70,18 +70,19 @@
     <div class="well sidebar-nav">
         <ul>
             <li><b>Category</b>: {{ recipe.category }}</li>
+            <li><b>Dish Type</b>: {{ recipe.dish_type }}</li>
             <li><b>Temp</b>: {{ recipe.temperature }}</li>
             <li><b>Prep Time</b>:
-                {% if recipe.prepTime < 60 %}
-                    {{ recipe.prepTime }} minute(s)</li>
+                {% if recipe.prep_time < 60 %}
+                    {{ recipe.prep_time }} minute(s)</li>
                 {% else %}
-                    {{ recipe.prepTime|minutestohours|floatformat:"1" }} hour(s)
+                    {{ recipe.prep_time|minutestohours|floatformat:"1" }} hour(s)
                 {% endif %}
             <li><b>Cook Time</b>:
-                {% if recipe.cookTime < 60 %}
-                    {{ recipe.cookTime }} minute(s)
+                {% if recipe.cook_time < 60 %}
+                    {{ recipe.cook_time }} minute(s)
                 {% else %}
-                    {{ recipe.cookTime|minutestohours|floatformat:"1" }} hour(s)
+                    {{ recipe.cook_time|minutestohours|floatformat:"1" }} hour(s)
                 {% endif %}
             </li>
             <li><b>Servings</b>: {{ recipe.servings }}</li>

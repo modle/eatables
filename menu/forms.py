@@ -11,14 +11,14 @@ class RecipeForm(ModelForm):
         self.fields['directions'].widget.attrs.update({'placeholder': 'directions'})
         self.fields['source'].widget.attrs.update({'placeholder': 'recipe URL'})
         self.fields['servings'].widget.attrs.update({'placeholder': '0'})
-        self.fields['prepTime'].widget.attrs.update({'placeholder': '0'})
-        self.fields['cookTime'].widget.attrs.update({'placeholder': '0'})
+        self.fields['prep_time'].widget.attrs.update({'placeholder': '0'})
+        self.fields['cook_time'].widget.attrs.update({'placeholder': '0'})
         self.fields['description'].widget.attrs.update({'placeholder': 'description'})
-        self.fields['bannerImage'].widget.attrs.update({'placeholder': 'image URL'})
+        self.fields['banner_image'].widget.attrs.update({'placeholder': 'image URL'})
 
     class Meta:
         model = Recipe
-        fields = ('name', 'category', 'temperature', 'directions', 'source', 'servings', 'prepTime', 'cookTime', 'published', 'description', 'bannerImage', 'dishType', )
+        fields = ('name', 'category', 'temperature', 'directions', 'source', 'servings', 'prep_time', 'cook_time', 'published', 'description', 'banner_image', 'dish_type', )
         widgets = {
             'directions': Textarea(attrs={'cols': 80, 'rows': 20}),
             'description': Textarea(attrs={'cols': 80, 'rows': 5}),

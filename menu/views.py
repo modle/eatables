@@ -17,7 +17,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.decorators import method_decorator
 
 from menu.forms import *
-from .models import Recipe, Ingredient, ShoppingList, Fridge, Comment, Category
+from .models import Recipe, Ingredient, ShoppingList, Fridge, Comment, Category, DishType
 
 
 def basetemplate(request):
@@ -28,10 +28,12 @@ def index(request):
 
     categories = category_count()
     recipes = Recipe.objects.filter(published='True')
+    dish_types = dish_type_count()
 
     return render_to_response('menu/index.html', {
         'categories': categories,
         'recipes': recipes,
+        'dish_types': dish_types,
         },
         context_instance=RequestContext(request)
     )
@@ -142,7 +144,6 @@ def recipedetails(request, recipeId):
 
     return render_to_response('menu/recipedetails.html', {'form': form, 'recipe': recipe, },
                               context_instance=RequestContext(request))
-
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
@@ -309,13 +310,13 @@ def uploadrecipe(request):
                     else:
                         entry.servings = row[5]
                     if row[6] == '':
-                        entry.prepTime = 0
+                        entry.prep_time = 0
                     else:
-                        entry.prepTime = row[6]
+                        entry.prep_time = row[6]
                     if row[7] == '':
-                        entry.cookTime = 0
+                        entry.cook_time = 0
                     else:
-                        entry.cookTime = row[7]
+                        entry.cook_time = row[7]
                     entry.save()
 
         return HttpResponseRedirect(reverse('menu:index'))
@@ -461,6 +462,16 @@ def category_count():
                                                          'and r.published = True '
                                                 })
     return categories
+
+
+def dish_type_count():
+    dish_types = DishType.objects.extra(select={'total': 'select count(r.dish_type_id) ' +
+                                                         'from menu_recipe r ' +
+                                                         'where r.dish_type_id = menu_dish_type.id ' +
+                                                         'and r.published = True '
+                                                })
+    return dish_types
+
 
 @login_required()
 def profile(request, slug):
