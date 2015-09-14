@@ -12,7 +12,7 @@
 <div class="hero-unit">
     <h1>Top Rated Recipes</h1>
 </div>
-{% for recipe in recipes %}
+{% for recipe in top10recipes %}
     <div class="row-fluid">
         <div class="span12">
             <h3 class="centered">{{ recipe.name }}</h3>
@@ -26,7 +26,7 @@
                     {% endmarkdown %}
                 {% endif %}
             </p>
-            Published: {{ recipe.publish_date }}<br><br>
+            <p>Published: {{ recipe.publish_date }}</p><br>
             <p><a class="btn" href="{% url 'menu:recipedetails' recipe.id %}">View recipe details &raquo;</a></p>
             <hr>
         </div>

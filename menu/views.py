@@ -28,11 +28,13 @@ def index(request):
 
     categories = category_count()
     recipes = Recipe.objects.filter(published='True')
+    top10recipes = Recipe.objects.filter(published='True')[:10]
     dish_types = dish_type_count()
 
     return render_to_response('menu/index.html', {
         'categories': categories,
         'recipes': recipes,
+        'top10recipes': top10recipes,
         'dish_types': dish_types,
         },
         context_instance=RequestContext(request)
