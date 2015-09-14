@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load markdown_deux_tags %}
+
+{% block content %}
+    {% if categoryrecipes %}
+    <div class="hero-unit">
+        <h1>{{ category.title }}</h1>
+    </div>
+    <div class="row-fluid">
+        {% for recipe in categoryrecipes %}
+            <div class="span4">
+                <h3>{{ recipe.name }}</h3>
+                {% if recipe.banner_image|length > 0 %}
+                    <img src="{{ recipe.banner_image }}">
+                {% endif %}
+                <p>
+                    {% if recipe.description|length > 0 %}
+                        {% markdown %}
+                            {{ recipe.description | safe | slice:":250" }}{% if recipe.description|length > 250 %}...{% endif %}
+                        {% endmarkdown %}
+                    {% endif %}
+                </p>
+                <p>Published: {{ recipe.publish_date }}</p>
+                <p><a class="btn" href="{% url 'menu:recipedetails' recipe.id %}">View details &raquo;</a></p>
+                <hr>
+            </div><!--/span-->
+        {% endfor %}
+    </div>
+    {% else %}
+        <p>There are no recipes in this category.</p>
+    {% endif %}
+
+{% endblock %}

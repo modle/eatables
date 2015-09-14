@@ -146,6 +146,44 @@ def recipedetails(request, recipeId):
                               context_instance=RequestContext(request))
 
 
+def view_category(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    categoryrecipes = Recipe.objects.filter(category=category).filter(published='True')
+    categories = category_count()
+    dish_types = dish_type_count()
+    recipes = Recipe.objects.filter(published='True')
+
+    return render_to_response('menu/viewcategory.html', {
+        'category': category,
+        'categoryrecipes': categoryrecipes,
+        'categories': categories,
+        'dish_types': dish_types,
+        'recipes': recipes,
+    },
+
+        context_instance=RequestContext(request)
+    )
+
+
+def view_dish_type(request, slug):
+    dishtype = get_object_or_404(DishType, slug=slug)
+    dishtyperecipes = Recipe.objects.filter(dish_type=dishtype).filter(published='True')
+    categories = category_count()
+    dish_types = dish_type_count()
+    recipes = Recipe.objects.filter(published='True')
+
+    return render_to_response('menu/viewdishtype.html', {
+        'dishtype': dishtype,
+        'dishtyperecipes': dishtyperecipes,
+        'categories': categories,
+        'dish_types': dish_types,
+        'recipes': recipes,
+    },
+
+        context_instance=RequestContext(request)
+    )
+
+
 @user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def archivedrecipes(request):
     logger = logging.getLogger(__name__)
@@ -467,7 +505,7 @@ def category_count():
 def dish_type_count():
     dish_types = DishType.objects.extra(select={'total': 'select count(r.dish_type_id) ' +
                                                          'from menu_recipe r ' +
-                                                         'where r.dish_type_id = menu_dish_type.id ' +
+                                                         'where r.dish_type_id = menu_dishtype.id ' +
                                                          'and r.published = True '
                                                 })
     return dish_types

@@ -2,5 +2,11 @@
 {% block content %}
 
     <h2>You are logged in</h2>
+    <p>
+        <a href="{% url 'menu:index' %}">Home</a> |
+        <a href="{% url 'menu:profile' user.username %}">Your Profile</a> |
+        <a href="{% url 'logout' %}?next={% url 'loggedout' %}">Logout</a>
+    </p>
+
 
 {% endblock %}
