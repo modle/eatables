@@ -49,7 +49,6 @@ class Recipe(models.Model):
     prep_time = models.IntegerField(default=0)
     cook_time = models.IntegerField(default=0)
     published = models.BooleanField(default=False, null=False)
-    rating = models.IntegerField(null=True)
     user = models.ForeignKey(User, null=True, blank=True)
     publish_date = models.DateTimeField(default=datetime.now)
     edit_date = models.DateTimeField(default=datetime.now)
@@ -62,7 +61,7 @@ class Recipe(models.Model):
         return self.name
 
     class Meta:
-        ordering = ('name', )
+        ordering = ('-rating', 'name', )
 
 
 class Ingredient(models.Model):
@@ -151,3 +150,16 @@ class Fridge(models.Model):
     class Meta:
         ordering = ('fridgedate', 'id')
 
+
+class Rating(models.Model):
+    recipe = models.ForeignKey(Recipe)
+    rating = models.IntegerField(null=True)
+    user = models.ForeignKey(User, null=True, blank=True)
+    publishDate = models.DateTimeField(default=datetime.now)
+    editDate = models.DateTimeField(default=datetime.now)
+
+    def __str__(self):
+        return str(self.id) + str(self.comment)
+
+    class Meta:
+        ordering = ('-publishDate', '-id')
