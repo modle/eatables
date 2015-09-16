@@ -3,8 +3,7 @@
 {% load menu_extras %}
 
 {% load markdown_deux_tags %}
-<script type="text/javascript" src="{% static 'menu/js/jquery-1.11.3.js' %}"></script>
-<script type="text/javascript" src="{% static 'menu/js/menu.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/js/eatables.js' %}"></script>
 
 <html>
 <body>
@@ -16,11 +15,28 @@
     <div class="hero-unit">
         <h1>{{ recipe.name }}</h1>
     </div>
-    {% if recipe.description|length > 0 %}
-        {% markdown %}
-            {{ recipe.description }}
-        {% endmarkdown %}
-    {% endif %}
+
+    <div class="description">
+        {% if recipe.description|length > 0 %}
+            {% markdown %}
+                {{ recipe.description }}
+            {% endmarkdown %}
+        {% endif %}
+    </div>
+    <div id="rating">
+        {% if user.is_authenticated %}
+            <h3 class="cap-header">Rate This Recipe</h3>
+            <form action="{% url 'menu:addcomment' recipe.id %}" method="post">
+            {% csrf_token %}
+                <input type=hidden value="{{ recipe.id }}">
+                <div class="rating">
+                    <span onclick="rate5()">☆</span><span onclick="rate4()">☆</span><span onclick="rate3()">☆</span><span onclick="rate2()">☆</span><span onclick="rate1()">☆</span>
+                </div>
+            </form>
+        {% endif %}
+    </div>
+    <div style="clear:both;"></div><br>
+
     <div class="row-fluid">
         <div class="span4">
             {% include "menu/recipedetailsingredients.html" %}
@@ -35,18 +51,20 @@
     <br><br><hr>
     <div class="row-fluid">
         <div class="span9">
-            <div id="comments"></div>
             {% if user.is_authenticated %}
-                <h3 class="nav-header">Add Comment</h3>
+                <div id="comments"></div>
+                <h3 class="cap-header">Add Comment</h3>
                 <form action="{% url 'menu:addcomment' recipe.id %}" method="post">
                 {% csrf_token %}
 
                     <textarea name="comment" ROWS=6 COLS=15></textarea><br><br>
-                    <input type=submit class="btn" value="Publish Comment"/>
+                    <input type=submit class="btn" value="Publish Comment &raquo;"/>
                 </form>
                 <br><br><hr>
             {% else %}
-                You must be logged in to comment.
+                You must be logged in to comment or rate.<br>
+                <a href="{% url 'login' %}">Login</a> |
+                <a href="{% url 'register' %}">Sign Up</a>
             {% endif %}
 
             {% if recipe.comment_set.all %}
@@ -56,7 +74,7 @@
                         <li>{{ c.comment }}</li>
                         <li>{{ c.publishDate }}</li>
                         {% if user.is_superuser %}
-                            <a class="btn" href="{% url 'menu:commentdelete' c.id %}" onclick="return confirm('Are you sure?')">Delete</a>
+                            <a class="btn" href="{% url 'menu:commentdelete' c.id %}" onclick="return confirm('Are you sure?')">Delete &raquo;</a>
                         {% endif %}
                     </ul>
                 {% endfor %}
