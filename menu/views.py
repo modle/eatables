@@ -133,29 +133,37 @@ def recipedetails(request, recipeId):
     recipe = Recipe.objects.get(pk=recipeId)
     user = request.user
 
-    if request.method == 'POST':
-        commentForm = CommentForm(request.POST)
-        ratingForm = RatingForm(request.POST, instance=Rating.objects.get(recipe=recipe, user=user))
+    if user.is_authenticated():
 
-        if commentForm.is_valid():
-            commentSave = commentForm.save(commit=False)
-            commentSave.user = user
-            commentSave.editDate = datetime.now()
-            commentSave.recipe = recipe
-            commentSave.save()
+        if request.method == 'POST':
+            commentForm = CommentForm(request.POST)
+            ratingForm = RatingForm(request.POST, instance=Rating.objects.get(recipe=recipe, user=user))
 
-        if ratingForm.is_valid():
-            ratingSave = ratingForm.save(commit=False)
-            ratingSave.user = user
-            ratingSave.editDate = datetime.now()
-            ratingSave.recipe = recipe
-            ratingSave.save()
+            if commentForm.is_valid():
+                commentSave = commentForm.save(commit=False)
+                commentSave.user = user
+                commentSave.editDate = datetime.now()
+                commentSave.recipe = recipe
+                commentSave.save()
 
+            if ratingForm.is_valid():
+                ratingSave = ratingForm.save(commit=False)
+                ratingSave.user = user
+                ratingSave.editDate = datetime.now()
+                ratingSave.recipe = recipe
+                ratingSave.save()
+
+        else:
+            commentForm = CommentForm()
+
+            try:
+                ratingEntry = Rating.objects.get(recipe=recipe, user=user)
+                ratingForm = RatingForm(instance=ratingEntry)
+            except Rating.DoesNotExist:
+                ratingForm = RatingForm()
     else:
         commentForm = CommentForm()
-
-        ratingEntry = Rating.objects.get(recipe=recipe, user=user)
-        ratingForm = RatingForm(instance=ratingEntry)
+        ratingForm = RatingForm()
 
     return render_to_response('menu/recipedetails.html', {'commentForm': commentForm, 'ratingForm': ratingForm, 'recipe': recipe, },
                               context_instance=RequestContext(request))
