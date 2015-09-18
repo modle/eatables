@@ -137,7 +137,10 @@ def recipedetails(request, recipeId):
 
         if request.method == 'POST':
             commentForm = CommentForm(request.POST)
-            ratingForm = RatingForm(request.POST, instance=Rating.objects.get(recipe=recipe, user=user))
+            try:
+                ratingForm = RatingForm(request.POST, instance=Rating.objects.get(recipe=recipe, user=user))
+            except Rating.DoesNotExist:
+                ratingForm = RatingForm(request.POST)
 
             if commentForm.is_valid():
                 commentSave = commentForm.save(commit=False)
