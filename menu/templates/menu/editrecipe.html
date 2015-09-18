@@ -16,10 +16,10 @@
             <div id="content">
                 <h2>Edit Recipe Details</h2>
                 <form action="{% url 'menu:updaterecipe' recipe.id %}" method="post">
-                <input type=submit value="Save" id="submit"/>
-                <a class="button" href="{% url 'menu:recipedetails' recipe.id %}">Cancel</a>
-                <hr noshade>
-            {% csrf_token %}
+                    {% csrf_token %}
+                    <input type=submit value="Save" id="submit"/>
+                    <a class="button" href="{% url 'menu:recipedetails' recipe.id %}">Cancel</a>
+                    <hr noshade>
                     Name<br><input type=text name="name" value="{{ recipe.name }}" id="text"><br><br>
                     Description{{ recipe.description }}<br><br>
                     Category<br><input type=text name="method" value="{{ recipe.category}}" id="text"><br><br>

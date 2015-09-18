@@ -26,12 +26,10 @@
     <div id="rating">
         {% if user.is_authenticated %}
             <h3 class="cap-header">Rate This Recipe</h3>
-            <form action="{% url 'menu:addcomment' recipe.id %}" method="post">
+            <form action="" method="post">
             {% csrf_token %}
-                <input type=hidden value="{{ recipe.id }}">
-                <div class="rating">
-                    <span onclick="rate5()">☆</span><span onclick="rate4()">☆</span><span onclick="rate3()">☆</span><span onclick="rate2()">☆</span><span onclick="rate1()">☆</span>
-                </div>
+                {{ ratingForm.rating }}
+                <input type=submit class="btn" value="Submit Rating &raquo;"/>
             </form>
         {% endif %}
     </div>
@@ -54,10 +52,9 @@
             {% if user.is_authenticated %}
                 <div id="comments"></div>
                 <h3 class="cap-header">Add Comment</h3>
-                <form action="{% url 'menu:addcomment' recipe.id %}" method="post">
+                <form action="" method="post">
                 {% csrf_token %}
-
-                    <textarea name="comment" ROWS=6 COLS=15></textarea><br><br>
+                    {{ commentForm.comment }}
                     <input type=submit class="btn" value="Publish Comment &raquo;"/>
                 </form>
                 <br><br><hr>

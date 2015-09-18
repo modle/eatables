@@ -61,7 +61,7 @@ class Recipe(models.Model):
         return self.name
 
     class Meta:
-        ordering = ('-rating', 'name', )
+        ordering = ('name', )
 
 
 class Ingredient(models.Model):
@@ -163,3 +163,4 @@ class Rating(models.Model):
 
     class Meta:
         ordering = ('-publishDate', '-id')
+        unique_together = ('recipe', 'user', )

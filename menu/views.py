@@ -28,7 +28,7 @@ def index(request):
 
     categories = category_count()
     recipes = Recipe.objects.filter(published='True')
-    top10recipes = Recipe.objects.filter(published='True')[:10]
+    top10recipes = Recipe.objects.filter(published='True')
     dish_types = dish_type_count()
 
     return render_to_response('menu/index.html', {
@@ -131,20 +131,33 @@ class RecipeDetail(generic.DetailView):
 def recipedetails(request, recipeId):
 
     recipe = Recipe.objects.get(pk=recipeId)
+    user = request.user
 
     if request.method == 'POST':
-        form = CommentForm(request.POST)
+        commentForm = CommentForm(request.POST)
+        ratingForm = RatingForm(request.POST, instance=Rating.objects.get(recipe=recipe, user=user))
 
-        if form.is_valid():
-            formpost = form.save(commit=False)
-            formpost.user_id = request.user_id
-            formpost.editDate = datetime.now()
-            formpost.save()
+        if commentForm.is_valid():
+            commentSave = commentForm.save(commit=False)
+            commentSave.user = user
+            commentSave.editDate = datetime.now()
+            commentSave.recipe = recipe
+            commentSave.save()
+
+        if ratingForm.is_valid():
+            ratingSave = ratingForm.save(commit=False)
+            ratingSave.user = user
+            ratingSave.editDate = datetime.now()
+            ratingSave.recipe = recipe
+            ratingSave.save()
 
     else:
-        form = CommentForm()
+        commentForm = CommentForm()
 
-    return render_to_response('menu/recipedetails.html', {'form': form, 'recipe': recipe, },
+        ratingEntry = Rating.objects.get(recipe=recipe, user=user)
+        ratingForm = RatingForm(instance=ratingEntry)
+
+    return render_to_response('menu/recipedetails.html', {'commentForm': commentForm, 'ratingForm': ratingForm, 'recipe': recipe, },
                               context_instance=RequestContext(request))
 
 
@@ -313,13 +326,6 @@ def addingredient(request, recipeId):
     now = str(datetime.now().strftime('%Y-%m-%d %H:%M:%S:%f'))
     r.ingredient_set.create(name="_Update Me_" + now, amount="0.0", unit="unit")
     return HttpResponseRedirect(reverse('menu:editingredients', args=(recipeId,)) + '#ingredients')
-
-
-@login_required()
-def addcomment(request, recipeId):
-    r = Recipe.objects.get(pk=recipeId)
-    r.comment_set.create(comment=request.POST['comment'])
-    return HttpResponseRedirect(reverse('menu:recipedetails', args=(recipeId,)) + '#comments')
 
 
 @login_required()

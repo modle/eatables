@@ -34,7 +34,6 @@ urlpatterns = [
 
 
     # comments
-    url(r'^(?P<recipeId>[0-9]+)/addcomment/$', views.addcomment, name='addcomment'),
     url(r'^(?P<commentId>[0-9]+)/commentdelete/$', views.commentdelete, name='commentdelete'),
 
     # fridge
