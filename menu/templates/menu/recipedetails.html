@@ -3,7 +3,7 @@
 {% load menu_extras %}
 
 {% load markdown_deux_tags %}
-<script type="text/javascript" src="{% static 'bootstrap/js/eatables.js' %}"></script>
+<!--<script type="text/javascript" src="{% static 'bootstrap/js/eatables.js' %}"></script>-->
 
 <html>
 <body>
@@ -23,16 +23,9 @@
             {% endmarkdown %}
         {% endif %}
     </div>
-    <div id="rating">
-        {% if user.is_authenticated %}
-            <h3 class="cap-header">Rate This Recipe</h3>
-            <form action="" method="post">
-            {% csrf_token %}
-                {{ ratingForm.rating }}
-                <input type=submit class="btn" value="Submit Rating &raquo;"/>
-            </form>
-        {% endif %}
-    </div>
+
+
+
     <div style="clear:both;"></div><br>
 
     <div class="row-fluid">

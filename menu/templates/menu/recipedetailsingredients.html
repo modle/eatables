@@ -2,7 +2,7 @@
 <div id="aside">
     <h3>Ingredients</h3>
     {% if user.is_superuser %}
-        <p><a class="btn" href="{% url 'menu:editingredients' recipe.id %}">Edit</a></p>
+        <p><a class="btn" href="{% url 'menu:editingredients' recipe.id %}">Edit &raquo;</a></p>
     {% endif %}
     <form action="{% url 'menu:addtoshoppinglist' recipe.id %}" method="post">
 
@@ -19,7 +19,7 @@
         {% endfor %}
         <br><br>
         {% if user.is_superuser %}
-            <input class="btn" type=submit value="Update Shopping List"><br>
+            <input class="btn" type=submit value="Update Shopping List &raquo;"><br>
         {% endif %}
 
     </form>

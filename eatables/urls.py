@@ -38,4 +38,6 @@ urlpatterns += [
     url(r'^accounts/loggedin/$', 'menu.views.loggedin', name='loggedin'),
     url(r'^accounts/notauthorized/$', 'menu.views.notauthorized', name='notauthorized'),
     url(r'^menu/loggedout/$', 'menu.views.loggedout', name='loggedout'),
+
+
 ]

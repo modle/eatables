@@ -32,6 +32,8 @@ urlpatterns = [
     url(r'^(?P<recipeId>[0-9]+)/addtoshoppinglist/$', views.addtoshoppinglist, name='addtoshoppinglist'),
     url(r'^shoppinglist/$', views.shoppinglist, name='shoppinglist'),
 
+    # url(r'^update_rating', views.update_rating, name='update_rating'),
+
 
     # comments
     url(r'^(?P<commentId>[0-9]+)/commentdelete/$', views.commentdelete, name='commentdelete'),

@@ -56,6 +56,7 @@ class Recipe(models.Model):
     banner_image = models.CharField(max_length=1000, null=True, blank=True)
     dish_type = models.ForeignKey(DishType)
     description = models.TextField(null=True, blank=True)
+    # rating = RatingField(range=5)
 
     def __str__(self):
         return self.name

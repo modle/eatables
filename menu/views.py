@@ -61,6 +61,7 @@ def addtoshoppinglist(request, recipeId):
 
     return HttpResponseRedirect(reverse('menu:recipedetails', args=(recipeId,)))
 
+
 @user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def shoppinglist(request):
     logger = logging.getLogger(__name__)
@@ -85,6 +86,7 @@ def shoppinglist(request):
         'menu/shoppinglist.html',
         {'formset': formset, },
         context_instance=RequestContext(request))
+
 
 @user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def fridge(request):
@@ -128,8 +130,17 @@ class RecipeDetail(generic.DetailView):
         return Recipe.objects.all()
 
 
-def recipedetails(request, recipeId):
+def update_rating(request, recipeId, csrfmiddlewaretoken):
+    recipe = Recipe.objects.get(pk=recipeId)
+    user = request.user
 
+    ratingEntry, created = Rating.objects.get_or_create(recipe=recipe, user=user)
+
+    ratingEntry.rating = 'rating'
+    ratingEntry.save()
+
+
+def recipedetails(request, recipeId):
     recipe = Recipe.objects.get(pk=recipeId)
     user = request.user
 
