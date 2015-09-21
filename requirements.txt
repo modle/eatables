@@ -9,4 +9,8 @@ wsgiref==0.1.2
 psycopg2==2.6
 whitenoise==1.0.6
 gunicorn==19.2.1
+<<<<<<< HEAD
 django-star-ratings==0.2.1 -I -U
+=======
+django-star-ratings==0.2.1
+>>>>>>> parent of e256b24... Undo the undo
