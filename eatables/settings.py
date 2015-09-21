@@ -40,7 +40,7 @@ INSTALLED_APPS = (
     'markdown_deux',
     'menu',
     'gunicorn',
-    'star_ratings',
+    # 'star_ratings',
 )
 
 MIDDLEWARE_CLASSES = (

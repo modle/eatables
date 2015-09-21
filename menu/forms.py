@@ -103,3 +103,15 @@ class RatingForm(ModelForm):
     class Meta:
         model = Rating
         fields = ('rating', )
+
+class IngredientForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(IngredientForm, self).__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs.update({'placeholder': 'Name'})
+        self.fields['amount'].widget.attrs.update({'placeholder': 0})
+        self.fields['unit'].widget.attrs.update({'placeholder': 'Unit of Measurement'})
+        self.fields['comment'].widget.attrs.update({'placeholder': 'Other Details'})
+
+    class Meta:
+        model = Ingredient
+        fields = ('name', 'comment', 'amount', 'unit', 'sorting',)

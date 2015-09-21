@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load menu_extras %}
-
 {% load markdown_deux_tags %}
 <!--<script type="text/javascript" src="{% static 'bootstrap/js/eatables.js' %}"></script>-->
 
@@ -24,8 +23,6 @@
         {% endif %}
     </div>
 
-
-
     <div style="clear:both;"></div><br>
 
     <div class="row-fluid">
@@ -47,7 +44,7 @@
                 <h3 class="cap-header">Add Comment</h3>
                 <form action="" method="post">
                 {% csrf_token %}
-                    {{ commentForm.comment }}
+                    {{ comment_form.comment }}
                     <input type=submit class="btn" value="Publish Comment &raquo;"/>
                 </form>
                 <br><br><hr>

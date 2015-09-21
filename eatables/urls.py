@@ -39,8 +39,4 @@ urlpatterns += [
     url(r'^accounts/notauthorized/$', 'menu.views.notauthorized', name='notauthorized'),
     url(r'^menu/loggedout/$', 'menu.views.loggedout', name='loggedout'),
 
-    # ratings
-    url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
-
-
 ]

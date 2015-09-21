@@ -1,26 +1,62 @@
+{% load markdown_deux_tags %}
 {% load menu_extras %}
-<div id="aside">
-    <h3>Ingredients</h3>
-    {% if user.is_superuser %}
-        <p><a class="btn" href="{% url 'menu:editingredients' recipe.id %}">Edit &raquo;</a></p>
-    {% endif %}
-    <form action="{% url 'menu:addtoshoppinglist' recipe.id %}" method="post">
 
-    {% csrf_token %}
-        {% for i in recipe.ingredient_set.all %}
-            <div class="ingredientList">
-                {% if user.is_superuser %}
-                    <input type="checkbox" value={{i.amount}} id={{i.id}} name={{i.id}}>
-                {% endif %}
-                {{i.amount|showinteger}}{{ i.amount|showfraction }} {{ i.unit }}
-                {{ i.name }}{% if i.comment %}, {{ i.comment }}{% endif %}
-            </div>
-            <hr noshade>
-        {% endfor %}
-        <br><br>
-        {% if user.is_superuser %}
-            <input class="btn" type=submit value="Update Shopping List &raquo;"><br>
-        {% endif %}
+{% block content %}
 
-    </form>
+<div class="container-fluid">
+    <button type="button" class="btn" data-toggle="collapse" data-target=".newpost-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <div class="newpost-collapse collapse">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{ ingredient_form.id }}
+            {{ ingredient_form.name.label }}: {{ ingredient_form.name }}<br>
+            {{ ingredient_form.amount.label }}: {{ ingredient_form.amount }}<br>
+            {{ ingredient_form.unit.label }}: {{ ingredient_form.unit }}<br>
+            {{ ingredient_form.comment.label }}: {{ ingredient_form.comment }}
+            {{ ingredient_form.sorting.label }}: {{ ingredient_form.sorting }}
+            <p>
+                <input class="btn" type="submit" value="Add &raquo;" id="submit"/>
+            </p>
+        </form>
+    </div>
 </div>
+
+<hr noshade>
+<hr noshade>
+
+<h3>Ingredients</h3>
+<div class="row-fluid">
+    <div class="span12">
+
+        <form action="{% url 'menu:addtoshoppinglist' recipe.id %}" method="post">
+            {% csrf_token %}
+            {% for ingredient in recipe.ingredient_set.all %}
+                <p>
+                    {% if user.is_superuser %}
+                        <input type="checkbox" value={{ingredient.amount}} id={{ingredient.id}} name={{ingredient.id}}>
+                    {% endif %}
+                    <b>{{ ingredient.name }} |</b>
+
+                    {{ ingredient.amount|showinteger }}{{ ingredient.amount|showfraction }} |
+                    {{ ingredient.unit }} |
+                    {{ ingredient.comment }} |
+                    <!--add a button here to increase or decrease ordering-->
+                    <a class="btn" href="">Edit Ingredient &raquo;</a>
+                </p>
+                <hr noshade>
+            {% endfor %}
+            {% if user.is_superuser %}
+                <input class="btn" type=submit value="Update Shopping List &raquo;"><br>
+                <p><a class="btn" href="">Edit All &raquo;</a></p>
+            {% endif %}
+        </form>
+    </div><!--/span-->
+</div><!--/row-->
+{% endblock %}
+
+{% block navsidebar %}
+{% endblock %}

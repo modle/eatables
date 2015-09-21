@@ -140,46 +140,80 @@ def update_rating(request, recipeId, csrfmiddlewaretoken):
     ratingEntry.save()
 
 
-def recipedetails(request, recipeId):
-    recipe = Recipe.objects.get(pk=recipeId)
+@user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
+def addrecipe(request):
+    if request.method == 'POST':
+        form = RecipeForm(request.POST)
+
+        if form.is_valid():
+            formpost = form.save(commit=False)
+            formpost.user = request.user
+            formpost.edited = datetime.now()
+            formpost.save()
+            recipeId = formpost.id
+            return HttpResponseRedirect(reverse('menu:recipedetails', args=(recipeId,)))
+
+    else:
+        form = RecipeForm()
+
+    return render_to_response('menu/editrecipe_form.html', {'form': form},
+                              context_instance=RequestContext(request))
+
+
+def recipedetails(request, recipe_id):
+    recipe = Recipe.objects.get(pk=recipe_id)
     user = request.user
 
     if user.is_authenticated():
 
         if request.method == 'POST':
-            commentForm = CommentForm(request.POST)
+            comment_form = CommentForm(request.POST)
             try:
-                ratingForm = RatingForm(request.POST, instance=Rating.objects.get(recipe=recipe, user=user))
+                rating_form = RatingForm(request.POST, instance=Rating.objects.get(recipe=recipe, user=user))
             except Rating.DoesNotExist:
-                ratingForm = RatingForm(request.POST)
+                rating_form = RatingForm(request.POST)
+            ingredient_form = IngredientForm(request.POST)
 
-            if commentForm.is_valid():
-                commentSave = commentForm.save(commit=False)
-                commentSave.user = user
-                commentSave.editDate = datetime.now()
-                commentSave.recipe = recipe
-                commentSave.save()
+            if comment_form.is_valid():
+                comment_save = comment_form.save(commit=False)
+                comment_save.user = user
+                comment_save.editDate = datetime.now()
+                comment_save.recipe = recipe
+                comment_save.save()
 
-            if ratingForm.is_valid():
-                ratingSave = ratingForm.save(commit=False)
-                ratingSave.user = user
-                ratingSave.editDate = datetime.now()
-                ratingSave.recipe = recipe
-                ratingSave.save()
+            if rating_form.is_valid():
+                rating_save = rating_form.save(commit=False)
+                rating_save.user = user
+                rating_save.editDate = datetime.now()
+                rating_save.recipe = recipe
+                rating_save.save()
+
+            if ingredient_form.is_valid():
+                ingredient_save = ingredient_form.save(commit=False)
+                ingredient_save.recipe = recipe
+                ingredient_save.save()
 
         else:
-            commentForm = CommentForm()
+            comment_form = CommentForm()
 
             try:
                 ratingEntry = Rating.objects.get(recipe=recipe, user=user)
-                ratingForm = RatingForm(instance=ratingEntry)
+                rating_form = RatingForm(instance=ratingEntry)
             except Rating.DoesNotExist:
-                ratingForm = RatingForm()
-    else:
-        commentForm = CommentForm()
-        ratingForm = RatingForm()
+                rating_form = RatingForm()
 
-    return render_to_response('menu/recipedetails.html', {'commentForm': commentForm, 'ratingForm': ratingForm, 'recipe': recipe, },
+            ingredient_form = IngredientForm()
+
+    else:
+        comment_form = CommentForm()
+        rating_form = RatingForm()
+        ingredient_form = IngredientForm()
+
+    return render_to_response('menu/recipedetails.html',
+                              {'comment_form': comment_form,
+                               'rating_form': rating_form,
+                               'ingredient_form': ingredient_form,
+                               'recipe': recipe, },
                               context_instance=RequestContext(request))
 
 
@@ -248,26 +282,6 @@ def archivedrecipes(request):
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
-def addrecipe(request):
-    if request.method == 'POST':
-        form = RecipeForm(request.POST)
-
-        if form.is_valid():
-            formpost = form.save(commit=False)
-            formpost.user = request.user
-            formpost.edited = datetime.now()
-            formpost.save()
-            recipeId = formpost.id
-            return HttpResponseRedirect(reverse('menu:recipedetails', args=(recipeId,)))
-
-    else:
-        form = RecipeForm()
-
-    return render_to_response('menu/editrecipe_form.html', {'form': form},
-                              context_instance=RequestContext(request))
-
-
-@user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def deleterecipeforever(request, recipeId):
     Recipe.objects.filter(pk=recipeId).delete()
     return HttpResponseRedirect(reverse('menu:index'))
@@ -293,18 +307,6 @@ def editrecipe(request, recipeId):
 
     return render_to_response('menu/editrecipe_form.html', {'form': form},
                               context_instance=RequestContext(request))
-
-
-class EditIngredients(generic.DetailView):
-    model = Recipe
-    template_name = 'menu/editingredients.html'
-
-    @method_decorator(user_passes_test(lambda u: u.is_superuser, login_url='notauthorized'))
-    def dispatch(self, *args, **kwargs):
-        return super(EditIngredients, self).dispatch(*args, **kwargs)
-
-    def get_queryset(self):
-        return Recipe.objects.all()
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')

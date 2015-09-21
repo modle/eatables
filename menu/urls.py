@@ -11,11 +11,11 @@ urlpatterns = [
     # url(r'^(?P<pk>[0-9]+)/$', views.RecipeDetail.as_view(), name='recipedetails'),
     url(r'^menu/$', views.index, name='index'),
     # url(r'^menu/$', views.Index.as_view(), name='index'),
-    url(r'^(?P<pk>[0-9]+)/editingredients$', views.EditIngredients.as_view(), name='editingredients'),
+    # url(r'^(?P<recipe_id>[0-9]+)/add_ingredients/$', views.add_ingredient, name='add_ingredient'),
     url(r'^archivelist/$', views.ArchiveList.as_view(), name='archivelist'),
 
     # non-generic recipe views
-    url(r'^(?P<recipeId>[0-9]+)/$', views.recipedetails, name='recipedetails'),
+    url(r'^(?P<recipe_id>[0-9]+)/$', views.recipedetails, name='recipedetails'),
     url(r'^archivedrecipes/$', views.archivedrecipes, name='archivedrecipes'),
     url(r'^addrecipe/$', views.addrecipe, name='addrecipe'),
     url(r'^(?P<recipeId>[0-9]+)/editrecipe/$', views.editrecipe, name='editrecipe'),
