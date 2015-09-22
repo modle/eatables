@@ -69,9 +69,9 @@ class Ingredient(models.Model):
     id = models.AutoField(primary_key=True)
     recipe = models.ForeignKey(Recipe)
     name = models.CharField(max_length=80, null=False)
-    comment = models.CharField(max_length=80, null=True)
+    comment = models.CharField(max_length=80, blank=True, null=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
-    unit = models.CharField(max_length=30, null=True)
+    unit = models.CharField(max_length=30, null=True, blank=True)
     sorting = models.IntegerField("Ordering", blank=True, null=True, help_text="A number.")
 
     def __str__(self):
@@ -88,13 +88,13 @@ class ShoppingList(models.Model):
     ingredient = models.ForeignKey(Ingredient, blank=False)
     name = models.CharField(max_length=80, null=False)
     amount = models.IntegerField(default=0, null=True, blank=True)
-    status = models.BooleanField(default=False)
+    completed = models.BooleanField(default=False) # change to completed
 
     def __str__(self):
         return str(self.ingredient_id) + " " + str(self.status) + " " + str(self.amount)
 
     class Meta:
-        ordering = ('status', 'name', 'shoppingListId')
+        ordering = ('completed', 'name', 'shoppingListId')
 
 
 class IngredientMaster(models.Model):
@@ -106,6 +106,7 @@ class IngredientMaster(models.Model):
 
     class Meta:
         ordering = ('name', 'id')
+
 
 class Comment(models.Model):
     id = models.AutoField(primary_key=True)

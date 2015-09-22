@@ -26,36 +26,32 @@
 </div>
 
 <hr noshade>
-<hr noshade>
 
 <h3>Ingredients</h3>
 <div class="row-fluid">
     <div class="span12">
-
-        <form action="{% url 'menu:addtoshoppinglist' recipe.id %}" method="post">
-            {% csrf_token %}
-            {% for ingredient in recipe.ingredient_set.all %}
-                <p>
-                    {% if user.is_superuser %}
-                        <input type="checkbox" value={{ingredient.amount}} id={{ingredient.id}} name={{ingredient.id}}>
-                    {% endif %}
-                    <b>{{ ingredient.name }} |</b>
-
-                    {{ ingredient.amount|showinteger }}{{ ingredient.amount|showfraction }} |
-                    {{ ingredient.unit }} |
-                    {{ ingredient.comment }} |
-                    <!--add a button here to increase or decrease ordering-->
-                    <a class="btn" href="">Edit Ingredient &raquo;</a>
-                </p>
-                <hr noshade>
-            {% endfor %}
-            {% if user.is_superuser %}
-                <input class="btn" type=submit value="Update Shopping List &raquo;"><br>
-                <p><a class="btn" href="">Edit All &raquo;</a></p>
-            {% endif %}
-        </form>
-    </div><!--/span-->
-</div><!--/row-->
+        {% for ingredient in recipe.ingredient_set.all %}
+            <p>
+                <!--{% if user.is_superuser %}-->
+                    <!--<input type="checkbox" value={{ingredient.amount}} id={{ingredient.id}} name={{ingredient.id}}>-->
+                <!--{% endif %}-->
+                <b>{{ ingredient.name }} |</b>
+                {{ ingredient.amount|showinteger }}{{ ingredient.amount|showfraction }} |
+                {{ ingredient.unit }} |
+                {{ ingredient.comment }} |
+                <!--add a button here to increase or decrease ordering-->
+                {% if user.is_authenticated %}
+                    <a class="btn" href="{% url 'menu:edit_ingredient' ingredient.id %}">Edit &raquo;</a>
+                {% endif %}
+                {% if user.is_superuser %}
+                    <a class="btn" href="{% url 'menu:add_to_shoppinglist' ingredient.id %}">Add to List &raquo;</a>
+                    <!--<input class="btn" type=submit value="Add to Shopping List &raquo;"><br>-->
+                {% endif %}
+            </p>
+            <hr noshade>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
 
 {% block navsidebar %}

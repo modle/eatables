@@ -12,7 +12,6 @@ urlpatterns = [
     url(r'^menu/$', views.index, name='index'),
     # url(r'^menu/$', views.Index.as_view(), name='index'),
     # url(r'^(?P<recipe_id>[0-9]+)/add_ingredients/$', views.add_ingredient, name='add_ingredient'),
-    url(r'^archivelist/$', views.ArchiveList.as_view(), name='archivelist'),
 
     # non-generic recipe views
     url(r'^(?P<recipe_id>[0-9]+)/$', views.recipedetails, name='recipedetails'),
@@ -25,15 +24,16 @@ urlpatterns = [
     # non-generic ingredient views
     url(r'^(?P<recipeId>[0-9]+)/updateingredient/$', views.updateingredient, name='updateingredient'),
     url(r'^(?P<recipeId>[0-9]+)/addingredient/$', views.addingredient, name='addingredient'),
+    url(r'^(?P<ingredient_id>[0-9]+)/edit_ingredient/$', views.edit_ingredient, name='edit_ingredient'),
     url(r'^(?P<ingredientId>[0-9]+)/deleteingredient/$', views.deleteingredient, name='deleteingredient'),
     url(r'^uploadingredients/$', views.uploadingredients, name='uploadingredients'),
 
     # shopping list
-    url(r'^(?P<recipeId>[0-9]+)/addtoshoppinglist/$', views.addtoshoppinglist, name='addtoshoppinglist'),
-    url(r'^shoppinglist/$', views.shoppinglist, name='shoppinglist'),
+    url(r'^(?P<ingredient_id>[0-9]+)/add_toshopping_list/$', views.add_to_shoppinglist, name='add_to_shoppinglist'),
+    url(r'^shopping_list/$', views.shopping_list, name='shopping_list'),
+    url(r'^(?P<shopping_list_id>[0-9]+)/shopping_list_check_off/$', views.shopping_list_check_off, name='shopping_list_check_off'),
 
     # url(r'^update_rating', views.update_rating, name='update_rating'),
-
 
     # comments
     url(r'^(?P<commentId>[0-9]+)/commentdelete/$', views.commentdelete, name='commentdelete'),

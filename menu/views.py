@@ -42,49 +42,53 @@ def index(request):
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
-def addtoshoppinglist(request, recipeId):
-    for key in request.POST:
-        if key != 'csrfmiddlewaretoken':
-            value = (request.POST[key])
+def add_to_shoppinglist(request, ingredient_id):
 
-            listItem, created = ShoppingList.objects.get_or_create(ingredient_id=key)
-            i = Ingredient.objects.get(id=key)
-            entry = get_object_or_404(ShoppingList, ingredient_id=key)
-            # this math needs work; alternate is to store as decimal, then math.ceil when model is read
-            if created:
-                entry.amount = math.ceil(float(value))
-            else:
-                entry.amount = math.ceil(float(entry.amount) + float(value))
-                # entry.amount = entry.amount + Decimal(float(value))
-            entry.name = i.name
-            entry.save()
+    ingredient = Ingredient.objects.get(id=ingredient_id)
+    shopping_list_entries = ShoppingList.objects.filter(completed=False)
+    complete_shopping_list_entries = ShoppingList.objects.filter(completed=True)
+    list_item, created = ShoppingList.objects.get_or_create(ingredient_id=ingredient_id)
 
-    return HttpResponseRedirect(reverse('menu:recipedetails', args=(recipeId,)))
+    list_item.amount = ingredient.amount
+    list_item.name = ingredient.name
+    list_item.ingredient = ingredient
+    list_item.completed = False
+    list_item.save()
+
+    return render_to_response(
+        'menu/shopping_list.html',
+        {'shopping_list_entries': shopping_list_entries,
+         'complete_shopping_list_entries': complete_shopping_list_entries, },
+        context_instance=RequestContext(request))
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
-def shoppinglist(request):
-    logger = logging.getLogger(__name__)
+def shopping_list(request):
 
-    ShoppingListFormSet = modelformset_factory(ShoppingList, form=ShoppingListForm, extra=0)
-
-    if request.method == 'POST':
-        formset = ShoppingListFormSet(request.POST)
-        if formset.is_valid():
-            formset.save()
-            logger.debug('Formset saved')
-        else:
-            logger.debug('Formset invalid')
-
-    else:
-        formset = ShoppingListFormSet(queryset=ShoppingList.objects.filter(status=False))
-
-    logger.debug('POST DATA:\n %s', json.dumps(request.POST, indent=4, sort_keys=True))
-    logger.debug('LOCALS:\n %s', locals())
+    shopping_list_entries = ShoppingList.objects.filter(completed=False)
+    complete_shopping_list_entries = ShoppingList.objects.filter(completed=True)
 
     return render_to_response(
-        'menu/shoppinglist.html',
-        {'formset': formset, },
+        'menu/shopping_list.html',
+        {'shopping_list_entries': shopping_list_entries,
+         'complete_shopping_list_entries': complete_shopping_list_entries, },
+        context_instance=RequestContext(request))
+
+
+@user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
+def shopping_list_check_off(request, shopping_list_id):
+
+    shopping_list_entries = ShoppingList.objects.filter(completed=False)
+    complete_shopping_list_entries = ShoppingList.objects.filter(completed=True)
+
+    shopping_list_entry = ShoppingList.objects.get(shoppingListId=shopping_list_id)
+    shopping_list_entry.completed = True
+    shopping_list_entry.save()
+
+    return render_to_response(
+        'menu/shopping_list.html',
+        {'shopping_list_entries': shopping_list_entries,
+         'complete_shopping_list_entries': complete_shopping_list_entries, },
         context_instance=RequestContext(request))
 
 
@@ -112,22 +116,6 @@ def fridge(request):
         'menu/fridge.html',
         {'formset': formset},
         context_instance=RequestContext(request))
-
-
-class ArchiveList(generic.ListView):
-    model = ShoppingList
-    template_name = 'menu/shoppinglisthistory.html'
-
-    def get_queryset(self):
-        return ShoppingList.objects.all()
-
-
-class RecipeDetail(generic.DetailView):
-    model = Recipe
-    template_name = 'menu/recipedetails.html'
-
-    def get_queryset(self):
-        return Recipe.objects.all()
 
 
 def update_rating(request, recipeId, csrfmiddlewaretoken):
@@ -289,8 +277,8 @@ def deleterecipeforever(request, recipeId):
 
 @user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
 def editrecipe(request, recipeId):
-    if request.method == 'POST':
 
+    if request.method == 'POST':
         form = RecipeForm(request.POST, instance=Recipe.objects.get(id=recipeId))
 
         if form.is_valid():
@@ -307,6 +295,29 @@ def editrecipe(request, recipeId):
 
     return render_to_response('menu/editrecipe_form.html', {'form': form},
                               context_instance=RequestContext(request))
+
+
+@user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
+def edit_ingredient(request, ingredient_id):
+
+    ingredient = Ingredient.objects.get(id=ingredient_id)
+    recipe = Recipe.objects.get(id=ingredient.recipe_id)
+
+    if request.method == 'POST':
+        ingredient_form = IngredientForm(request.POST, instance=Ingredient.objects.get(id=ingredient_id))
+
+        if ingredient_form.is_valid():
+            formpost = ingredient_form.save(commit=False)
+            formpost.user = request.user
+            formpost.edited = datetime.now()
+            formpost.save()
+            return HttpResponseRedirect(reverse('menu:recipedetails', args=(recipe.id,)))
+
+    else:
+        ingredient_form = IngredientForm(instance=ingredient)
+
+        return render_to_response('menu/edit_ingredient.html', {'ingredient_form': ingredient_form, 'recipe': recipe},
+                                  context_instance=RequestContext(request))
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')

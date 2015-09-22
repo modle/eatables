@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm, Textarea
-from .models import ShoppingList, Ingredient, Recipe, Fridge, Comment, Rating
+from .models import Ingredient, Recipe, Fridge, Comment, Rating
 
 
 class RecipeForm(ModelForm):
@@ -26,24 +26,6 @@ class RecipeForm(ModelForm):
 
 class DocumentForm(forms.Form):
     docfile = forms.FileField(label='Select file')
-
-
-class ShoppingListForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(ShoppingListForm, self).__init__(*args, **kwargs)
-        self.fields['amount'].widget.attrs.update({'id': 'listform'})
-        self.fields['name'].widget.attrs['readonly'] = True
-
-
-    class Meta:
-        model = ShoppingList
-        # fields = '__all__'
-        fields = ('status', 'amount', 'name', )
-        labels = {
-            'status': '',
-            'amount': '',
-            'name': '',
-        }
 
 
 class ArchivedRecipesForm(forms.ModelForm):

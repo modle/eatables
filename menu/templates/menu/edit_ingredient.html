@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load menu_extras %}
+
+<html>
+    <body>
+        {% block title %}
+            <div id="title">
+                Recipe: {{ recipe.name }}
+                Edit Ingredient Details: {{ ingredient.name }}
+            </div>
+        {% endblock %}
+        {% block content %}
+            <h2>Edit Ingredient Details</h2>
+
+            <form method="POST" action="">
+                {% csrf_token %}
+                {{ ingredient_form.id }}
+                {{ ingredient_form.name.label }}: {{ ingredient_form.name }}<br>
+                {{ ingredient_form.amount.label }}: {{ ingredient_form.amount }}<br>
+                {{ ingredient_form.unit.label }}: {{ ingredient_form.unit }}<br>
+                {{ ingredient_form.comment.label }}: {{ ingredient_form.comment }}
+                {{ ingredient_form.sorting.label }}: {{ ingredient_form.sorting }}
+                <p>
+                    <input class="btn" type="submit" value="Update &raquo;" id="submit"/>
+                </p>
+            </form>
+        {% endblock %}
+        {% block navsidebar %}
+        {% endblock %}
+    </body>
+</html>
