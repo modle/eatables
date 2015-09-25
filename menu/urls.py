@@ -6,14 +6,9 @@ from . import views
 urlpatterns = [
     # index and base
     url(r'^$', views.basetemplate, name='basetemplate'),
-
-    # generic views
-    # url(r'^(?P<pk>[0-9]+)/$', views.RecipeDetail.as_view(), name='recipedetails'),
     url(r'^menu/$', views.index, name='index'),
-    # url(r'^menu/$', views.Index.as_view(), name='index'),
-    # url(r'^(?P<recipe_id>[0-9]+)/add_ingredients/$', views.add_ingredient, name='add_ingredient'),
 
-    # non-generic recipe views
+    # recipe
     url(r'^(?P<recipe_id>[0-9]+)/$', views.recipedetails, name='recipedetails'),
     url(r'^archivedrecipes/$', views.archivedrecipes, name='archivedrecipes'),
     url(r'^addrecipe/$', views.addrecipe, name='addrecipe'),
@@ -25,7 +20,7 @@ urlpatterns = [
     url(r'^(?P<recipeId>[0-9]+)/updateingredient/$', views.updateingredient, name='updateingredient'),
     url(r'^(?P<recipeId>[0-9]+)/addingredient/$', views.addingredient, name='addingredient'),
     url(r'^(?P<ingredient_id>[0-9]+)/edit_ingredient/$', views.edit_ingredient, name='edit_ingredient'),
-    url(r'^(?P<ingredientId>[0-9]+)/deleteingredient/$', views.deleteingredient, name='deleteingredient'),
+    url(r'^(?P<ingredient_id>[0-9]+)/delete_ingredient/$', views.delete_ingredient, name='delete_ingredient'),
     url(r'^uploadingredients/$', views.uploadingredients, name='uploadingredients'),
 
     # shopping list

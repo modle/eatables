@@ -316,7 +316,9 @@ def edit_ingredient(request, ingredient_id):
     else:
         ingredient_form = IngredientForm(instance=ingredient)
 
-        return render_to_response('menu/edit_ingredient.html', {'ingredient_form': ingredient_form, 'recipe': recipe},
+        return render_to_response('menu/edit_ingredient.html', {'ingredient_form': ingredient_form,
+                                                                'recipe': recipe,
+                                                                'ingredient': ingredient},
                                   context_instance=RequestContext(request))
 
 
@@ -348,10 +350,10 @@ def updateingredient(request, recipeId):
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
-def deleteingredient(request, ingredientId):
-    i = Ingredient.objects.get(pk=ingredientId)
-    Ingredient.objects.filter(pk=ingredientId).delete()
-    return HttpResponseRedirect(reverse('menu:editingredients', args=(i.recipe_id,)) + '#ingredients')
+def delete_ingredient(request, ingredient_id):
+    i = Ingredient.objects.get(pk=ingredient_id)
+    Ingredient.objects.filter(pk=ingredient_id).delete()
+    return HttpResponseRedirect(reverse('menu:recipedetails', args=(i.recipe_id,)) + '#ingredients')
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='notauthorized')
@@ -561,10 +563,12 @@ def profile(request, slug):
 
     recipes = Recipe.objects.filter(user_id=user.id)
     comments = Comment.objects.filter(user_id=user.id)
+    recipe_form = RecipeForm()
 
     return render_to_response('menu/profile.html', {
         'recipes': recipes,
         'comments': comments,
+        'recipe_form': recipe_form,
         },
         context_instance=RequestContext(request)
     )

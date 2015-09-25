@@ -5,13 +5,10 @@
 <html>
     <body>
         {% block title %}
-            <div id="title">
-                Recipe: {{ recipe.name }}
-                Edit Ingredient Details: {{ ingredient.name }}
-            </div>
         {% endblock %}
         {% block content %}
-            <h2>Edit Ingredient Details</h2>
+            <h1>Recipe: {{ recipe.name }}</h1>
+            <h3>Edit Ingredient Details: {{ ingredient.name }}</h3>
 
             <form method="POST" action="">
                 {% csrf_token %}
@@ -25,6 +22,9 @@
                     <input class="btn" type="submit" value="Update &raquo;" id="submit"/>
                 </p>
             </form>
+        <a class="btn" href="{% url 'menu:delete_ingredient' ingredient.id %}"
+           onclick="return confirm('Are you sure? This will also delete any shoppingList entries for this ingredient.')">
+            Delete &raquo;</a>
         {% endblock %}
         {% block navsidebar %}
         {% endblock %}

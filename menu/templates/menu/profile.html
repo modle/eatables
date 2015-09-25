@@ -13,17 +13,20 @@
     <div class="newpost-collapse collapse">
         <form method="POST" action="">
             {% csrf_token %}
-            {{ form.id }}
-            {{ form.title }}<br>
-            {{ form.category.label }}: {{ form.category }}<br>
-            Check to publish: {{ form.published }}<br><br>
-            <hr noshade>
-            {{ form.body }}
-            {{ form.edited.as_hidden }}
-            <hr noshade>
+            Name<br>{{ recipe_form.name }}<br>
+            Description{{ recipe_form.description }}<br><br>
+            Check to publish: {{ recipe_form.published }}<br><br>
+            Category<br>{{ recipe_form.category }}<br><br>
+            Dish Type<br>{{ recipe_form.dish_type }}<br><br>
+            Temperature<br>{{ recipe_form.temperature }}<br><br>
+            Prep Time (minutes)<br>{{ recipe_form.prep_time }}<br><br>
+            Cook Time (minutes)<br>{{ recipe_form.cook_time }}<br><br>
+            Servings<br>{{ recipe_form.servings }}<br><br>
+            Directions<br>{{ recipe_form.directions }}<br><br>
+            URL<br>{{ recipe_form.source }}<br><br>
+            Image URL<br>{{ recipe_form.banner_image }}<br><br>
             <p>
                 <input class="btn" type="submit" value="Post &raquo;" id="submit"/>
-                <a class="btn" href="{% url 'menu:profile' user.username %}">Cancel &raquo;</a>
             </p>
         </form>
     </div>
@@ -32,21 +35,21 @@
 <hr noshade>
 <hr noshade>
 
-<h3>Your Posts</h3>
+<h3>Your Recipes</h3>
 <div class="row-fluid">
     <div class="span12">
-        {% for post in posts %}
-            <p><b>{{ post.title }} |</b>
-            {% if post.published %}
+        {% for recipe in recipes %}
+            <p><b>{{ recipe.name }} |</b>
+            {% if recipe.published %}
                 <span style="color:lightgreen; font-weight:bold">Published</span> |
             {% else %}
                 <span style="color:lightgray; font-weight:bold">Draft</span> |
             {% endif %}
-            {{ post.category }} |
-            {{ post.posted }} |
-                <a class="btn" href="{% url 'edit_post' post.slug %}">Edit Post &raquo;</a>
-            {% if post.published %}
-                <a class="btn" href="{% url 'view_blog_post' post.slug %}">View Post &raquo;</a>
+            {{ recipe.category }} |
+            {{ recipe.publish_date }} |
+                <a class="btn" href="{% url 'menu:editrecipe' recipe.id %}">Edit Recipe &raquo;</a>
+            {% if recipe.published %}
+                <a class="btn" href="{% url 'menu:recipedetails' recipe.id %}">View Recipe &raquo;</a>
             {% endif %}
                 <hr noshade>
         {% endfor %}

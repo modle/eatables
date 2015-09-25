@@ -3,27 +3,29 @@
 
 {% block content %}
 
-<div class="container-fluid">
-    <button type="button" class="btn" data-toggle="collapse" data-target=".newpost-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-    </button>
-    <div class="newpost-collapse collapse">
-        <form method="POST" action="">
-            {% csrf_token %}
-            {{ ingredient_form.id }}
-            {{ ingredient_form.name.label }}: {{ ingredient_form.name }}<br>
-            {{ ingredient_form.amount.label }}: {{ ingredient_form.amount }}<br>
-            {{ ingredient_form.unit.label }}: {{ ingredient_form.unit }}<br>
-            {{ ingredient_form.comment.label }}: {{ ingredient_form.comment }}
-            {{ ingredient_form.sorting.label }}: {{ ingredient_form.sorting }}
-            <p>
-                <input class="btn" type="submit" value="Add &raquo;" id="submit"/>
-            </p>
-        </form>
+{% if user.is_superuser %}
+    <div class="container-fluid">
+        <button type="button" class="btn" data-toggle="collapse" data-target=".newpost-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <div class="newpost-collapse collapse">
+            <form method="POST" action="">
+                {% csrf_token %}
+                {{ ingredient_form.id }}
+                {{ ingredient_form.name.label }}: {{ ingredient_form.name }}<br>
+                {{ ingredient_form.amount.label }}: {{ ingredient_form.amount }}<br>
+                {{ ingredient_form.unit.label }}: {{ ingredient_form.unit }}<br>
+                {{ ingredient_form.comment.label }}: {{ ingredient_form.comment }}
+                {{ ingredient_form.sorting.label }}: {{ ingredient_form.sorting }}
+                <p>
+                    <input class="btn" type="submit" value="Add &raquo;" id="submit"/>
+                </p>
+            </form>
+        </div>
     </div>
-</div>
+{% endif %}
 
 <hr noshade>
 

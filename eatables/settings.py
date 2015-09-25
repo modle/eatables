@@ -74,29 +74,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'eatables.wsgi.application'
 
-# prd DB
+
+# test DB
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd13ng6896mcf6t',
-        'USER': 'sehrttnlioufpr',
-        'PASSWORD': 'i7y7WMQlEY6kbb7djE0DCQMmNB',
-        'HOST': 'ec2-54-83-36-176.compute-1.amazonaws.com',
+        'NAME': 'd7473re0vc2uc3',
+        'USER': 'kwsdtkvbgopisj',
+        'PASSWORD': '24FcRKHogp1VRzO68oXOuO7seG',
+        'HOST': 'ec2-54-235-162-144.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
-
-# test DB
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'd7473re0vc2uc3',
-#         'USER': 'kwsdtkvbgopisj',
-#         'PASSWORD': '24FcRKHogp1VRzO68oXOuO7seG',
-#         'HOST': 'ec2-54-235-162-144.compute-1.amazonaws.com',
-#         'PORT': '5432',
-#     }
-# }
 
 
 # Internationalization
