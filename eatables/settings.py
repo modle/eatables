@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-
+import urlparse
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # LOGIN_REDIRECT_URL = '/eatables/'
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '6+yr4-!9omg%x=6hls60b!(%&(5*w)xb=t-=q_n(l+l49m&web'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -75,32 +75,19 @@ TEMPLATES = [
 WSGI_APPLICATION = 'eatables.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+urlparse.uses_netloc.append("postgres")
+url = urlparse.urlparse(os.environ["DATABASE_URL"])
 
-# prd DB
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd13ng6896mcf6t',
-        'USER': 'sehrttnlioufpr',
-        'PASSWORD': 'i7y7WMQlEY6kbb7djE0DCQMmNB',
-        'HOST': 'ec2-54-83-36-176.compute-1.amazonaws.com',
-        'PORT': '5432',
+        'NAME': url.path[1:],
+        'USER': url.username,
+        'PASSWORD': url.password,
+        'HOST': url.hostname,
+        'PORT': url.port
     }
 }
-
-# test DB
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'd7473re0vc2uc3',
-#         'USER': 'kwsdtkvbgopisj',
-#         'PASSWORD': '24FcRKHogp1VRzO68oXOuO7seG',
-#         'HOST': 'ec2-54-235-162-144.compute-1.amazonaws.com',
-#         'PORT': '5432',
-#     }
-# }
 
 
 # Internationalization
