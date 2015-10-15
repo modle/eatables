@@ -26,3 +26,5 @@ logfile*
 
 #ignore env var file
 .env
+
+localsettings.*

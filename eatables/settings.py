@@ -12,18 +12,11 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-import urlparse
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # need to setup overrides if using this method
 # LOGIN_REDIRECT_URL = '/eatables/'
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -75,23 +68,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'eatables.wsgi.application'
 
 
-urlparse.uses_netloc.append("postgres")
-url = urlparse.urlparse(os.environ["DATABASE_URL"])
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': url.path[1:],
-        'USER': url.username,
-        'PASSWORD': url.password,
-        'HOST': url.hostname,
-        'PORT': url.port
-    }
-}
-
-
 # Internationalization
-# https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -105,8 +82,6 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
-
 
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/eatables/staticfiles/'
@@ -115,56 +90,14 @@ STATICFILES_DIRS = (
 )
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'eatables')
 
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = '/accounts/loggedin/'
 
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'formatters': {
-        'standard': {
-            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-            'datefmt': "%d/%b/%Y %H:%M:%S"
-        },
-    },
-    'handlers': {
-        'null': {
-            'level': 'DEBUG',
-            'class': 'django.utils.log.NullHandler',
-        },
-        'logfile': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': BASE_DIR + "/logfile",
-            'maxBytes': 50000,
-            'backupCount': 2,
-            'formatter': 'standard',
-        },
-        'console': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'formatter': 'standard'
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'propagate': True,
-            'level': 'WARN',
-        },
-        'django.db.backends': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': False,
-        },
-        'menu': {
-            'handlers': ['console', 'logfile'],
-            'level': 'DEBUG',
-        },
-    }
-}
+try:
+    from eatables.localsettings import *
+    print 'you''re using the local dev settings'
+except ImportError:
+    from eatables.prodsettings import *
