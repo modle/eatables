@@ -2,7 +2,6 @@
 {% load staticfiles %}
 {% load menu_extras %}
 {% load markdown_deux_tags %}
-<!--<script type="text/javascript" src="{% static 'bootstrap/js/eatables.js' %}"></script>-->
 
 <html>
 <body>
@@ -23,22 +22,30 @@
         {% endif %}
     </div>
 
-    <div style="clear:both;"></div><br>
+    <div style="clear:both;"></div>
 
     <div class="row-fluid">
         <div class="span4">
-            {% include "menu/recipedetailsingredients.html" %}
+            {% include "menu/recipe_details_ingredients.html" %}
         </div>
     </div>
-    <br><br><hr>
+    <hr>
     <div class="row-fluid">
         <div class="span9">
-            {% include "menu/recipedetailsrecipe.html" %}
+            <h3>Directions</h3>
+            {% if user.is_superuser %}
+                <a class="btn" href="{% url 'menu:edit_recipe' recipe.id %}">Edit &raquo;</a><br>
+            {% endif %}
+            <br>
+            {% markdown %}
+                {{ recipe.directions | safe }}
+            {% endmarkdown %}
         </div>
     </div>
-    <br><br><hr>
+    <hr>
     <div class="row-fluid">
         <div class="span9">
+            <h3>Comments</h3>
             {% if user.is_authenticated %}
                 <div id="comments"></div>
                 <h3 class="cap-header">Add Comment</h3>
@@ -50,20 +57,21 @@
                 <br><br><hr>
             {% else %}
                 You must be logged in to comment or rate.<br>
-                <a href="{% url 'login' %}">Login</a> |
+                <a href="{% url 'login' %}">Login</a>
                 <a href="{% url 'register' %}">Sign Up</a>
+                <hr>
             {% endif %}
 
             {% if recipe.comment_set.all %}
-                <h3>Comments</h3>
                 {% for c in recipe.comment_set.all %}
                     <ul class="unstyled">
                         <li>{{ c.comment }}</li>
                         <li>{{ c.publishDate }}</li>
-                        {% if user.is_superuser %}
-                            <a class="btn" href="{% url 'menu:commentdelete' c.id %}" onclick="return confirm('Are you sure?')">Delete &raquo;</a>
-                        {% endif %}
                     </ul>
+                    {% if user.is_superuser %}
+                        <a class="btn" href="{% url 'menu:comment_delete' c.id %}"
+                           onclick="return confirm('Are you sure?')">Delete &raquo;</a>
+                    {% endif %}
                 {% endfor %}
             {% endif %}
         </div>
@@ -81,13 +89,13 @@
                 {% if recipe.prep_time < 60 %}
                     {{ recipe.prep_time }} minute(s)</li>
                 {% else %}
-                    {{ recipe.prep_time|minutestohours|floatformat:"1" }} hour(s)
+                    {{ recipe.prep_time|minutes_to_hours|floatformat:"1" }} hour(s)
                 {% endif %}
             <li><b>Cook Time</b>:
                 {% if recipe.cook_time < 60 %}
                     {{ recipe.cook_time }} minute(s)
                 {% else %}
-                    {{ recipe.cook_time|minutestohours|floatformat:"1" }} hour(s)
+                    {{ recipe.cook_time|minutes_to_hours|floatformat:"1" }} hour(s)
                 {% endif %}
             </li>
             <li><b>Servings</b>: {{ recipe.servings }}</li>

@@ -26,7 +26,7 @@
             URL<br>{{ recipe_form.source }}<br><br>
             Image URL<br>{{ recipe_form.banner_image }}<br><br>
             <p>
-                <input class="btn" type="submit" value="Post &raquo;" id="submit"/>
+                <input class="btn" type="submit" value="Post &raquo;"/>
             </p>
         </form>
     </div>
@@ -47,9 +47,9 @@
             {% endif %}
             {{ recipe.category }} |
             {{ recipe.publish_date }} |
-                <a class="btn" href="{% url 'menu:editrecipe' recipe.id %}">Edit Recipe &raquo;</a>
+                <a class="btn" href="{% url 'menu:edit_recipe' recipe.id %}">Edit Recipe &raquo;</a>
             {% if recipe.published %}
-                <a class="btn" href="{% url 'menu:recipedetails' recipe.id %}">View Recipe &raquo;</a>
+                <a class="btn" href="{% url 'menu:recipe_details' recipe.id %}">View Recipe &raquo;</a>
             {% endif %}
                 <hr noshade>
         {% endfor %}

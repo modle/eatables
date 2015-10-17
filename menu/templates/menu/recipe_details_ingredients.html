@@ -37,10 +37,10 @@
                 <!--{% if user.is_superuser %}-->
                     <!--<input type="checkbox" value={{ingredient.amount}} id={{ingredient.id}} name={{ingredient.id}}>-->
                 <!--{% endif %}-->
-                <b>{{ ingredient.name }} |</b>
-                {{ ingredient.amount|showinteger }}{{ ingredient.amount|showfraction }} |
-                {{ ingredient.unit }} |
-                {{ ingredient.comment }} |
+                {{ ingredient.amount|show_integer }}{{ ingredient.amount|show_fraction }}
+                {{ ingredient.unit }}
+                {{ ingredient.name }}{% if ingredient.comment %}, {{ ingredient.comment }}
+                {% endif %}
                 <!--add a button here to increase or decrease ordering-->
                 {% if user.is_authenticated %}
                     <a class="btn" href="{% url 'menu:edit_ingredient' ingredient.id %}">Edit &raquo;</a>
@@ -50,7 +50,6 @@
                     <!--<input class="btn" type=submit value="Add to Shopping List &raquo;"><br>-->
                 {% endif %}
             </p>
-            <hr noshade>
         {% endfor %}
     </div>
 </div>

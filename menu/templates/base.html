@@ -16,11 +16,6 @@
 <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-carousel.js' %}"></script>
 <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-typeahead.js' %}"></script>
 
-<!--<script type="text/javascript" src="{% static 'bootstrap/js/eatables.js' %}"></script>-->
-<!--<script type="text/javascript" src="{% static 'menu/js/menu.js' %}"></script>-->
-<!--<script type="text/javascript" src="{% static 'menu/js/jquery-1.11.3.js' %}"></script>-->
-
-
 <html>
 <head>
 <title>
@@ -44,7 +39,7 @@
                 <p class="navbar-text pull-right">
                     {% if user.is_authenticated %}
                         Logged in as <a href="{% url 'menu:profile' user.username %}" class="navbar-link">{{ user.username }}</a>
-                        <a href="{% url 'logout' %}?next={% url 'loggedout' %}">Logout</a>
+                        <a href="{% url 'logout' %}?next={% url 'logged_out' %}">Logout</a>
                     {% else %}
                         <a href="{% url 'login' %}">Login</a>
                         <a href="{% url 'register' %}">Sign Up</a>
@@ -59,10 +54,10 @@
                     <!--<li><a href="#newsletter">Newsletter</a></li>-->
                     {% if user.is_superuser %}
                         <li><a href="{% url 'menu:profile' user.username %}">Your Profile</a></li>
-                        <li><a href="{% url 'menu:addrecipe' %}">Add Recipe</a></li>
-                        <li><a href="{% url 'menu:uploadrecipe' %}">Upload Recipe</a></li>
+                        <li><a href="{% url 'menu:add_recipe' %}">Add Recipe</a></li>
+                        <li><a href="{% url 'menu:upload_recipe' %}">Upload Recipe</a></li>
                         <li><a href="{% url 'menu:shopping_list' %}">View Shopping List</a></li>
-                        <li><a href="{% url 'menu:archivedrecipes' %}">Drafts</a></li>
+                        <li><a href="{% url 'menu:archived_recipes' %}">Drafts</a></li>
                         <li><a href="{% url 'menu:fridge' %}">In the Fridge</a></li>
                     {% endif %}
                 </ul>
@@ -108,7 +103,7 @@
                         <li class="nav-header">Recipes</li>
                         {% if recipes %}
                             {% for recipe in recipes %}
-                                <li><a href="{% url 'menu:recipedetails' recipe.id %}">{{ recipe.name }}</a></li>
+                                <li><a href="{% url 'menu:recipe_details' recipe.id %}">{{ recipe.name }}</a></li>
                             {% endfor %}
                         {% else %}
                             <li>There are no recipes.</li>

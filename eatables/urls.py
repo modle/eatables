@@ -21,7 +21,7 @@ from django.contrib.auth import views
 
 
 urlpatterns = [
-    url(r'^', include('menu.urls', namespace="basetemplate")),
+    url(r'^', include('menu.urls', namespace="base_template")),
     url(r'^', include('menu.urls', namespace="menu")),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
@@ -35,8 +35,8 @@ urlpatterns += [
     # Auth-related URLs
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', name='login'),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', name='logout'),
-    url(r'^accounts/loggedin/$', 'menu.views.loggedin', name='loggedin'),
-    url(r'^accounts/notauthorized/$', 'menu.views.notauthorized', name='notauthorized'),
-    url(r'^menu/loggedout/$', 'menu.views.loggedout', name='loggedout'),
+    url(r'^accounts/logged_in/$', 'menu.views.logged_in', name='logged_in'),
+    url(r'^accounts/not_authorized/$', 'menu.views.not_authorized', name='not_authorized'),
+    url(r'^menu/logged_out/$', 'menu.views.logged_out', name='logged_out'),
 
 ]

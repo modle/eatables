@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime
+from django.utils import timezone
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
@@ -50,8 +50,8 @@ class Recipe(models.Model):
     cook_time = models.IntegerField(default=0)
     published = models.BooleanField(default=False, null=False)
     user = models.ForeignKey(User, null=True, blank=True)
-    publish_date = models.DateTimeField(default=datetime.now)
-    edit_date = models.DateTimeField(default=datetime.now)
+    publish_date = models.DateTimeField(default=timezone.now)
+    edit_date = models.DateTimeField(default=timezone.now)
     pinned = models.BooleanField(default=False)
     banner_image = models.CharField(max_length=1000, null=True, blank=True)
     dish_type = models.ForeignKey(DishType)
@@ -115,8 +115,8 @@ class Comment(models.Model):
     comment = models.TextField(null=True)
     rating = models.IntegerField(null=True)
     user = models.ForeignKey(User, null=True, blank=True)
-    publishDate = models.DateTimeField(default=datetime.now)
-    editDate = models.DateTimeField(default=datetime.now)
+    publishDate = models.DateTimeField(default=timezone.now)
+    editDate = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return str(self.id) + str(self.comment)
@@ -144,7 +144,7 @@ class PurchaseHistory(models.Model):
 class Fridge(models.Model):
     id = models.AutoField(primary_key=True)
     item = models.CharField(max_length=80, unique=True, null=False)
-    fridgedate = models.DateField(default=datetime.now)
+    fridgedate = models.DateField(default=timezone.now)
     expires = models.DateField(null=True, blank=True)
 
     def __str__(self):
@@ -158,8 +158,8 @@ class Rating(models.Model):
     recipe = models.ForeignKey(Recipe)
     rating = models.IntegerField(null=True)
     user = models.ForeignKey(User, null=True, blank=True)
-    publishDate = models.DateTimeField(default=datetime.now)
-    editDate = models.DateTimeField(default=datetime.now)
+    publishDate = models.DateTimeField(default=timezone.now)
+    editDate = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return str(self.id) + str(self.comment)

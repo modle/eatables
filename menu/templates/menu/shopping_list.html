@@ -21,11 +21,11 @@
     <hr><hr>
     {% for complete_entry in complete_shopping_list_entries %}
         <del>{{ complete_entry.amount }} {{ complete_entry.name }}</del>
-        <a class="btn" href="{% url 'menu:add_to_shoppinglist' complete_entry.ingredient_id %}">Return to List &raquo;</a> <a class="btn" href="">Archive &raquo;</a>
+        <a class="btn" href="{% url 'menu:add_to_shoppinglist' complete_entry.ingredient_id %}">
+            Return to List &raquo;</a>
+        <a class="btn" href="">Archive &raquo;</a>
         <hr>
     {% endfor %}
-
-
 
 {% endblock %}
 
