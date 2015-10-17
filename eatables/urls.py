@@ -35,8 +35,8 @@ urlpatterns += [
     # Auth-related URLs
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', name='login'),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', name='logout'),
-    url(r'^accounts/logged_in/$', 'menu.views.logged_in', name='logged_in'),
+    url(r'^accounts/loggedin/$', 'menu.views.loggedin', name='loggedin'),
     url(r'^accounts/not_authorized/$', 'menu.views.not_authorized', name='not_authorized'),
-    url(r'^menu/logged_out/$', 'menu.views.logged_out', name='logged_out'),
+    url(r'^menu/loggedout/$', 'menu.views.loggedout', name='loggedout'),
 
 ]

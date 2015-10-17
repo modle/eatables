@@ -39,7 +39,7 @@
                 <p class="navbar-text pull-right">
                     {% if user.is_authenticated %}
                         Logged in as <a href="{% url 'menu:profile' user.username %}" class="navbar-link">{{ user.username }}</a>
-                        <a href="{% url 'logout' %}?next={% url 'logged_out' %}">Logout</a>
+                        <a href="{% url 'logout' %}?next={% url 'loggedout' %}">Logout</a>
                     {% else %}
                         <a href="{% url 'login' %}">Login</a>
                         <a href="{% url 'register' %}">Sign Up</a>

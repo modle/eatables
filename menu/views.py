@@ -512,9 +512,9 @@ def registration_complete(request):
     )
 
 
-def logged_in(request):
+def loggedin(request):
     return render_to_response(
-        'registration/logged_in.html',
+        'registration/loggedin.html',
         context_instance=RequestContext(request)
     )
 
@@ -526,9 +526,9 @@ def not_authorized(request):
     )
 
 
-def logged_out(request):
+def loggedout(request):
     return render_to_response(
-        'registration/logged_out.html',
+        'registration/loggedout.html',
         context_instance=RequestContext(request)
     )
 
