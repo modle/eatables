@@ -3,13 +3,16 @@
 
 {% block content %}
 
+
+
+<h3>Ingredients</h3>
+
 {% if user.is_superuser %}
     <div class="container-fluid">
         <button type="button" class="btn" data-toggle="collapse" data-target=".newpost-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+            <span>Show/Hide</span>
         </button>
+        <br>
         <div class="newpost-collapse collapse">
             <form method="POST" action="">
                 {% csrf_token %}
@@ -25,13 +28,11 @@
             </form>
         </div>
     </div>
+<hr>
 {% endif %}
 
-<hr noshade>
-
-<h3>Ingredients</h3>
 <div class="row-fluid">
-    <div class="span12">
+    <div class="span9">
         {% for ingredient in recipe.ingredient_set.all %}
             <p>
                 <!--{% if user.is_superuser %}-->
@@ -41,13 +42,15 @@
                 {{ ingredient.unit }}
                 {{ ingredient.name }}{% if ingredient.comment %}, {{ ingredient.comment }}
                 {% endif %}
-                <!--add a button here to increase or decrease ordering-->
+                {% if user.is_superuser %}
+                    <a class="btn" href="{% url 'menu:add_to_shopping_list' ingredient.id %}">Add to List &raquo;</a>
+                    <!--<input class="btn" type=submit value="Add to Shopping List &raquo;"><br>-->
+                {% endif %}
                 {% if user.is_authenticated %}
                     <a class="btn" href="{% url 'menu:edit_ingredient' ingredient.id %}">Edit &raquo;</a>
-                {% endif %}
-                {% if user.is_superuser %}
-                    <a class="btn" href="{% url 'menu:add_to_shoppinglist' ingredient.id %}">Add to List &raquo;</a>
-                    <!--<input class="btn" type=submit value="Add to Shopping List &raquo;"><br>-->
+                    <!-- add view to handle up/down ordering; up = find min larger then swap; down = find max smaller then swap -->
+                    <a class="btn" href="">&#x25B2;</a>
+                    <a class="btn" href="">&#x25BC;</a>
                 {% endif %}
             </p>
         {% endfor %}
