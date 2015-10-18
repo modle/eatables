@@ -1144,7 +1144,8 @@ input[type="color"],
           transition: border linear 0.2s, box-shadow linear 0.2s;
 }
 
-input[type="number"]{
+input[type="number"],
+input[type="text"]{
 height: auto;
 }
 

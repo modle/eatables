@@ -21,7 +21,6 @@
                 {{ ingredient_form.amount.label }}: {{ ingredient_form.amount }}<br>
                 {{ ingredient_form.unit.label }}: {{ ingredient_form.unit }}<br>
                 {{ ingredient_form.comment.label }}: {{ ingredient_form.comment }}
-                {{ ingredient_form.sorting.label }}: {{ ingredient_form.sorting }}
                 <p>
                     <input class="btn" type="submit" value="Add &raquo;" id="submit"/>
                 </p>
@@ -49,8 +48,8 @@
                 {% if user.is_authenticated %}
                     <a class="btn" href="{% url 'menu:edit_ingredient' ingredient.id %}">Edit &raquo;</a>
                     <!-- add view to handle up/down ordering; up = find min larger then swap; down = find max smaller then swap -->
-                    <a class="btn" href="">&#x25B2;</a>
-                    <a class="btn" href="">&#x25BC;</a>
+                    <a class="btn" href="{% url 'menu:move_ingredient_up' ingredient.id %}">&#x25B2;</a>
+                    <a class="btn" href="{% url 'menu:move_ingredient_down' ingredient.id %}">&#x25BC;</a>
                 {% endif %}
             </p>
         {% endfor %}

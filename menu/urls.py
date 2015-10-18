@@ -16,12 +16,14 @@ urlpatterns = [
     url(r'^(?P<recipeId>[0-9]+)/delete_recipe_forever/$', views.delete_recipe_forever, name='delete_recipe_forever'),
     url(r'^upload_recipe/$', views.upload_recipe, name='upload_recipe'),
 
-    # non-generic ingredient views
+    # ingredients
     url(r'^(?P<recipeId>[0-9]+)/update_ingredient/$', views.update_ingredient, name='update_ingredient'),
-    url(r'^(?P<recipeId>[0-9]+)/add_ingredient/$', views.add_ingredient, name='add_ingredient'),
     url(r'^(?P<ingredient_id>[0-9]+)/edit_ingredient/$', views.edit_ingredient, name='edit_ingredient'),
     url(r'^(?P<ingredient_id>[0-9]+)/delete_ingredient/$', views.delete_ingredient, name='delete_ingredient'),
     url(r'^upload_ingredients/$', views.upload_ingredients, name='upload_ingredients'),
+    url(r'^(?P<ingredient_id>[0-9]+)/move_ingredient_up/$', views.move_ingredient_up, name='move_ingredient_up'),
+    url(r'^(?P<ingredient_id>[0-9]+)/move_ingredient_down/$', views.move_ingredient_down, name='move_ingredient_down'),
+
 
     # shopping list
     url(r'^(?P<ingredient_id>[0-9]+)/add_to_shopping_list/$', views.add_to_shopping_list, name='add_to_shopping_list'),

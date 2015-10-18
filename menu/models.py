@@ -79,7 +79,7 @@ class Ingredient(models.Model):
         return str(self.unit) + " " + str(self.name)
 
     class Meta:
-        ordering = ('sorting', 'id', )
+        ordering = ('recipe_id', 'sorting', 'id', )
         unique_together = ('name', 'recipe', 'amount', 'unit',)
         select_on_save = True
 

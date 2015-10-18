@@ -96,7 +96,7 @@ class IngredientForm(ModelForm):
 
     class Meta:
         model = Ingredient
-        fields = ('name', 'comment', 'amount', 'unit', 'sorting',)
+        fields = ('name', 'comment', 'amount', 'unit', )
         labels = {
             'name': 'Ingredient Name'
         }

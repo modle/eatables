@@ -12,6 +12,7 @@ import sys
 from django.contrib.auth.forms import UserCreationForm
 from django.core.context_processors import csrf
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.db.models import Count
 
 from menu.forms import *
 from .models import Recipe, Ingredient, ShoppingList, Fridge, Comment, Category, DishType
@@ -161,9 +162,14 @@ def recipe_details(request, recipe_id):
                 rating_save.save()
 
             if ingredient_form.is_valid():
+                max_ingredient_sorting = Ingredient.objects.filter(recipe_id=recipe).order_by('-sorting')[0]
+
                 ingredient_save = ingredient_form.save(commit=False)
                 ingredient_save.recipe = recipe
+                ingredient_save.sorting = max_ingredient_sorting.sorting + 10
                 ingredient_save.save()
+
+            return HttpResponseRedirect(reverse('menu:recipe_details', args=(recipe_id,)))
 
         else:
             comment_form = CommentForm()
@@ -203,7 +209,6 @@ def view_category(request, slug):
         'dish_types': dish_types,
         'recipes': recipes,
     },
-
         context_instance=RequestContext(request)
     )
 
@@ -338,15 +343,6 @@ def delete_ingredient(request, ingredient_id):
     i = Ingredient.objects.get(pk=ingredient_id)
     Ingredient.objects.filter(pk=ingredient_id).delete()
     return HttpResponseRedirect(reverse('menu:recipe_details', args=(i.recipe_id,)) + '#ingredients')
-
-
-@user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
-def add_ingredient(request, recipe_id):
-    r = Recipe.objects.get(pk=recipe_id)
-
-    now = str(datetime.now().strftime('%Y-%m-%d %H:%M:%S:%f'))
-    r.ingredient_set.create(name="_Update Me_" + now, amount="0.0", unit="unit")
-    return HttpResponseRedirect(reverse('menu:edit_ingredients', args=(recipe_id,)) + '#ingredients')
 
 
 @login_required()
@@ -554,3 +550,59 @@ def profile(request, slug):
         },
         context_instance=RequestContext(request)
     )
+
+
+@user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
+def move_ingredient_up(request, ingredient_id):
+
+    ingredient = Ingredient.objects.get(id=ingredient_id)
+
+    try:
+        next_ingredient_up = Ingredient.objects.filter(recipe_id=ingredient.recipe_id).exclude(
+            sorting__gte=ingredient.sorting).order_by('-sorting')[0]
+    except IndexError:
+        next_ingredient_up = Ingredient.objects.filter(recipe_id=ingredient.recipe_id).filter(
+            sorting__gte=ingredient.sorting).order_by('-sorting')[0]
+
+    next_ingredient = Ingredient.objects.get(id=next_ingredient_up.id)
+
+    if next_ingredient.sorting > ingredient.sorting:
+        ingredient.sorting = next_ingredient_up.sorting + 10
+        ingredient.save()
+
+    else:
+        next_ingredient.sorting = ingredient.sorting
+        next_ingredient.save()
+
+        ingredient.sorting = next_ingredient_up.sorting
+        ingredient.save()
+
+    return HttpResponseRedirect(reverse('menu:recipe_details', args=(ingredient.recipe_id,)))
+
+
+@user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
+def move_ingredient_down(request, ingredient_id):
+
+    ingredient = Ingredient.objects.get(id=ingredient_id)
+
+    try:
+        next_ingredient_down = Ingredient.objects.filter(recipe_id=ingredient.recipe_id).exclude(
+            sorting__lte=ingredient.sorting).order_by('sorting')[0]
+    except IndexError:
+        next_ingredient_down = Ingredient.objects.filter(recipe_id=ingredient.recipe_id).filter(
+            sorting__lte=ingredient.sorting).order_by('sorting')[0]
+
+    next_ingredient = Ingredient.objects.get(id=next_ingredient_down.id)
+
+    if next_ingredient.sorting < ingredient.sorting:
+        ingredient.sorting = next_ingredient_down.sorting - 10
+        ingredient.save()
+
+    else:
+        next_ingredient.sorting = ingredient.sorting
+        next_ingredient.save()
+
+        ingredient.sorting = next_ingredient_down.sorting
+        ingredient.save()
+
+    return HttpResponseRedirect(reverse('menu:recipe_details', args=(ingredient.recipe_id,)))
