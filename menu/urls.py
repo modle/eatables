@@ -12,12 +12,12 @@ urlpatterns = [
     url(r'^(?P<recipe_id>[0-9]+)/$', views.recipe_details, name='recipe_details'),
     url(r'^archived_recipes/$', views.archived_recipes, name='archived_recipes'),
     url(r'^add_recipe/$', views.add_recipe, name='add_recipe'),
-    url(r'^(?P<recipeId>[0-9]+)/edit_recipe/$', views.edit_recipe, name='edit_recipe'),
-    url(r'^(?P<recipeId>[0-9]+)/delete_recipe_forever/$', views.delete_recipe_forever, name='delete_recipe_forever'),
+    url(r'^(?P<recipe_id>[0-9]+)/edit_recipe/$', views.edit_recipe, name='edit_recipe'),
+    url(r'^(?P<recipe_id>[0-9]+)/delete_recipe_forever/$', views.delete_recipe_forever, name='delete_recipe_forever'),
     url(r'^upload_recipe/$', views.upload_recipe, name='upload_recipe'),
 
     # ingredients
-    url(r'^(?P<recipeId>[0-9]+)/update_ingredient/$', views.update_ingredient, name='update_ingredient'),
+    url(r'^(?P<recipe_id>[0-9]+)/update_ingredient/$', views.update_ingredient, name='update_ingredient'),
     url(r'^(?P<ingredient_id>[0-9]+)/edit_ingredient/$', views.edit_ingredient, name='edit_ingredient'),
     url(r'^(?P<ingredient_id>[0-9]+)/delete_ingredient/$', views.delete_ingredient, name='delete_ingredient'),
     url(r'^upload_ingredients/$', views.upload_ingredients, name='upload_ingredients'),

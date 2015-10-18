@@ -30,7 +30,7 @@
         <div class="span9">
             <h3>Directions</h3>
             {% if user.is_superuser %}
-                <a class="btn" href="{% url 'menu:edit_recipe' recipe.id %}">Edit &raquo;</a><br>
+                <a class="btn" href="{% url 'menu:edit_recipe' recipe.id %}">&#x270D;</a><br>
             {% endif %}
             <br>
             {% markdown %}
@@ -66,8 +66,9 @@
                     </ul>
                     {% if user.is_superuser %}
                         <a class="btn" href="{% url 'menu:comment_delete' c.id %}"
-                           onclick="return confirm('Are you sure?')">Delete &raquo;</a>
+                           onclick="return confirm('Are you sure?')">&#x2718;</a>
                     {% endif %}
+                    <hr>
                 {% endfor %}
             {% endif %}
         </div>

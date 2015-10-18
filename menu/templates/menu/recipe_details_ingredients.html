@@ -10,7 +10,7 @@
 {% if user.is_superuser %}
     <div class="container-fluid">
         <button type="button" class="btn" data-toggle="collapse" data-target=".newpost-collapse">
-            <span>Show/Hide</span>
+            <span>&#x25B2;&#x25BC;</span>
         </button>
         <br>
         <div class="newpost-collapse collapse">
@@ -22,7 +22,7 @@
                 {{ ingredient_form.unit.label }}: {{ ingredient_form.unit }}<br>
                 {{ ingredient_form.comment.label }}: {{ ingredient_form.comment }}
                 <p>
-                    <input class="btn" type="submit" value="Add &raquo;" id="submit"/>
+                    <input class="btn" type="submit" value="+" id="submit"/>
                 </p>
             </form>
         </div>
@@ -42,11 +42,11 @@
                 {{ ingredient.name }}{% if ingredient.comment %}, {{ ingredient.comment }}
                 {% endif %}
                 {% if user.is_superuser %}
-                    <a class="btn" href="{% url 'menu:add_to_shopping_list' ingredient.id %}">Add to List &raquo;</a>
+                    <a class="btn" href="{% url 'menu:add_to_shopping_list' ingredient.id %}">+</a>
                     <!--<input class="btn" type=submit value="Add to Shopping List &raquo;"><br>-->
                 {% endif %}
                 {% if user.is_authenticated %}
-                    <a class="btn" href="{% url 'menu:edit_ingredient' ingredient.id %}">Edit &raquo;</a>
+                    <a class="btn" href="{% url 'menu:edit_ingredient' ingredient.id %}">&#x270D;</a>
                     <!-- add view to handle up/down ordering; up = find min larger then swap; down = find max smaller then swap -->
                     <a class="btn" href="{% url 'menu:move_ingredient_up' ingredient.id %}">&#x25B2;</a>
                     <a class="btn" href="{% url 'menu:move_ingredient_down' ingredient.id %}">&#x25BC;</a>

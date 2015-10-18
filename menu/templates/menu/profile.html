@@ -6,9 +6,7 @@
 
 <div class="container-fluid">
     <button type="button" class="btn" data-toggle="collapse" data-target=".newpost-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+        <span>&#x25B2;&#x25BC;</span>
     </button>
     <div class="newpost-collapse collapse">
         <form method="POST" action="">
@@ -47,9 +45,9 @@
             {% endif %}
             {{ recipe.category }} |
             {{ recipe.publish_date }} |
-                <a class="btn" href="{% url 'menu:edit_recipe' recipe.id %}">Edit Recipe &raquo;</a>
+                <a class="btn" href="{% url 'menu:edit_recipe' recipe.id %}">&#x270D;</a>
             {% if recipe.published %}
-                <a class="btn" href="{% url 'menu:recipe_details' recipe.id %}">View Recipe &raquo;</a>
+                <a class="btn" href="{% url 'menu:recipe_details' recipe.id %}">&raquo;</a>
             {% endif %}
                 <hr noshade>
         {% endfor %}
