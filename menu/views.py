@@ -42,8 +42,6 @@ def index(request):
 def add_to_shopping_list(request, ingredient_id):
 
     ingredient = Ingredient.objects.get(id=ingredient_id)
-    shopping_list_entries = ShoppingList.objects.filter(completed=False)
-    complete_shopping_list_entries = ShoppingList.objects.filter(completed=True)
     list_item, created = ShoppingList.objects.get_or_create(ingredient_id=ingredient_id)
 
     list_item.amount = ingredient.amount
@@ -52,11 +50,7 @@ def add_to_shopping_list(request, ingredient_id):
     list_item.completed = False
     list_item.save()
 
-    return render_to_response(
-        'menu/shopping_list.html',
-        {'shopping_list_entries': shopping_list_entries,
-         'complete_shopping_list_entries': complete_shopping_list_entries, },
-        context_instance=RequestContext(request))
+    return HttpResponseRedirect(reverse('menu:recipe_details', args=(ingredient.recipe_id,)))
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
@@ -75,18 +69,11 @@ def shopping_list(request):
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
 def shopping_list_check_off(request, shopping_list_id):
 
-    shopping_list_entries = ShoppingList.objects.filter(completed=False)
-    complete_shopping_list_entries = ShoppingList.objects.filter(completed=True)
-
     shopping_list_entry = ShoppingList.objects.get(shoppingListId=shopping_list_id)
     shopping_list_entry.completed = True
     shopping_list_entry.save()
 
-    return render_to_response(
-        'menu/shopping_list.html',
-        {'shopping_list_entries': shopping_list_entries,
-         'complete_shopping_list_entries': complete_shopping_list_entries, },
-        context_instance=RequestContext(request))
+    return HttpResponseRedirect(reverse('menu:shopping_list'))
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
