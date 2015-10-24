@@ -22,16 +22,29 @@ def base_template(request):
 
 def index(request):
 
+    search_form = SearchForm()
     categories = category_count()
-    recipes = Recipe.objects.filter(published='True')
     top10recipes = Recipe.objects.filter(published='True')
     dish_types = dish_type_count()
+
+    if request.method == 'POST':
+        search_form = SearchForm(request.POST)
+
+        if search_form.is_valid():
+            search_term = search_form.cleaned_data['search_term']
+
+            recipes = Recipe.objects.filter(name__icontains=search_term)
+        else:
+            recipes = Recipe.objects.filter(published='True')
+    else:
+        recipes = Recipe.objects.filter(published='True')
 
     return render_to_response('menu/index.html', {
         'categories': categories,
         'recipes': recipes,
         'top10recipes': top10recipes,
         'dish_types': dish_types,
+        'search_form': search_form,
         },
         context_instance=RequestContext(request)
     )
@@ -582,3 +595,9 @@ def move_ingredient_down(request, ingredient_id):
         ingredient.save()
 
     return HttpResponseRedirect(reverse('menu:edit_recipe', args=(ingredient.recipe_id,)))
+
+
+@login_required()
+def clear_recipe_filter(request):
+
+    return HttpResponseRedirect(reverse('menu:index'))

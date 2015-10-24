@@ -9,6 +9,12 @@
     <div id="title"></div>
 {% endblock %}
 {% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ search_form }}
+    <input type="submit" class="btn" value="&#x21b2;"/>
+    <a class="btn" href="{% url 'menu:clear_recipe_filter' %}">&#x2718;</a>
+</form>
 <div class="hero-unit">
     <h1>Top Rated Recipes</h1>
 </div>

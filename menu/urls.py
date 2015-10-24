@@ -43,4 +43,6 @@ urlpatterns = [
     # categories and dish types
     url(r'^menu/category/(?P<slug>[^\.]+)', views.view_category, name='view_category'),
     url(r'^menu/dish_type/(?P<slug>[^\.]+)', views.view_dish_type, name='view_dish_type'),
+
+    url(r'^clear_recipe_filter/$', views.clear_recipe_filter, name='clear_recipe_filter'),
 ]
