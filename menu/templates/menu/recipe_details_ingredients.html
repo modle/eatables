@@ -34,23 +34,13 @@
     <div class="span9">
         {% for ingredient in recipe.ingredient_set.all %}
             <p>
-                <!--{% if user.is_superuser %}-->
-                    <!--<input type="checkbox" value={{ingredient.amount}} id={{ingredient.id}} name={{ingredient.id}}>-->
-                <!--{% endif %}-->
                 {{ ingredient.amount|show_integer }}{{ ingredient.amount|show_fraction }}
                 {{ ingredient.unit }}
                 {{ ingredient.name }}{% if ingredient.comment %}, {{ ingredient.comment }}
                 {% endif %}
                 {% if user.is_superuser %}
                     <a class="btn" href="{% url 'menu:add_to_shopping_list' ingredient.id %}">+</a>
-                    <!--<input class="btn" type=submit value="Add to Shopping List &raquo;"><br>-->
                 {% endif %}
-                <!--{% if user.is_authenticated %}-->
-                    <!--<a class="btn" href="{% url 'menu:edit_ingredient' ingredient.id %}">&#x270D;</a>-->
-                    <!--&lt;!&ndash; add view to handle up/down ordering; up = find min larger then swap; down = find max smaller then swap &ndash;&gt;-->
-                    <!--<a class="btn" href="{% url 'menu:move_ingredient_up' ingredient.id %}">&#x25B2;</a>-->
-                    <!--<a class="btn" href="{% url 'menu:move_ingredient_down' ingredient.id %}">&#x25BC;</a>-->
-                <!--{% endif %}-->
             </p>
         {% endfor %}
     </div>

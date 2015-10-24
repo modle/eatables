@@ -1,7 +1,6 @@
 from django.shortcuts import get_object_or_404, render_to_response, render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from fractions import Fraction
 from django.template import RequestContext
 import csv
 from datetime import datetime
@@ -12,7 +11,6 @@ import sys
 from django.contrib.auth.forms import UserCreationForm
 from django.core.context_processors import csrf
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.db.models import Count
 
 from menu.forms import *
 from .models import Recipe, Ingredient, ShoppingList, Fridge, Comment, Category, DishType
@@ -314,33 +312,6 @@ def edit_ingredient(request, ingredient_id):
                                                                 'recipe': recipe,
                                                                 'ingredient': ingredient},
                                   context_instance=RequestContext(request))
-
-
-# @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
-# def update_ingredient(request, recipe_id):
-#     # loop through post form
-#     for key in request.POST:
-#         key_split = key.split(',')
-#         ingredient_id = key_split[0]
-#
-#         # Awkwardly avoid the middlewaretoken that is being submitted
-#         if ingredient_id != 'csrfmiddlewaretoken':
-#             ingredient_field = key_split[1]
-#             ingredient = Ingredient.objects.get(pk=ingredient_id)
-#             value = (request.POST[key])
-#
-#             # If the user entered a fraction, convert it to a float!
-#             if ingredient_field == 'amount':
-#                 if '/' in value:
-#                     value = float(Fraction(value))
-#                 elif value == "":
-#                     value = 0.0
-#
-#             # Update the field on the ingredient from this line
-#             setattr(ingredient, ingredient_field, value)
-#             ingredient.save()
-#
-#     return HttpResponseRedirect(reverse('menu:recipe_details', args=(recipe_id,)))
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
