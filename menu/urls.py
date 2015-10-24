@@ -17,7 +17,7 @@ urlpatterns = [
     url(r'^upload_recipe/$', views.upload_recipe, name='upload_recipe'),
 
     # ingredients
-    url(r'^(?P<recipe_id>[0-9]+)/update_ingredient/$', views.update_ingredient, name='update_ingredient'),
+    # url(r'^(?P<recipe_id>[0-9]+)/update_ingredient/$', views.update_ingredient, name='update_ingredient'),
     url(r'^(?P<ingredient_id>[0-9]+)/edit_ingredient/$', views.edit_ingredient, name='edit_ingredient'),
     url(r'^(?P<ingredient_id>[0-9]+)/delete_ingredient/$', views.delete_ingredient, name='delete_ingredient'),
     url(r'^upload_ingredients/$', views.upload_ingredients, name='upload_ingredients'),

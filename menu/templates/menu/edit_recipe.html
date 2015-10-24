@@ -5,36 +5,56 @@
 <script type="text/javascript" src="{% static 'menu/js/menu.js' %}"></script>
 
 <html>
-    <body>
-        {% block title %}
-            <div id="title">
-                Edit Recipe Details: {{ recipe.name }}
-            </div>
-        {% endblock %}
-        {% block content %}
-            <h2>Edit Recipe Details</h2>
+<body>
+{% block title %}
+    <div id="title">
+        Edit Recipe Details: {{ recipe.name }}
+    </div>
+{% endblock %}
+{% block content %}
+<h2>Edit Recipe Details</h2>
 
-            <form method="POST" action="">
-                {% csrf_token %}
-                Name<br>{{ form.name }}<br>
-                Description{{ form.description }}<br><br>
-                Check to publish: {{ form.published }}<br><br>
-                Category<br>{{ form.category }}<br><br>
-                Dish Type<br>{{ form.dish_type }}<br><br>
-                Temperature<br>{{ form.temperature }}<br><br>
-                Prep Time (minutes)<br>{{ form.prep_time }}<br><br>
-                Cook Time (minutes)<br>{{ form.cook_time }}<br><br>
-                Servings<br>{{ form.servings }}<br><br>
-                Directions (Use <a target="blank" href="https://en.wikipedia.org/wiki/Markdown#Example">Markdown</a> like all the cool kids)<br>
-                {{ form.directions }}<br><br>
-                URL<br>{{ form.source }}<br><br>
-                Image URL<br>{{ form.banner_image }}<br><br>
-                <p>
-                    <input class="btn" type="submit" value="Update &raquo;"/>
-                </p>
-            </form>
-        {% endblock %}
-        {% block navsidebar %}
-        {% endblock %}
-    </body>
+<div class="row-fluid">
+    <div class="span9">
+        {% for ingredient in recipe.ingredient_set.all %}
+            <p>
+                <!--{% if user.is_superuser %}-->
+                    <!--<input type="checkbox" value={{ingredient.amount}} id={{ingredient.id}} name={{ingredient.id}}>-->
+                <!--{% endif %}-->
+                {{ ingredient.amount|show_integer }}{{ ingredient.amount|show_fraction }}
+                {{ ingredient.unit }}
+                {{ ingredient.name }}{% if ingredient.comment %}, {{ ingredient.comment }}
+                {% endif %}
+                <a class="btn" href="{% url 'menu:edit_ingredient' ingredient.id %}">&#x270D;</a>
+                <!-- add view to handle up/down ordering; up = find min larger then swap; down = find max smaller then swap -->
+                <a class="btn" href="{% url 'menu:move_ingredient_up' ingredient.id %}">&#x25B2;</a>
+                <a class="btn" href="{% url 'menu:move_ingredient_down' ingredient.id %}">&#x25BC;</a>
+            </p>
+        {% endfor %}
+    </div>
+</div>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    Name<br>{{ form.name }}<br>
+    Description{{ form.description }}<br><br>
+    Check to publish: {{ form.published }}<br><br>
+    Category<br>{{ form.category }}<br><br>
+    Dish Type<br>{{ form.dish_type }}<br><br>
+    Temperature<br>{{ form.temperature }}<br><br>
+    Prep Time (minutes)<br>{{ form.prep_time }}<br><br>
+    Cook Time (minutes)<br>{{ form.cook_time }}<br><br>
+    Servings<br>{{ form.servings }}<br><br>
+    Directions (Use <a target="blank" href="https://en.wikipedia.org/wiki/Markdown#Example">Markdown</a> like all the cool kids)<br>
+    {{ form.directions }}<br><br>
+    URL<br>{{ form.source }}<br><br>
+    Image URL<br>{{ form.banner_image }}<br><br>
+    <p>
+        <input class="btn" type="submit" value="Update &raquo;"/>
+    </p>
+</form>
+{% endblock %}
+{% block navsidebar %}
+{% endblock %}
+</body>
 </html>

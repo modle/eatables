@@ -266,6 +266,7 @@ def delete_recipe_forever(request, recipe_id):
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
 def edit_recipe(request, recipe_id):
+    recipe = Recipe.objects.get(pk=recipe_id)
 
     if request.method == 'POST':
         form = RecipeForm(request.POST, instance=Recipe.objects.get(id=recipe_id))
@@ -279,11 +280,15 @@ def edit_recipe(request, recipe_id):
         return HttpResponseRedirect(reverse('menu:recipe_details', args=(recipe_id,)))
 
     else:
-        recipe = Recipe.objects.get(id=recipe_id)
         form = RecipeForm(instance=recipe)
 
-    return render_to_response('menu/edit_recipe.html', {'form': form},
-                              context_instance=RequestContext(request))
+    return render_to_response('menu/edit_recipe.html', {
+        'form': form,
+        'recipe': recipe,
+
+    },
+        context_instance=RequestContext(request)
+    )
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
@@ -300,7 +305,7 @@ def edit_ingredient(request, ingredient_id):
             formpost.user = request.user
             formpost.edited = datetime.now()
             formpost.save()
-            return HttpResponseRedirect(reverse('menu:recipe_details', args=(recipe.id,)))
+            return HttpResponseRedirect(reverse('menu:edit_recipe', args=(recipe.id,)))
 
     else:
         ingredient_form = IngredientForm(instance=ingredient)
@@ -311,31 +316,31 @@ def edit_ingredient(request, ingredient_id):
                                   context_instance=RequestContext(request))
 
 
-@user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
-def update_ingredient(request, recipe_id):
-    # loop through post form
-    for key in request.POST:
-        key_split = key.split(',')
-        ingredient_id = key_split[0]
-
-        # Awkwardly avoid the middlewaretoken that is being submitted
-        if ingredient_id != 'csrfmiddlewaretoken':
-            ingredient_field = key_split[1]
-            ingredient = Ingredient.objects.get(pk=ingredient_id)
-            value = (request.POST[key])
-
-            # If the user entered a fraction, convert it to a float!
-            if ingredient_field == 'amount':
-                if '/' in value:
-                    value = float(Fraction(value))
-                elif value == "":
-                    value = 0.0
-
-            # Update the field on the ingredient from this line
-            setattr(ingredient, ingredient_field, value)
-            ingredient.save()
-
-    return HttpResponseRedirect(reverse('menu:recipe_details', args=(recipe_id,)))
+# @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
+# def update_ingredient(request, recipe_id):
+#     # loop through post form
+#     for key in request.POST:
+#         key_split = key.split(',')
+#         ingredient_id = key_split[0]
+#
+#         # Awkwardly avoid the middlewaretoken that is being submitted
+#         if ingredient_id != 'csrfmiddlewaretoken':
+#             ingredient_field = key_split[1]
+#             ingredient = Ingredient.objects.get(pk=ingredient_id)
+#             value = (request.POST[key])
+#
+#             # If the user entered a fraction, convert it to a float!
+#             if ingredient_field == 'amount':
+#                 if '/' in value:
+#                     value = float(Fraction(value))
+#                 elif value == "":
+#                     value = 0.0
+#
+#             # Update the field on the ingredient from this line
+#             setattr(ingredient, ingredient_field, value)
+#             ingredient.save()
+#
+#     return HttpResponseRedirect(reverse('menu:recipe_details', args=(recipe_id,)))
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
@@ -577,7 +582,7 @@ def move_ingredient_up(request, ingredient_id):
         ingredient.sorting = next_ingredient_up.sorting
         ingredient.save()
 
-    return HttpResponseRedirect(reverse('menu:recipe_details', args=(ingredient.recipe_id,)))
+    return HttpResponseRedirect(reverse('menu:edit_recipe', args=(ingredient.recipe_id,)))
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
@@ -605,4 +610,4 @@ def move_ingredient_down(request, ingredient_id):
         ingredient.sorting = next_ingredient_down.sorting
         ingredient.save()
 
-    return HttpResponseRedirect(reverse('menu:recipe_details', args=(ingredient.recipe_id,)))
+    return HttpResponseRedirect(reverse('menu:edit_recipe', args=(ingredient.recipe_id,)))
