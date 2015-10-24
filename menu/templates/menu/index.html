@@ -12,26 +12,18 @@
 <div class="hero-unit">
     <h1>Top Rated Recipes</h1>
 </div>
-{% for recipe in recipes %}
-    <div class="row-fluid">
-        <div class="span12">
-            <h3 class="centered">{{ recipe.name }}</h3>
-            {% if recipe.banner_image|length > 0 %}
-                <img src="{{ recipe.banner_image }}">
-            {% endif %}
-            <p>
-                {% if recipe.description|length > 0 %}
-                    {% markdown %}
-                        {{ recipe.description }}
-                    {% endmarkdown %}
-                {% endif %}
-            </p>
-            <p>Published: {{ recipe.publish_date }}</p><br>
-            <p><a class="btn" href="{% url 'menu:recipe_details' recipe.id %}">View recipe details &raquo;</a></p>
-            <hr>
-        </div>
+<div class="row-fluid">
+    <div class="span12">
+        {% for recipe in recipes %}
+            <p><b>{{ recipe.name }} |</b>
+            {{ recipe.category }} |
+            {{ recipe.publish_date|date }} |
+            <a class="btn" href="{% url 'menu:recipe_details' recipe.id %}">&raquo;</a></p>
+        {% endfor %}
+
     </div>
-{% endfor %}
+</div>
+
 {% endblock %}
 </body>
 </html>
