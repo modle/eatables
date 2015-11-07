@@ -73,7 +73,7 @@ class Ingredient(models.Model):
     comment = models.CharField(max_length=80, blank=True, null=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
     unit = models.CharField(max_length=30, null=True, blank=True)
-    sorting = models.IntegerField("Ordering", blank=True, null=True, help_text="A number.")
+    sorting = models.IntegerField("Ordering", blank=False, null=False, help_text="A number.")
 
     def __str__(self):
         return str(self.unit) + " " + str(self.name)
