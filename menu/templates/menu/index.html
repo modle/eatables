@@ -21,9 +21,10 @@
 <div class="row-fluid">
     <div class="span12">
         {% for recipe in recipes %}
-            <p><b>{{ recipe.name }} |</b>
-            {{ recipe.category }} |
-            {{ recipe.publish_date|date }} |
+            <p><b>{{ recipe.name }}</b>
+                {% if recipe.category.title = 'Slow Cooker' %}
+                    <img src="{% static 'menu/img/'{{ recipe.dish_type.slug }}'.png' %}" height="20em" width="20em">
+                {% endif %}
             <a class="btn" href="{% url 'menu:recipe_details' recipe.id %}">&raquo;</a></p>
         {% endfor %}
 

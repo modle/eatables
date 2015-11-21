@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
 
-class Category(models.Model):
+class CookMethod(models.Model):
     title = models.CharField(max_length=100, db_index=True)
     slug = models.SlugField(max_length=100, db_index=True, unique=True)
 
@@ -12,7 +12,7 @@ class Category(models.Model):
         if not self.id:
             self.slug = slugify(self.title)
 
-        super(Category, self).save()
+        super(CookMethod, self).save()
 
     def __unicode__(self):
         return '{}'.format(self.title)
@@ -41,7 +41,7 @@ class DishType(models.Model):
 class Recipe(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=80, unique=True)
-    category = models.ForeignKey(Category)
+    category = models.ForeignKey(CookMethod)
     temperature = models.CharField(max_length=10, null=True, blank=True)
     directions = models.TextField(null=True)
     source = models.CharField(max_length=1000, null=True, blank=True)
