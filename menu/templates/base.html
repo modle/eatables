@@ -2,19 +2,6 @@
 {% load staticfiles %}
 {% load menu_extras %}
 
-<script type="text/javascript" src="{% static 'bootstrap/js/jquery.js' %}"></script>
-<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-transition.js' %}"></script>
-<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-alert.js' %}"></script>
-<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-modal.js' %}"></script>
-<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-dropdown.js' %}"></script>
-<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-scrollspy.js' %}"></script>
-<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-tab.js' %}"></script>
-<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-tooltip.js' %}"></script>
-<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-popover.js' %}"></script>
-<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-button.js' %}"></script>
-<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-collapse.js' %}"></script>
-<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-carousel.js' %}"></script>
-<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-typeahead.js' %}"></script>
 
 <html>
 <head>
@@ -42,16 +29,10 @@
                         <a href="{% url 'logout' %}?next={% url 'loggedout' %}">Logout</a>
                     {% else %}
                         <a href="{% url 'login' %}">Login</a>
-                        <a href="{% url 'register' %}">Sign Up</a>
                     {% endif %}
                 </p>
                 <ul class="nav">
                     <li class="active"><a href="{% url 'menu:index' %}">Home</a></li>
-                    <!--<li class="active"><a href="#categories">Categories</a></li>-->
-                    <!--<li><a href="#projects">Projects</a></li>-->
-                    <!--<li><a href="#about">About</a></li>-->
-                    <!--<li><a href="#contact">Contact</a></li>-->
-                    <!--<li><a href="#newsletter">Newsletter</a></li>-->
                     {% if user.is_superuser %}
                         <li><a href="{% url 'menu:profile' user.username %}">Your Profile</a></li>
                         <li><a href="{% url 'menu:add_recipe' %}">Add Recipe</a></li>
@@ -75,43 +56,6 @@
         </div><!--/row-->
 
         {% block navsidebar %}
-            <div class="span3">
-                <div class="well sidebar-nav">
-                    <ul class="nav nav-list">
-                        <li class="nav-header">Categories</li>
-                        {% if categories %}
-                            {% for category in categories %}
-                                {% if category.total > 0 %}
-                                    <li>
-                                        <a href="{% url 'menu:view_category' category.slug %}">{{ category.title }} ({{ category.total }})</a>
-                                    </li>
-                                {% endif %}
-                            {% endfor %}
-                        {% else %}
-                            <p>There are no categories.</p>
-                        {% endif %}
-                        <hr noshade>
-                        <li class="nav-header">Dish Types</li>
-                            {% for type in dish_types %}
-                                {% if type.total > 0 %}
-                                    <li>
-                                        <a href="{% url 'menu:view_dish_type' type.slug %}">{{ type.title }} ({{ type.total }})</a>
-                                    </li>
-                                {% endif %}
-                            {% endfor %}
-                        <hr noshade>
-                        <li class="nav-header">Recipes</li>
-                        {% if recipes %}
-                            {% for recipe in recipes %}
-                                <li><a href="{% url 'menu:recipe_details' recipe.id %}">{{ recipe.name }}</a></li>
-                            {% endfor %}
-                        {% else %}
-                            <li>There are no recipes.</li>
-                        {% endif %}
-                        <hr noshade>
-                    </ul>
-                </div><!--/.well -->
-            </div><!--/span3-->
         {% endblock %}
 
     </div><!--/row-->
@@ -120,5 +64,20 @@
         <p>&copy; Modle 2015</p>
     </footer>
 </div><!--/.fluid-container-->
+
+<script type="text/javascript" src="{% static 'bootstrap/js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-transition.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-alert.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-modal.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-dropdown.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-scrollspy.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-tab.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-tooltip.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-popover.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-button.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-collapse.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-carousel.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-typeahead.js' %}"></script>
+
 </body>
 </html>

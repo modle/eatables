@@ -13,7 +13,7 @@ from django.core.context_processors import csrf
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 from menu.forms import *
-from .models import Recipe, Ingredient, ShoppingList, Fridge, Comment, Category, DishType
+from .models import Recipe, Ingredient, ShoppingList, Fridge, Comment
 
 
 def base_template(request):
@@ -23,9 +23,7 @@ def base_template(request):
 def index(request):
 
     search_form = SearchForm()
-    categories = category_count()
     top10recipes = Recipe.objects.filter(published='True')
-    dish_types = dish_type_count()
 
     if request.method == 'POST':
         search_form = SearchForm(request.POST)
@@ -40,10 +38,8 @@ def index(request):
         recipes = Recipe.objects.filter(published='True')
 
     return render_to_response('menu/index.html', {
-        'categories': categories,
         'recipes': recipes,
         'top10recipes': top10recipes,
-        'dish_types': dish_types,
         'search_form': search_form,
         },
         context_instance=RequestContext(request)
@@ -204,43 +200,6 @@ def recipe_details(request, recipe_id):
                                'ingredient_form': ingredient_form,
                                'recipe': recipe, },
                               context_instance=RequestContext(request))
-
-
-def view_category(request, slug):
-    category = get_object_or_404(Category, slug=slug)
-    category_recipes = Recipe.objects.filter(category=category).filter(published='True')
-    categories = category_count()
-    dish_types = dish_type_count()
-    recipes = Recipe.objects.filter(published='True')
-
-    return render_to_response('menu/view_category.html', {
-        'category': category,
-        'categoryrecipes': category_recipes,
-        'categories': categories,
-        'dish_types': dish_types,
-        'recipes': recipes,
-    },
-        context_instance=RequestContext(request)
-    )
-
-
-def view_dish_type(request, slug):
-    dishtype = get_object_or_404(DishType, slug=slug)
-    dishtyperecipes = Recipe.objects.filter(dish_type=dishtype).filter(published='True')
-    categories = category_count()
-    dish_types = dish_type_count()
-    recipes = Recipe.objects.filter(published='True')
-
-    return render_to_response('menu/view_dish_type.html', {
-        'dishtype': dishtype,
-        'dishtyperecipes': dishtyperecipes,
-        'categories': categories,
-        'dish_types': dish_types,
-        'recipes': recipes,
-    },
-
-        context_instance=RequestContext(request)
-    )
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
@@ -503,24 +462,6 @@ def loggedout(request):
         'registration/loggedout.html',
         context_instance=RequestContext(request)
     )
-
-
-def category_count():
-    categories = Category.objects.extra(select={'total': 'select count(r.category_id) ' +
-                                                         'from menu_recipe r ' +
-                                                         'where r.category_id = menu_category.id ' +
-                                                         'and r.published = True '
-                                                })
-    return categories
-
-
-def dish_type_count():
-    dish_types = DishType.objects.extra(select={'total': 'select count(r.dish_type_id) ' +
-                                                         'from menu_recipe r ' +
-                                                         'where r.dish_type_id = menu_dishtype.id ' +
-                                                         'and r.published = True '
-                                                })
-    return dish_types
 
 
 @login_required()

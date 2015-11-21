@@ -14,7 +14,7 @@
             Name<br>{{ recipe_form.name }}<br>
             Description{{ recipe_form.description }}<br><br>
             Check to publish: {{ recipe_form.published }}<br><br>
-            Category<br>{{ recipe_form.category }}<br><br>
+            Method<br>{{ recipe_form.cook_method }}<br><br>
             Dish Type<br>{{ recipe_form.dish_type }}<br><br>
             Temperature<br>{{ recipe_form.temperature }}<br><br>
             Prep Time (minutes)<br>{{ recipe_form.prep_time }}<br><br>
@@ -43,7 +43,7 @@
             {% else %}
                 <span style="color:lightgray; font-weight:bold">Draft</span> |
             {% endif %}
-            {{ recipe.category }} |
+            {{ recipe.cook_method }} |
             {{ recipe.publish_date }} |
                 <a class="btn" href="{% url 'menu:edit_recipe' recipe.id %}">&#x270D;</a>
             {% if recipe.published %}

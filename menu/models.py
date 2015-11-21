@@ -1,47 +1,14 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from django.template.defaultfilters import slugify
 
-
-class CookMethod(models.Model):
-    title = models.CharField(max_length=100, db_index=True)
-    slug = models.SlugField(max_length=100, db_index=True, unique=True)
-
-    def save(self, *args, **kwargs):
-        if not self.id:
-            self.slug = slugify(self.title)
-
-        super(CookMethod, self).save()
-
-    def __unicode__(self):
-        return '{}'.format(self.title)
-
-    class Meta:
-        ordering = ('title', )
-
-
-class DishType(models.Model):
-    title = models.CharField(max_length=100, db_index=True)
-    slug = models.SlugField(max_length=100, db_index=True, unique=True)
-
-    def save(self, *args, **kwargs):
-        if not self.id:
-            self.slug = slugify(self.title)
-
-        super(DishType, self).save()
-
-    def __unicode__(self):
-        return '{}'.format(self.title)
-
-    class Meta:
-        ordering = ('title', )
+from menu.choices import *
 
 
 class Recipe(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=80, unique=True)
-    category = models.ForeignKey(CookMethod)
+    cook_method = models.IntegerField(choices=COOK_METHOD_CHOICES, default=0)
     temperature = models.CharField(max_length=10, null=True, blank=True)
     directions = models.TextField(null=True)
     source = models.CharField(max_length=1000, null=True, blank=True)
@@ -54,7 +21,7 @@ class Recipe(models.Model):
     edit_date = models.DateTimeField(default=timezone.now)
     pinned = models.BooleanField(default=False)
     banner_image = models.CharField(max_length=1000, null=True, blank=True)
-    dish_type = models.ForeignKey(DishType)
+    dish_type = models.IntegerField(choices=DISH_TYPE_CHOICES, default=0)
     description = models.TextField(null=True, blank=True)
 
     # rating = RatingField(range=5)

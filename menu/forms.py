@@ -18,7 +18,7 @@ class RecipeForm(ModelForm):
 
     class Meta:
         model = Recipe
-        fields = ('name', 'category', 'temperature', 'directions', 'source', 'servings', 'prep_time', 'cook_time', 'published', 'description', 'banner_image', 'dish_type', )
+        fields = ('name', 'cook_method', 'temperature', 'directions', 'source', 'servings', 'prep_time', 'cook_time', 'published', 'description', 'banner_image', 'dish_type', )
         widgets = {
             'directions': Textarea(attrs={'cols': 80, 'rows': 20}),
             'description': Textarea(attrs={'cols': 80, 'rows': 5}),
