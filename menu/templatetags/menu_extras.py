@@ -40,3 +40,9 @@ def show_integer(value):
     else:
         decimal = value_split[0] + ' '
     return decimal
+
+@register.filter(name='generate_img_path')
+def generate_img_path(value):
+    value = 'menu/img/' + value + '.png'
+    return value
+

@@ -36,7 +36,6 @@
                     {% if user.is_superuser %}
                         <li><a href="{% url 'menu:profile' user.username %}">Your Profile</a></li>
                         <li><a href="{% url 'menu:add_recipe' %}">Add Recipe</a></li>
-                        <li><a href="{% url 'menu:upload_recipe' %}">Upload Recipe</a></li>
                         <li><a href="{% url 'menu:shopping_list' %}">View Shopping List</a></li>
                         <li><a href="{% url 'menu:archived_recipes' %}">Drafts</a></li>
                         <li><a href="{% url 'menu:fridge' %}">In the Fridge</a></li>

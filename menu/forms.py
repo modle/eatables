@@ -24,9 +24,6 @@ class RecipeForm(ModelForm):
             'description': Textarea(attrs={'cols': 80, 'rows': 5}),
         }
 
-class DocumentForm(forms.Form):
-    docfile = forms.FileField(label='Select file')
-
 
 class ArchivedRecipesForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):

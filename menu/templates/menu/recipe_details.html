@@ -79,8 +79,8 @@
 <div class="span3">
     <div class="well sidebar-nav">
         <ul>
-            <li><b>Cook Method</b>: {{ recipe.cook_method }}</li>
-            <li><b>Dish Type</b>: {{ recipe.dish_type }}</li>
+            <li><b>Cook Method</b>: {{ recipe.get_cook_method_display }}</li>
+            <li><b>Dish Type</b>: {{ recipe.get_dish_type_display }}</li>
             <li><b>Temp</b>: {{ recipe.temperature }}</li>
             <li><b>Prep Time</b>:
                 {% if recipe.prep_time < 60 %}

@@ -22,10 +22,9 @@
     <div class="span12">
         {% for recipe in recipes %}
             <p><b>{{ recipe.name }}</b>
-                <img src="{% static 'menu/img/'{{ recipe.dish_type.slug }}'.png' %}" height="20em" width="20em">
+                <img src="{% static recipe.get_dish_type_display|generate_img_path %}" height="20em" width="20em">
             <a class="btn" href="{% url 'menu:recipe_details' recipe.id %}">&raquo;</a></p>
         {% endfor %}
-
     </div>
 </div>
 
