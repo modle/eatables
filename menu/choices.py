@@ -1,17 +1,17 @@
 COOK_METHOD_CHOICES = (
     (0, ""),
-    (1, "Stovetop"),
+    (1, "Grill"),
     (2, "Oven"),
     (3, "Slow Cooker"),
-    (4, "Grill"),
+    (4, "Stovetop"),
 )
 
 DISH_TYPE_CHOICES = (
     (0, ""),
-    (1, "Side"),
+    (1, "Dessert"),
     (2, "Main"),
-    (3, "Dessert"),
+    (3, "Pie"),
     (4, "Salad"),
-    (5, "Pie"),
-    (6, "Dessert"),
+    (5, "Side"),
+    (6, "Soup"),
 )
