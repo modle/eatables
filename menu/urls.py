@@ -10,7 +10,6 @@ urlpatterns = [
 
     # recipe
     url(r'^(?P<recipe_id>[0-9]+)/$', views.recipe_details, name='recipe_details'),
-    url(r'^archived_recipes/$', views.archived_recipes, name='archived_recipes'),
     url(r'^add_recipe/$', views.add_recipe, name='add_recipe'),
     url(r'^(?P<recipe_id>[0-9]+)/edit_recipe/$', views.edit_recipe, name='edit_recipe'),
     url(r'^(?P<recipe_id>[0-9]+)/delete_recipe_forever/$', views.delete_recipe_forever, name='delete_recipe_forever'),

@@ -203,32 +203,6 @@ def recipe_details(request, recipe_id):
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
-def archived_recipes(request):
-    logger = logging.getLogger(__name__)
-
-    ArchivedRecipesFormSet = modelformset_factory(Recipe, form=ArchivedRecipesForm, extra=0)
-
-    if request.method == 'POST':
-        formset = ArchivedRecipesFormSet(request.POST)
-        if formset.is_valid():
-            formset.save()
-            logger.debug('Formset saved')
-        else:
-            logger.debug('Formset invalid')
-        return HttpResponseRedirect(reverse('menu:index'))
-    else:
-        formset = ArchivedRecipesFormSet(queryset=Recipe.objects.filter(published=False))
-
-    logger.debug('POST DATA:\n %s', json.dumps(request.POST, indent=4, sort_keys=True))
-    logger.debug('LOCALS:\n %s', locals())
-
-    return render_to_response(
-        'menu/archived_recipes.html',
-        {'formset': formset},
-        context_instance=RequestContext(request))
-
-
-@user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
 def delete_recipe_forever(request, recipe_id):
     Recipe.objects.filter(pk=recipe_id).delete()
     return HttpResponseRedirect(reverse('menu:index'))
@@ -334,34 +308,6 @@ def full_exc_info():
     t, v, tb = sys.exc_info()
     full_tb = extend_traceback(tb, current_stack(1))
     return t, v, full_tb
-
-
-def register(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-        return HttpResponseRedirect('/accounts/register/complete')
-
-    else:
-        form = UserCreationForm()
-
-    token = {}
-    token.update(csrf(request))
-    token['form'] = form
-
-    return render_to_response(
-        'registration/registration_form.html',
-        token,
-        context_instance=RequestContext(request)
-    )
-
-
-def registration_complete(request):
-    return render_to_response(
-        'registration/registration_complete.html',
-        context_instance=RequestContext(request)
-    )
 
 
 def loggedin(request):
