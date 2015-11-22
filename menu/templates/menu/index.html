@@ -9,25 +9,35 @@
     <div id="title"></div>
 {% endblock %}
 {% block content %}
-<form action="" method="POST">
+
+<form action="" method="POST" class="form">
     {% csrf_token %}
     {{ search_form }}
-    <input type="submit" class="btn" value="&#x21b2;"/>
-    <a class="btn" href="{% url 'menu:clear_recipe_filter' %}">&#x2718;</a>
+    <a href="{% url 'menu:clear_recipe_filter' %}">&#x2718;</a>
 </form>
+
 <div class="hero-unit">
     <h1>Top Rated Recipes</h1>
 </div>
-<div class="row-fluid">
-    <div class="span12">
+
+<div class="new_post_block" onclick="location.href='{% url 'menu:add_recipe' %}'">
+    <div class="fixed-action-btn" style="bottom: 24px; right: 24px;">
+        <a class="btn-floating btn-large red">
+            <f class="large material-icons">+</f>
+        </a>
+    </div>
+</div>
+
+<div class="recipe_block notSelectable" id="{{ recipe.slug }}">
+    <div class="left_recipe_block notSelectable"><span class="recipe_title notSelectable">{{ recipe.title }}</span>
         {% for recipe in recipes %}
             <p><b>{{ recipe.name }}</b>
-                <img src="{% static recipe.get_dish_type_display|generate_img_path %}" height="20em" width="20em">
+                <img src="{% static recipe.get_dish_type_display|generate_img_path %}" height="10em">
             <a class="btn" href="{% url 'menu:recipe_details' recipe.id %}">&raquo;</a></p>
         {% endfor %}
     </div>
 </div>
-
+<div style="clear:both;"></div>
 {% endblock %}
 </body>
 </html>

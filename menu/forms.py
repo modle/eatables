@@ -18,25 +18,10 @@ class RecipeForm(ModelForm):
 
     class Meta:
         model = Recipe
-        fields = ('name', 'cook_method', 'temperature', 'directions', 'source', 'servings', 'prep_time', 'cook_time', 'published', 'description', 'banner_image', 'dish_type', )
+        fields = ('name', 'cook_method', 'temperature', 'directions', 'source', 'servings', 'prep_time', 'cook_time', 'pinned', 'description', 'banner_image', 'dish_type', )
         widgets = {
             'directions': Textarea(attrs={'cols': 80, 'rows': 20}),
             'description': Textarea(attrs={'cols': 80, 'rows': 5}),
-        }
-
-
-class ArchivedRecipesForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(ArchivedRecipesForm, self).__init__(*args, **kwargs)
-        self.fields['name'].widget.attrs['readonly'] = True
-        self.fields['name'].widget.attrs.update({'id': 'formfieldastext'})
-
-    class Meta:
-        model = Recipe
-        fields = ('published', 'name',)
-        labels = {
-            'published': '',
-            'name': '',
         }
 
 
@@ -99,4 +84,10 @@ class IngredientForm(ModelForm):
         }
 
 class SearchForm(forms.Form):
-    search_term = forms.CharField(label='Search', max_length=100)
+    search_term = forms.CharField(label='', max_length=100)
+
+    def __init__(self, *args, **kwargs):
+        super(SearchForm, self).__init__(*args, **kwargs)
+        self.fields['search_term'].widget.attrs.update({'placeholder': 'Filter'})
+        self.fields['search_term'].widget.attrs.update({'type': 'text'})
+        self.fields['search_term'].widget.attrs.update({'class': 'search'})

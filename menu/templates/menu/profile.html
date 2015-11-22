@@ -38,11 +38,6 @@
     <div class="span12">
         {% for recipe in recipes %}
             <p><b>{{ recipe.name }} |</b>
-            {% if recipe.published %}
-                <span style="color:lightgreen; font-weight:bold">Published</span> |
-            {% else %}
-                <span style="color:lightgray; font-weight:bold">Draft</span> |
-            {% endif %}
             {{ recipe.cook_method }} |
             {{ recipe.publish_date }} |
                 <a class="btn" href="{% url 'menu:edit_recipe' recipe.id %}">&#x270D;</a>

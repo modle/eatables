@@ -23,7 +23,6 @@ def base_template(request):
 def index(request):
 
     search_form = SearchForm()
-    top10recipes = Recipe.objects.filter(published='True')
 
     if request.method == 'POST':
         search_form = SearchForm(request.POST)
@@ -33,13 +32,12 @@ def index(request):
 
             recipes = Recipe.objects.filter(name__icontains=search_term)
         else:
-            recipes = Recipe.objects.filter(published='True')
+            recipes = Recipe.objects.filter(pinned='True')
     else:
-        recipes = Recipe.objects.filter(published='True')
+        recipes = Recipe.objects.filter(pinned='True')
 
     return render_to_response('menu/index.html', {
         'recipes': recipes,
-        'top10recipes': top10recipes,
         'search_form': search_form,
         },
         context_instance=RequestContext(request)
