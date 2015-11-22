@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^menu/$', views.index, name='index'),
 
     # recipe
-    url(r'^(?P<recipe_id>[0-9]+)/$', views.recipe_details, name='recipe_details'),
+    url(r'^(?P<recipe_id>[0-9]+)/recipe_details/$', views.recipe_details, name='recipe_details'),
     url(r'^add_recipe/$', views.add_recipe, name='add_recipe'),
     url(r'^(?P<recipe_id>[0-9]+)/edit_recipe/$', views.edit_recipe, name='edit_recipe'),
     url(r'^(?P<recipe_id>[0-9]+)/delete_recipe_forever/$', views.delete_recipe_forever, name='delete_recipe_forever'),
@@ -29,7 +29,7 @@ urlpatterns = [
     # url(r'^update_rating', views.update_rating, name='update_rating'),
 
     # comments
-    url(r'^(?P<commentId>[0-9]+)/comment_delete/$', views.comment_delete, name='comment_delete'),
+    url(r'^(?P<comment_id>[0-9]+)/comment_delete/$', views.comment_delete, name='comment_delete'),
 
     # fridge
     url(r'^fridge/$', views.fridge, name='fridge'),

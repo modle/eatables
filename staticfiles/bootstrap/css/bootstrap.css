@@ -432,18 +432,20 @@ textarea {
   margin-bottom: .5em;
   font-weight: 200;
   color: inherit;
-  padding: .3em;
+  padding: .1em;
+  width: 100%;
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
           border-radius: 6px;
 }
 
 .hero-unit h1 {
-  margin-bottom: 0;
+  margin-bottom: -.05em;
+  margin-top: -.05em;
   font-size: 30px;
   line-height: 1;
-  letter-spacing: -1px;
   color: inherit;
+  text-align: center;
 }
 
 .pull-right {

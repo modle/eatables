@@ -80,7 +80,10 @@ class IngredientForm(ModelForm):
         model = Ingredient
         fields = ('name', 'comment', 'amount', 'unit', )
         labels = {
-            'name': 'Ingredient Name'
+            'name': 'Ingredient Name',
+            'amount': '',
+            'unit': '',
+            'comment': '',
         }
 
 class SearchForm(forms.Form):

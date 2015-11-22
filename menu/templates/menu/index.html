@@ -28,16 +28,14 @@
     </div>
 </div>
 
-<div class="recipe_block notSelectable" id="{{ recipe.slug }}">
-    <div class="left_recipe_block notSelectable"><span class="recipe_title notSelectable">{{ recipe.title }}</span>
-        {% for recipe in recipes %}
-            <p><b>{{ recipe.name }}</b>
-                <img src="{% static recipe.get_dish_type_display|generate_img_path %}" height="10em">
-            <a class="btn" href="{% url 'menu:recipe_details' recipe.id %}">&raquo;</a></p>
-        {% endfor %}
+{% for recipe in recipes %}
+    <div class="recipe_block notSelectable" id="{{ recipe.id }}">
+        <span class="recipe_title notSelectable">{{ recipe.name }}</span>
+        <img src="{% static recipe.get_dish_type_display|generate_img_path %}" height="10em">
+        <a class="btn" href="{% url 'menu:recipe_details' recipe.id %}">&raquo;</a>
     </div>
-</div>
-<div style="clear:both;"></div>
+{% endfor %}
+
 {% endblock %}
 </body>
 </html>

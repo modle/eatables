@@ -3,29 +3,32 @@
     font-family: Cagliostro;
 }
 
+html, body {
+    height: 100%;
+}
 .sidebar-nav {
     padding: 9px 0;
 }
 
 .small-caps-header {
-  font-size: 11px;
-  font-weight: bold;
-  line-height: 20px;
-  color: #999999;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-  text-transform: uppercase;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #999999;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
 }
 
 
 a {
-  color: #0088cc;
-  text-decoration: none;
+    color: #0088cc;
+    text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: #005580;
-  text-decoration: underline;
+    color: #005580;
+    text-decoration: underline;
 }
 
 
@@ -73,13 +76,25 @@ input#post_edit_title:focus {
 }
 
 
-.recipe_block {
+.recipe_block, .recipe_header {
     height: auto;
     width: max;
-    margin: .3em 0;
-    padding: .3em;
-    border-radius: .5em;
     display: block;
+    background-color: #dddddd;
+}
+
+.recipe_block {
+    margin: .3em 0;
+    border-radius: .5em;
+    padding: .3em;
+}
+
+.recipe_header {
+    margin: 0 -1em;
+}
+
+.gray_background {
+    background-color: #bbbbbb;
 }
 
 .recipe_unpinned {
@@ -94,11 +109,27 @@ input#post_edit_title:focus {
     /*display: inline-block;*/
 }
 
-.recipe_category, .recipe_last_completed, .recipe_results {
+
+.recipe_ingredients {
+
+}
+
+.recipe_description {
+    font-size: 1em;
+    word-wrap: break-word;
+    display: inline-block;
+    width: 70%;
+    background-color: #bbbbbb;
+}
+
+.recipe_info {
     text-transform: uppercase;
     font-size: .7em;
     float: right;
-    display: block;
+    display: inline-block;
+    width: 29%;
+    padding: 0 .5em;
+    background-color: #999999;
 }
 
 .recipe_results {
@@ -189,7 +220,7 @@ input#post_edit_title:focus {
     border-radius: .3em;
 }
 
-.no-bullets {
+ul {
     list-style-type: none;
     padding: 0;
     margin: 0;

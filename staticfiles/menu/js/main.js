@@ -3,13 +3,20 @@ $(document).ready( function() {
 });
 
 
-$(".chore_block").swipe({
+$(".recipe_block").mousemove(function(){
+    recipe_id = this.id;
+})
+$(".recipe_block").swipe({
+  tap:function(event, target) {
+    window.location.href = "/"+recipe_id+"/recipe_details/";
+  },
   swipeLeft:function(event, direction, distance, duration, fingerCount) {
-    window.location.href = "/chores/edit_chore/"+slug+".html";
+    window.location.href = "/"+recipe_id+"/edit_recipe/";
   },
   threshold:50,
   allowPageScroll:"auto"
 });
+
 
 
 //makes text non-selectable on mobile, and prevents the highlight on long-press function
