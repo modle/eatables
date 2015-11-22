@@ -15,7 +15,6 @@ class Recipe(models.Model):
     servings = models.IntegerField(default=0)
     prep_time = models.IntegerField(default=0)
     cook_time = models.IntegerField(default=0)
-    pinned = models.BooleanField(default=False, null=False)
     user = models.ForeignKey(User, null=True, blank=True)
     publish_date = models.DateTimeField(default=timezone.now)
     edit_date = models.DateTimeField(default=timezone.now)
