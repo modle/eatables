@@ -20,11 +20,7 @@ media/*
 
 venv/
 
-staticfiles
-
 logfile*
 
-#ignore env var file
-.env
 
 localsettings.*
