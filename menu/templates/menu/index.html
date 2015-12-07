@@ -6,23 +6,26 @@
 <html>
 <body>
 {% block title %}
-    <div id="title"></div>
 {% endblock %}
 {% block content %}
 
 <form action="" method="POST" class="form">
     {% csrf_token %}
     {{ search_form }}
-    <a href="{% url 'menu:clear_recipe_filter' %}">&#x2718;</a>
+    <a href="{% url 'menu:clear_recipe_filter' %}">&#x2718;
+        {% for message in messages %}
+            {% if message.tags == 'info' %}
+                {{ message }}
+            {% endif %}
+        {% endfor %}</a>
 </form>
 
 <div class="hero-unit">
-    <h1>Top Rated Recipes</h1>
 </div>
 
 <div class="new_post_block" onclick="location.href='{% url 'menu:add_recipe' %}'">
     <div class="fixed-action-btn" style="bottom: 24px; right: 24px;">
-        <a class="btn-floating btn-large red">
+        <a class="btn-floating red">
             <f class="large material-icons">+</f>
         </a>
     </div>
@@ -32,7 +35,6 @@
     <div class="recipe_block notSelectable" id="{{ recipe.id }}">
         <span class="recipe_title notSelectable">{{ recipe.name }}</span>
         <img src="{% static recipe.get_dish_type_display|generate_img_path %}" height="10em">
-        <a class="btn" href="{% url 'menu:recipe_details' recipe.id %}">&raquo;</a>
     </div>
 {% endfor %}
 

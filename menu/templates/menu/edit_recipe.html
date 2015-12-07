@@ -5,6 +5,13 @@
 <script type="text/javascript" src="{% static 'menu/js/menu.js' %}"></script>
 
 <html>
+<head>
+<title>
+    {% block head_title %}
+        {{ recipe.name }} - Details
+    {% endblock %}
+</title>
+</head>
 <body>
 {% block title %}
     <div id="title">

@@ -32,8 +32,6 @@ class FridgeForm(forms.ModelForm):
         self.fields['item'].widget.attrs.update({'id': 'formfieldastextshort'})
         self.fields['expires'].widget.attrs.update({'class': 'datepicker'})
         self.fields['fridgedate'].widget.attrs.update({'class': 'datepicker'})
-        # self.fields['fridgedate'].widget.attrs.update({'id': 'formfieldastextshort'})
-        # self.fields['expires'].widget.attrs.update({'id': 'formfieldastextshort'})
 
     class Meta:
         model = Fridge
@@ -48,7 +46,7 @@ class FridgeForm(forms.ModelForm):
 class CommentForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(CommentForm, self).__init__(*args, **kwargs)
-        self.fields['comment'].widget.attrs.update({'placeholder': 'Comment'})
+        self.fields['comment'].widget.attrs.update({'placeholder': 'Note'})
 
     class Meta:
         model = Comment

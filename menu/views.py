@@ -8,8 +8,7 @@ from django.forms.models import modelformset_factory
 import logging
 import json
 import sys
-from django.contrib.auth.forms import UserCreationForm
-from django.core.context_processors import csrf
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 from menu.forms import *
@@ -31,6 +30,7 @@ def index(request):
             search_term = search_form.cleaned_data['search_term']
 
             recipes = Recipe.objects.filter(name__icontains=search_term)
+            messages.info(request, search_term)
         else:
             recipes = Recipe.objects.filter(pinned='True')
     else:
