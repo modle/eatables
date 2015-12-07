@@ -89,7 +89,6 @@ input#post_edit_title:focus {
 }
 
 .recipe_description {
-    font-size: 1em;
     word-wrap: break-word;
     display: inline-block;
     padding-left: .5em;
@@ -106,8 +105,6 @@ input#post_edit_title:focus {
     padding: 0 .5em;
     background-color: #999999;
 }
-
-
 
 /*
 .recipe_header {
@@ -130,7 +127,6 @@ input#post_edit_title:focus {
     word-wrap: break-word;
     /*display: inline-block;*/
 }
-
 
 .recipe_ingredients {
 
@@ -318,7 +314,6 @@ form {
 
 .form > input[type="submit"] {
     width: 100%;
-    margin-left:8px;
 }
 
 .form > a:hover, .form > input[type="submit"]:hover {
