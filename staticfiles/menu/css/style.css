@@ -102,7 +102,7 @@ input#post_edit_title:focus {
     font-size: .7em;
     float: right;
     display: inline-block;
-    width: 29%;
+    width: 30%;
     padding: 0 .5em;
     background-color: #999999;
 }
@@ -166,6 +166,7 @@ input#post_edit_title:focus {
 }
 
 @media (max-width: 979px) {
+
 /* Enable use of floated navbar text */
     .navbar-text.pull-right {
         float: none;
@@ -192,6 +193,14 @@ input#post_edit_title:focus {
         height: 0;
         float: right;
         display: block;
+    }
+
+    .recipe_info {
+        width: 50%;
+    }
+
+    .recipe_description {
+        width: 50%;
     }
 }
 

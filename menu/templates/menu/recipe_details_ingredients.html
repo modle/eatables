@@ -7,23 +7,6 @@
 
 <h3>Ingredients</h3>
 
-{% if user.is_superuser %}
-    <div class="">
-        <form method="POST" action="">
-            {% csrf_token %}
-            {{ ingredient_form.id }}
-            {{ ingredient_form.name }}<br>
-            {{ ingredient_form.amount }}<br>
-            {{ ingredient_form.unit }}<br>
-            {{ ingredient_form.comment }}
-            <p>
-                <input class="btn" type="submit" value="+" id="submit"/>
-            </p>
-        </form>
-    </div>
-<hr>
-{% endif %}
-
 <div class="recipe_ingredients">
     {% for ingredient in recipe.ingredient_set.all %}
         <p>

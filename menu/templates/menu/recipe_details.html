@@ -18,14 +18,17 @@
     <h1>{{ recipe.name }}</h1>
 </div>
 
-
-<div class="new_post_block" onclick="location.href='{% url 'menu:add_recipe' %}'">
+{% if user.is_superuser %}
+<div class="new_post_block" onclick="location.href='{% url 'menu:edit_recipe' recipe.id %}'">
     <div class="fixed-action-btn" style="bottom: 24px; right: 24px;">
-        <a class="btn-floating red">
-            <f class="large material-icons">+</f>
+        <a class="btn-floating green">
+            <f class="large material-icons">&#x270D;</f>
         </a>
     </div>
 </div>
+{% endif %}
+
+
 
 <div class="recipe_header gray_background">
     <div class="recipe_description">
@@ -56,7 +59,7 @@
             </li>
             <li><b>Servings</b>: {{ recipe.servings }}</li>
             {% if user.is_superuser %}
-                <br><li><a class="btn" target="_blank" href="{{ recipe.source }}">GoTo Recipe Source</a></li>
+                <li><a class="" target="_blank" href="{{ recipe.source }}">GoTo Recipe Source</a></li>
             {% endif %}
         </ul>
     </div>
@@ -65,29 +68,26 @@
 
 {% include "menu/recipe_details_ingredients.html" %}
 <hr>
-<div class="row-fluid">
-    <div class="span9">
-        <h3>Directions</h3>
-        {% if user.is_superuser %}
-            <a class="btn" href="{% url 'menu:edit_recipe' recipe.id %}">&#x270D;</a><br>
-        {% endif %}
-        <br>
-        {% markdown %}
-            {{ recipe.directions | safe }}
-        {% endmarkdown %}
-    </div>
+<div class="recipe_directions">
+    <h3>Directions</h3>
+    {% if user.is_superuser %}
+        <a class="btn" href="{% url 'menu:edit_recipe' recipe.id %}">&#x270D;</a>
+    {% endif %}
+    {% markdown %}
+        {{ recipe.directions | safe }}
+    {% endmarkdown %}
 </div>
 <hr>
-<div class="row-fluid">
+<div class="recipe_notes">
     <h3>Notes</h3>
     {% if user.is_authenticated %}
         <div id="comments"></div>
         <form action="" method="post">
         {% csrf_token %}
-            {{ comment_form.comment }}<br>
+            {{ comment_form.comment }}
             <input type=submit class="btn" value="Save &raquo;"/>
         </form>
-        <br><br><hr>
+        <hr>
     {% else %}
         You must be logged in to comment or rate.<br>
         <a href="{% url 'login' %}">Login</a>

@@ -150,7 +150,6 @@ def recipe_details(request, recipe_id):
                 rating_form = RatingForm(request.POST, instance=Rating.objects.get(recipe=recipe, user=user))
             except Rating.DoesNotExist:
                 rating_form = RatingForm(request.POST)
-            ingredient_form = IngredientForm(request.POST)
 
             if comment_form.is_valid():
                 comment_save = comment_form.save(commit=False)
@@ -166,14 +165,6 @@ def recipe_details(request, recipe_id):
                 rating_save.recipe = recipe
                 rating_save.save()
 
-            if ingredient_form.is_valid():
-                max_ingredient_sorting = Ingredient.objects.filter(recipe_id=recipe).order_by('-sorting')[0]
-
-                ingredient_save = ingredient_form.save(commit=False)
-                ingredient_save.recipe = recipe
-                ingredient_save.sorting = max_ingredient_sorting.sorting + 10
-                ingredient_save.save()
-
             return HttpResponseRedirect(reverse('menu:recipe_details', args=(recipe_id,)))
 
         else:
@@ -185,17 +176,13 @@ def recipe_details(request, recipe_id):
             except Rating.DoesNotExist:
                 rating_form = RatingForm()
 
-            ingredient_form = IngredientForm()
-
     else:
         comment_form = CommentForm()
         rating_form = RatingForm()
-        ingredient_form = IngredientForm()
 
     return render_to_response('menu/recipe_details.html',
                               {'comment_form': comment_form,
                                'rating_form': rating_form,
-                               'ingredient_form': ingredient_form,
                                'recipe': recipe, },
                               context_instance=RequestContext(request))
 
@@ -212,6 +199,7 @@ def edit_recipe(request, recipe_id):
 
     if request.method == 'POST':
         form = RecipeForm(request.POST, instance=Recipe.objects.get(id=recipe_id))
+        ingredient_form = IngredientForm(request.POST)
 
         if form.is_valid():
             formpost = form.save(commit=False)
@@ -219,15 +207,25 @@ def edit_recipe(request, recipe_id):
             formpost.edited = datetime.now()
             formpost.save()
             recipe_id = formpost.id
+
+        if ingredient_form.is_valid():
+            max_ingredient_sorting = Ingredient.objects.filter(recipe_id=recipe).order_by('-sorting')[0]
+
+            ingredient_save = ingredient_form.save(commit=False)
+            ingredient_save.recipe = recipe
+            ingredient_save.sorting = max_ingredient_sorting.sorting + 10
+            ingredient_save.save()
+
         return HttpResponseRedirect(reverse('menu:recipe_details', args=(recipe_id,)))
 
     else:
         form = RecipeForm(instance=recipe)
+        ingredient_form = IngredientForm()
 
     return render_to_response('menu/edit_recipe.html', {
         'form': form,
+        'ingredient_form': ingredient_form,
         'recipe': recipe,
-
     },
         context_instance=RequestContext(request)
     )
