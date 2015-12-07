@@ -7,19 +7,20 @@
 
 <h3>Ingredients</h3>
 
-<div class="recipe_ingredients">
-    {% for ingredient in recipe.ingredient_set.all %}
-        <p>
+{% for ingredient in recipe.ingredient_set.all %}
+    <div class="ingredient_block">
+        <div class="ingredient_details">
+            {% if user.is_superuser %}
+                <a class="add_to_list_button" href="{% url 'menu:add_to_shopping_list' ingredient.id %}">+</a>
+            {% endif %}
             {{ ingredient.amount|show_integer }}{{ ingredient.amount|show_fraction }}
             {{ ingredient.unit }}
             {{ ingredient.name }}{% if ingredient.comment %}, {{ ingredient.comment }}
             {% endif %}
-            {% if user.is_superuser %}
-                <a class="btn" href="{% url 'menu:add_to_shopping_list' ingredient.id %}">+</a>
-            {% endif %}
-        </p>
-    {% endfor %}
-</div>
+        </div>
+    </div>
+{% endfor %}
+<div style="clear:both;"></div>
 {% endblock %}
 
 {% block navsidebar %}

@@ -28,7 +28,7 @@ a {
 a:hover,
 a:focus {
     color: #005580;
-    text-decoration: underline;
+    /* text-decoration: underline; */
 }
 
 
@@ -75,14 +75,14 @@ input#post_edit_title:focus {
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
 
-.recipe_block, .recipe_header {
+.recipe_block, .recipe_header, ingredient {
     height: auto;
     width: max;
     display: block;
     background-color: #dddddd;
 }
 
-.recipe_block {
+.recipe_block, ingredient {
     margin: .3em 0;
     border-radius: .5em;
     padding: .3em;
@@ -136,6 +136,18 @@ input#post_edit_title:focus {
 
 }
 
+.ingredient_block {
+    height: auto;
+    width: 100%;
+    margin: .3em 0;
+    border-radius: .5em;
+    display: block;
+    background-color:#e9f3fb;
+    overflow: hidden;
+    line-height: 100 px;
+    padding-left: .5em;
+}
+
 .recipe_results {
     font-size: 1em;
 }
@@ -146,9 +158,6 @@ input#post_edit_title:focus {
     float: right;
 }
 
-.new_post {
-    width: auto;
-}
 
 .span12:active {
     background-color: MediumAquamarine;
@@ -239,11 +248,11 @@ ul {
     margin: 0;
 }
 
-input {
+form > input {
     width: 225px;
 }
 
-select {
+form > select {
     width: 225px;
 }
 
@@ -267,10 +276,8 @@ select {
     width: 60%;
 }
 
-
-
 form {
-    width:500px;
+    width:100%;
 }
 
 .search {
@@ -299,11 +306,44 @@ form {
     color:#fafafa;
 }
 
-.form > a {
+.form > a, .form input[type="submit"] {
     position:relative;
     padding:8px 15px;
     left:-8px;
     border:3px solid #207cca;
     background-color:#207cca;
     color:#fafafa;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.form > input[type="submit"] {
+    width: 100%;
+    margin-left:8px;
+}
+
+.form > a:hover, .form > input[type="submit"]:hover {
+    background-color:#2387dc;
+    border:3px solid #2387dc;
+}
+
+.add_to_list_button {
+    float:right;
+    display:inline-block;
+    width: 10%;
+    height: auto;
+    border-radius: 0 .5em .5em 0;
+    background-color: lightblue;
+    padding-bottom: 1500px;
+    margin-bottom: -1500px;
+    text-align: center;
+}
+
+.add_to_list_button:hover {
+    background-color: #a7a7a7;
+    color: #ffffff;
+}
+
+.add_to_list_button:active {
+    background-color: #4a4a4a;
+    color: #ffffff;
 }

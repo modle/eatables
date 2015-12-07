@@ -30,7 +30,7 @@ a {
   text-decoration: none;
 }
 a:focus, a:hover {
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 
 input {
@@ -149,4 +149,3 @@ input {
   border-radius: 0.25rem;
   padding: 0;
 }
-

@@ -19,7 +19,7 @@
 </div>
 
 {% if user.is_superuser %}
-<div class="new_post_block" onclick="location.href='{% url 'menu:edit_recipe' recipe.id %}'">
+<div onclick="location.href='{% url 'menu:edit_recipe' recipe.id %}'">
     <div class="fixed-action-btn" style="bottom: 24px; right: 24px;">
         <a class="btn-floating green">
             <f class="large material-icons">&#x270D;</f>
@@ -27,7 +27,6 @@
     </div>
 </div>
 {% endif %}
-
 
 
 <div class="recipe_header gray_background">
@@ -70,9 +69,6 @@
 <hr>
 <div class="recipe_directions">
     <h3>Directions</h3>
-    {% if user.is_superuser %}
-        <a class="btn" href="{% url 'menu:edit_recipe' recipe.id %}">&#x270D;</a>
-    {% endif %}
     {% markdown %}
         {{ recipe.directions | safe }}
     {% endmarkdown %}
@@ -85,6 +81,7 @@
         <form action="" method="post">
         {% csrf_token %}
             {{ comment_form.comment }}
+            <br>
             <input type=submit class="btn" value="Save &raquo;"/>
         </form>
         <hr>

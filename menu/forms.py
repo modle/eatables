@@ -14,11 +14,10 @@ class RecipeForm(ModelForm):
         self.fields['prep_time'].widget.attrs.update({'placeholder': '0'})
         self.fields['cook_time'].widget.attrs.update({'placeholder': '0'})
         self.fields['description'].widget.attrs.update({'placeholder': 'description'})
-        self.fields['banner_image'].widget.attrs.update({'placeholder': 'image URL'})
 
     class Meta:
         model = Recipe
-        fields = ('name', 'cook_method', 'temperature', 'directions', 'source', 'servings', 'prep_time', 'cook_time', 'pinned', 'description', 'banner_image', 'dish_type', )
+        fields = ('name', 'cook_method', 'temperature', 'directions', 'source', 'servings', 'prep_time', 'cook_time', 'pinned', 'description', 'dish_type', )
 
 
 class FridgeForm(forms.ModelForm):
@@ -49,9 +48,6 @@ class CommentForm(ModelForm):
         fields = ('comment',)
         labels = {
             'comment': '',
-        }
-        widgets = {
-            'comment': Textarea(attrs={'cols': 10, 'rows': 6}),
         }
 
 class RatingForm(ModelForm):
