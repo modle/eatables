@@ -8,29 +8,35 @@
 <head>
 <title>
     {% block head_title %}
-        {{ recipe.name }} - Edit
+        {% if recipe.name %}
+            {{ recipe.name }} - Edit
+        {% else %}
+            New Recipe
+        {% endif %}
     {% endblock %}
 </title>
 </head>
 <body>
 {% block content %}
 
-
-<h2>Edit Recipe Details</h2>
-
-<div class="">
-    <form method="POST" action="">
-        {% csrf_token %}
-        {{ ingredient_form.id }}
-        {{ ingredient_form.name }}<br>
-        {{ ingredient_form.amount }}<br>
-        {{ ingredient_form.unit }}<br>
-        {{ ingredient_form.comment }}
-        <p>
-            <input class="btn" type="submit" value="+" id="submit"/>
-        </p>
-    </form>
-</div>
+{% if recipe.name %}
+    <h2>Edit Recipe Details</h2>
+    <div class="">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{ ingredient_form.id }}
+            {{ ingredient_form.name }}<br>
+            {{ ingredient_form.amount }}<br>
+            {{ ingredient_form.unit }}<br>
+            {{ ingredient_form.comment }}
+            <p>
+                <input class="btn" type="submit" value="+" id="submit"/>
+            </p>
+        </form>
+    </div>
+{% else %}
+    <h2>New Recipe</h2>
+{% endif %}
 <hr>
 
 <div class="ingredients">

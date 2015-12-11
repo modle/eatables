@@ -196,34 +196,40 @@ def delete_recipe_forever(request, recipe_id):
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
 def edit_recipe(request, recipe_id):
     recipe = Recipe.objects.get(pk=recipe_id)
+    ingredients = Ingredient.objects.filter(recipe_id=recipe)
 
     if request.method == 'POST':
-        form = RecipeForm(request.POST, instance=Recipe.objects.get(id=recipe_id))
+        recipe_form = RecipeForm(request.POST, instance=Recipe.objects.get(id=recipe_id))
         ingredient_form = IngredientForm(request.POST)
 
-        if form.is_valid():
-            formpost = form.save(commit=False)
-            formpost.user = request.user
-            formpost.edited = datetime.now()
-            formpost.save()
-            recipe_id = formpost.id
+        if recipe_form.is_valid():
+            recipe_save = recipe_form.save(commit=False)
+            recipe_save.user = request.user
+            recipe_save.edited = datetime.now()
+            recipe_save.save()
+            recipe_id = recipe_save.id
+            return HttpResponseRedirect(reverse('menu:recipe_details', args=(recipe_id,)))
 
         if ingredient_form.is_valid():
-            max_ingredient_sorting = Ingredient.objects.filter(recipe_id=recipe).order_by('-sorting')[0]
 
             ingredient_save = ingredient_form.save(commit=False)
             ingredient_save.recipe = recipe
-            ingredient_save.sorting = max_ingredient_sorting.sorting + 10
-            ingredient_save.save()
 
-        return HttpResponseRedirect(reverse('menu:recipe_details', args=(recipe_id,)))
+            if ingredients:
+                max_ingredient_sorting = Ingredient.objects.filter(recipe_id=recipe).order_by('-sorting')[0]
+                ingredient_save.sorting = max_ingredient_sorting.sorting + 10
+            else:
+                ingredient_save.sorting = 10
+
+            ingredient_save.save()
+            return HttpResponseRedirect(reverse('menu:edit_recipe', args=(recipe_id,)))
 
     else:
-        form = RecipeForm(instance=recipe)
+        recipe_form = RecipeForm(instance=recipe)
         ingredient_form = IngredientForm()
 
     return render_to_response('menu/edit_recipe.html', {
-        'form': form,
+        'form': recipe_form,
         'ingredient_form': ingredient_form,
         'recipe': recipe,
     },
