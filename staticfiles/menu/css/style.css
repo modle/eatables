@@ -6,18 +6,6 @@
 html, body {
     height: 100%;
 }
-.sidebar-nav {
-    padding: 9px 0;
-}
-
-.small-caps-header {
-    font-size: 11px;
-    font-weight: bold;
-    line-height: 20px;
-    color: #999999;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-    text-transform: uppercase;
-}
 
 
 a {
@@ -32,50 +20,7 @@ a:focus {
 }
 
 
-input#formfieldastext {
-    display: inline-block;
-    width: auto;
-    background-color: inherit;
-
-    border: none;
-    overflow: auto;
-    outline: none;
-
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-
-}
-
-input#formfieldastext:hover {
-    cursor: text;
-}
-
-input#post_edit_title {
-    font-size: 2em;
-    overflow: auto;
-    height: auto;
-    width: auto;
-    background: inherit;
-    border: none;
-    overflow: auto;
-    outline: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-}
-
-input#post_edit_title:focus {
-    border: 1px;
-    overflow: 1px;
-    outline: 1px;
-    background: lightgrey;
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-}
-
-.recipe_block, .recipe_header, ingredient {
+.recipe_block, .recipe_header, .ingredient {
     height: auto;
     width: max;
     display: block;
@@ -128,8 +73,8 @@ input#post_edit_title:focus {
     /*display: inline-block;*/
 }
 
-.recipe_ingredients {
-
+.search_input {
+    display: inline-block;
 }
 
 .ingredient_block {
@@ -181,6 +126,10 @@ input#post_edit_title:focus {
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
+
+}
+
+@media (min-width: 768px) {
 }
 
 
@@ -216,9 +165,11 @@ input#post_edit_title:focus {
         padding-bottom: 40px;
     }
 
+
 }
 
 @media (min-width: 1200px) {
+
 }
 
 @media (max-width: 480px) {
@@ -248,10 +199,6 @@ form > input {
     width: 225px;
 }
 
-form > select {
-    width: 225px;
-}
-
 .green-font {
     color: green;
 }
@@ -272,8 +219,10 @@ form > select {
     width: 60%;
 }
 
-form {
-    width:100%;
+.form {
+    width:99%;
+    margin: 0 .5%;
+
 }
 
 .search {
@@ -281,10 +230,9 @@ form {
     background:rgba(50, 50, 50, 0.2);
 }
 
-.button {
+.form > .button {
     position:relative;
     padding:6px 15px;
-    left:-8px;
     border:2px solid #207cca;
     background-color:#207cca;
     color:#fafafa;
@@ -295,33 +243,47 @@ form {
     color:#207cca;
 }
 
-.form input[type="text"]{
-    width: auto;
+.form input[type="text"], .form input[type="number"], .form select{
+    width: 100%;
     background-color: #bbbbbb;
     border:0px solid #dbdbdb;
     color:#fafafa;
+    margin: .5em 0;
+    padding: .5em;
 }
 
-.form > a, .form input[type="submit"] {
+.search_form input[type="text"]{
+    width: 70%;
+    background-color: #bbbbbb;
+    border:0px solid #dbdbdb;
+    color:#fafafa;
+    margin: .5em 0;
+    padding: .5em;
+}
+
+.form a, .form input[type="submit"], .search_form a{
     position:relative;
-    padding:8px 15px;
-    left:-8px;
-    border:3px solid #207cca;
+    padding:8px 1.5%;
+    border:.2% solid #207cca;
     background-color:#207cca;
     color:#fafafa;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    margin: .5em 0;
+    float: right;
+    display:inline-block;
 }
 
-.form > input[type="submit"] {
+
+.form input[type="submit"] {
     width: 100%;
 }
 
-.form > a:hover, .form > input[type="submit"]:hover {
+.form a:hover, .form input[type="submit"]:hover, .search_form a:hover {
     background-color:#2387dc;
-    border:3px solid #2387dc;
+    border:.2% solid #2387dc;
 }
 
-.add_to_list_button {
+.right_tab_button {
     float:right;
     display:inline-block;
     width: 10%;
@@ -333,12 +295,12 @@ form {
     text-align: center;
 }
 
-.add_to_list_button:hover {
+.right_tab_button:hover {
     background-color: #a7a7a7;
     color: #ffffff;
 }
 
-.add_to_list_button:active {
+.right_tab_button:active {
     background-color: #4a4a4a;
     color: #ffffff;
 }
@@ -346,5 +308,4 @@ form {
 textarea {
     height: 8em;
     overflow: hidden;
-    rows: 5;
 }

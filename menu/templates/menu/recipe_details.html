@@ -78,7 +78,7 @@
     <h3>Notes</h3>
     {% if user.is_authenticated %}
         <div id="comments"></div>
-        <form action="" method="post">
+        <form action="" method="post" class="form">
         {% csrf_token %}
             {{ comment_form.comment }}
             <br>

@@ -9,17 +9,19 @@
 {% endblock %}
 {% block content %}
 
-<form action="" method="POST" class="form">
+<form action="" method="POST" class="search_form">
     {% csrf_token %}
     {{ search_form }}
-    <a href="{% url 'menu:clear_recipe_filter' %}">&#x2718;
-        {% for message in messages %}
-            {% if message.tags == 'info' %}
-                {{ message }}
-            {% endif %}
-        {% endfor %}
+    <a class="btn" href="{% url 'menu:clear_recipe_filter' %}">&#x2718;
+    {% for message in messages %}
+        {% if message.tags == 'info' %}
+            {{ message }}
+        {% endif %}
+    {% endfor %}
     </a>
 </form>
+
+<div style="clear:both;"></div>
 
 <div class="hero-unit">
 </div>
