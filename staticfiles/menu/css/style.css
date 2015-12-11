@@ -342,3 +342,9 @@ form {
     background-color: #4a4a4a;
     color: #ffffff;
 }
+
+textarea {
+    height: 8em;
+    overflow: hidden;
+    rows: 5;
+}

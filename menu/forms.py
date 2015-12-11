@@ -38,6 +38,7 @@ class FridgeForm(forms.ModelForm):
             'expires': 'expires',
         }
 
+
 class CommentForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(CommentForm, self).__init__(*args, **kwargs)
@@ -50,6 +51,7 @@ class CommentForm(ModelForm):
             'comment': '',
         }
 
+
 class RatingForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(RatingForm, self).__init__(*args, **kwargs)
@@ -57,6 +59,7 @@ class RatingForm(ModelForm):
     class Meta:
         model = Rating
         fields = ('rating', )
+
 
 class IngredientForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -75,6 +78,7 @@ class IngredientForm(ModelForm):
             'unit': '',
             'comment': '',
         }
+
 
 class SearchForm(forms.Form):
     search_term = forms.CharField(label='', max_length=100)
