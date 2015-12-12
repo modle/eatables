@@ -448,6 +448,14 @@ textarea {
   text-align: center;
 }
 
+.hero-unit h2 {
+  margin-bottom: -.05em;
+  font-size: 20px;
+  line-height: 1;
+  color: inherit;
+  text-align: center;
+}
+
 .pull-right {
   float: right;
 }

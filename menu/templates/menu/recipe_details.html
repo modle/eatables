@@ -66,16 +66,19 @@
 </div>
 
 {% include "menu/recipe_details_ingredients.html" %}
-<hr>
 <div class="recipe_directions">
-    <h3>Directions</h3>
+    <div class="hero-unit">
+        <h2>Directions</h2>
+    </div>
     {% markdown %}
         {{ recipe.directions | safe }}
     {% endmarkdown %}
 </div>
 <hr>
 <div class="recipe_notes">
-    <h3>Notes</h3>
+    <div class="hero-unit">
+        <h2>Notes</h2>
+    </div>
     {% if user.is_authenticated %}
         <div id="comments"></div>
         <form action="" method="post" class="form">
@@ -83,6 +86,7 @@
             {{ comment_form.comment }}
             <br>
             <input type=submit class="btn" value="Save &raquo;"/>
+            <div style="clear:both;"></div>
         </form>
         <hr>
     {% else %}

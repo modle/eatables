@@ -68,6 +68,7 @@ class IngredientForm(ModelForm):
         self.fields['amount'].widget.attrs.update({'placeholder': 0})
         self.fields['unit'].widget.attrs.update({'placeholder': 'Unit of Measurement'})
         self.fields['comment'].widget.attrs.update({'placeholder': 'Other Details'})
+        self.fields['name'].widget.attrs.update({'autofocus': 'autofocus'})
 
     class Meta:
         model = Ingredient
