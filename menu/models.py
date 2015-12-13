@@ -37,7 +37,7 @@ class Ingredient(models.Model):
     recipe = models.ForeignKey(Recipe)
     name = models.CharField(max_length=80, null=False)
     comment = models.CharField(max_length=80, blank=True, null=True)
-    amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+    amount = models.DecimalField(max_digits=10, decimal_places=3, default=0.0)
     unit = models.CharField(max_length=30, null=True, blank=True)
     sorting = models.IntegerField("Ordering", blank=False, null=False, help_text="A number.")
 

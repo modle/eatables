@@ -7,6 +7,10 @@
     <h2>Ingredients</h2>
 </div>
 
+{% if not recipe.ingredient_set.all %}
+    No ingredients yet.
+{% endif %}
+
 {% for ingredient in recipe.ingredient_set.all %}
     <div class="ingredient_block">
         <div class="ingredient_details">
@@ -21,6 +25,7 @@
     </div>
 {% endfor %}
 <div style="clear:both;"></div>
+<hr>
 {% endblock %}
 
 {% block navsidebar %}
