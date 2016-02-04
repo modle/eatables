@@ -4,6 +4,11 @@ EA Tables. A tool for managing recipes, tracking cost, and creating shopping lis
 
 You figure out what EA means. Hint: it's not Electronic Arts.
 
+Test URL:
+http://eatables-test.herokuapp.com/menu/
+
+Login: testuser
+Password: test
 
 2015-07-14
 Updated Shopping List
