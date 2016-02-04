@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load menu_extras %}
-<script type="text/javascript" src="{% static 'menu/js/jquery-1.11.3.js' %}"></script>
-<script type="text/javascript" src="{% static 'menu/js/menu.js' %}"></script>
-
 <html>
 <head>
 <title>
@@ -18,6 +15,14 @@
 </head>
 <body>
 {% block content %}
+
+{% for message in messages %}
+    {% if message.tags == 'error' %}
+        <p style="color:red; font-weight:bold;">{{ message }}</p>
+    {% elif message.tags == 'info' %}
+        <p style="color:black; font-weight:bold;">{{ message }}</p>
+    {% endif %}
+{% endfor %}
 
 {% if recipe.name %}
     <div class="hero-unit"><h1>{{ recipe.name }}</h1></div>
@@ -54,6 +59,7 @@
             </div>
         </div>
     {% endfor %}
+    </div>
     <div style="clear:both;"></div>
 {% else %}
     <div class="hero-unit"><h1>New Recipe</h1></div>
@@ -82,4 +88,8 @@
 {% block navsidebar %}
 {% endblock %}
 </body>
+
+<script type="text/javascript" src="{% static 'menu/js/jquery-1.11.3.js' %}"></script>
+<script type="text/javascript" src="{% static 'menu/js/menu.js' %}"></script>
+
 </html>

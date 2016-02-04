@@ -56,7 +56,9 @@ def add_to_shopping_list(request, ingredient_id):
     list_item.completed = False
     list_item.save()
 
-    return HttpResponseRedirect(reverse('menu:recipe_details', args=(ingredient.recipe_id,)))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+    # return HttpResponseRedirect(reverse('menu:recipe_details', args=(ingredient.recipe_id,)))
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
@@ -129,7 +131,10 @@ def add_recipe(request):
             formpost.edited = datetime.now()
             formpost.save()
             recipe_id = formpost.id
+            messages.info(request, 'Recipe successfully added.')
             return HttpResponseRedirect(reverse('menu:recipe_details', args=(recipe_id,)))
+        else:
+            messages.error(request, 'Please fill out all fields.')
 
     else:
         form = RecipeForm()
@@ -208,12 +213,18 @@ def edit_recipe(request, recipe_id):
             recipe_save.edited = datetime.now()
             recipe_save.save()
             recipe_id = recipe_save.id
+            messages.info(request, 'Recipe successfully updated.')
             return HttpResponseRedirect(reverse('menu:recipe_details', args=(recipe_id,)))
 
         if ingredient_form.is_valid():
+            # clears messages
+            storage = messages.get_messages(request)
+            for _ in storage:
+                pass
 
             ingredient_save = ingredient_form.save(commit=False)
             ingredient_save.recipe = recipe
+            messages.info(request, 'Ingredient ' + ingredient_save.name + ' added.')
 
             if ingredients:
                 max_ingredient_sorting = Ingredient.objects.filter(recipe_id=recipe).order_by('-sorting')[0]
@@ -224,9 +235,18 @@ def edit_recipe(request, recipe_id):
             ingredient_save.save()
             return HttpResponseRedirect(reverse('menu:edit_recipe', args=(recipe_id,)))
 
+        else:
+            # clears messages
+            storage = messages.get_messages(request)
+            for _ in storage:
+                pass
+
+            messages.error(request, 'Ingredient name and amount are required.')
+            ingredient_form = IngredientForm(request.POST)
     else:
-        recipe_form = RecipeForm(instance=recipe)
         ingredient_form = IngredientForm()
+
+    recipe_form = RecipeForm(instance=recipe)
 
     return render_to_response('menu/edit_recipe.html', {
         'form': recipe_form,

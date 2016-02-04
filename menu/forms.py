@@ -17,7 +17,8 @@ class RecipeForm(ModelForm):
 
     class Meta:
         model = Recipe
-        fields = ('name', 'cook_method', 'temperature', 'directions', 'source', 'servings', 'prep_time', 'cook_time', 'pinned', 'description', 'dish_type', )
+        fields = ('name', 'cook_method', 'temperature', 'directions', 'source', 'servings', 'prep_time', 'cook_time',
+                  'pinned', 'description', 'dish_type', )
 
 
 class FridgeForm(forms.ModelForm):

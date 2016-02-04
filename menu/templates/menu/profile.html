@@ -4,35 +4,6 @@
 {% block content %}
 {% if user.is_superuser %}
 
-<div class="container-fluid">
-    <button type="button" class="btn" data-toggle="collapse" data-target=".newpost-collapse">
-        <span>&#x25B2;&#x25BC;</span>
-    </button>
-    <div class="newpost-collapse collapse">
-        <form method="POST" action="">
-            {% csrf_token %}
-            Name<br>{{ recipe_form.name }}<br>
-            Description{{ recipe_form.description }}<br><br>
-            Check to publish: {{ recipe_form.published }}<br><br>
-            Method<br>{{ recipe_form.cook_method }}<br><br>
-            Dish Type<br>{{ recipe_form.dish_type }}<br><br>
-            Temperature<br>{{ recipe_form.temperature }}<br><br>
-            Prep Time (minutes)<br>{{ recipe_form.prep_time }}<br><br>
-            Cook Time (minutes)<br>{{ recipe_form.cook_time }}<br><br>
-            Servings<br>{{ recipe_form.servings }}<br><br>
-            Directions<br>{{ recipe_form.directions }}<br><br>
-            URL<br>{{ recipe_form.source }}<br><br>
-            Image URL<br>{{ recipe_form.banner_image }}<br><br>
-            <p>
-                <input class="btn" type="submit" value="Post &raquo;"/>
-            </p>
-        </form>
-    </div>
-</div>
-
-<hr noshade>
-<hr noshade>
-
 <h3>Your Recipes</h3>
 <div class="row-fluid">
     <div class="span12">
@@ -50,7 +21,6 @@
     </div><!--/span-->
 </div><!--/row-->
 
-<hr noshade>
 <hr noshade>
 {% endif %}
 
