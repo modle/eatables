@@ -249,6 +249,7 @@ form > input {
     border:0px solid #dbdbdb;
     color:#fafafa;
     padding: .5em;
+    margin: .5em 0;
 }
 
 .search_form input[type="text"]{
@@ -307,4 +308,9 @@ form > input {
 textarea {
     height: 8em;
     overflow: hidden;
+}
+
+
+ingredientField {
+    margin: 20em 0;
 }

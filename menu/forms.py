@@ -66,10 +66,14 @@ class IngredientForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(IngredientForm, self).__init__(*args, **kwargs)
         self.fields['name'].widget.attrs.update({'placeholder': 'Name'})
-        self.fields['amount'].widget.attrs.update({'placeholder': 0})
-        self.fields['unit'].widget.attrs.update({'placeholder': 'Unit of Measurement'})
-        self.fields['comment'].widget.attrs.update({'placeholder': 'Other Details'})
+        self.fields['name'].widget.attrs.update({'class': 'ingredientField'})
         self.fields['name'].widget.attrs.update({'autofocus': 'autofocus'})
+        self.fields['amount'].widget.attrs.update({'placeholder': 0})
+        self.fields['amount'].widget.attrs.update({'class': 'ingredientField'})
+        self.fields['unit'].widget.attrs.update({'placeholder': 'Unit of Measurement'})
+        self.fields['unit'].widget.attrs.update({'class': 'ingredientField'})
+        self.fields['comment'].widget.attrs.update({'placeholder': 'Other Details'})
+        self.fields['comment'].widget.attrs.update({'class': 'ingredientField'})
 
     class Meta:
         model = Ingredient
