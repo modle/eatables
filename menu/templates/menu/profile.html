@@ -1,39 +1,33 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load menu_extras %}
 {% load markdown_deux_tags %}
 
 {% block content %}
 {% if user.is_superuser %}
 
 <h3>Your Recipes</h3>
-<div class="row-fluid">
-    <div class="span12">
-        {% for recipe in recipes %}
-            <p><b>{{ recipe.name }} |</b>
-            {{ recipe.cook_method }} |
-            {{ recipe.publish_date }} |
-                <a class="btn" href="{% url 'menu:edit_recipe' recipe.id %}">&#x270D;</a>
-            {% if recipe.published %}
-                <a class="btn" href="{% url 'menu:recipe_details' recipe.id %}">&raquo;</a>
-            {% endif %}
-                <hr noshade>
-        {% endfor %}
+{% for recipe in recipes %}
+    <div class="recipe_block notSelectable" id="{{ recipe.id }}">
+        <span class="recipe_title notSelectable">{{ recipe.name }}</span>
+        <img src="{% static recipe.get_dish_type_display|generate_img_path %}" height="10em">
+    </div>
+{% endfor %}
 
-    </div><!--/span-->
-</div><!--/row-->
 
 <hr noshade>
 {% endif %}
 
-<h3>Your Comments</h3>
-<div class="row-fluid">
-    <div class="span12">
-        {% for comment in comments %}
-            <p><b>{{ comment.recipe.name }} |</b>
-            {{ comment.publishDate }}<br>
-            {{ comment.comment }}
-        {% endfor %}
-    </div><!--/span-->
-</div><!--/row-->
+<h3>Your Notes</h3>
+{% for comment in comments %}
+    <div class="recipe_block notSelectable" id="{{ comment.recipe.id }}">
+        <p><span class="recipe_title notSelectable">{{ comment.recipe.name }}</span><br>{{ comment.publishDate }}<br>
+        {{ comment.comment }}
+    </div>
+
+
+    <hr>
+{% endfor %}
 
 {% endblock %}
 
