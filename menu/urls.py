@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^(?P<ingredient_id>[0-9]+)/add_to_shopping_list/$', views.add_to_shopping_list, name='add_to_shopping_list'),
     url(r'^shopping_list/$', views.shopping_list, name='shopping_list'),
     url(r'^(?P<shopping_list_id>[0-9]+)/shopping_list_check_off/$', views.shopping_list_check_off, name='shopping_list_check_off'),
+    url(r'^(?P<shopping_list_id>[0-9]+)/shopping_list_delete/$', views.shopping_list_delete, name='shopping_list_delete'),
 
     # url(r'^update_rating', views.update_rating, name='update_rating'),
 

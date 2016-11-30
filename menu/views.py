@@ -85,6 +85,13 @@ def shopping_list_check_off(request, shopping_list_id):
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
+def shopping_list_delete(request, shopping_list_id):
+    ShoppingList.objects.filter(shoppingListId=shopping_list_id).delete()
+
+    return HttpResponseRedirect(reverse('menu:shopping_list'))
+
+
+@user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
 def fridge(request):
     logger = logging.getLogger(__name__)
 
