@@ -5,8 +5,7 @@ from . import views
 
 urlpatterns = [
     # index and base
-    url(r'^$', views.base_template, name='base_template'),
-    url(r'^menu/$', views.index, name='index'),
+    url(r'^$', views.index, name='index'),
 
     # recipe
     url(r'^(?P<recipe_id>[0-9]+)/recipe_details/$', views.recipe_details, name='recipe_details'),
