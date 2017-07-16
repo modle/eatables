@@ -33,6 +33,6 @@ urlpatterns += [
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', name='logout'),
     url(r'^accounts/loggedin/$', 'menu.views.loggedin', name='loggedin'),
     url(r'^accounts/not_authorized/$', 'menu.views.not_authorized', name='not_authorized'),
-    url(r'^menu/loggedout/$', 'menu.views.loggedout', name='loggedout'),
+    url(r'^loggedout/$', 'menu.views.loggedout', name='loggedout'),
 
 ]

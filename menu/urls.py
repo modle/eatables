@@ -4,8 +4,12 @@ from . import views
 
 
 urlpatterns = [
-    # index and base
-    url(r'^$', views.index, name='index'),
+    # default view
+    url(r'^$', views.profile, name='profile'),
+    url(r'^clear_recipe_filter/$', views.clear_recipe_filter, name='clear_recipe_filter'),
+
+    # all recipes
+    url(r'^discover/$', views.discover, name='discover'),
 
     # recipe
     url(r'^(?P<recipe_id>[0-9]+)/recipe_details/$', views.recipe_details, name='recipe_details'),
@@ -19,23 +23,15 @@ urlpatterns = [
     url(r'^(?P<ingredient_id>[0-9]+)/move_ingredient_up/$', views.move_ingredient_up, name='move_ingredient_up'),
     url(r'^(?P<ingredient_id>[0-9]+)/move_ingredient_down/$', views.move_ingredient_down, name='move_ingredient_down'),
 
-
     # shopping list
     url(r'^(?P<ingredient_id>[0-9]+)/add_to_shopping_list/$', views.add_to_shopping_list, name='add_to_shopping_list'),
     url(r'^shopping_list/$', views.shopping_list, name='shopping_list'),
     url(r'^(?P<shopping_list_id>[0-9]+)/shopping_list_check_off/$', views.shopping_list_check_off, name='shopping_list_check_off'),
     url(r'^(?P<shopping_list_id>[0-9]+)/shopping_list_delete/$', views.shopping_list_delete, name='shopping_list_delete'),
 
-    # url(r'^update_rating', views.update_rating, name='update_rating'),
-
     # comments
     url(r'^(?P<comment_id>[0-9]+)/comment_delete/$', views.comment_delete, name='comment_delete'),
 
     # fridge
     url(r'^fridge/$', views.fridge, name='fridge'),
-
-    # profile
-    url(r'^profile/(?P<slug>[^\.]+)/$', views.profile, name='profile'),
-
-    url(r'^clear_recipe_filter/$', views.clear_recipe_filter, name='clear_recipe_filter'),
 ]
