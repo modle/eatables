@@ -14,26 +14,25 @@
 {% block content %}
     <h3>Unchecked</h3>
     {% for entry in shopping_list_entries %}
-        <p>
+        <a class="btn" href="{% url 'menu:shopping_list_check_off' entry.shoppingListId %}">&#x2714;</a>
+        <div class="ingredient_block shopping_list">
             {{ entry.amount }} {{ entry.name }}
-            <a class="btn" href="{% url 'menu:shopping_list_check_off' entry.shoppingListId %}">&#x2714;</a>
-            <a class="btn" href="{% url 'menu:shopping_list_delete' entry.shoppingListId %}">&#x2718;</a>
-        </p>
+        </div>
+        <a class="btn delete-item" href="{% url 'menu:shopping_list_delete' entry.shoppingListId %}">&#x2718;</a>
     {% endfor %}
 
     <hr>
     <h3>Checked</h3>
     {% for complete_entry in complete_shopping_list_entries %}
         <p>
-            <del>{{ complete_entry.amount }} {{ complete_entry.name }}</del>
             <a class="btn" href="{% url 'menu:add_to_shopping_list' complete_entry.ingredient_id %}">&#x21b0;</a>
-            <a class="btn" href="{% url 'menu:shopping_list_delete' complete_entry.shoppingListId %}">&#x2718;</a>
+            <span class="ingredient_block shopping_list">
+                <del>{{ complete_entry.amount }} {{ complete_entry.name }}</del>
+            </span>
+            <a class="btn delete-item" href="{% url 'menu:shopping_list_delete' complete_entry.shoppingListId %}">&#x2718;</a>
         </p>
     {% endfor %}
 
-{% endblock %}
-
-{% block navsidebar %}
 {% endblock %}
 </body>
 </html>

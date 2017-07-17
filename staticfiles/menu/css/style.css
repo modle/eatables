@@ -327,7 +327,12 @@ textarea {
     overflow: hidden;
 }
 
-
 ingredientField {
     margin: 20em 0;
+}
+
+.shopping_list {
+    before: clear;
+    /*display: inline;*/
+    min-width: 50%;
 }
