@@ -5,6 +5,7 @@
 
 html, body {
     height: 100%;
+    background-color: #E8E8E8;
 }
 
 
@@ -22,6 +23,7 @@ a:focus {
 .main-content {
     min-height: 100%;
     margin-bottom: -2%;
+    background-color: white;
 }
 
 .main-content:after {
