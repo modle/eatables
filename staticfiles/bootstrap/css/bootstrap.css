@@ -79,7 +79,6 @@ textarea {
   background-color: #eeeeee;
 }
 
-
 .navbar {
   *position: relative;
   *z-index: 2;
@@ -463,4 +462,3 @@ textarea {
 .pull-left {
   float: left;
 }
-

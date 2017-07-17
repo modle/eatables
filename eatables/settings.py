@@ -90,6 +90,6 @@ LOGIN_REDIRECT_URL = '/accounts/loggedin/'
 
 try:
     from eatables.localsettings import *
-    print 'you''re using the local dev settings'
+    print "you're using the local dev settings"
 except ImportError:
     from eatables.prodsettings import *

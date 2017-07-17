@@ -44,7 +44,7 @@
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid main-content">
     <div class="row-fluid">
         <div class="span14">
             {% block content %}
@@ -57,11 +57,12 @@
         {% endblock %}
 
     </div>
-    <hr noshade>
-    <footer>
-        <p>&copy; Modle 2015</p>
-    </footer>
 </div>
+<hr noshade>
+<footer class="site-footer">
+    &copy; Modle 2015
+</footer>
+
 
 <script type="text/javascript" src="{% static 'bootstrap/js/jquery.js' %}"></script>
 <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-transition.js' %}"></script>

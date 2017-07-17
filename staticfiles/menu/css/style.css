@@ -19,6 +19,19 @@ a:focus {
     /* text-decoration: underline; */
 }
 
+.main-content {
+    min-height: 100%;
+    margin-bottom: -2%;
+}
+
+.main-content:after {
+    content: "";
+    display: block;
+}
+
+.site-footer, .page-wrap:after {
+    height: 2%;
+}
 
 .recipe_block, .recipe_header, .ingredient {
     height: auto;
@@ -163,6 +176,9 @@ a:focus {
     body {
         padding-top: 60px;
         padding-bottom: 40px;
+        width: 50%;
+        min-width: 1000px;
+        margin: 0 auto;
     }
 
 
