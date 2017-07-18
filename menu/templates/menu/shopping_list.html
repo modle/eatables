@@ -2,36 +2,37 @@
 {% load staticfiles %}
 {% load menu_extras %}}
 
-
 <html>
 <body>
 {% block title %}
-    <div id="title">
-        Shopping List
-    </div>
+  <div id="title">
+    Shopping List
+  </div>
 {% endblock %}
 
 {% block content %}
-    <h3>Unchecked</h3>
-    {% for entry in shopping_list_entries %}
-        <a class="btn" href="{% url 'menu:shopping_list_check_off' entry.shoppingListId %}">&#x2714;</a>
-        <div class="ingredient_block shopping_list">
-            {{ entry.amount }} {{ entry.name }}
-        </div>
-        <a class="btn delete-item" href="{% url 'menu:shopping_list_delete' entry.shoppingListId %}">&#x2718;</a>
-    {% endfor %}
+  {% for entry in shopping_list_entries %}
+    {% if not entry.completed %}
+      <div class="item_block">
+        <a class="pretty_button item_complete" href="{% url 'menu:shopping_list_check_off' entry.shoppingListId %}">&#x2714;</a>
+        <div class="title_base item_title">{{ entry.amount }} {{ entry.name }}</div>
+        <a class="pretty_button item_delete" href="{% url 'menu:shopping_list_delete' entry.shoppingListId %}">&#x2718;</a>
+        <div style="clear:both;"></div>
+      </div>
+    {% endif %}
+  {% endfor %}
 
-    <hr>
-    <h3>Checked</h3>
-    {% for complete_entry in complete_shopping_list_entries %}
-        <p>
-            <a class="btn" href="{% url 'menu:add_to_shopping_list' complete_entry.ingredient_id %}">&#x21b0;</a>
-            <span class="ingredient_block shopping_list">
-                <del>{{ complete_entry.amount }} {{ complete_entry.name }}</del>
-            </span>
-            <a class="btn delete-item" href="{% url 'menu:shopping_list_delete' complete_entry.shoppingListId %}">&#x2718;</a>
-        </p>
-    {% endfor %}
+  <hr>
+  {% for entry in shopping_list_entries %}
+    {% if entry.completed %}
+      <div class="item_block">
+        <a class="pretty_button item_complete" href="{% url 'menu:add_to_shopping_list' entry.ingredient_id %}">&#x21b0;</a>
+        <div class="title_base item_complete_title">{{ entry.amount }} {{ entry.name }}</div>
+        <a class="pretty_button item_delete" href="{% url 'menu:shopping_list_delete' entry.shoppingListId %}">&#x2718;</a>
+        <div style="clear:both;"></div>
+      </div>
+    {% endif %}
+  {% endfor %}
 
 {% endblock %}
 </body>

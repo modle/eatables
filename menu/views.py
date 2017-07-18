@@ -63,14 +63,14 @@ def add_to_shopping_list(request, ingredient_id):
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
 def shopping_list(request):
+    shopping_list_entries = ShoppingList.objects.all()
 
-    shopping_list_entries = ShoppingList.objects.filter(completed=False)
-    complete_shopping_list_entries = ShoppingList.objects.filter(completed=True)
+    # shopping_list_entries = ShoppingList.objects.filter(completed=False)
+    # complete_shopping_list_entries = ShoppingList.objects.filter(completed=True)
 
     return render_to_response(
         'menu/shopping_list.html',
-        {'shopping_list_entries': shopping_list_entries,
-         'complete_shopping_list_entries': complete_shopping_list_entries, },
+        {'shopping_list_entries': shopping_list_entries, },
         context_instance=RequestContext(request))
 
 
