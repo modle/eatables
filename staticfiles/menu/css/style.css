@@ -130,74 +130,6 @@ a:focus {
   padding: 1em;
 }
 
-@media (max-width: 979px) {
-
-/* Enable use of floated navbar text */
-  .navbar-text.pull-right {
-      float: none;
-      padding-left: 5px;
-      padding-right: 5px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 979px) {
-
-}
-
-@media (min-width: 768px) {
-}
-
-
-@media (max-width: 767px) {
-  .span14 {
-    padding: .3em;
-  }
-
-  .container-fluid {
-    padding: 0;
-  }
-
-  .mark_complete_button {
-    visibility: hidden;
-    height: 0;
-    float: right;
-    display: block;
-  }
-
-  .recipe_info {
-    width: 50%;
-  }
-
-  .recipe_description {
-    width: 50%;
-  }
-}
-
-@media (min-width: 980px) {
-
-  body {
-    padding-top: 60px;
-    padding-bottom: 40px;
-    width: 50%;
-    min-width: 1000px;
-    margin: 0 auto;
-  }
-}
-
-@media (min-width: 1200px) {
-
-}
-
-@media (max-width: 480px) {
-  .span14 {
-    padding: 0;
-  }
-
-  .container-fluid {
-    padding: .3em;
-  }
-}
-
 .user-plaque {
   background-color: #EEEEEE;
   padding: .2em;
@@ -377,4 +309,80 @@ ingredientField {
 .item_complete_title {
   color: #BBBBBB;
   background-color: #EEEEEE;
+}
+
+@media (max-width: 979px) {
+
+/* Enable use of floated navbar text */
+  .navbar-text.pull-right {
+      float: none;
+      padding-left: 5px;
+      padding-right: 5px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+
+}
+
+@media (min-width: 768px) {
+}
+
+
+@media (max-width: 767px) {
+  .span14 {
+    padding: .3em;
+  }
+
+  .container-fluid {
+    padding: 0;
+  }
+
+  .mark_complete_button {
+    visibility: hidden;
+    height: 0;
+    float: right;
+    display: block;
+  }
+
+  .recipe_info {
+    width: 50%;
+  }
+
+  .recipe_description {
+    width: 50%;
+  }
+}
+
+@media (min-width: 980px) {
+
+  body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    width: 50%;
+    min-width: 1000px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1200px) {
+
+}
+
+@media (max-width: 480px) {
+  .span14 {
+    padding: 0;
+  }
+
+  .container-fluid {
+    padding: .3em;
+  }
+
+  .title_base {
+    width: 75%;
+  }
+
+  .item_block {
+    width: 75%;
+  }
 }
