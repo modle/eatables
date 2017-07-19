@@ -8,7 +8,6 @@ html, body {
   background-color: #E8E8E8;
 }
 
-
 a {
   color: #0088cc;
   text-decoration: none;
@@ -17,7 +16,6 @@ a {
 a:hover,
 a:focus {
   color: #005580;
-  /* text-decoration: underline; */
 }
 
 .main-content {
@@ -66,12 +64,6 @@ a:focus {
   background-color: #999999;
 }
 
-/*
-.recipe_header {
-  margin: 0 -1em;
-}
-*/
-
 .gray_background {
   background-color: #bbbbbb;
 }
@@ -85,7 +77,6 @@ a:focus {
   font-size: 1.2em;
   margin-bottom: 1em;
   word-wrap: break-word;
-  /*display: inline-block;*/
 }
 
 .search_input {
@@ -114,11 +105,9 @@ a:focus {
   float: right;
 }
 
-
 .span12:active {
   background-color: MediumAquamarine;
 }
-
 
 .container-fluid {
   padding-right: 1em;
@@ -220,7 +209,6 @@ form > input {
   display:inline-block;
 }
 
-
 .form input[type="submit"] {
   width: 100%;
 }
@@ -263,7 +251,6 @@ ingredientField {
 
 .shopping_list {
   before: clear;
-  /*display: inline;*/
   min-width: 50%;
 }
 
@@ -271,7 +258,6 @@ ingredientField {
   height: auto;
   width: 50%;
   margin: .3em 0;
-  /*border-radius: .5em;*/
   display: block;
   overflow: hidden;
   line-height: 100 px;
@@ -315,14 +301,13 @@ ingredientField {
 
 /* Enable use of floated navbar text */
   .navbar-text.pull-right {
-      float: none;
-      padding-left: 5px;
-      padding-right: 5px;
+    float: none;
+    padding-left: 5px;
+    padding-right: 5px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
-
 }
 
 @media (min-width: 768px) {
@@ -355,7 +340,6 @@ ingredientField {
 }
 
 @media (min-width: 980px) {
-
   body {
     padding-top: 60px;
     padding-bottom: 40px;
@@ -366,7 +350,6 @@ ingredientField {
 }
 
 @media (min-width: 1200px) {
-
 }
 
 @media (max-width: 480px) {
