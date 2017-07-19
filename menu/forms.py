@@ -7,19 +7,40 @@ class RecipeForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(RecipeForm, self).__init__(*args, **kwargs)
         self.fields['name'].widget.attrs.update({'placeholder': 'Name'})
+        self.fields['name'].widget.attrs.update({'class': 'form-field'})
         self.fields['temperature'].widget.attrs.update({'placeholder': 'temperature'})
+        self.fields['temperature'].widget.attrs.update({'class': 'form-field'})
         self.fields['directions'].widget.attrs.update({'placeholder': 'directions'})
+        self.fields['directions'].widget.attrs.update({'class': 'form-field'})
         self.fields['source'].widget.attrs.update({'placeholder': 'recipe URL'})
+        self.fields['source'].widget.attrs.update({'class': 'form-field'})
         self.fields['servings'].widget.attrs.update({'placeholder': '0'})
+        self.fields['servings'].widget.attrs.update({'class': 'form-field'})
         self.fields['prep_time'].widget.attrs.update({'placeholder': '0'})
+        self.fields['prep_time'].widget.attrs.update({'class': 'form-field'})
         self.fields['cook_time'].widget.attrs.update({'placeholder': '0'})
+        self.fields['cook_time'].widget.attrs.update({'class': 'form-field'})
         self.fields['description'].widget.attrs.update({'placeholder': 'description'})
+        self.fields['description'].widget.attrs.update({'class': 'form-field'})
 
     class Meta:
         model = Recipe
         fields = ('name', 'cook_method', 'temperature', 'directions', 'source', 'servings', 'prep_time', 'cook_time',
                   'pinned', 'description', 'dish_type', )
-
+        labels = {
+            'name': 'Ingredient Name',
+            'cook_method': 'Cook Method',
+            'temperature': 'Temperature',
+            'comment': 'Other Details',
+            'directions': 'Directions',
+            'source': 'URL',
+            'servings': 'Servings',
+            'prep_time': 'Prep Time (minutes)',
+            'cook_time': 'Cook Time (minutes)',
+            'pinned': 'Pin?',
+            'description': 'Description',
+            'dish_type': 'Dish Type',
+        }
 
 class FridgeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):

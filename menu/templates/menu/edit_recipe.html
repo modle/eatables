@@ -66,22 +66,26 @@
 {% endif %}
 <hr>
 
-<div class="hero-unit"><h2>Edit Recipe Details</h2></div>
-<form method="POST" action="" name="recipe_form" class="form">
-  {% csrf_token %}
-  Name<br>{{ form.name }}<br><br>
-  Description<br>{{ form.description }}<br><br>
-  Pin: {{ form.pinned }}<br><br>
-  Method<br>{{ form.cook_method }}<br><br>
-  Dish Type<br>{{ form.dish_type }}<br><br>
-  Temperature<br>{{ form.temperature }}<br><br>
-  Prep Time (minutes)<br>{{ form.prep_time }}<br><br>
-  Cook Time (minutes)<br>{{ form.cook_time }}<br><br>
-  Servings<br>{{ form.servings }}<br><br>
-  Directions<br>{{ form.directions }}<br><br>
-  URL<br>{{ form.source }}<br><br>
-  <input class="btn" type="submit" value="Update &raquo;"/>
-</form>
+<div class="form-container-wrapper">
+  <form class="form-container" method="POST" action="" name="recipe_form">
+    <div class="form-title"><h2>Edit Recipe Details</h2></div>
+    {% csrf_token %}
+    {{ form.name.label }}<br>{{ form.name }}<br>
+    {{ form.description.label }}<br>{{ form.description }}<br>
+    {{ form.pinned.label }}<br>{{ form.pinned }}<br>
+    {{ form.cook_method.label }}<br>{{ form.cook_method }}<br>
+    {{ form.dish_type.label }}<br>{{ form.dish_type }}<br>
+    {{ form.temperature.label }}<br>{{ form.temperature }}<br>
+    {{ form.prep_time.label }}<br>{{ form.prep_time }}<br>
+    {{ form.cook_time.label }}<br>{{ form.cook_time }}<br>
+    {{ form.servings.label }}<br>{{ form.servings }}<br>
+    {{ form.directions.label }}<br>{{ form.directions }}<br>
+    {{ form.source.label }}<br>{{ form.source }}<br>
+    <div class="submit-container">
+      <input class="btn" type="submit" value="Update &raquo;"/>
+    </div>
+  </form>
+</div>
 
 {% endblock %}
 </body>
