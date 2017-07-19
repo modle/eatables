@@ -45,24 +45,15 @@
 </div>
 
 <div class="container-fluid main-content">
-    <div class="row-fluid">
-        <div class="span14">
-            {% block content %}
-                There's no content here
-            {% endblock %}
-            <div style="clear:both;"></div>
-        </div>
-
-        {% block navsidebar %}
-        {% endblock %}
-
-    </div>
+  {% block content %}
+      There's no content here
+  {% endblock %}
 </div>
+
 <hr noshade>
 <footer class="site-footer">
     &copy; Modle 2015
 </footer>
-
 
 <script type="text/javascript" src="{% static 'bootstrap/js/jquery.js' %}"></script>
 <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap-transition.js' %}"></script>

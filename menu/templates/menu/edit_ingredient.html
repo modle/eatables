@@ -3,29 +3,30 @@
 {% load menu_extras %}
 
 <html>
-    <body>
-        {% block title %}
-        {% endblock %}
-        {% block content %}
-            <h1>Recipe: {{ recipe.name }}</h1>
-            <h3>Edit Ingredient Details: {{ ingredient.name }}</h3>
-
-            <form method="POST" action="">
-                {% csrf_token %}
-                {{ ingredient_form.id }}
-                {{ ingredient_form.name.label }}: {{ ingredient_form.name }}<br>
-                {{ ingredient_form.amount.label }}: {{ ingredient_form.amount }}<br>
-                {{ ingredient_form.unit.label }}: {{ ingredient_form.unit }}<br>
-                {{ ingredient_form.comment.label }}: {{ ingredient_form.comment }}
-                <p>
-                    <input class="btn" type="submit" value="Update &raquo;"/>
-                </p>
-            </form>
-        <a class="btn" href="{% url 'menu:delete_ingredient' ingredient.id %}"
-           onclick="return confirm('Are you sure? This will also delete any shoppingList entries for this ingredient.')">
-            Delete &raquo;</a>
-        {% endblock %}
-        {% block navsidebar %}
-        {% endblock %}
-    </body>
+  <body>
+    {% block title %}
+    {% endblock %}
+    {% block content %}
+      <div class="form-container-wrapper">
+        <form class="form-container" method="POST" action="">
+          <div class="form-title"><h1>Recipe: {{ recipe.name }}</h1></div>
+          <div class="form-title"><h2>Edit Ingredient: {{ ingredient.name }}</h2></div>
+          {% csrf_token %}
+          {{ ingredient_form.id }}
+          {{ ingredient_form.name.label }}<br>{{ ingredient_form.name }}<br>
+          {{ ingredient_form.amount.label }}<br>{{ ingredient_form.amount }}<br>
+          {{ ingredient_form.unit.label }}<br>{{ ingredient_form.unit }}<br>
+          {{ ingredient_form.comment.label }}<br>{{ ingredient_form.comment }}
+          <div class="submit-container">
+            <input class="submit-button" type="submit" value="Update" />
+            <a class="submit-button" href="{% url 'menu:delete_ingredient' ingredient.id %}"
+               onclick="return confirm('Are you sure? This will also delete any shoppingList entries for this ingredient.')">
+                Delete</a>
+          </div>
+        </form>
+      </div>
+    {% endblock %}
+    {% block navsidebar %}
+    {% endblock %}
+  </body>
 </html>

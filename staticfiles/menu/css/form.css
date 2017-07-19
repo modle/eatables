@@ -1,0 +1,126 @@
+.form-container {
+  border: 1px solid #e9f3fb;
+  background: #e9f3fb;
+  background: -webkit-gradient(linear, left top, left bottom, from(#e9f3fb), to(#e9f3fb));
+  background: -webkit-linear-gradient(top, #e9f3fb, #e9f3fb);
+  background: -moz-linear-gradient(top, #e9f3fb, #e9f3fb);
+  background: -ms-linear-gradient(top, #e9f3fb, #e9f3fb);
+  background: -o-linear-gradient(top, #e9f3fb, #e9f3fb);
+  background-image: -ms-linear-gradient(top, #e9f3fb 0%, #e9f3fb 100%);
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
+  -moz-box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
+  box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
+  font-family: 'Helvetica Neue',Helvetica,sans-serif;
+  text-decoration: none;
+  /*min-width: 300px;*/
+  /*max-width: 500px;*/
+  padding: 20px;
+  margin: 0 auto;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.form-container-wrapper {
+  text-align: center;
+  margin: 1em;
+}
+
+.form-field {
+  border: 2px solid #e9f3fb;
+  background: #6c6e70;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  color: #e9f3fb;
+  -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+  -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+  padding:8px;
+  margin-bottom:20px;
+  width:280px;
+}
+
+.form-field:focus {
+  background: #fff;
+  color: #2e2e2e;
+}
+
+.form-container h2 {
+  text-shadow: #fdf2e4 0 1px 0;
+  font-size:18px;
+  margin: 0 0 10px 0;
+  font-weight:bold;
+  text-align:center;
+}
+
+.form-container h1 {
+  text-shadow: #fdf2e4 0 1px 0;
+  font-size:28px;
+  margin: 0 0 10px 0;
+  font-weight:bold;
+  text-align:center;
+}
+
+.form-title {
+  margin-bottom:10px;
+  color: #205d8c;
+  text-shadow: #fdf2e4 0 1px 0;
+}
+
+.submit-container {
+  margin:8px 0;
+  text-align:right;
+}
+
+.submit-button {
+  border: 1px solid #e9f3fb;
+  background: #bbe0fa;
+  background: -webkit-gradient(linear, left top, left bottom, from(#83b2d6), to(#bbe0fa));
+  background: -webkit-linear-gradient(top, #83b2d6, #bbe0fa);
+  background: -moz-linear-gradient(top, #83b2d6, #bbe0fa);
+  background: -ms-linear-gradient(top, #83b2d6, #bbe0fa);
+  background: -o-linear-gradient(top, #83b2d6, #bbe0fa);
+  background-image: -ms-linear-gradient(top, #83b2d6 0%, #bbe0fa 100%);
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 0px 0;
+  -moz-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 0px 0;
+  box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 0px 0;
+  text-shadow: #e9f3fb 0 1px 0;
+  color: #000000;
+  font-family: helvetica, serif;
+  padding: 8.5px 18px;
+  font-size: 14px;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.submit-button:hover {
+  border: 1px solid #e9f3fb;
+  text-shadow: #e9f3fb 0 1px 0;
+  background: #91c5ed;
+  background: -webkit-gradient(linear, left top, left bottom, from(#4689bd), to(#91c5ed));
+  background: -webkit-linear-gradient(top, #4689bd, #91c5ed);
+  background: -moz-linear-gradient(top, #4689bd, #91c5ed);
+  background: -ms-linear-gradient(top, #4689bd, #91c5ed);
+  background: -o-linear-gradient(top, #4689bd, #91c5ed);
+  background-image: -ms-linear-gradient(top, #4689bd 0%, #91c5ed 100%);
+  color: #fff;
+}
+
+.submit-button:active {
+  text-shadow: #e9f3fb 0 1px 0;
+  border: 1px solid #e9f3fb;
+  background: #4b94cc;
+  background: -webkit-gradient(linear, left top, left bottom, from(#00477d), to(#91c5ed));
+  background: -webkit-linear-gradient(top, #00477d, #4b94cc);
+  background: -moz-linear-gradient(top, #00477d, #4b94cc);
+  background: -ms-linear-gradient(top, #00477d, #4b94cc);
+  background: -o-linear-gradient(top, #00477d, #4b94cc);
+  background-image: -ms-linear-gradient(top, #00477d 0%, #4b94cc 100%);
+  color: #fff;
+}
