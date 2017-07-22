@@ -26,9 +26,9 @@ else:
 
 # load environment-specific settings
 if 'ENVIRONMENT' in os.environ.keys() and os.environ['ENVIRONMENT'] == 'dev':
-    from eatables.localsettings import *
+    from eatables.devsettings import *
 else:
-    from eatables.prodsettings import *
+    from eatables.prdsettings import *
 
 assert 'BASE_DIR' in os.environ, 'BASE_DIR is not defined in the environment; check settings.py'
 
