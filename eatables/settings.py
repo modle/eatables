@@ -10,6 +10,8 @@ import sys
 env = environ.Env(DEBUG=(bool, False),) # set default values and casting
 environ.Env.read_env()
 
+print 'SYSTEM: ' + platform.system()
+
 # get the os
 os.environ['PLATFORM'] = 'linux'
 if 'CYGWIN' in platform.system():
@@ -95,14 +97,10 @@ STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/staticfiles/'
 
 # where static files get copied from with collectstatic
+# STATIC_SOURCE varies by environment; heroku BASE_DIR returns a path with 1 less /eatables/ in it
 STATICFILES_DIRS = [
-    os.path.join(os.environ['BASE_DIR'], 'staticfiles'),
+    os.path.join(os.environ['BASE_DIR'], STATIC_SOURCE),
 ]
-
-# debug
-print "BASE_DIR: " + os.environ['BASE_DIR']
-print "STATIC_ROOT: " + STATIC_ROOT
-print "STATICFILES_DIRS: " + str(STATICFILES_DIRS)
 
 MEDIA_ROOT = os.path.join(os.environ['BASE_DIR'], 'eatables')
 MEDIA_URL = '/media/'

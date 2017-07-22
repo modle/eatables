@@ -5,3 +5,4 @@ logfile*
 *.pyc
 db.sqlite3
 eatables/.env
+staticfiles/*

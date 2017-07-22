@@ -23,3 +23,5 @@ DATABASES = {
 DEBUG = os.environ["DEBUG"]
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+STATIC_SOURCE = 'static'
