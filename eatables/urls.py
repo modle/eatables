@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^', include('menu.urls', namespace="base_template")),
     url(r'^', include('menu.urls', namespace="menu")),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+    # url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 ]
 
 urlpatterns += [
@@ -34,5 +34,6 @@ urlpatterns += [
     url(r'^accounts/loggedin/$', 'menu.views.loggedin', name='loggedin'),
     url(r'^accounts/not_authorized/$', 'menu.views.not_authorized', name='not_authorized'),
     url(r'^loggedout/$', 'menu.views.loggedout', name='loggedout'),
-
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

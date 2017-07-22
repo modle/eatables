@@ -1,14 +1,24 @@
 """
 Django settings for eatables project.
 """
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import environ
+import platform
+import sys
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+env = environ.Env(DEBUG=(bool, False),) # set default values and casting
+environ.Env.read_env()
 
-# need to setup overrides if using this method
-# LOGIN_REDIRECT_URL = '/eatables/'
+os.environ['PLATFORM'] = 'linux'
+if 'CYGWIN' in platform.system():
+    os.environ['PLATFORM'] = 'windows'
+
+RUNNING_DEVSERVER = (len(sys.argv) > 1 and sys.argv[1] in ['runserver', 'collectstatic'])
+
+os.environ['BASE_DIR'] = os.path.dirname(os.path.abspath(__file__))
+if RUNNING_DEVSERVER:
+    os.environ['BASE_DIR'] = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+assert 'BASE_DIR' in os.environ, 'BASE_DIR is not defined in the environment; check settings.py'
 
 ALLOWED_HOSTS = []
 
@@ -25,7 +35,6 @@ INSTALLED_APPS = (
     'markdown_deux',
     'menu',
     'gunicorn',
-    # 'star_ratings',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -75,15 +84,18 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 
-STATIC_ROOT = 'staticfiles'
+# heroku dumps static files to /eatables/eatables/staticfiles from /eatables/staticfiles
+STATIC_ROOT = '/home/matt/projects/python/eatables/eatables/staticfiles'
 STATIC_URL = '/eatables/staticfiles/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'staticfiles'),
-)
+if RUNNING_DEVSERVER:
+    STATIC_URL = '/staticfiles/'
+STATICFILES_DIRS = [
+    os.path.join(os.environ['BASE_DIR'], "staticfiles"),
+]
+
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'eatables')
-
+MEDIA_ROOT = os.path.join(os.environ['BASE_DIR'], '')
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = '/accounts/loggedin/'

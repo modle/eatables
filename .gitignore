@@ -3,3 +3,9 @@ media/*
 venv/
 logfile*
 *.pyc
+eatables/staticfiles/*
+db.sqlite3
+eatables/.env
+staticfiles/admin/
+staticfiles/static_jquery/
+staticfiles/staticfiles.json
