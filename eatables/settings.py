@@ -13,7 +13,9 @@ os.environ['PLATFORM'] = 'linux'
 if 'CYGWIN' in platform.system():
     os.environ['PLATFORM'] = 'windows'
 
-RUNNING_DEVSERVER = (len(sys.argv) > 1 and sys.argv[1] in ['runserver', 'collectstatic'])
+# how to get RUNNING_DEVSERVER true when running collectstatic locally?
+# use windows for now; need to find a way to flag dev when on linux
+RUNNING_DEVSERVER = (len(sys.argv) > 1 and sys.argv[1] in ['runserver']) or os.environ['PLATFORM'] == 'windows'
 
 os.environ['BASE_DIR'] = os.path.dirname(os.path.abspath(__file__))
 if RUNNING_DEVSERVER:
@@ -84,15 +86,15 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 
-# heroku dumps static files to /eatables/eatables/staticfiles from /eatables/staticfiles
-STATIC_ROOT = '/home/matt/projects/python/eatables/eatables/staticfiles'
+# heroku uses collectstatic, which dumps static files to STATICFILES_DIRS from
 STATIC_URL = '/eatables/staticfiles/'
-if RUNNING_DEVSERVER:
-    STATIC_URL = '/staticfiles/'
 STATICFILES_DIRS = [
     os.path.join(os.environ['BASE_DIR'], "staticfiles"),
 ]
-
+STATIC_ROOT = os.path.join(os.environ['BASE_DIR'], STATIC_URL)
+print 'STATICFILES_DIRS: '
+print STATICFILES_DIRS
+print 'BASE_DIR: ' + os.environ['BASE_DIR']
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 MEDIA_ROOT = os.path.join(os.environ['BASE_DIR'], '')
@@ -100,8 +102,8 @@ MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = '/accounts/loggedin/'
 
-try:
+if RUNNING_DEVSERVER:
     from eatables.localsettings import *
     print "you're using the local dev settings"
-except ImportError:
+else:
     from eatables.prodsettings import *
