@@ -10,23 +10,24 @@ import sys
 env = environ.Env(DEBUG=(bool, False),) # set default values and casting
 environ.Env.read_env()
 
-print 'SYSTEM: ' + platform.system()
-
 # get the os
 os.environ['PLATFORM'] = 'linux'
 if 'CYGWIN' in platform.system():
     os.environ['PLATFORM'] = 'windows'
 
-# load environment-specific settings
-# how to get RUNNING_DEVSERVER true when running collectstatic locally?
-# use windows for now; need to find a way to flag dev when on linux
-RUNNING_DEVSERVER = (len(sys.argv) > 1 and sys.argv[1] in ['runserver']) or os.environ['PLATFORM'] == 'windows'
-print "RUNNING_DEVSERVER: " + str(RUNNING_DEVSERVER)
-if RUNNING_DEVSERVER:
+# load server specific settings
+USE_RUNSERVER_SETTINGS = os.environ['PLATFORM'] == 'windows'
+if USE_RUNSERVER_SETTINGS:
+    from eatables.runserversettings import *
     os.environ['BASE_DIR'] = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+else:
+    from eatables.herokusettings import *
+    os.environ['BASE_DIR'] = os.path.dirname(os.path.abspath(__file__))
+
+# load environment-specific settings
+if 'ENVIRONMENT' in os.environ.keys() and os.environ['ENVIRONMENT'] == 'dev':
     from eatables.localsettings import *
 else:
-    os.environ['BASE_DIR'] = os.path.dirname(os.path.abspath(__file__))
     from eatables.prodsettings import *
 
 assert 'BASE_DIR' in os.environ, 'BASE_DIR is not defined in the environment; check settings.py'

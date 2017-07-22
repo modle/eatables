@@ -32,5 +32,3 @@ else:
 
 assert 'DEBUG' in os.environ, 'Set DEBUG in your .env file!'
 DEBUG = os.environ["DEBUG"]
-
-STATIC_SOURCE = 'eatables/static'
