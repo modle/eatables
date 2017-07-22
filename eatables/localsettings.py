@@ -1,6 +1,7 @@
 import os
 import urlparse
-import environ
+
+print 'loading dev settings'
 
 url = os.environ["DATABASE_URL"]
 

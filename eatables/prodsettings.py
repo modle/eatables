@@ -1,6 +1,8 @@
 import os
 import urlparse
 
+print 'loading prd settings'
+
 urlparse.uses_netloc.append("postgres")
 assert 'DATABASE_URL' in os.environ, 'Set DATABASE_URL in your .env file!'
 url = urlparse.urlparse(os.environ["DATABASE_URL"])
@@ -19,3 +21,5 @@ DATABASES = {
 }
 
 DEBUG = os.environ["DEBUG"]
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
