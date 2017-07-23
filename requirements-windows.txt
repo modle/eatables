@@ -1,0 +1,9 @@
+dj-database-url==0.3.0
+Django==1.8.2
+django-environ==0.4.3
+django-markdown-deux==1.0.5
+django-static-jquery==2.1.4
+gunicorn==19.2.1
+markdown2==2.3.0
+MarkupSafe==0.18
+whitenoise==1.0.6
