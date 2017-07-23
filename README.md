@@ -22,12 +22,13 @@ sudo apt install virtualenv
 virtualenv venv
 ```
 
-### set secrets in venv/bin/activate
+### set secrets in eatables/.env
 These vars should be set at the end of the venv/bin/activate script
 ```
-export DATABASE_URL=yourdatabaseurl`
-export DEBUG=true
-export SECRET_KEY=somekey
+DATABASE_URL=yourdatabaseurl
+DEBUG=true
+SECRET_KEY=somekey
+ENVIRONMENT=dev
 ```
 
 ### activate the virtualenv
@@ -36,6 +37,7 @@ source venv/bin/activate
 ```
 
 ### install dependencies to venv to run the app locally
+#### Linux
 ```
 sudo apt install postgresql
 sudo apt install python-psycopg2
@@ -44,34 +46,32 @@ sudo apt install python-dev
 pip install -r requirements.txt
 ```
 
-### configure `eatables/localsettings.py` for the herokuapp
-* `localsettings.py` is loaded by `eatables/settings.py`
-* For security reasons, do not put secrets such as passwords, keys, or database URLs in this file
-* if `localsettings.py` does not exist, `prodsettings.py` will be loaded
-
-*`localsettings.py`*
+#### Windows
+Windows dev environment will use sqlite3
 ```
-import os
-import urlparse
-
-DEBUG = 'TRUE'
-SECRET_KEY = 'yoursecretkey'
-
-urlparse.uses_netloc.append("postgres")
-assert 'DATABASE_URL' in os.environ, 'Set DATABASE_URL in your .env file!'
-url = urlparse.urlparse(os.environ["DATABASE_URL"])
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': url.path[1:],
-        'USER': url.username,
-        'PASSWORD': url.password,
-        'HOST': url.hostname,
-        'PORT': url.port
-    }
-}
+pip install -r requirements.txt
 ```
+
+### Collect static files
+```
+python manage.py collectstatic
+```
+
+### Start the server
+#### Windows or Linux
+```
+python manage.py runserver
+```
+
+Navigate to localhost:8000
+
+
+#### Linux only (with Heroku toolbelt installed)
+```
+heroku local
+```
+
+Navigate to localhost:5000
 
 ---
 ## App Usage

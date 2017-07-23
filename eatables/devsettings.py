@@ -17,8 +17,8 @@ if os.environ['PLATFORM'] == 'windows':
     }
 else:
     assert 'DATABASE_URL' in os.environ, 'Set DATABASE_URL in your .env file!'
-    url = env('DATABASE_URL')
     urlparse.uses_netloc.append("postgres")
+    url = urlparse.urlparse(os.environ["DATABASE_URL"])
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',

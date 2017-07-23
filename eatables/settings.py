@@ -15,22 +15,11 @@ os.environ['PLATFORM'] = 'linux'
 if 'CYGWIN' in platform.system():
     os.environ['PLATFORM'] = 'windows'
 
-# load server specific settings
-USE_RUNSERVER_SETTINGS = os.environ['PLATFORM'] == 'windows'
-if USE_RUNSERVER_SETTINGS:
-    from eatables.runserversettings import *
-    os.environ['BASE_DIR'] = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-else:
-    from eatables.herokusettings import *
-    os.environ['BASE_DIR'] = os.path.dirname(os.path.abspath(__file__))
-
 # load environment-specific settings
 if 'ENVIRONMENT' in os.environ.keys() and os.environ['ENVIRONMENT'] == 'dev':
     from eatables.devsettings import *
 else:
     from eatables.prdsettings import *
-
-assert 'BASE_DIR' in os.environ, 'BASE_DIR is not defined in the environment; check settings.py'
 
 ALLOWED_HOSTS = []
 
@@ -97,8 +86,11 @@ STATIC_ROOT = 'staticfiles'
 # see static in urls.py; STATIC_URL points to STATIC_ROOT
 STATIC_URL = '/staticfiles/'
 
-# where static files get copied from with collectstatic
+# the location static files get copied from with collectstatic
 # STATIC_SOURCE varies by environment; heroku BASE_DIR returns a path with 1 less /eatables/ in it
+os.environ['BASE_DIR'] = os.path.dirname(os.path.abspath(__file__))
+assert 'BASE_DIR' in os.environ, 'BASE_DIR is not defined in the environment; check settings.py'
+STATIC_SOURCE = 'static'
 STATICFILES_DIRS = [
     os.path.join(os.environ['BASE_DIR'], STATIC_SOURCE),
 ]
