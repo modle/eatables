@@ -15,12 +15,6 @@ os.environ['PLATFORM'] = 'linux'
 if 'CYGWIN' in platform.system():
     os.environ['PLATFORM'] = 'windows'
 
-# load environment-specific settings
-if 'ENVIRONMENT' in os.environ.keys() and os.environ['ENVIRONMENT'] == 'dev':
-    from eatables.devsettings import *
-else:
-    from eatables.prdsettings import *
-
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -99,3 +93,10 @@ MEDIA_ROOT = os.path.join(os.environ['BASE_DIR'], 'eatables')
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = '/accounts/loggedin/'
+
+
+# load environment-specific settings
+if 'ENVIRONMENT' in os.environ.keys() and os.environ['ENVIRONMENT'] == 'dev':
+    from eatables.devsettings import *
+else:
+    from eatables.prdsettings import *
