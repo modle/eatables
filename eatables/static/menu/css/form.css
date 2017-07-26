@@ -31,10 +31,10 @@
 .form-field {
   border: 2px solid #e9f3fb;
   background: #6c6e70;
+  color: #e9f3fb;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  color: #e9f3fb;
   -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
@@ -46,6 +46,7 @@
 .form-field:focus {
   background: #fff;
   color: #2e2e2e;
+  border: 2px solid #6c6e70;
 }
 
 .form-container h2 {
@@ -123,4 +124,27 @@
   background: -o-linear-gradient(top, #00477d, #4b94cc);
   background-image: -ms-linear-gradient(top, #00477d 0%, #4b94cc 100%);
   color: #fff;
+}
+
+.form-select {
+  margin: 0 auto;
+  overflow: hidden;
+  padding:8px;
+  width:280px;
+  margin-bottom:20px;
+  border: 2px solid #e9f3fb;
+  background: #6c6e70;
+  color: #e9f3fb;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+  -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+}
+
+.form-select:focus {
+  background: #fff;
+  color: #2e2e2e;
+  border: 2px solid #6c6e70;
 }

@@ -22,6 +22,9 @@ class RecipeForm(ModelForm):
         self.fields['cook_time'].widget.attrs.update({'class': 'form-field'})
         self.fields['description'].widget.attrs.update({'placeholder': 'description'})
         self.fields['description'].widget.attrs.update({'class': 'form-field'})
+        self.fields['cook_method'].widget.attrs.update({'class': 'form-select'})
+        self.fields['dish_type'].widget.attrs.update({'class': 'form-select'})
+        self.fields['pinned'].widget.attrs.update({'class': 'form-field'})
 
     class Meta:
         model = Recipe
