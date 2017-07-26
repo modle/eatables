@@ -24,12 +24,11 @@ class RecipeForm(ModelForm):
         self.fields['description'].widget.attrs.update({'class': 'form-field'})
         self.fields['cook_method'].widget.attrs.update({'class': 'form-select'})
         self.fields['dish_type'].widget.attrs.update({'class': 'form-select'})
-        self.fields['pinned'].widget.attrs.update({'class': 'form-field'})
 
     class Meta:
         model = Recipe
         fields = ('name', 'cook_method', 'temperature', 'directions', 'source', 'servings', 'prep_time', 'cook_time',
-                  'pinned', 'description', 'dish_type', )
+                  'description', 'dish_type', )
         labels = {
             'name': 'Ingredient Name',
             'cook_method': 'Cook Method',
@@ -40,10 +39,10 @@ class RecipeForm(ModelForm):
             'servings': 'Servings',
             'prep_time': 'Prep Time (minutes)',
             'cook_time': 'Cook Time (minutes)',
-            'pinned': 'Pin?',
             'description': 'Description',
             'dish_type': 'Dish Type',
         }
+
 
 class FridgeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
