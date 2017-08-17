@@ -1,5 +1,18 @@
 # eatables - a recipe management tool
 ---
+
+<br>
+## Demo
+
+http://eatables-test.herokuapp.com/menu/
+
+Login:
+> testuser
+
+Password:
+> test
+
+---
 <br>
 ## Running Locally
 
@@ -108,18 +121,7 @@ python manage.py createsuperuser
 >* `Ingredient order` and `details` can also be edited from the `links on the ingredient strip` of the `Edit Recipe page`
 
 ---
-<br>
-## Demo
 
-http://eatables-test.herokuapp.com/menu/
-
-Login:
-> testuser
-
-Password:
-> test
-
----
 <br>
 ## Changelog
 
