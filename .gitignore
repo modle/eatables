@@ -6,3 +6,4 @@ logfile*
 db.sqlite3
 eatables/.env
 staticfiles/*
+.vscode/.ropeproject/config.py

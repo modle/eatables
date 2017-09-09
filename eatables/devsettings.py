@@ -3,7 +3,7 @@ import urlparse
 
 print 'loading dev settings'
 
-url = os.environ["DATABASE_URL"]
+DATABASE_URL = os.environ["DATABASE_URL"]
 
 assert 'SECRET_KEY' in os.environ, 'Set SECRET_KEY in your .env file!'
 SECRET_KEY = os.environ["SECRET_KEY"]
@@ -18,15 +18,15 @@ if os.environ['PLATFORM'] == 'windows':
 else:
     assert 'DATABASE_URL' in os.environ, 'Set DATABASE_URL in your .env file!'
     urlparse.uses_netloc.append("postgres")
-    url = urlparse.urlparse(os.environ["DATABASE_URL"])
+    DATABASE_URL = urlparse.urlparse(os.environ["DATABASE_URL"])
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': url.path[1:],
-            'USER': url.username,
-            'PASSWORD': url.password,
-            'HOST': url.hostname,
-            'PORT': url.port
+            'NAME': DATABASE_URL.path[1:],
+            'USER': DATABASE_URL.username,
+            'PASSWORD': DATABASE_URL.password,
+            'HOST': DATABASE_URL.hostname,
+            'PORT': DATABASE_URL.port
         }
     }
 

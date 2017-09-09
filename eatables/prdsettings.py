@@ -5,18 +5,18 @@ print 'loading prd settings'
 
 urlparse.uses_netloc.append("postgres")
 assert 'DATABASE_URL' in os.environ, 'Set DATABASE_URL in your .env file!'
-url = urlparse.urlparse(os.environ["DATABASE_URL"])
+DATABASE_URL = urlparse.DATABASE_URL(os.environ["DATABASE_URL"])
 
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': url.path[1:],
-        'USER': url.username,
-        'PASSWORD': url.password,
-        'HOST': url.hostname,
-        'PORT': url.port
+        'NAME': DATABASE_URL.path[1:],
+        'USER': DATABASE_URL.username,
+        'PASSWORD': DATABASE_URL.password,
+        'HOST': DATABASE_URL.hostname,
+        'PORT': DATABASE_URL.port
     }
 }
 
