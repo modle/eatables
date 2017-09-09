@@ -5,7 +5,7 @@ print 'loading prd settings'
 
 urlparse.uses_netloc.append("postgres")
 assert 'DATABASE_URL' in os.environ, 'Set DATABASE_URL in your .env file!'
-DATABASE_URL = urlparse.DATABASE_URL(os.environ["DATABASE_URL"])
+DATABASE_URL = urlparse.urlparse(os.environ["DATABASE_URL"])
 
 SECRET_KEY = os.environ["SECRET_KEY"]
 

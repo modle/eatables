@@ -2,12 +2,10 @@
 Django settings for eatables project.
 """
 import os
-import environ
 import platform
-import sys
+import environ
 
 # read the eatables/.env file
-env = environ.Env(DEBUG=(bool, False),) # set default values and casting
 environ.Env.read_env()
 
 # get the os
