@@ -5,54 +5,54 @@
 <html>
 <head>
 <title>
-    {% block head_title %}
-        Eatables
-    {% endblock %}
+  {% block head_title %}
+    Eatables
+  {% endblock %}
 </title>
 </head>
 <body>
 
 <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container-fluid">
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="brand" href="{% url 'menu:profile' %}">Eatables, for Eating</a>
-            <div class="nav-collapse collapse">
-                <p class="navbar-text pull-right">
-                    {% if user.is_authenticated %}
-                        Logged in as <a href="{% url 'menu:profile' %}" class="navbar-link">{{ user.username }}</a>
-                        <a href="{% url 'logout' %}?next={% url 'loggedout' %}">Logout</a>
-                    {% else %}
-                        <a href="{% url 'login' %}">Login</a>
-                    {% endif %}
-                </p>
-                <ul class="nav">
-                    <li><a href="{% url 'menu:discover' %}">Discover Recipes</a></li>
-                    {% if user.is_authenticated %}
-                        <li><a href="{% url 'menu:profile' %}">Your Profile</a></li>
-                        <li><a href="{% url 'menu:add_recipe' %}">Add Recipe</a></li>
-                        <li><a href="{% url 'menu:shopping_list' %}">View Shopping List</a></li>
-                        <!--<li><a href="{% url 'menu:fridge' %}">In the Fridge</a></li>-->
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="brand" href="{% url 'menu:profile' %}">Eatables, for Eating</a>
+      <div class="nav-collapse collapse">
+        <p class="navbar-text pull-right">
+          {% if user.is_authenticated %}
+            Logged in as <a href="{% url 'menu:profile' %}" class="navbar-link">{{ user.username }}</a>
+            <a href="{% url 'logout' %}?next={% url 'loggedout' %}">Logout</a>
+          {% else %}
+            <a href="{% url 'login' %}">Login</a>
+          {% endif %}
+        </p>
+        <ul class="nav">
+          <li><a href="{% url 'menu:discover' %}">Discover Recipes</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'menu:profile' %}">Your Profile</a></li>
+            <li><a href="{% url 'menu:add_recipe' %}">Add Recipe</a></li>
+            <li><a href="{% url 'menu:shopping_list' %}">View Shopping List</a></li>
+            <!--<li><a href="{% url 'menu:fridge' %}">In the Fridge</a></li>-->
+          {% endif %}
+        </ul>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="container-fluid main-content">
   {% block content %}
-      There's no content here
+    There's no content here
   {% endblock %}
 </div>
 
 <hr noshade>
 <footer class="site-footer">
-    &copy; Modle 2015
+  &copy; Modle 2015
 </footer>
 
 <script type="text/javascript" src="{% static 'bootstrap/js/jquery.js' %}"></script>

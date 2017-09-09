@@ -3,27 +3,27 @@
 <hr noshade>
 
 {% for message in messages %}
-    {{ message }}
+  {{ message }}
 {% endfor %}
 
 <div class="site__container">
-    <div class="grid__container">
-        <form method="post" action="{% url 'login' %}" class="form form--login">
-            {% csrf_token %}
-            {{ form.id }}
-            <div class="form__field">
-                <label class="fontawesome-user" for="login__username"></label>
-                {{ form.username }}
-            </div>
-            <div class="form__field">
-                <label class="fontawesome-lock" for="login__password"></label>
-                {{ form.password }}
-            </div>
-            <div class="form__field">
-                <input type="submit" value="login" />
-            </div>
-        </form>
-    </div>
+  <div class="grid__container">
+    <form method="post" action="{% url 'login' %}" class="form form--login">
+      {% csrf_token %}
+      {{ form.id }}
+      <div class="form__field">
+        <label class="fontawesome-user" for="login__username"></label>
+        {{ form.username }}
+      </div>
+      <div class="form__field">
+        <label class="fontawesome-lock" for="login__password"></label>
+        {{ form.password }}
+      </div>
+      <div class="form__field">
+        <input type="submit" value="login" />
+      </div>
+    </form>
+  </div>
 </div>
 {% endblock %}
 

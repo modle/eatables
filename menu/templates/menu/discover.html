@@ -11,15 +11,15 @@
 <h3>Discover Recipes</h3>
 
 <form action="" method="POST" class="search_form">
-    {% csrf_token %}
-    {{ search_form }}
-    <a class="btn" href="{% url 'menu:clear_recipe_filter' %}">&#x2718;
-    {% for message in messages %}
-        {% if message.tags == 'info' %}
-            {{ message }}
-        {% endif %}
-    {% endfor %}
-    </a>
+  {% csrf_token %}
+  {{ search_form }}
+  <a class="btn" href="{% url 'menu:clear_recipe_filter' %}">&#x2718;
+  {% for message in messages %}
+    {% if message.tags == 'info' %}
+      {{ message }}
+    {% endif %}
+  {% endfor %}
+  </a>
 </form>
 
 <div style="clear:both;"></div>
@@ -28,18 +28,18 @@
 </div>
 
 <div class="new_post_block" onclick="location.href='{% url 'menu:add_recipe' %}'">
-    <div class="fixed-action-btn" style="bottom: 24px; right: 24px;">
-        <a class="btn-floating red">
-            <f class="large material-icons">+</f>
-        </a>
-    </div>
+  <div class="fixed-action-btn" style="bottom: 24px; right: 24px;">
+    <a class="btn-floating red">
+      <f class="large material-icons">+</f>
+    </a>
+  </div>
 </div>
 
 {% for recipe in recipes %}
-    <div class="recipe_block notSelectable" id="{{ recipe.id }}">
-        <span class="recipe_title notSelectable">{{ recipe.name }}</span>
-        <img src="{% static recipe.get_dish_type_display|generate_img_path %}" height="10em">
-    </div>
+  <div class="recipe_block notSelectable" id="{{ recipe.id }}">
+    <span class="recipe_title notSelectable">{{ recipe.name }}</span>
+    <img src="{% static recipe.get_dish_type_display|generate_img_path %}" height="10em">
+  </div>
 {% endfor %}
 
 {% endblock %}

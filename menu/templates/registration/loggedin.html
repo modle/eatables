@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h2>You are logged in</h2>
-    <p>
-        <a href="{% url 'menu:profile' %}">Your Profile</a> |
-        <a href="{% url 'logout' %}?next={% url 'loggedout' %}">Logout</a>
-    </p>
+  <h2>You are logged in</h2>
+  <p>
+    <a href="{% url 'menu:profile' %}">Your Profile</a> |
+    <a href="{% url 'logout' %}?next={% url 'loggedout' %}">Logout</a>
+  </p>
 
 {% endblock %}
 {% block navsidebar %}
