@@ -22,7 +22,14 @@
 <div onclick="location.href='{% url 'menu:edit_recipe' recipe.id %}'">
   <div class="fixed-action-btn" style="bottom: 24px; right: 24px;">
     <a class="btn-floating green">
-      <f class="large material-icons">&#x270D;</f>
+      <f class="large material-icons"><img src="{% static 'edit_recipe_icon'|generate_img_path %}" height="30em"></f>
+    </a>
+  </div>
+</div>
+<div onclick="location.href='{% url 'menu:edit_recipe' recipe.id %}'">
+  <div class="fixed-action-btn" style="bottom: 72px; right: 24px;">
+    <a class="btn-floating blue">
+      <f class="large material-icons"><img style="margin-top: 5px;" src="{% static 'add_ingredient_icon'|generate_img_path %}" height="30em"></f>
     </a>
   </div>
 </div>

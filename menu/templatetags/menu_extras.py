@@ -43,6 +43,7 @@ def show_integer(value):
 
 @register.filter(name='generate_img_path')
 def generate_img_path(value):
+    print "value is {}".format(value)
     value = 'menu/img/' + value + '.png'
     return value
 
