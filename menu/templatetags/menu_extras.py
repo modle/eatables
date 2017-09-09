@@ -45,4 +45,3 @@ def show_integer(value):
 def generate_img_path(value):
     value = 'menu/img/' + value + '.png'
     return value
-
