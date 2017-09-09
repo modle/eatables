@@ -1,0 +1,26 @@
+{
+  "name": "eatables",
+  "version": "1.0.0",
+  "description": "for eating",
+  "main": "menu/templates/menu/profile.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/modle-django/eatables.git"
+  },
+  "keywords": [
+    "recipes"
+  ],
+  "author": "Matthew Odle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/modle-django/eatables/issues"
+  },
+  "homepage": "https://gitlab.com/modle-django/eatables#README",
+  "devDependencies": {
+    "eslint": "^4.6.1",
+    "eslint-config-google": "^0.9.1"
+  }
+}

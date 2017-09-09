@@ -1,0 +1,16 @@
+---
+extends: google
+parserOptions:
+  ecmaVersion: 6,
+  sourceType: "module"
+  ecmaFeatures:
+    jsx: true
+rules:
+  semi: 2
+  require-jsdoc:
+  - error
+  - require:
+      FunctionDeclaration: false
+      MethodDefinition: false
+      ClassDeclaration: false
+      ArrowFunctionExpression: false

@@ -7,3 +7,5 @@ db.sqlite3
 eatables/.env
 staticfiles/*
 .vscode/
+node_modules/
+package-lock.json
