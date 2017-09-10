@@ -146,23 +146,13 @@ def recipe_details(request, recipe_id):
     if user.is_authenticated():
 
         if request.method == 'POST':
-            comment_form = CommentForm(request.POST)
-
-            if comment_form.is_valid():
-                comment_save = comment_form.save(commit=False)
-                comment_save.user = user
-                comment_save.editDate = datetime.now()
-                comment_save.recipe = recipe
-                comment_save.save()
-                return HttpResponseRedirect(reverse('recipe_details', args=(recipe_id,)))
 
             ingredient_form = IngredientForm(request.POST)
 
             if ingredient_form.is_valid():
                 # clears messages
                 storage = messages.get_messages(request)
-                for _ in storage:
-                    pass
+                storage.used = True
 
                 ingredient_save = ingredient_form.save(commit=False)
                 ingredient_save.recipe = recipe
@@ -180,11 +170,24 @@ def recipe_details(request, recipe_id):
             else:
                 # clears messages
                 storage = messages.get_messages(request)
-                for _ in storage:
-                    pass
+                storage.used = True
 
                 messages.error(request, 'Ingredient name and amount are required.')
                 ingredient_form = IngredientForm(request.POST)
+
+            comment_form = CommentForm(request.POST)
+
+            if comment_form.is_valid():
+                # clears messages
+                storage = messages.get_messages(request)
+                storage.used = True
+
+                comment_save = comment_form.save(commit=False)
+                comment_save.user = user
+                comment_save.editDate = datetime.now()
+                comment_save.recipe = recipe
+                comment_save.save()
+                return HttpResponseRedirect(reverse('recipe_details', args=(recipe_id,)))
 
         else:
             comment_form = CommentForm()
