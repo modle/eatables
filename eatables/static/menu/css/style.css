@@ -41,7 +41,7 @@ a:focus {
   height: auto;
   width: max;
   display: block;
-  background-color: #dddddd;
+  background-color: #e9f3fb;
 }
 
 .recipe_block, ingredient {
