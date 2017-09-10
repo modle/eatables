@@ -19,7 +19,7 @@
 
 <h3>Your Notes</h3>
 {% for comment in comments %}
-  <div class="recipe_block notSelectable" id="{{ comment.recipe.id }}">
+  <div class="comment_block notSelectable" id="{{ comment.recipe.id }}">
     <span class="recipe_title notSelectable">{{ comment.recipe.name }}</span>
     <br>
     {{ comment.publishDate }}

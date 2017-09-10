@@ -37,7 +37,7 @@ a:focus {
   height: 2%;
 }
 
-.recipe_block, .recipe_header, .ingredient {
+.recipe_block, .recipe_header, .ingredient, .comment_block {
   height: auto;
   width: max;
   display: block;
@@ -48,6 +48,10 @@ a:focus {
   margin: .3em 0;
   border-radius: .5em;
   padding: .3em;
+}
+
+.comment_block {
+  padding: .3em;  
 }
 
 .recipe_description {

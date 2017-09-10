@@ -105,11 +105,11 @@
 
   {% if recipe.comment_set.all %}
     {% for comment in recipe.comment_set.all %}
-      <div class="recipe_block notSelectable" id="{{ comment.recipe.id }}">
+      <div class="comment_block notSelectable" id="{{ comment.recipe.id }}">
         {{ comment.publishDate }}
         {% if user.is_superuser %}
           <a href="{% url 'comment_delete' comment.id %}"
-            onclick="return confirm('Are you sure?')">
+            onclick="return confirm('Are you sure you want to delete this comment?')">
             <img style="margin-top: 5px;" src="{% static 'delete_icon'|generate_img_path %}" height="16em">
           </a>
         {% endif %}
