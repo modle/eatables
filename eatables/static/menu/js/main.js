@@ -1,14 +1,23 @@
 $(document).ready( function() {
   $('.notSelectable').disableSelection();
 
-  $('#edit_recipe').on('click', showAddIngredientModal);
-  $('#cancel_add').on('click', hideAddIngredientModal);
+  $('#add-ingredient-button').on('click', showAddIngredientModal);
+  $('#cancel-ingredient-add').on('click', hideAddIngredientModal);
 
+  $('#add-note-button').on('click', showAddCommentModal);
+  $('#cancel-comment-add').on('click', hideAddCommentModal);
+  
+  
   // hide modals on load
   addIngredientModal = document.getElementById('addIngredientModal');
   if (addIngredientModal) {
     hideAddIngredientModal();
   }
+  addCommentModal = document.getElementById('addCommentModal');
+  if (addCommentModal) {
+    hideAddCommentModal();
+  }
+
 });
 
 
@@ -20,9 +29,15 @@ function showAddIngredientModal() {
   $('#id_name').focus();
   hideButtons();
 }
+function showAddCommentModal() {
+  showModal(addCommentModal);
+  // $('#id_name').focus();
+  hideButtons();
+}
 function hideButtons() {
   hideComponent('add-ingredient-button');
   hideComponent('edit-button');
+  hideComponent('add-note-button');
 }
 function hideComponent(componentId) {
   $('#' + componentId).hide()
@@ -31,9 +46,14 @@ function hideAddIngredientModal() {
   hideModal(addIngredientModal);
   showButtons();
 }
+function hideAddCommentModal() {
+  hideModal(addCommentModal);
+  showButtons();
+}
 function showButtons() {
   showComponent('add-ingredient-button');
   showComponent('edit-button');
+  showComponent('add-note-button');
 }
 function showComponent(componentId) {
   $('#' + componentId).show()

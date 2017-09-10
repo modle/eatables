@@ -1,0 +1,20 @@
+{% load staticfiles %}
+{% load menu_extras %}
+<div class="wrapper">
+  <div id="addCommentModal" class="modal">
+    <div class="modal-container modal-toast">
+        <div class="form-container-wrapper">
+          <form class="form-container" method="POST" action="">
+            {% csrf_token %}
+            {{ comment_form.comment }}
+            <div class="submit-container">
+              <a id="cancel-comment-add" class="submit-button">Cancel</a>                
+              <input type=submit class="submit-button" value="Save &raquo;"/>
+            </div>
+            <div style="clear:both;"></div>
+          </form>
+        </div>
+      <div style="clear:both;"></div>
+    </div>
+  </div>
+</div>

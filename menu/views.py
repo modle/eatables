@@ -20,7 +20,6 @@ def index(request):
 
 
 def discover(request):
-    print 'got here'
 
     search_form = SearchForm()
 
@@ -155,6 +154,7 @@ def recipe_details(request, recipe_id):
                 comment_save.editDate = datetime.now()
                 comment_save.recipe = recipe
                 comment_save.save()
+                return HttpResponseRedirect(reverse('recipe_details', args=(recipe_id,)))
 
             ingredient_form = IngredientForm(request.POST)
 

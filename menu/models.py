@@ -78,7 +78,7 @@ class IngredientMaster(models.Model):
 class Comment(models.Model):
     id = models.AutoField(primary_key=True)
     recipe = models.ForeignKey(Recipe)
-    comment = models.TextField(null=True)
+    comment = models.TextField(null=False)
     rating = models.IntegerField(null=True)
     user = models.ForeignKey(User, null=True, blank=True)
     publishDate = models.DateTimeField(default=timezone.now)
