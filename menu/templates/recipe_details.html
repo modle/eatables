@@ -86,31 +86,36 @@
     <h2>Notes</h2>
   </div>
   {% if user.is_authenticated %}
-    <div id="comments"></div>
-    <form action="" method="post" class="form">
-    {% csrf_token %}
-      {{ comment_form.comment }}
-      <br>
-      <input type=submit class="btn" value="Save &raquo;"/>
-      <div style="clear:both;"></div>
-    </form>
+    <div class="form-container-wrapper">
+      <form class="form-container" method="POST" action="">
+        {% csrf_token %}
+        {{ comment_form.comment }}
+        <div class="submit-container">
+          <input type=submit class="submit-button" value="Save &raquo;"/>
+        </div>
+        <div style="clear:both;"></div>
+      </form>
+    </div>
     <hr>
   {% else %}
-    You must be logged in to comment or rate.<br>
+    You must be logged in to comment.<br>
     <a href="{% url 'login' %}">Login</a>
     <hr>
   {% endif %}
 
   {% if recipe.comment_set.all %}
-    {% for c in recipe.comment_set.all %}
-      <ul class="unstyled">
-        <li>{{ c.comment }}</li>
-        <li>{{ c.publishDate }}</li>
-      </ul>
-      {% if user.is_superuser %}
-        <a class="btn" href="{% url 'comment_delete' c.id %}"
-          onclick="return confirm('Are you sure?')">&#x2718;</a>
-      {% endif %}
+    {% for comment in recipe.comment_set.all %}
+      <div class="recipe_block notSelectable" id="{{ comment.recipe.id }}">
+        {{ comment.publishDate }}
+        {% if user.is_superuser %}
+          <a href="{% url 'comment_delete' comment.id %}"
+            onclick="return confirm('Are you sure?')">
+            <img style="margin-top: 5px;" src="{% static 'delete_icon'|generate_img_path %}" height="16em">
+          </a>
+        {% endif %}
+        <br>
+        {{ comment.comment}}
+      </div>
       <hr>
     {% endfor %}
   {% endif %}

@@ -18,6 +18,7 @@ from .models import Recipe, Ingredient, ShoppingList, Fridge, Comment
 def index(request):
     return HttpResponseRedirect(reverse('discover'))
 
+
 def discover(request):
     print 'got here'
 
@@ -113,16 +114,6 @@ def fridge(request):
         'fridge.html',
         {'formset': formset},
         context_instance=RequestContext(request))
-
-
-def update_rating(request, recipe_id, csrfmiddlewaretoken):
-    recipe = Recipe.objects.get(pk=recipe_id)
-    user = request.user
-
-    rating_entry, created = Rating.objects.get_or_create(recipe=recipe, user=user)
-
-    rating_entry.rating = 'rating'
-    rating_entry.save()
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
@@ -331,10 +322,6 @@ def loggedout(request):
         'registration/loggedout.html',
         context_instance=RequestContext(request)
     )
-
-
-def loggedin(request):
-    return HttpResponseRedirect(reverse('profile'))
 
 
 @login_required()

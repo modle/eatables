@@ -34,9 +34,15 @@
         {{ ingredient.unit }}
         {{ ingredient.name }}{% if ingredient.comment %}, {{ ingredient.comment }}
         {% endif %}
-        <a class="right_tab_button" href="{% url 'edit_ingredient' ingredient.id %}">&#x270D;</a>
-        <a class="right_tab_button" href="{% url 'move_ingredient_up' ingredient.id %}">&#x25B2;</a>
-        <a class="right_tab_button" href="{% url 'move_ingredient_down' ingredient.id %}">&#x25BC;</a>
+        <a class="right_tab_button" href="{% url 'edit_ingredient' ingredient.id %}">
+          <img style="margin-top: 5px;" src="{% static 'edit_recipe_icon'|generate_img_path %}" height="12em">
+        </a>
+        <a class="right_tab_button" href="{% url 'move_ingredient_up' ingredient.id %}">
+          <img style="margin-top: 5px;" src="{% static 'chevron_sign_up'|generate_img_path %}" height="12em">
+        </a>
+        <a class="right_tab_button" href="{% url 'move_ingredient_down' ingredient.id %}">
+          <img style="margin-top: 5px;" src="{% static 'chevron_sign_down'|generate_img_path %}" height="12em">
+        </a>
       </div>
     </div>
   {% endfor %}

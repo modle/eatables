@@ -305,6 +305,10 @@ ingredientField {
   display: block;
 }
 
+.comment-delete {
+  display: inline;
+}
+
 @media (max-width: 979px) {
 
 /* Enable use of floated navbar text */

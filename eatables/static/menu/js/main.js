@@ -56,15 +56,13 @@ add ingredient to shopping list asynchronously
 function add_to_shopping_list(ingredient_id) {
   console.log("adding ingredient_id " + ingredient_id + " to shopping list")
   $.ajax({
-    url : "/add_to_shopping_list/", // the endpoint
-    type : "POST", // http method
-    data : { ingredient_id : ingredient_id }, // data sent with the post request
-    // handle a successful response
+    url : "/add_to_shopping_list/",
+    type : "POST",
+    data : { ingredient_id : ingredient_id },
     success : function(json) {
       console.log(json['status'])
       $("#results_"+json.id).html("<strong>ADDED!</strong>");
     },
-    // handle a non-successful response
     error : function(xhr, errmsg, err) {
       console.log("encountered an error: " + errmsg);
     }
