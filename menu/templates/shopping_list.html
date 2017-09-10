@@ -13,11 +13,13 @@
 {% block content %}
   {% for entry in shopping_list_entries %}
     {% if not entry.completed %}
-      <div class="item_block">
-        <a class="pretty_button item_complete" href="{% url 'shopping_list_check_off' entry.shoppingListId %}">&#x2714;</a>
-        <div class="title_base item_title">{{ entry.amount }} {{ entry.name }}</div>
-        <a class="pretty_button item_delete" href="{% url 'shopping_list_delete' entry.shoppingListId %}">&#x2718;</a>
-        <div style="clear:both;"></div>
+      <div class="item_container">
+        <div class="item_wrapper">
+          <a class="pretty_button item_complete" href="{% url 'shopping_list_check_off' entry.shoppingListId %}">&#x2714;</a>
+          <a class="pretty_button item_delete" href="{% url 'shopping_list_delete' entry.shoppingListId %}">&#x2718;</a>
+          <div class="title_base item_title">{{ entry.name }}</div>
+          <div style="clear:both;"></div>
+        </div>
       </div>
     {% endif %}
   {% endfor %}
@@ -25,11 +27,13 @@
   <hr>
   {% for entry in shopping_list_entries %}
     {% if entry.completed %}
-      <div class="item_block">
-        <a class="pretty_button item_complete" id="{{ entry.ingredient_id }}" onClick="add_to_shopping_list(this.id)">&#x21b0;</a>
-        <div class="title_base item_complete_title">{{ entry.amount }} {{ entry.name }}</div>
-        <a class="pretty_button item_delete" href="{% url 'shopping_list_delete' entry.shoppingListId %}">&#x2718;</a>
-        <div style="clear:both;"></div>
+      <div class="item_container">
+        <div class="item_wrapper">
+          <a class="pretty_button item_complete" id="{{ entry.ingredient_id }}" onClick="add_to_shopping_list(this.id)">&#x21b0;</a>
+          <a class="pretty_button item_delete" href="{% url 'shopping_list_delete' entry.shoppingListId %}">&#x2718;</a>
+          <div class="title_base item_complete_title">{{ entry.name }}</div>
+          <div style="clear:both;"></div>
+        </div>
       </div>
     {% endif %}
   {% endfor %}

@@ -267,7 +267,7 @@ ingredientField {
 }
 
 .item_complete {
-  border-radius: .5em 0 0 .5em;
+  border-radius: 0.5em 0 0 0.5em;
 }
 
 .item_delete {
@@ -279,8 +279,6 @@ ingredientField {
   width: 10%;
   height: auto;
   background-color: lightblue;
-  padding-bottom: 1500px;
-  margin-bottom: -1500px;
   text-align: center;
 }
 
@@ -310,38 +308,6 @@ ingredientField {
   }
 }
 
-@media (min-width: 768px) and (max-width: 979px) {
-}
-
-@media (min-width: 768px) {
-}
-
-
-@media (max-width: 767px) {
-  .span14 {
-    padding: .3em;
-  }
-
-  .container-fluid {
-    padding: 0;
-  }
-
-  .mark_complete_button {
-    visibility: hidden;
-    height: 0;
-    float: right;
-    display: block;
-  }
-
-  .recipe_info {
-    width: 50%;
-  }
-
-  .recipe_description {
-    width: 50%;
-  }
-}
-
 @media (min-width: 980px) {
   body {
     padding-top: 60px;
@@ -352,32 +318,48 @@ ingredientField {
   }
 }
 
-@media (min-width: 1200px) {
-}
-
-@media (max-width: 480px) {
+@media (max-device-width: 767px) {
   .span14 {
-    padding: 0;
-  }
-
-  .container-fluid {
     padding: .3em;
   }
-
-  .title_base {
-    width: 75%;
+  .container-fluid {
+    padding: 0;
   }
-
-  .item_block {
-    width: 75%;
+  .mark_complete_button {
+    visibility: hidden;
+    height: 0;
+    float: right;
+    display: block;
   }
-}
-
-@media (max-device-width: 767px) {
+  .recipe_info {
+    width: 50%;
+  }
+  .recipe_description {
+    width: 50%;
+  }
   .form {
     margin: 0;
   }
   form {
     width: 100%;
   }
+
+  .item_container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+  }
+  .item_wrapper {
+    width: 100%;
+    overflow-y: hidden;
+  }
+  .title_base {
+    width: 80%;
+  }
+  .item_complete {
+    float: left;
+  }  
+  .item_delete {
+    float: right;
+  }  
 }
