@@ -9,13 +9,7 @@
 {% block content %}
 
 <!-- ADD INGREDIENT TOAST-->
-<div class="wrapper">
-  <div id="addIngredientModal" class="modal">
-    <div class="modal-container modal-toast">
-      {% include "add_ingredient.html" %}    
-    </div>
-  </div>
-</div>
+{% include "add_ingredient.html" %}    
 
 <div class="hero-unit">
   <h1>{{ recipe.name }}</h1>
