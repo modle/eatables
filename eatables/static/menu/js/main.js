@@ -7,7 +7,6 @@ $(document).ready( function() {
   $('#add-note-button').on('click', showAddCommentModal);
   $('#cancel-comment-add').on('click', hideAddCommentModal);
   
-  
   // hide modals on load
   addIngredientModal = document.getElementById('addIngredientModal');
   if (addIngredientModal) {

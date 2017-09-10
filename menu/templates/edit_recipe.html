@@ -68,7 +68,11 @@
     {{ form.directions.label }}<br>{{ form.directions }}<br>
     {{ form.source.label }}<br>{{ form.source }}<br>
     <div class="submit-container">
-      <a class="submit-button" href="{% url 'recipe_details' recipe.id %}">Cancel</a>
+      {% if recipe.id != null %}
+        <a class="submit-button" href="{% url 'recipe_details' recipe.id %}">Cancel</a>
+      {% else %}
+        <a class="submit-button" href="{% url 'profile' %}">Cancel</a>
+      {% endif %}
       <input class="submit-button" type="submit" value="Update &raquo;"/>
     </div>
   </form>

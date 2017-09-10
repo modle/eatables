@@ -224,7 +224,6 @@ def edit_recipe(request, recipe_id):
 
     return render_to_response('edit_recipe.html', {
         'form': recipe_form,
-        'ingredient_form': ingredient_form,
         'recipe': recipe,
     },
         context_instance=RequestContext(request)
