@@ -2,17 +2,42 @@ $(document).ready( function() {
   $('.notSelectable').disableSelection();
 
   $('#edit_recipe').on('click', showAddIngredientModal);
+  $('#cancel_add').on('click', hideAddIngredientModal);
 
+  // hide modals on load
   addIngredientModal = document.getElementById('addIngredientModal');
   if (addIngredientModal) {
-    hideModal(addIngredientModal);
+    hideAddIngredientModal();
   }
 });
 
 function showAddIngredientModal() {
   showModal(addIngredientModal);
   $('#id_name').focus();
-  // hideModalAfterAWhile(addIngredientModal);
+  hideButtons();
+}
+
+function hideButtons() {
+  hideComponent('add-ingredient-button');
+  hideComponent('edit-button');
+}
+
+function hideComponent(componentId) {
+  $('#' + componentId).hide()
+}
+
+function hideAddIngredientModal() {
+  hideModal(addIngredientModal);
+  showButtons();
+}
+
+function showButtons() {
+  showComponent('add-ingredient-button');
+  showComponent('edit-button');
+}
+
+function showComponent(componentId) {
+  $('#' + componentId).show()
 }
 
 function showModal(modal) {

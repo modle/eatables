@@ -62,6 +62,7 @@
     {{ form.directions.label }}<br>{{ form.directions }}<br>
     {{ form.source.label }}<br>{{ form.source }}<br>
     <div class="submit-container">
+      <a class="submit-button" href="{% url 'recipe_details' recipe.id %}">Cancel</a>
       <input class="submit-button" type="submit" value="Update &raquo;"/>
     </div>
   </form>

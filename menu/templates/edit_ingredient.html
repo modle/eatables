@@ -6,22 +6,22 @@
 {% endblock %}
 {% block content %}
 <div class="form-container-wrapper">
-<form class="form-container" method="POST" action="">
-  <div class="form-title"><h1>Recipe: {{ recipe.name }}</h1></div>
-  <div class="form-title"><h2>Edit Ingredient: {{ ingredient.name }}</h2></div>
-  {% csrf_token %}
-  {{ ingredient_form.id }}
-  {{ ingredient_form.name.label }}<br>{{ ingredient_form.name }}<br>
-  {{ ingredient_form.amount.label }}<br>{{ ingredient_form.amount }}<br>
-  {{ ingredient_form.unit.label }}<br>{{ ingredient_form.unit }}<br>
-  {{ ingredient_form.comment.label }}<br>{{ ingredient_form.comment }}
-  <div class="submit-container">
-  <a class="submit-button" href="{% url 'edit_recipe' recipe.id %}">Cancel</a>
-  <input class="submit-button" type="submit" value="Update" />
-  <a class="submit-button" href="{% url 'delete_ingredient' ingredient.id %}"
-      onclick="return confirm('Are you sure? This will also delete any shoppingList entries for this ingredient.')">
-    Delete</a>
-  </div>
-</form>
+  <form class="form-container" method="POST" action="">
+    <div class="form-title"><h1>Recipe: {{ recipe.name }}</h1></div>
+    <div class="form-title"><h2>Edit Ingredient: {{ ingredient.name }}</h2></div>
+    {% csrf_token %}
+    {{ ingredient_form.id }}
+    {{ ingredient_form.name.label }}<br>{{ ingredient_form.name }}<br>
+    {{ ingredient_form.amount.label }}<br>{{ ingredient_form.amount }}<br>
+    {{ ingredient_form.unit.label }}<br>{{ ingredient_form.unit }}<br>
+    {{ ingredient_form.comment.label }}<br>{{ ingredient_form.comment }}
+    <div class="submit-container">
+      <a class="submit-button" href="{% url 'edit_recipe' recipe.id %}">Cancel</a>
+      <input class="submit-button" type="submit" value="Update" />
+      <a class="submit-button" href="{% url 'delete_ingredient' ingredient.id %}"
+          onclick="return confirm('Are you sure? This will also delete any shoppingList entries for this ingredient.')">
+        Delete</a>
+    </div>
+  </form>
 </div>
 {% endblock %}
