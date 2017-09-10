@@ -13,11 +13,13 @@
   <div class="ingredient_block">
     <div class="ingredient_details">
       {% if user.is_superuser %}
-        <a class="right_tab_button" href="{% url 'add_to_shopping_list' ingredient.id %}">+</a>
+        <a class="right_tab_button" id="{{ ingredient.id }}" onClick="add_to_shopping_list(this.id)">+</a>
       {% endif %}
       {{ ingredient.amount|show_integer }}{{ ingredient.amount|show_fraction }}
       {{ ingredient.unit }}
-      {{ ingredient.name }}{% if ingredient.comment %}, {{ ingredient.comment }}
+      {{ ingredient.name }}
+      {% if ingredient.comment %}
+        , {{ ingredient.comment }}
       {% endif %}
     </div>
   </div>

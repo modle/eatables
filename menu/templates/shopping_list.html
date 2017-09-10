@@ -26,7 +26,7 @@
   {% for entry in shopping_list_entries %}
     {% if entry.completed %}
       <div class="item_block">
-        <a class="pretty_button item_complete" href="{% url 'add_to_shopping_list' entry.ingredient_id %}">&#x21b0;</a>
+        <a class="pretty_button item_complete" id="{{ entry.ingredient_id }}" onClick="add_to_shopping_list(this.id)">&#x21b0;</a>
         <div class="title_base item_complete_title">{{ entry.amount }} {{ entry.name }}</div>
         <a class="pretty_button item_delete" href="{% url 'shopping_list_delete' entry.shoppingListId %}">&#x2718;</a>
         <div style="clear:both;"></div>

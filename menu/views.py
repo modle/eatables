@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render_to_response, render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 import csv
@@ -19,6 +19,7 @@ def index(request):
     return HttpResponseRedirect(reverse('discover'))
 
 def discover(request):
+    print 'got here'
 
     search_form = SearchForm()
 
@@ -43,8 +44,9 @@ def discover(request):
     )
 
 
-@user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
-def add_to_shopping_list(request, ingredient_id):
+def add_to_shopping_list(request):
+    ingredient_id = request.POST.get('ingredient_id')
+    response_data = {}
 
     ingredient = Ingredient.objects.get(id=ingredient_id)
     list_item, created = ShoppingList.objects.get_or_create(ingredient_id=ingredient_id)
@@ -55,7 +57,8 @@ def add_to_shopping_list(request, ingredient_id):
     list_item.completed = False
     list_item.save()
 
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    response_data['status'] = 'success'
+    return JsonResponse(response_data)
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')

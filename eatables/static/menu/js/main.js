@@ -11,48 +11,69 @@ $(document).ready( function() {
   }
 });
 
+
+/*
+handle modals
+*/
 function showAddIngredientModal() {
   showModal(addIngredientModal);
   $('#id_name').focus();
   hideButtons();
 }
-
 function hideButtons() {
   hideComponent('add-ingredient-button');
   hideComponent('edit-button');
 }
-
 function hideComponent(componentId) {
   $('#' + componentId).hide()
 }
-
 function hideAddIngredientModal() {
   hideModal(addIngredientModal);
   showButtons();
 }
-
 function showButtons() {
   showComponent('add-ingredient-button');
   showComponent('edit-button');
 }
-
 function showComponent(componentId) {
   $('#' + componentId).show()
 }
-
 function showModal(modal) {
   console.log("showing modal: " + modal.id)
   modal.style.display = "block";
 }
-
 function hideModal(modal) {
   modal.style.display = "none";
 }
-
 function hideModalAfterAWhile(modal) {
   setTimeout(function(){ hideModal(modal); }, 3000);
 }
 
+
+/*
+add ingredient to shopping list asynchronously
+*/
+function add_to_shopping_list(ingredient_id) {
+  console.log("adding ingredient_id " + ingredient_id + " to shopping list")
+  $.ajax({
+    url : "/add_to_shopping_list/", // the endpoint
+    type : "POST", // http method
+    data : { ingredient_id : ingredient_id }, // data sent with the post request
+    // handle a successful response
+    success : function(json) {
+      console.log(json['status'])
+    },
+    // handle a non-successful response
+    error : function(xhr, errmsg, err) {
+      console.log("encountered an error: " + errmsg);
+    }
+  });
+};
+
+
+/*
+handles tap and swipe
+*/
 /* eslint-disable camelcase*/
 $('.recipe_block').mousemove(function() {
     recipe_id = this.id;
@@ -70,7 +91,9 @@ $('.recipe_block').swipe({
 /* eslint-enable camelcase*/
 
 
-// makes text non-selectable on mobile, and prevents the highlight on long-press function
+/*
+makes text non-selectable on mobile, and prevents the highlight on long-press function
+*/
 $.fn.extend({
     disableSelection: function() {
         this.each(function() {
@@ -86,7 +109,9 @@ $.fn.extend({
 });
 
 
-// This function gets cookie with a given name
+/*
+This function gets cookie with a given name
+*/
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie != '') {
@@ -108,7 +133,6 @@ let csrftoken = getCookie('csrftoken');
 /*
 The functions below will create a header with csrftoken
 */
-
 function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
@@ -126,7 +150,6 @@ function sameOrigin(url) {
         // or any other URL that isn't scheme relative or absolute i.e relative.
         !(/^(\/\/|http:|https:).*/.test(url));
 }
-
 $.ajaxSetup({
     beforeSend: function(xhr, settings) {
         if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
