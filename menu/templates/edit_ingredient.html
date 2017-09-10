@@ -1,6 +1,10 @@
+{% extends "base.html" %}
 {% load staticfiles %}
 {% load menu_extras %}
 
+{% block title %}
+{% endblock %}
+{% block content %}
 <div class="form-container-wrapper">
 <form class="form-container" method="POST" action="">
   <div class="form-title"><h1>Recipe: {{ recipe.name }}</h1></div>
@@ -12,6 +16,7 @@
   {{ ingredient_form.unit.label }}<br>{{ ingredient_form.unit }}<br>
   {{ ingredient_form.comment.label }}<br>{{ ingredient_form.comment }}
   <div class="submit-container">
+  <a class="submit-button" href="{% url 'edit_recipe' recipe.id %}">Cancel</a>
   <input class="submit-button" type="submit" value="Update" />
   <a class="submit-button" href="{% url 'delete_ingredient' ingredient.id %}"
       onclick="return confirm('Are you sure? This will also delete any shoppingList entries for this ingredient.')">
@@ -19,3 +24,4 @@
   </div>
 </form>
 </div>
+{% endblock %}
