@@ -58,6 +58,7 @@ def add_to_shopping_list(request):
     list_item.save()
 
     response_data['status'] = 'success'
+    response_data['id'] = ingredient_id
     return JsonResponse(response_data)
 
 

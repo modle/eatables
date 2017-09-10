@@ -62,6 +62,7 @@ function add_to_shopping_list(ingredient_id) {
     // handle a successful response
     success : function(json) {
       console.log(json['status'])
+      $("#results_"+json.id).html("<strong>ADDED!</strong>");
     },
     // handle a non-successful response
     error : function(xhr, errmsg, err) {

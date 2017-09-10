@@ -298,6 +298,13 @@ ingredientField {
   background-color: #EEEEEE;
 }
 
+.shopping_list_add_results {
+  text-transform: uppercase;
+  font-size: .7em;
+  float: right;
+  display: block;
+}
+
 @media (max-width: 979px) {
 
 /* Enable use of floated navbar text */

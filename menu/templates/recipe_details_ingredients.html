@@ -21,6 +21,7 @@
       {% if ingredient.comment %}
         , {{ ingredient.comment }}
       {% endif %}
+      <div id="results_{{ ingredient.id }}" class="shopping_list_add_results"></div>
     </div>
   </div>
 {% endfor %}
