@@ -33,7 +33,7 @@
     {% if entry.completed %}
       <div class="item_container">
         <div class="item_wrapper">
-          <a class="pretty_button item_complete" id="{{ entry.ingredient_id }}" onClick="add_to_shopping_list(this.id)">
+          <a class="pretty_button item_complete" id="{{ entry.ingredient_id }}" onClick="add_to_shopping_list(this.id, 'shopping_list')">
             <img style="margin-top: 5px;" src="{% static 'checked'|generate_img_path %}" height="12em">
           </a>
           <a class="pretty_button item_delete" href="{% url 'shopping_list_delete' entry.shoppingListId %}">
