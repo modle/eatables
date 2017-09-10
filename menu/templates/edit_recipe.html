@@ -25,25 +25,6 @@
 {% endfor %}
 
 {% if recipe.name %}
-  <div class="hero-unit"><h1>{{ recipe.name }}</h1></div>
-  <hr>
-  <div class="hero-unit"><h2>Add Ingredient</h2></div>
-  <div class="">
-    <form method="POST" action="" class="form">
-      {% csrf_token %}
-      {{ ingredient_form.id }}
-      {{ ingredient_form.name }}<br>
-      {{ ingredient_form.amount }}<br>
-      {{ ingredient_form.unit }}<br>
-      {{ ingredient_form.comment }}
-      <p>
-        <input class="button" type="submit" value="Save Ingredient" id="submit"/>
-      </p>
-    </form>
-  </div>
-  <div style="clear:both;"></div>
-  <hr>
-
   <div class="hero-unit"><h2>Edit Ingredients</h2></div>
   <div class="ingredients">
   {% for ingredient in recipe.ingredient_set.all %}
@@ -53,9 +34,9 @@
         {{ ingredient.unit }}
         {{ ingredient.name }}{% if ingredient.comment %}, {{ ingredient.comment }}
         {% endif %}
-        <a class="right_tab_button" href="{% url 'menu:edit_ingredient' ingredient.id %}">&#x270D;</a>
-        <a class="right_tab_button" href="{% url 'menu:move_ingredient_up' ingredient.id %}">&#x25B2;</a>
-        <a class="right_tab_button" href="{% url 'menu:move_ingredient_down' ingredient.id %}">&#x25BC;</a>
+        <a class="right_tab_button" href="{% url 'edit_ingredient' ingredient.id %}">&#x270D;</a>
+        <a class="right_tab_button" href="{% url 'move_ingredient_up' ingredient.id %}">&#x25B2;</a>
+        <a class="right_tab_button" href="{% url 'move_ingredient_down' ingredient.id %}">&#x25BC;</a>
       </div>
     </div>
   {% endfor %}

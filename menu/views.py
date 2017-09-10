@@ -14,10 +14,9 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from menu.forms import *
 from .models import Recipe, Ingredient, ShoppingList, Fridge, Comment
 
-
-def base_template(request):
-    return render(request, 'base.html', )
-
+@login_required()
+def index(request):
+    return HttpResponseRedirect(reverse('discover'))
 
 def discover(request):
 
@@ -36,7 +35,7 @@ def discover(request):
     else:
         recipes = Recipe.objects.filter(pinned='True')
 
-    return render_to_response('menu/discover.html', {
+    return render_to_response('discover.html', {
         'recipes': recipes,
         'search_form': search_form,
         },
@@ -58,18 +57,13 @@ def add_to_shopping_list(request, ingredient_id):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-    # return HttpResponseRedirect(reverse('menu:recipe_details', args=(ingredient.recipe_id,)))
-
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
 def shopping_list(request):
     shopping_list_entries = ShoppingList.objects.all()
 
-    # shopping_list_entries = ShoppingList.objects.filter(completed=False)
-    # complete_shopping_list_entries = ShoppingList.objects.filter(completed=True)
-
     return render_to_response(
-        'menu/shopping_list.html',
+        'shopping_list.html',
         {'shopping_list_entries': shopping_list_entries, },
         context_instance=RequestContext(request))
 
@@ -81,14 +75,14 @@ def shopping_list_check_off(request, shopping_list_id):
     shopping_list_entry.completed = True
     shopping_list_entry.save()
 
-    return HttpResponseRedirect(reverse('menu:shopping_list'))
+    return HttpResponseRedirect(reverse('shopping_list'))
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
 def shopping_list_delete(request, shopping_list_id):
     ShoppingList.objects.filter(shoppingListId=shopping_list_id).delete()
 
-    return HttpResponseRedirect(reverse('menu:shopping_list'))
+    return HttpResponseRedirect(reverse('shopping_list'))
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
@@ -112,7 +106,7 @@ def fridge(request):
     logger.debug('LOCALS:\n %s', locals())
 
     return render_to_response(
-        'menu/fridge.html',
+        'fridge.html',
         {'formset': formset},
         context_instance=RequestContext(request))
 
@@ -139,29 +133,26 @@ def add_recipe(request):
             formpost.save()
             recipe_id = formpost.id
             messages.info(request, 'Recipe successfully added.')
-            return HttpResponseRedirect(reverse('menu:recipe_details', args=(recipe_id,)))
+            return HttpResponseRedirect(reverse('recipe_details', args=(recipe_id,)))
         else:
             messages.error(request, 'Please fill out all fields.')
 
     else:
         form = RecipeForm()
 
-    return render_to_response('menu/edit_recipe.html', {'form': form},
+    return render_to_response('edit_recipe.html', {'form': form},
                               context_instance=RequestContext(request))
 
 
 def recipe_details(request, recipe_id):
     recipe = Recipe.objects.get(pk=recipe_id)
+    ingredients = Ingredient.objects.filter(recipe_id=recipe)
     user = request.user
-
+    comment_form = CommentForm()
     if user.is_authenticated():
 
         if request.method == 'POST':
             comment_form = CommentForm(request.POST)
-            try:
-                rating_form = RatingForm(request.POST, instance=Rating.objects.get(recipe=recipe, user=user))
-            except Rating.DoesNotExist:
-                rating_form = RatingForm(request.POST)
 
             if comment_form.is_valid():
                 comment_save = comment_form.save(commit=False)
@@ -170,31 +161,43 @@ def recipe_details(request, recipe_id):
                 comment_save.recipe = recipe
                 comment_save.save()
 
-            if rating_form.is_valid():
-                rating_save = rating_form.save(commit=False)
-                rating_save.user = user
-                rating_save.editDate = datetime.now()
-                rating_save.recipe = recipe
-                rating_save.save()
+            ingredient_form = IngredientForm(request.POST)
 
-            return HttpResponseRedirect(reverse('menu:recipe_details', args=(recipe_id,)))
+            if ingredient_form.is_valid():
+                # clears messages
+                storage = messages.get_messages(request)
+                for _ in storage:
+                    pass
+
+                ingredient_save = ingredient_form.save(commit=False)
+                ingredient_save.recipe = recipe
+                messages.info(request, 'Ingredient ' + ingredient_save.name + ' added.')
+
+                if ingredients:
+                    max_ingredient_sorting = Ingredient.objects.filter(recipe_id=recipe).order_by('-sorting')[0]
+                    ingredient_save.sorting = max_ingredient_sorting.sorting + 10
+                else:
+                    ingredient_save.sorting = 10
+
+                ingredient_save.save()
+                return HttpResponseRedirect(reverse('recipe_details', args=(recipe_id,)))
+
+            else:
+                # clears messages
+                storage = messages.get_messages(request)
+                for _ in storage:
+                    pass
+
+                messages.error(request, 'Ingredient name and amount are required.')
+                ingredient_form = IngredientForm(request.POST)
 
         else:
             comment_form = CommentForm()
+            ingredient_form = IngredientForm()
 
-            try:
-                rating_entry = Rating.objects.get(recipe=recipe, user=user)
-                rating_form = RatingForm(instance=rating_entry)
-            except Rating.DoesNotExist:
-                rating_form = RatingForm()
-
-    else:
-        comment_form = CommentForm()
-        rating_form = RatingForm()
-
-    return render_to_response('menu/recipe_details.html',
+    return render_to_response('recipe_details.html',
                               {'comment_form': comment_form,
-                               'rating_form': rating_form,
+                               'ingredient_form': ingredient_form,
                                'recipe': recipe, },
                               context_instance=RequestContext(request))
 
@@ -202,17 +205,18 @@ def recipe_details(request, recipe_id):
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
 def delete_recipe_forever(request, recipe_id):
     Recipe.objects.filter(pk=recipe_id).delete()
-    return HttpResponseRedirect(reverse('menu:profile'))
+    return HttpResponseRedirect(reverse('profile'))
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
 def edit_recipe(request, recipe_id):
     recipe = Recipe.objects.get(pk=recipe_id)
     ingredients = Ingredient.objects.filter(recipe_id=recipe)
+    ingredient_form = IngredientForm()
+    recipe_form = RecipeForm(instance=recipe)
 
     if request.method == 'POST':
         recipe_form = RecipeForm(request.POST, instance=Recipe.objects.get(id=recipe_id))
-        ingredient_form = IngredientForm(request.POST)
 
         if recipe_form.is_valid():
             recipe_save = recipe_form.save(commit=False)
@@ -221,41 +225,9 @@ def edit_recipe(request, recipe_id):
             recipe_save.save()
             recipe_id = recipe_save.id
             messages.info(request, 'Recipe successfully updated.')
-            return HttpResponseRedirect(reverse('menu:recipe_details', args=(recipe_id,)))
+            return HttpResponseRedirect(reverse('recipe_details', args=(recipe_id,)))
 
-        if ingredient_form.is_valid():
-            # clears messages
-            storage = messages.get_messages(request)
-            for _ in storage:
-                pass
-
-            ingredient_save = ingredient_form.save(commit=False)
-            ingredient_save.recipe = recipe
-            messages.info(request, 'Ingredient ' + ingredient_save.name + ' added.')
-
-            if ingredients:
-                max_ingredient_sorting = Ingredient.objects.filter(recipe_id=recipe).order_by('-sorting')[0]
-                ingredient_save.sorting = max_ingredient_sorting.sorting + 10
-            else:
-                ingredient_save.sorting = 10
-
-            ingredient_save.save()
-            return HttpResponseRedirect(reverse('menu:edit_recipe', args=(recipe_id,)))
-
-        else:
-            # clears messages
-            storage = messages.get_messages(request)
-            for _ in storage:
-                pass
-
-            messages.error(request, 'Ingredient name and amount are required.')
-            ingredient_form = IngredientForm(request.POST)
-    else:
-        ingredient_form = IngredientForm()
-
-    recipe_form = RecipeForm(instance=recipe)
-
-    return render_to_response('menu/edit_recipe.html', {
+    return render_to_response('edit_recipe.html', {
         'form': recipe_form,
         'ingredient_form': ingredient_form,
         'recipe': recipe,
@@ -278,12 +250,12 @@ def edit_ingredient(request, ingredient_id):
             formpost.user = request.user
             formpost.edited = datetime.now()
             formpost.save()
-            return HttpResponseRedirect(reverse('menu:edit_recipe', args=(recipe.id,)))
+            return HttpResponseRedirect(reverse('edit_recipe', args=(recipe.id,)))
 
     else:
         ingredient_form = IngredientForm(instance=ingredient)
 
-        return render_to_response('menu/edit_ingredient.html', {'ingredient_form': ingredient_form,
+        return render_to_response('edit_ingredient.html', {'ingredient_form': ingredient_form,
                                                                 'recipe': recipe,
                                                                 'ingredient': ingredient},
                                   context_instance=RequestContext(request))
@@ -293,14 +265,14 @@ def edit_ingredient(request, ingredient_id):
 def delete_ingredient(request, ingredient_id):
     i = Ingredient.objects.get(pk=ingredient_id)
     Ingredient.objects.filter(pk=ingredient_id).delete()
-    return HttpResponseRedirect(reverse('menu:recipe_details', args=(i.recipe_id,)) + '#ingredients')
+    return HttpResponseRedirect(reverse('recipe_details', args=(i.recipe_id,)) + '#ingredients')
 
 
 @login_required()
 def comment_delete(request, comment_id):
     c = Comment.objects.get(pk=comment_id)
     Comment.objects.filter(pk=comment_id).delete()
-    return HttpResponseRedirect(reverse('menu:recipe_details', args=(c.recipe_id,)) + '#comments')
+    return HttpResponseRedirect(reverse('recipe_details', args=(c.recipe_id,)) + '#comments')
 
 
 class FauxTb(object):
@@ -340,7 +312,7 @@ def full_exc_info():
 
 
 def loggedin(request):
-    return HttpResponseRedirect(reverse('menu:profile'))
+    return HttpResponseRedirect(reverse('profile'))
 
 
 def not_authorized(request):
@@ -358,7 +330,7 @@ def loggedout(request):
 
 
 def loggedin(request):
-    return HttpResponseRedirect(reverse('menu:profile'))
+    return HttpResponseRedirect(reverse('profile'))
 
 
 @login_required()
@@ -370,7 +342,7 @@ def profile(request):
     comments = Comment.objects.filter(user_id=user.id)
     recipe_form = RecipeForm()
 
-    return render_to_response('menu/profile.html', {
+    return render_to_response('profile.html', {
         'recipes': recipes,
         'comments': comments,
         'recipe_form': recipe_form,
@@ -404,7 +376,7 @@ def move_ingredient_up(request, ingredient_id):
         ingredient.sorting = next_ingredient_up.sorting
         ingredient.save()
 
-    return HttpResponseRedirect(reverse('menu:edit_recipe', args=(ingredient.recipe_id,)))
+    return HttpResponseRedirect(reverse('edit_recipe', args=(ingredient.recipe_id,)))
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
@@ -432,10 +404,10 @@ def move_ingredient_down(request, ingredient_id):
         ingredient.sorting = next_ingredient_down.sorting
         ingredient.save()
 
-    return HttpResponseRedirect(reverse('menu:edit_recipe', args=(ingredient.recipe_id,)))
+    return HttpResponseRedirect(reverse('edit_recipe', args=(ingredient.recipe_id,)))
 
 
 @login_required()
 def clear_recipe_filter(request):
 
-    return HttpResponseRedirect(reverse('menu:profile'))
+    return HttpResponseRedirect(reverse('profile'))

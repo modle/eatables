@@ -13,7 +13,7 @@
 <form action="" method="POST" class="search_form">
   {% csrf_token %}
   {{ search_form }}
-  <a class="btn" href="{% url 'menu:clear_recipe_filter' %}">&#x2718;
+  <a class="btn" href="{% url 'clear_recipe_filter' %}">&#x2718;
   {% for message in messages %}
     {% if message.tags == 'info' %}
       {{ message }}
@@ -27,7 +27,7 @@
 <div class="hero-unit">
 </div>
 
-<div class="new_post_block" onclick="location.href='{% url 'menu:add_recipe' %}'">
+<div class="new_post_block" onclick="location.href='{% url 'add_recipe' %}'">
   <div class="fixed-action-btn" style="bottom: 24px; right: 24px;">
     <a class="btn-floating red">
       <f class="large material-icons">+</f>

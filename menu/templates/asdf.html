@@ -1,0 +1,20 @@
+{% load staticfiles %}
+{% load menu_extras %}
+
+<div class="hero-unit"><h2>Add Ingredient</h2></div>
+<div class="form-container-wrapper">
+  <div class="form-container">
+    <form method="POST" action="" class="form">
+      {% csrf_token %}
+      {{ ingredient_form.id }}
+      {{ ingredient_form.name }}<br>
+      {{ ingredient_form.amount }}<br>
+      {{ ingredient_form.unit }}<br>
+      {{ ingredient_form.comment }}
+      <p>
+        <input class="button" type="submit" value="Save Ingredient" id="submit"/>
+      </p>
+    </form>
+  </div>
+</div>
+<div style="clear:both;"></div>

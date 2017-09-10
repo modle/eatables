@@ -1,3 +1,4 @@
+
 .form-container {
   border: 1px solid #e9f3fb;
   background: #e9f3fb;
@@ -15,8 +16,6 @@
   box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
   font-family: 'Helvetica Neue',Helvetica,sans-serif;
   text-decoration: none;
-  /*min-width: 300px;*/
-  /*max-width: 500px;*/
   padding: 20px;
   margin: 0 auto;
   display: inline-block;
@@ -52,7 +51,7 @@
 .form-container h2 {
   text-shadow: #fdf2e4 0 1px 0;
   font-size:18px;
-  margin: 0 0 10px 0;
+  margin-bottom:10px;
   font-weight:bold;
   text-align:center;
 }
@@ -60,7 +59,7 @@
 .form-container h1 {
   text-shadow: #fdf2e4 0 1px 0;
   font-size:28px;
-  margin: 0 0 10px 0;
+  margin-bottom:10px;
   font-weight:bold;
   text-align:center;
 }
@@ -147,4 +146,17 @@
   background: #fff;
   color: #2e2e2e;
   border: 2px solid #6c6e70;
+}
+
+@media (max-device-width: 767px) {
+  .form-field {
+    overflow: auto;
+    width: 100%;
+  }
+  .form-container {
+    width: 100%;
+  }
+  .form-container-wrapper {
+    margin: 0;
+  }
 }

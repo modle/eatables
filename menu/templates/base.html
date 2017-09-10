@@ -20,23 +20,22 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="brand" href="{% url 'menu:profile' %}">Eatables, for Eating</a>
+      <a class="brand" href="{% url 'profile' %}">Eatables, for Eating</a>
       <div class="nav-collapse collapse">
         <p class="navbar-text pull-right">
           {% if user.is_authenticated %}
-            Logged in as <a href="{% url 'menu:profile' %}" class="navbar-link">{{ user.username }}</a>
+            Logged in as <a href="{% url 'profile' %}" class="navbar-link">{{ user.username }}</a>
             <a href="{% url 'logout' %}?next={% url 'loggedout' %}">Logout</a>
           {% else %}
             <a href="{% url 'login' %}">Login</a>
           {% endif %}
         </p>
         <ul class="nav">
-          <li><a href="{% url 'menu:discover' %}">Discover Recipes</a></li>
+          <li><a href="{% url 'discover' %}">Discover Recipes</a></li>
           {% if user.is_authenticated %}
-            <li><a href="{% url 'menu:profile' %}">Your Profile</a></li>
-            <li><a href="{% url 'menu:add_recipe' %}">Add Recipe</a></li>
-            <li><a href="{% url 'menu:shopping_list' %}">View Shopping List</a></li>
-            <!--<li><a href="{% url 'menu:fridge' %}">In the Fridge</a></li>-->
+            <li><a href="{% url 'profile' %}">Your Profile</a></li>
+            <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+            <li><a href="{% url 'shopping_list' %}">View Shopping List</a></li>
           {% endif %}
         </ul>
       </div>

@@ -18,6 +18,10 @@ a:focus {
   color: #005580;
 }
 
+.wrapper {
+	position:relative;
+}
+
 .main-content {
   min-height: 100%;
   margin-bottom: -2%;
@@ -194,7 +198,6 @@ form > input {
   border:0px solid #dbdbdb;
   color:#fafafa;
   margin: .5em 0;
-  padding: .5em;
 }
 
 .form a, .form input[type="submit"], .search_form a{
@@ -367,5 +370,14 @@ ingredientField {
 
   .item_block {
     width: 75%;
+  }
+}
+
+@media (max-device-width: 767px) {
+  .form {
+    margin: 0;
+  }
+  form {
+    width: 100%;
   }
 }

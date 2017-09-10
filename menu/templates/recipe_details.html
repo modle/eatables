@@ -3,33 +3,36 @@
 {% load menu_extras %}
 {% load markdown_deux_tags %}
 
-<html>
-<head>
-<title>
-  {% block head_title %}
-    {{ recipe.name }} - Details
-  {% endblock %}
-</title>
-</head>
-<body>
+{% block head_title %}
+  {{ recipe.name }} - Details
+{% endblock %}
 {% block content %}
 
+<!-- ADD INGREDIENT TOAST-->
+<div class="wrapper">
+  <div id="addIngredientModal" class="modal">
+    <div class="modal-container modal-toast">
+      {% include "add_ingredient.html" %}    
+    </div>
+  </div>
+</div>
+
 <div class="hero-unit">
-    <h1>{{ recipe.name }}</h1>
+  <h1>{{ recipe.name }}</h1>
 </div>
 
 {% if user.is_superuser %}
-<div onclick="location.href='{% url 'menu:edit_recipe' recipe.id %}'">
-  <div class="fixed-action-btn" style="bottom: 24px; right: 24px;">
+<div id="edit_recipe">
+  <div class="fixed-action-btn" style="bottom: 72px; right: 24px;">
     <a class="btn-floating green">
-      <f class="large material-icons"><img style="margin-top: 5px;" src="{% static 'edit_recipe_icon'|generate_img_path %}" height="25em"></f>
+      <f class="large material-icons"><img style="margin-top: 5px;" src="{% static 'add_ingredient_icon'|generate_img_path %}" height="25em"></f>
     </a>
   </div>
 </div>
-<div onclick="location.href='{% url 'menu:edit_recipe' recipe.id %}'">
-  <div class="fixed-action-btn" style="bottom: 72px; right: 24px;">
+<div onclick="location.href='{% url 'edit_recipe' recipe.id %}'">
+  <div class="fixed-action-btn" style="bottom: 24px; right: 24px;">
     <a class="btn-floating blue">
-      <f class="large material-icons"><img style="margin-top: 5px;" src="{% static 'add_ingredient_icon'|generate_img_path %}" height="25em"></f>
+      <f class="large material-icons"><img style="margin-top: 5px;" src="{% static 'edit_recipe_icon'|generate_img_path %}" height="25em"></f>
     </a>
   </div>
 </div>
@@ -72,7 +75,7 @@
   <div style="clear:both;"></div>
 </div>
 
-{% include "menu/recipe_details_ingredients.html" %}
+{% include "recipe_details_ingredients.html" %}
 
 <div class="recipe_directions">
   <div class="hero-unit">
@@ -110,7 +113,7 @@
         <li>{{ c.publishDate }}</li>
       </ul>
       {% if user.is_superuser %}
-        <a class="btn" href="{% url 'menu:comment_delete' c.id %}"
+        <a class="btn" href="{% url 'comment_delete' c.id %}"
           onclick="return confirm('Are you sure?')">&#x2718;</a>
       {% endif %}
       <hr>
@@ -119,5 +122,3 @@
 </div>
 
 {% endblock %}
-</body>
-</html>
