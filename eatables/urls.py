@@ -42,6 +42,4 @@ urlpatterns = [
     # comments
     url(r'^(?P<comment_id>[0-9]+)/comment_delete/$', views.comment_delete, name='comment_delete'),
 
-    # fridge
-    url(r'^fridge/$', views.fridge, name='fridge'),
 ]

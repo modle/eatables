@@ -90,32 +90,6 @@ def shopping_list_delete(request, shopping_list_id):
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
-def fridge(request):
-    logger = logging.getLogger(__name__)
-
-    FridgeFormSet = modelformset_factory(Fridge, form=FridgeForm, extra=0)
-
-    if request.method == 'POST':
-        formset = FridgeFormSet(request.POST)
-        if formset.is_valid():
-            formset.save()
-            logger.debug('Formset saved')
-        else:
-            logger.debug('Formset invalid')
-
-    else:
-        formset = FridgeFormSet()
-
-    logger.debug('POST DATA:\n %s', json.dumps(request.POST, indent=4, sort_keys=True))
-    logger.debug('LOCALS:\n %s', locals())
-
-    return render_to_response(
-        'fridge.html',
-        {'formset': formset},
-        context_instance=RequestContext(request))
-
-
-@user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
 def add_recipe(request):
     if request.method == 'POST':
         form = RecipeForm(request.POST)
