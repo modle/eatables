@@ -30,7 +30,7 @@ function showAddIngredientModal() {
 }
 function showAddCommentModal() {
   showModal(addCommentModal);
-  // $('#id_name').focus();
+  $('#comment_field').focus();
   hideButtons();
 }
 function hideButtons() {

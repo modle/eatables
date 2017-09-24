@@ -68,6 +68,7 @@ class CommentForm(ModelForm):
         super(CommentForm, self).__init__(*args, **kwargs)
         self.fields['comment'].widget.attrs.update({'placeholder': 'Note'})
         self.fields['comment'].widget.attrs.update({'class': 'form-field'})
+        self.fields['comment'].widget.attrs.update({'id': 'comment_field'})
 
     class Meta:
         model = Comment
