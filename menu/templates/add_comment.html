@@ -6,7 +6,7 @@
         <div class="form-container-wrapper">
           <form class="form-container" method="POST" action="">
             {% csrf_token %}
-            {{ comment_form.comment }}
+            {{ comment_form }}
             <div class="submit-container">
               <a id="cancel-comment-add" class="submit-button">Cancel</a>                
               <input type=submit class="submit-button" value="Save &raquo;"/>

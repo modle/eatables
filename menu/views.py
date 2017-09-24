@@ -112,6 +112,11 @@ def add_recipe(request):
                               context_instance=RequestContext(request))
 
 
+def clear_messages(request):
+    storage = messages.get_messages(request)
+    storage.used = True
+
+
 def recipe_details(request, recipe_id):
     recipe = Recipe.objects.get(pk=recipe_id)
     ingredients = Ingredient.objects.filter(recipe_id=recipe)
@@ -122,11 +127,11 @@ def recipe_details(request, recipe_id):
         if request.method == 'POST':
 
             ingredient_form = IngredientForm(request.POST)
+            print str(messages.info.message)
+            clear_messages(request)
+            print str(messages.info.message)
 
             if ingredient_form.is_valid():
-                # clears messages
-                storage = messages.get_messages(request)
-                storage.used = True
 
                 ingredient_save = ingredient_form.save(commit=False)
                 ingredient_save.recipe = recipe
@@ -142,9 +147,6 @@ def recipe_details(request, recipe_id):
                 return HttpResponseRedirect(reverse('recipe_details', args=(recipe_id,)))
 
             else:
-                # clears messages
-                storage = messages.get_messages(request)
-                storage.used = True
 
                 messages.error(request, 'Ingredient name and amount are required.')
                 ingredient_form = IngredientForm(request.POST)
@@ -152,9 +154,6 @@ def recipe_details(request, recipe_id):
             comment_form = CommentForm(request.POST)
 
             if comment_form.is_valid():
-                # clears messages
-                storage = messages.get_messages(request)
-                storage.used = True
 
                 comment_save = comment_form.save(commit=False)
                 comment_save.user = user
