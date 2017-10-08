@@ -14,7 +14,7 @@
           {{ ingredient_form.comment }}
           <div class="submit-container">
             <a id="cancel-ingredient-add" class="submit-button">Cancel</a>
-            <input class="submit-button" type="submit" value="Add" />
+            <a class="submit-button" id="{{ recipe.id }}" onClick="add_ingredient_to_recipe(this.id)">Add</a>
           </div>
         </form>
       </div>

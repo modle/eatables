@@ -79,6 +79,31 @@ function add_to_shopping_list(ingredient_id, source_page) {
   });
 };
 
+/*
+add ingredient to recipe asynchronously
+*/
+function add_ingredient_to_recipe(recipe_id) {
+  console.log("adding ingredient to " + recipe_id);
+  ingredient = {};
+  ingredient.name = $('#ingredient_name').val();
+  ingredient.amount = $('#ingredient_amount').val();
+  ingredient.unit = $('#ingredient_unit').val();
+  ingredient.comment = $('#ingredient_comment').val();
+  ingredient.recipe_id = recipe_id;
+  console.log(ingredient);
+  $.ajax({
+    url : "/add_ingredient_to_recipe/",
+    type : "POST",
+    data : ingredient,
+    success : function(json) {
+      console.log(json['status'])
+    },
+    error : function(xhr, errmsg, err) {
+      console.log("encountered an error: " + errmsg);
+    }
+  });
+};
+
 
 /*
 handles tap and swipe

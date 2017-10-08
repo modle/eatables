@@ -117,38 +117,45 @@ def clear_messages(request):
     storage.used = True
 
 
+def is_valid_ingredient(ingredient):
+    return True
+
+def add_ingredient_to_recipe(request):
+    ingredient = request.POST
+    recipe = Recipe.objects.get(pk=ingredient['recipe_id'])
+    ingredient = IngredientForm(ingredient)
+    ingredients = Ingredient.objects.filter(recipe_id=recipe)
+    clear_messages(request)
+
+    if is_valid_ingredient(ingredient):
+        ingredient_save = ingredient.save(commit=False)
+        ingredient_save.recipe = recipe
+        messages.info(request, 'Ingredient ' + ingredient_save.name + ' added.')
+
+        if ingredients:
+            max_ingredient_sorting = Ingredient.objects.filter(recipe_id=recipe).order_by('-sorting')[0]
+            ingredient_save.sorting = max_ingredient_sorting.sorting + 10
+        else:
+            ingredient_save.sorting = 10
+
+        ingredient_save.save()
+
+        response_data = {}
+        response_data['status'] = 'success'
+        response_data['id'] = ingredient_save.id
+        return JsonResponse(response_data)
+    else:
+        messages.error(request, 'Ingredient name and amount are required.')
+        ingredient_form = IngredientForm(request.POST)
+
+
 def recipe_details(request, recipe_id):
     recipe = Recipe.objects.get(pk=recipe_id)
-    ingredients = Ingredient.objects.filter(recipe_id=recipe)
     user = request.user
     comment_form = CommentForm()
     if user.is_authenticated():
 
         if request.method == 'POST':
-
-            ingredient_form = IngredientForm(request.POST)
-            clear_messages(request)
-
-            if ingredient_form.is_valid():
-
-                ingredient_save = ingredient_form.save(commit=False)
-                ingredient_save.recipe = recipe
-                messages.info(request, 'Ingredient ' + ingredient_save.name + ' added.')
-
-                if ingredients:
-                    max_ingredient_sorting = Ingredient.objects.filter(recipe_id=recipe).order_by('-sorting')[0]
-                    ingredient_save.sorting = max_ingredient_sorting.sorting + 10
-                else:
-                    ingredient_save.sorting = 10
-
-                ingredient_save.save()
-                return HttpResponseRedirect(reverse('recipe_details', args=(recipe_id,)))
-
-            else:
-
-                messages.error(request, 'Ingredient name and amount are required.')
-                ingredient_form = IngredientForm(request.POST)
-
             comment_form = CommentForm(request.POST)
 
             if comment_form.is_valid():

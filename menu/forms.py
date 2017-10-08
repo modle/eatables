@@ -93,12 +93,16 @@ class IngredientForm(ModelForm):
         self.fields['name'].widget.attrs.update({'placeholder': 'Name'})
         self.fields['name'].widget.attrs.update({'class': 'form-field'})
         self.fields['name'].widget.attrs.update({'autofocus': 'autofocus'})
+        self.fields['name'].widget.attrs.update({'id': 'ingredient_name'})
         self.fields['amount'].widget.attrs.update({'placeholder': 0})
         self.fields['amount'].widget.attrs.update({'class': 'form-field'})
+        self.fields['amount'].widget.attrs.update({'id': 'ingredient_amount'})
         self.fields['unit'].widget.attrs.update({'placeholder': 'Unit of Measurement'})
         self.fields['unit'].widget.attrs.update({'class': 'form-field'})
+        self.fields['unit'].widget.attrs.update({'id': 'ingredient_unit'})
         self.fields['comment'].widget.attrs.update({'placeholder': 'Other Details'})
         self.fields['comment'].widget.attrs.update({'class': 'form-field'})
+        self.fields['comment'].widget.attrs.update({'id': 'ingredient_comment'})
 
     class Meta:
         model = Ingredient
