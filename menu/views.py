@@ -127,9 +127,7 @@ def recipe_details(request, recipe_id):
         if request.method == 'POST':
 
             ingredient_form = IngredientForm(request.POST)
-            print str(messages.info.message)
             clear_messages(request)
-            print str(messages.info.message)
 
             if ingredient_form.is_valid():
 
