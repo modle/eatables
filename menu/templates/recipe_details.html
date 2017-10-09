@@ -10,8 +10,6 @@
 
 <!-- ADD INGREDIENT MODAL-->
 {% include "add_ingredient.html" %}    
-<!-- ADD COMMENT TOAST-->
-{% include "add_comment.html" %}    
 
 <div class="hero-unit">
   <h1>{{ recipe.name }}</h1>
@@ -79,7 +77,11 @@
   <div style="clear:both;"></div>
 </div>
 
-{% include "recipe_details_ingredients.html" %}
+<div id="ingredients_section">
+  {% include "recipe_details_ingredients.html" %}
+  <div style="clear:both;"></div>
+</div>
+<hr>
 
 <div class="recipe_directions">
   <div class="hero-unit">
@@ -94,21 +96,25 @@
   <div class="hero-unit">
     <h2>Notes</h2>
   </div>
+  <!-- ADD COMMENT MODAL-->
+  {% include "add_comment.html" %}
   {% if recipe.comment_set.all %}
-    {% for comment in recipe.comment_set.all %}
-      <div class="comment_block notSelectable" id="{{ comment.recipe.id }}">
-        {{ comment.publishDate }}
-        {% if user.is_superuser %}
-          <a href="{% url 'comment_delete' comment.id %}"
-            onclick="return confirm('Are you sure you want to delete this note?')">
-            <img style="margin-top: 5px;" src="{% static 'delete_icon'|generate_img_path %}" height="16em">
-          </a>
-        {% endif %}
-        <br>
-        {{ comment.comment}}
-      </div>
-      <hr>
-    {% endfor %}
+    <div id="comments_section">
+      {% for comment in recipe.comment_set.all %}
+        <div class="comment_block notSelectable" id="{{ comment.recipe.id }}">
+          {{ comment.publishDate }}
+          {% if user.is_superuser %}
+            <a href="{% url 'comment_delete' comment.id %}"
+              onclick="return confirm('Are you sure you want to delete this note?')">
+              <img style="margin-top: 5px;" src="{% static 'delete_icon'|generate_img_path %}" height="16em">
+            </a>
+          {% endif %}
+          <br>
+          {{ comment.comment}}
+        </div>
+        <hr>
+      {% endfor %}
+    </div>
   {% endif %}
 </div>
 

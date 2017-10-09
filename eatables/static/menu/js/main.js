@@ -79,6 +79,22 @@ function add_to_shopping_list(ingredient_id, source_page) {
   });
 };
 
+
+function pushIngredientBlock(ingredient) {
+  console.log(ingredient);
+  console.log(buildIngredientBlock(ingredient));
+  $("#ingredients_section").append(buildIngredientBlock(ingredient));
+}
+
+function buildIngredientBlock(ingredient) {
+  ingredient_block = '<div class="ingredient_block">' +
+  '<div class="ingredient_details">' +
+  '<a class="right_tab_button" id="' + ingredient.id + '" onClick="add_to_shopping_list(this.id)">+</a>' +
+  ingredient.amount + ' ' + ingredient.unit + ' ' + ingredient.name + ', ' + ingredient.comment +
+  '</div></div>';
+  return ingredient_block;
+}
+
 /*
 add ingredient to recipe asynchronously
 */
@@ -97,6 +113,52 @@ function add_ingredient_to_recipe(recipe_id) {
     data : ingredient,
     success : function(json) {
       console.log(json['status'])
+      ingredient = json['ingredient']
+      ingredient.id = json['id']
+      pushIngredientBlock(json['ingredient'])
+    },
+    error : function(xhr, errmsg, err) {
+      console.log("encountered an error: " + errmsg);
+    }
+  });
+};
+
+
+function pushCommentBlock(comment) {
+  console.log(comment);
+  console.log(buildCommentBlock(comment));
+  $("#comments_section").prepend(buildCommentBlock(comment));
+}
+
+function buildCommentBlock(comment) {
+  comment_block = '<div class="comment_block notSelectable" id="' + comment.recipe_id + '12" style="user-select: none;">' +
+  comment.publishDate +
+  '<a href="/' + comment.id + '/comment_delete/" onclick="return confirm(\'Are you sure you want to delete this note?\')">' +
+  '<img style="margin-top: 5px;" src="/staticfiles/menu/img/delete_icon.png" height="16em"></a>' +
+  '<br>' +
+  comment.comment + '</div><hr>';
+  return comment_block;
+}
+
+/*
+add comment to recipe asynchronously
+*/
+function add_comment_to_recipe(recipe_id) {
+  console.log("adding comment to " + recipe_id);
+  comment = {};
+  comment.comment = $('#comment_field').val();
+  comment.recipe_id = recipe_id;
+  console.log(comment);
+  $.ajax({
+    url : "/add_comment_to_recipe/",
+    type : "POST",
+    data : comment,
+    success : function(json) {
+      console.log(json['status'])
+      comment = json['comment']
+      comment.id = json['id']
+      comment.publishDate = json['publishDate']
+      pushCommentBlock(json['comment'])
     },
     error : function(xhr, errmsg, err) {
       console.log("encountered an error: " + errmsg);

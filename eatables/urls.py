@@ -41,6 +41,7 @@ urlpatterns = [
     url(r'^(?P<shopping_list_id>[0-9]+)/shopping_list_delete/$', views.shopping_list_delete, name='shopping_list_delete'),
 
     # comments
+    url(r'^add_comment_to_recipe/$', views.add_comment_to_recipe, name='add_comment_to_recipe'),
     url(r'^(?P<comment_id>[0-9]+)/comment_delete/$', views.comment_delete, name='comment_delete'),
 
 ]

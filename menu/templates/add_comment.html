@@ -9,7 +9,7 @@
             {{ comment_form }}
             <div class="submit-container">
               <a id="cancel-comment-add" class="submit-button">Cancel</a>                
-              <input type=submit class="submit-button" value="Save &raquo;"/>
+              <a class="submit-button" id="{{ recipe.id }}" onClick="add_comment_to_recipe(this.id)">Save</a>
             </div>
             <div style="clear:both;"></div>
           </form>

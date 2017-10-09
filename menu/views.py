@@ -120,15 +120,37 @@ def clear_messages(request):
 def is_valid_ingredient(ingredient):
     return True
 
+
+def add_comment_to_recipe(request):
+    commentPost = request.POST
+    comment_form = CommentForm(commentPost)
+    recipe = Recipe.objects.get(pk=commentPost['recipe_id'])
+    user = request.user
+    if comment_form.is_valid():
+        comment_save = comment_form.save(commit=False)
+        comment_save.user = user
+        comment_save.editDate = datetime.now()
+        comment_save.recipe = recipe
+        comment_save.save()
+        response_data = {}
+        response_data['status'] = 'success'
+        response_data['comment'] = commentPost
+        response_data['id'] = comment_save.id
+        response_data['publishDate'] = comment_save.publishDate
+        return JsonResponse(response_data)
+    else:
+        messages.error(request, 'Comment is required.')
+
+
 def add_ingredient_to_recipe(request):
-    ingredient = request.POST
-    recipe = Recipe.objects.get(pk=ingredient['recipe_id'])
-    ingredient = IngredientForm(ingredient)
+    ingredientPost = request.POST
+    recipe = Recipe.objects.get(pk=ingredientPost['recipe_id'])
+    ingredientForm = IngredientForm(ingredientPost)
     ingredients = Ingredient.objects.filter(recipe_id=recipe)
     clear_messages(request)
 
-    if is_valid_ingredient(ingredient):
-        ingredient_save = ingredient.save(commit=False)
+    if ingredientForm.is_valid():
+        ingredient_save = ingredientForm.save(commit=False)
         ingredient_save.recipe = recipe
         messages.info(request, 'Ingredient ' + ingredient_save.name + ' added.')
 
@@ -139,38 +161,20 @@ def add_ingredient_to_recipe(request):
             ingredient_save.sorting = 10
 
         ingredient_save.save()
-
         response_data = {}
         response_data['status'] = 'success'
+        response_data['ingredient'] = ingredientPost
         response_data['id'] = ingredient_save.id
         return JsonResponse(response_data)
     else:
         messages.error(request, 'Ingredient name and amount are required.')
-        ingredient_form = IngredientForm(request.POST)
 
 
 def recipe_details(request, recipe_id):
     recipe = Recipe.objects.get(pk=recipe_id)
     user = request.user
     comment_form = CommentForm()
-    if user.is_authenticated():
-
-        if request.method == 'POST':
-            comment_form = CommentForm(request.POST)
-
-            if comment_form.is_valid():
-
-                comment_save = comment_form.save(commit=False)
-                comment_save.user = user
-                comment_save.editDate = datetime.now()
-                comment_save.recipe = recipe
-                comment_save.save()
-                return HttpResponseRedirect(reverse('recipe_details', args=(recipe_id,)))
-
-        else:
-            comment_form = CommentForm()
-            ingredient_form = IngredientForm()
-
+    ingredient_form = IngredientForm()
     return render_to_response('recipe_details.html',
                               {'comment_form': comment_form,
                                'ingredient_form': ingredient_form,
