@@ -166,27 +166,6 @@ function add_comment_to_recipe(recipe_id) {
   });
 };
 
-
-/*
-handles tap and swipe
-*/
-/* eslint-disable camelcase*/
-$('.recipe_block').mousemove(function() {
-    recipe_id = this.id;
-});
-$('.recipe_block').swipe({
-  tap: function(event, target) {
-    window.location.href = '/'+recipe_id+'/recipe_details/';
-  },
-  swipeLeft: function(event, direction, distance, duration, fingerCount) {
-    window.location.href = '/'+recipe_id+'/edit_recipe/';
-  },
-  threshold: 50,
-  allowPageScroll: 'auto',
-});
-/* eslint-enable camelcase*/
-
-
 /*
 makes text non-selectable on mobile, and prevents the highlight on long-press function
 */
