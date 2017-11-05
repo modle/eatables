@@ -50,6 +50,18 @@ class Ingredient(models.Model):
         select_on_save = True
 
 
+class Tag(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=30)
+    recipe = models.ManyToManyField(Recipe)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ('name',)
+
+
 class ShoppingList(models.Model):
     shoppingListId = models.AutoField(primary_key=True)
     ingredient = models.ForeignKey(Ingredient, blank=False)
