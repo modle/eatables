@@ -185,7 +185,7 @@ def recipe_details(request, recipe_id):
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
 def delete_recipe_forever(request, recipe_id):
     Recipe.objects.filter(pk=recipe_id).delete()
-    return HttpResponseRedirect(reverse('profile'))
+    return HttpResponseRedirect(reverse('my_recipes'))
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
@@ -291,7 +291,7 @@ def full_exc_info():
 
 
 def loggedin(request):
-    return HttpResponseRedirect(reverse('profile'))
+    return HttpResponseRedirect(reverse('my_recipes'))
 
 
 def not_authorized(request):
@@ -309,7 +309,7 @@ def loggedout(request):
 
 
 @login_required()
-def profile(request):
+def my_recipes(request):
 
     user = request.user
 
@@ -317,7 +317,7 @@ def profile(request):
     comments = Comment.objects.filter(user_id=user.id)
     recipe_form = RecipeForm()
 
-    return render_to_response('profile.html', {
+    return render_to_response('my_recipes.html', {
         'recipes': recipes,
         'comments': comments,
         'recipe_form': recipe_form,
@@ -385,4 +385,4 @@ def move_ingredient_down(request, ingredient_id):
 @login_required()
 def clear_recipe_filter(request):
 
-    return HttpResponseRedirect(reverse('profile'))
+    return HttpResponseRedirect(reverse('my_recipes'))

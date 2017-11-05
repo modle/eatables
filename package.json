@@ -2,7 +2,7 @@
   "name": "eatables",
   "version": "1.0.0",
   "description": "for eating",
-  "main": "menu/templates/menu/profile.html",
+  "main": "menu/templates/menu/my_recipes.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

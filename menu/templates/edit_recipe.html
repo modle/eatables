@@ -71,7 +71,7 @@
       {% if recipe.id != null %}
         <a class="submit-button" href="{% url 'recipe_details' recipe.id %}">Cancel</a>
       {% else %}
-        <a class="submit-button" href="{% url 'profile' %}">Cancel</a>
+        <a class="submit-button" href="{% url 'my_recipes' %}">Cancel</a>
       {% endif %}
       <input class="submit-button" type="submit" value="Update &raquo;"/>
     </div>

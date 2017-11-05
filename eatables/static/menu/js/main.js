@@ -27,7 +27,7 @@ function hideButtons() {
   hideComponent('add-note-button');
 }
 function hideComponent(componentId) {
-  $('#' + componentId).hide()
+  $('#' + componentId).hide();
 }
 function hideAddIngredientModal() {
   hideModal(addIngredientModal);

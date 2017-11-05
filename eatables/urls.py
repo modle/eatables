@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^loggedout/$', 'menu.views.loggedout', name='loggedout'),
 
     # default view
-    url(r'^$', views.profile, name='profile'),
+    url(r'^$', views.my_recipes, name='my_recipes'),
 
     # all recipes
     url(r'^clear_recipe_filter/$', views.clear_recipe_filter, name='clear_recipe_filter'),
