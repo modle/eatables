@@ -37,7 +37,7 @@ function showAddCommentModal() {
 }
 function showAddTagModal() {
   showModal(addTagModal);
-  $('#tag_field').focus();
+  $('#tag_name').focus();
   hideButtons();
 }
 function hideButtons() {
@@ -105,8 +105,8 @@ function add_to_shopping_list(ingredient_id, source_page) {
 };
 
 
-pushTagBlock = (tagName) => {
-  $("#tagsSection").append(" " + tagName);
+setTagBlock = (tags) => {
+  $("#tagsSection").html(tags);
 }
 
 /*
@@ -117,15 +117,15 @@ function add_tag(recipeId) {
   tag = {}
   tag.name = $('#tag_name').val();
   tag.recipe_id = recipeId;
-  console.log(tag);
   console.log("adding tag " + tag + " to recipe_id " + recipeId)
   $.ajax({
     url : "/add_tag/",
     type : "POST",
     data : tag,
     success : function(json) {
-      console.log(json['status'])
-      pushTagBlock(tag.name)
+      console.log(json['status']);
+      setTagBlock(json['tags']);
+      hideAddTagModal();
     },
     error : function(xhr, errmsg, err) {
       console.log("encountered an error: " + errmsg);

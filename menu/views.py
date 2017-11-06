@@ -65,17 +65,17 @@ def add_to_shopping_list(request):
 def add_tag(request):
     recipe_id = request.POST.get('recipe_id')
     recipe = Recipe.objects.get(id=recipe_id)
-    # tag, created = Tag.objects.get_or_create(name=request.POST.get('name'))
 
-    recipe.tags.create(name=request.POST.get('name'))
+    tag, created = recipe.tags.get_or_create(name=request.POST.get('name'))
     recipe.save()
 
-    tags = recipe.tags
-    print tags
+    tags = ""
+    for tag in recipe.tags.all():
+        tags += " " + str(tag)
 
     response_data = {}
     response_data['status'] = 'success'
-
+    response_data['tags'] = tags
     return JsonResponse(response_data)
 
 
