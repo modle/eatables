@@ -126,6 +126,7 @@ function add_tag(recipeId) {
       console.log(json['status']);
       setTagBlock(json['tags']);
       hideAddTagModal();
+      $('#tag_name').val("");
     },
     error : function(xhr, errmsg, err) {
       console.log("encountered an error: " + errmsg);
