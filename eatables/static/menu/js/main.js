@@ -115,7 +115,7 @@ add tag to recipe asynchronously
 function add_tag(recipeId) {
 
   tag = {}
-  tag.name = $('#tag_name').val();
+  tag.name = $('#tag_name').val().toLowerCase();
   tag.recipe_id = recipeId;
   console.log("adding tag " + tag + " to recipe_id " + recipeId)
   $.ajax({
