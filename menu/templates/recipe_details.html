@@ -98,6 +98,7 @@
   </div>
   <!-- ADD COMMENT MODAL-->
   {% include "add_comment.html" %}
+  {% include "add_tag.html" %}
   {% if recipe.comment_set.all %}
     <div id="comments_section">
       {% for comment in recipe.comment_set.all %}

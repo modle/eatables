@@ -62,6 +62,18 @@ def add_to_shopping_list(request):
     return JsonResponse(response_data)
 
 
+def add_tag(request):
+    recipe_id = request.POST.get('recipe_id')
+    response_data = {}
+
+    recipe = Recipe.objects.get(id=recipe_id)
+    recipe.tags.create(name=request.POST.get('name'))
+
+    response_data['status'] = 'success'
+    response_data['id'] = ingredient_id
+    return JsonResponse(response_data)
+
+
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
 def shopping_list(request):
     shopping_list_entries = ShoppingList.objects.all()

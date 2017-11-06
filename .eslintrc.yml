@@ -14,5 +14,15 @@ rules:
       MethodDefinition: false
       ClassDeclaration: false
       ArrowFunctionExpression: false
+  quotes:
+  - off
+  - double
+  no-unused-vars:
+  - off
+  no-unused-vars:
+  - error
+  - vars: all
+    args: after-used
+    ignoreRestSiblings: false
 plugins:
   - html

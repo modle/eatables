@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm, Textarea
-from .models import Ingredient, Recipe, Fridge, Comment, Rating
+from .models import Recipe, Ingredient, Tag, Fridge, Comment, Rating
 
 
 class RecipeForm(ModelForm):
@@ -75,6 +75,21 @@ class CommentForm(ModelForm):
         fields = ('comment',)
         labels = {
             'comment': '',
+        }
+
+
+class TagForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(TagForm, self).__init__(*args, **kwargs)
+        self.fields['tag'].widget.attrs.update({'placeholder': 'tag'})
+        self.fields['tag'].widget.attrs.update({'class': 'form-field'})
+        self.fields['tag'].widget.attrs.update({'id': 'tag_field'})
+
+    class Meta:
+        model = Tag
+        fields = ('name',)
+        labels = {
+            'name': '',
         }
 
 

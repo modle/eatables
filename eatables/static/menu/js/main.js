@@ -21,10 +21,16 @@ function showAddCommentModal() {
   $('#comment_field').focus();
   hideButtons();
 }
+function showAddTagModal() {
+  showModal(addTagModal);
+  $('#tag_field').focus();
+  hideButtons();
+}
 function hideButtons() {
   hideComponent('add-ingredient-button');
   hideComponent('edit-button');
   hideComponent('add-note-button');
+  hideComponent('add-tag-button');
 }
 function hideComponent(componentId) {
   $('#' + componentId).hide();
@@ -41,6 +47,7 @@ function showButtons() {
   showComponent('add-ingredient-button');
   showComponent('edit-button');
   showComponent('add-note-button');
+  showComponent('add-tag-button');
 }
 function showComponent(componentId) {
   $('#' + componentId).show()
@@ -72,6 +79,26 @@ function add_to_shopping_list(ingredient_id, source_page) {
       if (source_page == 'shopping_list') {
         location.reload();
       }
+    },
+    error : function(xhr, errmsg, err) {
+      console.log("encountered an error: " + errmsg);
+    }
+  });
+};
+
+
+/*
+add tag to recipe asynchronously
+*/
+function add_tag(recipeId, tagName) {
+  console.log("adding tag " + tagName + " to recipe_id " + recipeId)
+  $.ajax({
+    url : "/add_tag/",
+    type : "POST",
+    data : { recipe_id : recipeId, name : tagName },
+    success : function(json) {
+      console.log(json['status'])
+      $("#tags").append(tagName);
     },
     error : function(xhr, errmsg, err) {
       console.log("encountered an error: " + errmsg);

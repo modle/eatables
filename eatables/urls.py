@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^add_recipe/$', views.add_recipe, name='add_recipe'),
     url(r'^(?P<recipe_id>[0-9]+)/edit_recipe/$', views.edit_recipe, name='edit_recipe'),
     url(r'^(?P<recipe_id>[0-9]+)/delete_recipe_forever/$', views.delete_recipe_forever, name='delete_recipe_forever'),
+    url(r'^add_tag/$', views.add_tag, name='add_tag'),
 
     # ingredients
     url(r'^add_ingredient_to_recipe/$', views.add_ingredient_to_recipe, name='add_ingredient_to_recipe'),

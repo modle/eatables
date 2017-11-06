@@ -5,6 +5,24 @@ from django.contrib.auth.models import User
 from menu.choices import *
 
 
+class Tag(models.Model):
+    name = models.CharField(max_length=30)
+    slug = models.SlugField(max_length=100, db_index=True, unique=True)
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+
+            self.slug = slugify(self.name)
+
+        super(Tag, self).save()
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ('name',)
+
+
 class Recipe(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=80, unique=True)
@@ -22,6 +40,7 @@ class Recipe(models.Model):
     banner_image = models.CharField(max_length=1000, null=True, blank=True)
     dish_type = models.IntegerField(choices=DISH_TYPE_CHOICES, default=0)
     description = models.TextField(null=True, blank=True)
+    tags = models.ManyToManyField(Tag)
 
     # rating = RatingField(range=5)
 
@@ -48,18 +67,6 @@ class Ingredient(models.Model):
         ordering = ('recipe_id', 'sorting', 'id', )
         unique_together = ('name', 'recipe', 'amount', 'unit',)
         select_on_save = True
-
-
-class Tag(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=30)
-    recipe = models.ManyToManyField(Recipe)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        ordering = ('name',)
 
 
 class ShoppingList(models.Model):
