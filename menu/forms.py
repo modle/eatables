@@ -81,9 +81,9 @@ class CommentForm(ModelForm):
 class TagForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(TagForm, self).__init__(*args, **kwargs)
-        self.fields['tag'].widget.attrs.update({'placeholder': 'tag'})
-        self.fields['tag'].widget.attrs.update({'class': 'form-field'})
-        self.fields['tag'].widget.attrs.update({'id': 'tag_field'})
+        self.fields['name'].widget.attrs.update({'placeholder': 'tag'})
+        self.fields['name'].widget.attrs.update({'class': 'form-field'})
+        self.fields['name'].widget.attrs.update({'id': 'tag_name'})
 
     class Meta:
         model = Tag
@@ -91,15 +91,6 @@ class TagForm(ModelForm):
         labels = {
             'name': '',
         }
-
-
-class RatingForm(ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(RatingForm, self).__init__(*args, **kwargs)
-
-    class Meta:
-        model = Rating
-        fields = ('rating', )
 
 
 class IngredientForm(ModelForm):

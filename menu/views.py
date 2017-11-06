@@ -12,7 +12,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 from menu.forms import *
-from .models import Recipe, Ingredient, ShoppingList, Fridge, Comment
+from .models import Recipe, Ingredient, Tag, ShoppingList, Fridge, Comment
 
 @login_required()
 def index(request):
@@ -63,11 +63,19 @@ def add_to_shopping_list(request):
 
 
 def add_tag(request):
+    print request.POST
     recipe_id = request.POST.get('recipe_id')
+    print recipe_id
     response_data = {}
-
+    tag = Tag(name=request.POST.get('name'))
+    tag.save()
     recipe = Recipe.objects.get(id=recipe_id)
+    print recipe
+    print tag
     recipe.tags.create(name=request.POST.get('name'))
+    print "got here"
+    print recipe
+    recipe.save()
 
     response_data['status'] = 'success'
     response_data['id'] = ingredient_id
@@ -185,10 +193,12 @@ def add_ingredient_to_recipe(request):
 def recipe_details(request, recipe_id):
     recipe = Recipe.objects.get(pk=recipe_id)
     user = request.user
+    tag_form = TagForm()
     comment_form = CommentForm()
     ingredient_form = IngredientForm()
     return render_to_response('recipe_details.html',
-                              {'comment_form': comment_form,
+                              {'tag_form': tag_form,
+                               'comment_form': comment_form,
                                'ingredient_form': ingredient_form,
                                'recipe': recipe, },
                               context_instance=RequestContext(request))

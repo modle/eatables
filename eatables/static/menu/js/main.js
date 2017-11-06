@@ -6,6 +6,20 @@ $(document).ready( function() {
 
   $('#add-note-button').on('click', showAddCommentModal);
   $('#cancel-comment-add').on('click', hideAddCommentModal);
+
+  $('#add-tag-button').on('click', showAddTagModal);
+  $('#cancel-tag-add').on('click', hideAddTagModal);
+
+  $(window).keydown(function(event) {
+    // esc
+    if (event.keyCode == 27) {
+      for (var modal of document.getElementsByClassName("modal")) {
+        hideModal(modal);
+      }
+      showButtons();
+      event.preventDefault();
+    }
+  });
 });
 
 /*
@@ -27,13 +41,17 @@ function showAddTagModal() {
   hideButtons();
 }
 function hideButtons() {
+  hideComponent('add-tag-button');
+  hideComponent('add-note-button');
   hideComponent('add-ingredient-button');
   hideComponent('edit-button');
-  hideComponent('add-note-button');
-  hideComponent('add-tag-button');
 }
 function hideComponent(componentId) {
   $('#' + componentId).hide();
+}
+function hideAddTagModal() {
+  hideModal(addTagModal);
+  showButtons();
 }
 function hideAddIngredientModal() {
   hideModal(addIngredientModal);
@@ -44,10 +62,10 @@ function hideAddCommentModal() {
   showButtons();
 }
 function showButtons() {
+  showComponent('add-tag-button');
+  showComponent('add-note-button');
   showComponent('add-ingredient-button');
   showComponent('edit-button');
-  showComponent('add-note-button');
-  showComponent('add-tag-button');
 }
 function showComponent(componentId) {
   $('#' + componentId).show()
@@ -87,18 +105,27 @@ function add_to_shopping_list(ingredient_id, source_page) {
 };
 
 
+pushTagBlock = (tagName) => {
+  $("#tags_section").append(buildIngredientBlock(ingredient));
+}
+
 /*
 add tag to recipe asynchronously
 */
-function add_tag(recipeId, tagName) {
-  console.log("adding tag " + tagName + " to recipe_id " + recipeId)
+function add_tag(recipeId) {
+
+  tag = {}
+  tag.name = $('#tag_name').val();
+  tag.recipe_id = recipeId;
+  console.log(tag);
+  console.log("adding tag " + tag + " to recipe_id " + recipeId)
   $.ajax({
     url : "/add_tag/",
     type : "POST",
-    data : { recipe_id : recipeId, name : tagName },
+    data : tag,
     success : function(json) {
       console.log(json['status'])
-      $("#tags").append(tagName);
+      pushTagBlock(tag.name)
     },
     error : function(xhr, errmsg, err) {
       console.log("encountered an error: " + errmsg);

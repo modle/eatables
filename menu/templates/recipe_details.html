@@ -10,6 +10,8 @@
 
 <!-- ADD INGREDIENT MODAL-->
 {% include "add_ingredient.html" %}    
+<!-- ADD TAG MODAL-->
+{% include "add_tag.html" %}
 
 <div class="hero-unit">
   <h1>{{ recipe.name }}</h1>
@@ -17,6 +19,13 @@
 
 <!-- ACTION BUTTONS -->
 {% if user.is_superuser %}
+<div>
+  <div id="add-tag-button" class="fixed-action-btn" style="bottom: 168px; right: 24px;">
+    <a class="btn-floating pink">
+      <f class="large material-icons"><img style="margin-top: 5px;" src="{% static 'add_tag_icon'|generate_img_path %}" height="25em"></f>
+    </a>
+  </div>
+</div>
 <div>
   <div id="add-note-button" class="fixed-action-btn" style="bottom: 120px; right: 24px;">
     <a class="btn-floating orange">
@@ -72,6 +81,7 @@
       {% if user.is_superuser %}
         <li><a class="" target="_blank" href="{{ recipe.source }}">GoTo Recipe Source</a></li>
       {% endif %}
+      <li><b>Tags</b>: {{ recipe.tags }}</li>
     </ul>
   </div>
   <div style="clear:both;"></div>
@@ -93,12 +103,11 @@
 </div>
 <hr>
 <div class="recipe_notes">
+  <!-- ADD COMMENT MODAL-->
+  {% include "add_comment.html" %}
   <div class="hero-unit">
     <h2>Notes</h2>
   </div>
-  <!-- ADD COMMENT MODAL-->
-  {% include "add_comment.html" %}
-  {% include "add_tag.html" %}
   {% if recipe.comment_set.all %}
     <div id="comments_section">
       {% for comment in recipe.comment_set.all %}

@@ -173,7 +173,10 @@
 
 .orange {
   background-color: SandyBrown !important; }
-  
+
+.pink {
+  background-color: lightpink !important; }
+
 
 /**
  * Contain overflow in all browsers.

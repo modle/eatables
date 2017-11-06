@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 from django.utils import timezone
 from django.contrib.auth.models import User
 
@@ -7,17 +8,9 @@ from menu.choices import *
 
 class Tag(models.Model):
     name = models.CharField(max_length=30)
-    slug = models.SlugField(max_length=100, db_index=True, unique=True)
-
-    def save(self, *args, **kwargs):
-        if not self.id:
-
-            self.slug = slugify(self.name)
-
-        super(Tag, self).save()
 
     def __str__(self):
-        return self.name
+        return self.name + ': ' + self.slug
 
     class Meta:
         ordering = ('name',)

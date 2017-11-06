@@ -3,17 +3,19 @@
 <div class="wrapper">
   <div id="addTagModal" class="modal">
     <div class="modal-container modal-toast">
-        <div class="form-container-wrapper">
-          <form class="form-container" method="POST" action="">
-            {% csrf_token %}
-            {{ tag_form }}
-            <div class="submit-container">
-              <a id="cancel-tag-add" class="submit-button">Cancel</a>                
-              <a class="submit-button" id="{{ recipe.id }}" onClick="add_tag(this.id)">Save</a>
-            </div>
-            <div style="clear:both;"></div>
-          </form>
-        </div>
+      <div class="form-container-wrapper">
+        <form class="form-container" method="POST" action="">
+          <div class="form-title"><h2>Add Tag</h2></div>
+          {% csrf_token %}
+          {{ tag_form.id }}
+          {{ tag_form.name }}
+          <div class="submit-container">
+            <a id="cancel-tag-add" class="submit-button">Cancel</a>
+            <a class="submit-button" id="{{ recipe.id }}" onClick="add_tag(this.id)">Save</a>
+          </div>
+          <div style="clear:both;"></div>
+        </form>
+      </div>
       <div style="clear:both;"></div>
     </div>
   </div>
