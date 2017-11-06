@@ -81,7 +81,13 @@
       {% if user.is_superuser %}
         <li><a class="" target="_blank" href="{{ recipe.source }}">GoTo Recipe Source</a></li>
       {% endif %}
-      <li><b>Tags</b>: {{ recipe.tags }}</li>
+      <li id="tagsSection"><b>Tags</b>:
+        {% for tag in recipe.tags.all %}
+          {{ tag }}
+        {% empty %}
+          no tags
+        {% endfor %}
+      </li>
     </ul>
   </div>
   <div style="clear:both;"></div>

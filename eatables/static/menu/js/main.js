@@ -106,7 +106,7 @@ function add_to_shopping_list(ingredient_id, source_page) {
 
 
 pushTagBlock = (tagName) => {
-  $("#tags_section").append(buildIngredientBlock(ingredient));
+  $("#tagsSection").append(" " + tagName);
 }
 
 /*
