@@ -19,36 +19,22 @@
 
 <!-- ACTION BUTTONS -->
 {% if user.is_superuser %}
-<div>
-  <div id="add-tag-button" class="fixed-action-btn" style="bottom: 168px; right: 24px;">
-    <a class="btn-floating pink">
-      <f class="large material-icons"><img style="margin-top: 5px;" src="{% static 'add_tag_icon'|generate_img_path %}" height="25em"></f>
-    </a>
+
+<div id="footer">
+  <div id="add-tag-button" class="pink button">
+    Tag
   </div>
-</div>
-<div>
-  <div id="add-note-button" class="fixed-action-btn" style="bottom: 120px; right: 24px;">
-    <a class="btn-floating orange">
-      <f class="large material-icons"><img style="margin-top: 5px;" src="{% static 'add_note_icon'|generate_img_path %}" height="25em"></f>
-    </a>
+  <div id="add-note-button" class="orange button">
+    Note
   </div>
-</div>
-<div>
-  <div id="add-ingredient-button" class="fixed-action-btn" style="bottom: 72px; right: 24px;">
-    <a class="btn-floating green">
-      <f class="large material-icons"><img style="margin-top: 5px;" src="{% static 'add_ingredient_icon'|generate_img_path %}" height="25em"></f>
-    </a>
+  <div id="add-ingredient-button" class="green button">
+    Ingredient
   </div>
-</div>
-<div onclick="location.href='{% url 'edit_recipe' recipe.id %}'">
-  <div id="edit-button" class="fixed-action-btn" style="bottom: 24px; right: 24px;">
-    <a class="btn-floating blue">
-      <f class="large material-icons"><img style="margin-top: 6px;" src="{% static 'settings_icon'|generate_img_path %}" height="25em"></f>
-    </a>
+  <div class="blue button" onclick="location.href='{% url 'edit_recipe' recipe.id %}'">
+    Edit
   </div>
 </div>
 {% endif %}
-
 
 <div class="recipe_header gray_background">
   <div class="recipe_description">

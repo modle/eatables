@@ -1,6 +1,7 @@
 
 *{
-  font-family: Cagliostro;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* font-family: Cagliostro; */
 }
 
 html, body {
@@ -51,7 +52,7 @@ a:focus {
 }
 
 .comment_block {
-  padding: .3em;  
+  padding: .3em;
 }
 
 .recipe_description {
@@ -366,8 +367,41 @@ ingredientField {
   }
   .item_complete {
     float: left;
-  }  
+  }
   .item_delete {
     float: right;
-  }  
+  }
 }
+
+#footer {
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  width: 100%;
+}
+
+#footer .button {
+  color:white;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  font-size: 2em;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.blue {
+  background-color: #00ADFF !important;
+}
+.green {
+  background-color: #26a69a !important;
+}
+.orange {
+  background-color: SandyBrown !important;
+}
+.pink {
+  background-color: lightpink !important;
+}
+  
