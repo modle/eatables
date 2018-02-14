@@ -306,7 +306,40 @@ ingredientField {
   display: inline;
 }
 
-@media (max-width: 979px) {
+
+#footer {
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+}
+
+#footer .button {
+  color:white;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  font-size: 2em;
+  height: 2em;
+  line-height: 2em;
+}
+
+.blue {
+  background-color: #00ADFF !important;
+}
+.green {
+  background-color: #26a69a !important;
+}
+.orange {
+  background-color: SandyBrown !important;
+}
+.pink {
+  background-color: lightpink !important;
+}
+
+@media (max-device-width: 979px) {
 
 /* Enable use of floated navbar text */
   .navbar-text.pull-right {
@@ -316,6 +349,7 @@ ingredientField {
   }
 }
 
+  
 @media (min-width: 980px) {
   body {
     padding-top: 60px;
@@ -324,8 +358,12 @@ ingredientField {
     min-width: 1000px;
     margin: 0 auto;
   }
+  #footer {
+    width: 50%;
+    margin: 0 25%;
+  }
 }
-
+  
 @media (max-device-width: 767px) {
   .span14 {
     padding: .3em;
@@ -351,7 +389,6 @@ ingredientField {
   form {
     width: 100%;
   }
-
   .item_container {
     overflow-x: auto;
     overflow-y: hidden;
@@ -371,37 +408,7 @@ ingredientField {
   .item_delete {
     float: right;
   }
+  #footer .button {
+    font-size: 1em;
+  }
 }
-
-#footer {
-  background-color: white;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  width: 100%;
-}
-
-#footer .button {
-  color:white;
-  display: inline-block;
-  width: 100%;
-  text-align: center;
-  font-size: 2em;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.blue {
-  background-color: #00ADFF !important;
-}
-.green {
-  background-color: #26a69a !important;
-}
-.orange {
-  background-color: SandyBrown !important;
-}
-.pink {
-  background-color: lightpink !important;
-}
-  
