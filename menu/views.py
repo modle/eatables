@@ -84,10 +84,11 @@ def add_tag(request):
 def shopping_list(request):
     shopping_list_entries = ShoppingList.objects.all()
 
-    return render_to_response(
+    return render(
+        request,
         'shopping_list.html',
-        {'shopping_list_entries': shopping_list_entries, },
-        context_instance=RequestContext(request))
+        {'shopping_list_entries': shopping_list_entries, }
+    )
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
@@ -126,8 +127,11 @@ def add_recipe(request):
     else:
         form = RecipeForm()
 
-    return render_to_response('edit_recipe.html', {'form': form},
-                              context_instance=RequestContext(request))
+    return render(
+        request,
+        'edit_recipe.html',
+        {'form': form},
+    )
 
 
 def clear_messages(request):
@@ -194,12 +198,16 @@ def recipe_details(request, recipe_id):
     tag_form = TagForm()
     comment_form = CommentForm()
     ingredient_form = IngredientForm()
-    return render_to_response('recipe_details.html',
-                              {'tag_form': tag_form,
-                               'comment_form': comment_form,
-                               'ingredient_form': ingredient_form,
-                               'recipe': recipe, },
-                              context_instance=RequestContext(request))
+    return render(
+        request,
+        'recipe_details.html',
+        {
+            'tag_form': tag_form,
+            'comment_form': comment_form,
+            'ingredient_form': ingredient_form,
+            'recipe': recipe,
+        },
+    )
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
@@ -227,11 +235,13 @@ def edit_recipe(request, recipe_id):
             messages.info(request, 'Recipe successfully updated.')
             return HttpResponseRedirect(reverse('recipe_details', args=(recipe_id,)))
 
-    return render_to_response('edit_recipe.html', {
-        'form': recipe_form,
-        'recipe': recipe,
-    },
-        context_instance=RequestContext(request)
+    return render(
+        request,
+        'edit_recipe.html',
+        {
+            'form': recipe_form,
+            'recipe': recipe,
+        },
     )
 
 
@@ -254,10 +264,15 @@ def edit_ingredient(request, ingredient_id):
     else:
         ingredient_form = IngredientForm(instance=ingredient)
 
-        return render_to_response('edit_ingredient.html', {'ingredient_form': ingredient_form,
-                                                                'recipe': recipe,
-                                                                'ingredient': ingredient},
-                                  context_instance=RequestContext(request))
+        return render(
+            request,
+            'edit_ingredient.html',
+            {
+                'ingredient_form': ingredient_form,
+                'recipe': recipe,
+                'ingredient': ingredient
+            },
+        )
 
 
 @user_passes_test(lambda u: u.is_superuser, login_url='not_authorized')
@@ -315,16 +330,16 @@ def loggedin(request):
 
 
 def not_authorized(request):
-    return render_to_response(
+    return render(
+        request,
         'registration/not_authorized.html',
-        context_instance=RequestContext(request)
     )
 
 
 def loggedout(request):
-    return render_to_response(
+    return render(
+        request,
         'registration/loggedout.html',
-        context_instance=RequestContext(request)
     )
 
 
@@ -337,12 +352,14 @@ def my_recipes(request):
     comments = Comment.objects.filter(user_id=user.id)
     recipe_form = RecipeForm()
 
-    return render_to_response('my_recipes.html', {
-        'recipes': recipes,
-        'comments': comments,
-        'recipe_form': recipe_form,
+    return render(
+        request,
+        'my_recipes.html',
+        {
+            'recipes': recipes,
+            'comments': comments,
+            'recipe_form': recipe_form,
         },
-        context_instance=RequestContext(request)
     )
 
 
