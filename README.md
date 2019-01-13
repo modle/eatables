@@ -39,43 +39,31 @@ heroku local
 
 ## Local Dev Environment Setup
 
-### Set Up the Virtualenv
+### Install clib Dependencies
+
+*psycopg2 requirements; without them the requirements install will fail*
 
 ```
-sudo apt install virtualenv
-virtualenv venv
+sudo apt install postgresql
+sudo apt install python-psycopg2
+sudo apt install libpq-dev
+sudo apt install python-dev
+```
+
+### Set Up the Virtualenv and install dependencies
+
+```
+pipenv --python 3.7
+pipenv shell
+pipenv install
 ```
 
 ### Set Secrets in `eatables/.env`
 
 ```
 DATABASE_URL=yourdatabaseurl
-DEBUG=true
 SECRET_KEY=somekey
-ENVIRONMENT=dev
 ```
-
-### Activate the Virtualenv
-
-```
-source venv/bin/activate
-```
-
-### Install Dependencies to `venv` to Run the App Locally
-
->*psycopg2 requirements; without them the requirements install will fail*
->```
->sudo apt install postgresql
->sudo apt install python-psycopg2
->sudo apt install libpq-dev
->sudo apt install python-dev
->```
->
->```
->pipenv --python 3.7
->pipenv shell
->pipenv install
->```
 
 ### Collect Static Files
 
