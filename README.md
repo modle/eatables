@@ -63,8 +63,6 @@ source venv/bin/activate
 
 ### Install Dependencies to `venv` to Run the App Locally
 
-#### Linux
-
 >*psycopg2 requirements; without them the requirements install will fail*
 >```
 >sudo apt install postgresql
@@ -74,14 +72,9 @@ source venv/bin/activate
 >```
 >
 >```
->pip install -r requirements.txt
->```
-
-#### Windows
-
->*Windows dev environment will use sqlite3, so psycopg2 and postgres are not needed*
->```
->pip install -r requirements-windows.txt
+>pipenv --python 3.7
+>pipenv shell
+>pipenv install
 >```
 
 ### Collect Static Files
