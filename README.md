@@ -83,6 +83,12 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
+### Load fixtures
+
+```
+python manage.py loaddata fixtures/db.json
+```
+
 ---
 
 ## App Usage
