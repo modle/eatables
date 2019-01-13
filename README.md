@@ -61,7 +61,7 @@ ENVIRONMENT=dev
 source venv/bin/activate
 ```
 
-### *Install Dependencies to `venv` to Run the App Locally*
+### Install Dependencies to `venv` to Run the App Locally
 
 #### Linux
 
@@ -84,18 +84,20 @@ source venv/bin/activate
 >pip install -r requirements-windows.txt
 >```
 
-
 ### Collect Static Files
+
 ```
 python manage.py collectstatic --noinput
 ```
 
 ### Run migrations
+
 ```
 python manage.py migrate
 ```
 
 ### Create a superuser
+
 ```
 python manage.py createsuperuser
 ```

@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render_to_response, render
 from django.http import HttpResponseRedirect, JsonResponse
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.template import RequestContext
 import csv
 from datetime import datetime
@@ -14,7 +14,6 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from menu.forms import *
 from .models import Recipe, Ingredient, Tag, ShoppingList, Fridge, Comment
 
-@login_required()
 def index(request):
     return HttpResponseRedirect(reverse('discover'))
 
@@ -36,11 +35,13 @@ def discover(request):
     else:
         recipes = Recipe.objects.filter(pinned='True')
 
-    return render_to_response('discover.html', {
-        'recipes': recipes,
-        'search_form': search_form,
+    return render(
+        request,
+        'discover.html',
+        {
+            'recipes': recipes,
+            'search_form': search_form,
         },
-        context_instance=RequestContext(request)
     )
 
 

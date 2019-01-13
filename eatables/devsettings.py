@@ -1,24 +1,21 @@
 import os
-import urlparse
+import urllib.parse
 
-print 'loading dev settings'
-
-DATABASE_URL = os.environ["DATABASE_URL"]
+urllib.parse.uses_netloc.append("postgres")
 
 assert 'SECRET_KEY' in os.environ, 'Set SECRET_KEY in your .env file!'
-SECRET_KEY = os.environ["SECRET_KEY"]
 
-if os.environ['PLATFORM'] == 'windows':
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(os.environ['BASE_DIR'], 'db.sqlite3'),
-        }
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(os.environ['BASE_DIR'], 'db.sqlite3'),
     }
-else:
-    assert 'DATABASE_URL' in os.environ, 'Set DATABASE_URL in your .env file!'
-    urlparse.uses_netloc.append("postgres")
-    DATABASE_URL = urlparse.urlparse(os.environ["DATABASE_URL"])
+}
+
+if 'DATABASE_URL' in os.environ:
+    DATABASE_URL = urllib.parse.urlparse(os.environ.get('DATABASE_URL'))
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -31,4 +28,4 @@ else:
     }
 
 assert 'DEBUG' in os.environ, 'Set DEBUG in your .env file!'
-DEBUG = os.environ["DEBUG"]
+DEBUG = os.environ.get('DEBUG', False)

@@ -1,21 +1,23 @@
 
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.auth import login, logout
 
+from menu.views import loggedin, not_authorized, loggedout
 from menu import views
 
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
 
-    url(r'^accounts/login/$', 'django.contrib.auth.views.login', name='login'),
-    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', name='logout'),
-    url(r'^accounts/loggedin/$', 'menu.views.loggedin', name='loggedin'),
-    url(r'^accounts/not_authorized/$', 'menu.views.not_authorized', name='not_authorized'),
-    url(r'^loggedout/$', 'menu.views.loggedout', name='loggedout'),
+    url(r'^accounts/login/$', login, name='login'),
+    url(r'^accounts/logout/$', logout, name='logout'),
+    url(r'^accounts/loggedin/$', loggedin, name='loggedin'),
+    url(r'^accounts/not_authorized/$', not_authorized, name='not_authorized'),
+    url(r'^loggedout/$', loggedout, name='loggedout'),
 
     # default view
-    url(r'^$', views.my_recipes, name='my_recipes'),
+    url(r'^$', views.index, name='my_recipes'),
 
     # all recipes
     url(r'^clear_recipe_filter/$', views.clear_recipe_filter, name='clear_recipe_filter'),

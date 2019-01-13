@@ -26,7 +26,7 @@ class Recipe(models.Model):
     servings = models.IntegerField(default=0)
     prep_time = models.IntegerField(default=0)
     cook_time = models.IntegerField(default=0)
-    user = models.ForeignKey(User, null=True, blank=True)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE,)
     publish_date = models.DateTimeField(default=timezone.now)
     edit_date = models.DateTimeField(default=timezone.now)
     pinned = models.BooleanField(default=False)
@@ -46,7 +46,7 @@ class Recipe(models.Model):
 
 class Ingredient(models.Model):
     id = models.AutoField(primary_key=True)
-    recipe = models.ForeignKey(Recipe)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE,)
     name = models.CharField(max_length=80, null=False)
     comment = models.CharField(max_length=80, blank=True, null=True)
     amount = models.DecimalField(max_digits=10, decimal_places=3, default=0.0)
@@ -64,7 +64,7 @@ class Ingredient(models.Model):
 
 class ShoppingList(models.Model):
     shoppingListId = models.AutoField(primary_key=True)
-    ingredient = models.ForeignKey(Ingredient, blank=False)
+    ingredient = models.ForeignKey(Ingredient, blank=False, on_delete=models.CASCADE,)
     name = models.CharField(max_length=80, null=False)
     amount = models.IntegerField(default=0, null=True, blank=True)
     completed = models.BooleanField(default=False) # change to completed
@@ -89,10 +89,10 @@ class IngredientMaster(models.Model):
 
 class Comment(models.Model):
     id = models.AutoField(primary_key=True)
-    recipe = models.ForeignKey(Recipe)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE,)
     comment = models.TextField(null=False)
     rating = models.IntegerField(null=True)
-    user = models.ForeignKey(User, null=True, blank=True)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE,)
     publishDate = models.DateTimeField(default=timezone.now)
     editDate = models.DateTimeField(default=timezone.now)
 
@@ -105,7 +105,7 @@ class Comment(models.Model):
 
 class PurchaseHistory(models.Model):
     id = models.AutoField(primary_key=True)
-    ingredient = models.ForeignKey(Ingredient)
+    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE,)
     purchaseAmount = models.DecimalField(max_digits=10, decimal_places=2, default=0.0, null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.0, null=True, blank=True)
     purchaseUnit = models.CharField(max_length=30, null=True)
@@ -133,9 +133,9 @@ class Fridge(models.Model):
 
 
 class Rating(models.Model):
-    recipe = models.ForeignKey(Recipe)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE,)
     rating = models.IntegerField(null=True)
-    user = models.ForeignKey(User, null=True, blank=True)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE,)
     publishDate = models.DateTimeField(default=timezone.now)
     editDate = models.DateTimeField(default=timezone.now)
 
