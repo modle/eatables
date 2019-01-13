@@ -4,6 +4,7 @@ Django settings for eatables project.
 import os
 import platform
 import environ
+import urllib.parse
 
 # read the eatables/.env file
 environ.Env.read_env()
@@ -87,9 +88,31 @@ MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = '/accounts/loggedin/'
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(os.environ['BASE_DIR'], 'db.sqlite3'),
+    }
+}
+
+if 'DATABASE_URL' in os.environ:
+    urllib.parse.uses_netloc.append("postgres")
+    DATABASE_URL = urllib.parse.urlparse(os.environ.get('DATABASE_URL'))
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': DATABASE_URL.path[1:],
+            'USER': DATABASE_URL.username,
+            'PASSWORD': DATABASE_URL.password,
+            'HOST': DATABASE_URL.hostname,
+            'PORT': DATABASE_URL.port
+        }
+    }
+
+SECRET_KEY = os.environ.get('SECRET_KEY', 'badkeyisbad')
+
+DEBUG = True
 
 # load environment-specific settings
 if 'ENVIRONMENT' in os.environ.keys() and os.environ['ENVIRONMENT'] == 'prd':
     from eatables.prdsettings import *
-else:
-    from eatables.devsettings import *
