@@ -8,11 +8,6 @@ import environ
 # read the eatables/.env file
 environ.Env.read_env()
 
-# get the os
-os.environ['PLATFORM'] = 'linux'
-if 'CYGWIN' in platform.system():
-    os.environ['PLATFORM'] = 'windows'
-
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -94,7 +89,7 @@ LOGIN_REDIRECT_URL = '/accounts/loggedin/'
 
 
 # load environment-specific settings
-if 'ENVIRONMENT' in os.environ.keys() and os.environ['ENVIRONMENT'] == 'dev':
-    from eatables.devsettings import *
-else:
+if 'ENVIRONMENT' in os.environ.keys() and os.environ['ENVIRONMENT'] == 'prd':
     from eatables.prdsettings import *
+else:
+    from eatables.devsettings import *

@@ -3,9 +3,7 @@ import urllib.parse
 
 urllib.parse.uses_netloc.append("postgres")
 
-assert 'SECRET_KEY' in os.environ, 'Set SECRET_KEY in your .env file!'
-
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'badkeyisbad')
 
 DATABASES = {
     'default': {
@@ -27,5 +25,4 @@ if 'DATABASE_URL' in os.environ:
         }
     }
 
-assert 'DEBUG' in os.environ, 'Set DEBUG in your .env file!'
-DEBUG = os.environ.get('DEBUG', False)
+DEBUG = os.environ.get('DEBUG', True)

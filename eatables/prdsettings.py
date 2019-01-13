@@ -3,9 +3,10 @@ import urllib.parse
 
 urlparse.uses_netloc.append("postgres")
 
-assert 'DATABASE_URL' in os.environ, 'Set DATABASE_URL in your .env file!'
+assert 'DATABASE_URL' in os.environ, 'Set DATABASE_URL in your env!'
 DATABASE_URL = urlparse.urlparse(os.environ["DATABASE_URL"])
 
+assert 'SECRET_KEY' in os.environ, 'Set SECRET_KEY in your env!'
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 DATABASES = {
@@ -19,6 +20,6 @@ DATABASES = {
     }
 }
 
-DEBUG = os.environ["DEBUG"]
+DEBUG = False
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
