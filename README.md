@@ -19,18 +19,18 @@ Password:
 
 Complete the [local dev environment setup](#local-dev-environment-setup) section, then start the server with one of the following commands:
 
-#### Windows or Linux
+#### Without Heroku
 
 ```
-python manage.py runserver
+pipenv run python manage.py runserver
 ```
 
 >Navigate to http://localhost:8000
 
-#### Linux only (with Heroku toolbelt installed)
+#### With Heroku (need toolbelt installed)
 
 ```
-heroku local
+pipenv run heroku local
 ```
 
 >Navigate to http://localhost:5000
@@ -54,7 +54,6 @@ sudo apt install python-dev
 
 ```
 pipenv --python 3.7
-pipenv shell
 pipenv install
 ```
 
@@ -68,25 +67,25 @@ SECRET_KEY=somekey
 ### Collect Static Files
 
 ```
-python manage.py collectstatic --noinput
+pipenv run python manage.py collectstatic --noinput
 ```
 
 ### Run migrations
 
 ```
-python manage.py migrate
+pipenv run python manage.py migrate
 ```
 
 ### Create a superuser
 
 ```
-python manage.py createsuperuser
+pipenv run python manage.py createsuperuser
 ```
 
 ### Load fixtures
 
 ```
-python manage.py loaddata fixtures/db.json
+pipenv run python manage.py loaddata fixtures/db.json
 ```
 
 ---
