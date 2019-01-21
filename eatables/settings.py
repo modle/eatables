@@ -9,8 +9,9 @@ import urllib.parse
 # read the eatables/.env file
 environ.Env.read_env()
 
+ENVIRONMENT = os.environ.get('ENVIRONMENT', 'dev')
 DEBUG = os.environ.get('DEBUG', False)
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') if not DEBUG else []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') if ENVIRONMENT == 'prod' else []
 
 # Application definition
 
@@ -83,7 +84,7 @@ STATIC_SOURCE = 'static'
 STATICFILES_DIRS = [
     os.path.join(os.environ['BASE_DIR'], STATIC_SOURCE),
 ]
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage' if not DEBUG else ''
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage' if environment == 'prod' else ''
 
 MEDIA_ROOT = os.path.join(os.environ['BASE_DIR'], 'eatables')
 MEDIA_URL = '/media/'
@@ -114,6 +115,6 @@ if 'DATABASE_URL' in os.environ:
 SECRET_KEY = os.environ.get('SECRET_KEY', 'badkeyisbad')
 
 # verify environment-specific settings
-if os.environ.get('ENVIRONMENT', '') == 'prd':
+if os.environ.get('ENVIRONMENT', '') == 'prod':
     assert 'DATABASE_URL' in os.environ, 'Set DATABASE_URL in your env!'
 
