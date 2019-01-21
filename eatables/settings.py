@@ -9,7 +9,8 @@ import urllib.parse
 # read the eatables/.env file
 environ.Env.read_env()
 
-ALLOWED_HOSTS = [eatables-test.herokuapp.com]
+DEBUG = os.environ.get('DEBUG', False)
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') if not DEBUG else []
 
 # Application definition
 
@@ -82,6 +83,7 @@ STATIC_SOURCE = 'static'
 STATICFILES_DIRS = [
     os.path.join(os.environ['BASE_DIR'], STATIC_SOURCE),
 ]
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage' if not DEBUG else ''
 
 MEDIA_ROOT = os.path.join(os.environ['BASE_DIR'], 'eatables')
 MEDIA_URL = '/media/'
@@ -111,8 +113,7 @@ if 'DATABASE_URL' in os.environ:
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'badkeyisbad')
 
-DEBUG = True
+# verify environment-specific settings
+if os.environ.get('ENVIRONMENT', '') == 'prd':
+    assert 'DATABASE_URL' in os.environ, 'Set DATABASE_URL in your env!'
 
-# load environment-specific settings
-if 'ENVIRONMENT' in os.environ.keys() and os.environ['ENVIRONMENT'] == 'prd':
-    from eatables.prdsettings import *
