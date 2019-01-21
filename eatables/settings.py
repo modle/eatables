@@ -9,7 +9,7 @@ import urllib.parse
 # read the eatables/.env file
 environ.Env.read_env()
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [eatables-test.herokuapp.com]
 
 # Application definition
 
