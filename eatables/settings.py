@@ -84,7 +84,7 @@ STATIC_SOURCE = 'static'
 STATICFILES_DIRS = [
     os.path.join(os.environ['BASE_DIR'], STATIC_SOURCE),
 ]
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage' if environment == 'prod' else ''
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage' if ENVIRONMENT == 'prod' else ''
 
 MEDIA_ROOT = os.path.join(os.environ['BASE_DIR'], 'eatables')
 MEDIA_URL = '/media/'
